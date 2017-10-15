@@ -2,20 +2,20 @@ import { Component } from '@angular/core';
 import {NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { CrearCooperativaService } from './crearCooperativa.service';
+import { ActualizarDatosService } from './ActualizarDatos.service';
 
 @Component({
   //selector: 'app-crearCooperativa',
   templateUrl: './actualizardatos.component.html',
   providers: [
-    CrearCooperativaService
+    ActualizarDatosService
   ]
 })
 export class CrearCooperativaComponent{
-  title = 'Crear cooperativa';
+  title = 'Actualizar cooperativa';
   envioFormCooperativa = false;
 
-  constructor(private crearCooperativaServices: CrearCooperativaService, private router: Router ){
+  constructor(private ActualizarDatosServices: ActualizarDatosService, private router: Router ){
 
   }
 
@@ -24,7 +24,7 @@ export class CrearCooperativaComponent{
     //console.log(formCooperativa.valid);
     this.envioFormCooperativa = true;
     if (formCooperativa.valid) {
-      let resultado = this.crearCooperativaServices.guardarCooperativa(formCooperativa.value).subscribe();
+      let resultado = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value).subscribe();
       if( resultado ){
         alert("Datos guardados correctamente");
         this.router.navigateByUrl('cooperativa/listadoCooperativa');
