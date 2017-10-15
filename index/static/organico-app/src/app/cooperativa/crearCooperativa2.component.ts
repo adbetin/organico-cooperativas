@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import {NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { CrearCooperativaService } from './crearCooperativa.service';
+import { CrearCooperativaService } from './crearCooperativa2.service';
 
 @Component({
   //selector: 'app-crearCooperativa',
-  templateUrl: './crearCooperativa.component.html',
+  templateUrl: './crearCooperativa2.component.html',
   providers: [
     CrearCooperativaService
   ]
