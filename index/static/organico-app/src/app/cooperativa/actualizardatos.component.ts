@@ -11,7 +11,7 @@ import { ActualizarDatosService } from './ActualizarDatos.service';
     ActualizarDatosService
   ]
 })
-export class CrearCooperativaComponent{
+export class ActualizarDatosComponent{
   title = 'Actualizar cooperativa';
   envioFormCooperativa = false;
 
