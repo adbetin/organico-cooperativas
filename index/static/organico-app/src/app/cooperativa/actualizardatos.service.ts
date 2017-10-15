@@ -3,7 +3,7 @@ import { Http , Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class CrearCooperativaService {
+export class ActualizarDatosService {
     constructor(private http: Http) { }
 
     guardarCooperativa( cooperativa ) {
