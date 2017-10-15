@@ -24,7 +24,7 @@ urlpatterns = [
     # Vistas
     url(r'^crearCooperativa/$', views.cooperativasAdmin, name="crear_cooperativa"),
         url(r'^listadoCooperativa/$', views.cooperativasAdmin, name="listado_cooperativa"),
-    url(r'^actualizardatos/$', views.cooperativasAdmin, name="crear_cooperativa"),
+    url(r'^actualizardatos/$', views.cooperativasAdmin, name="actualizar_datos"),
     url(r'^detalle/(?P<id>.+)$', views.cooperativasDetail, name='detalle_cooperativa'),
 
     # Almacenamiento de datos
