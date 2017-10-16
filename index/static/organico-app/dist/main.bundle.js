@@ -227,7 +227,6 @@ var ActualizarDatosService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         var body = JSON.stringify(cooperativa);
-        console.log(body);
         return this.http.post('/cooperativa/actualizarCooperativa/', body, options).map(function (response) { return response.json(); });
     };
     ActualizarDatosService.prototype.getCookie = function (name) {
@@ -309,7 +308,7 @@ var ActualizarDatosComponent = (function () {
         this.envioFormCooperativa = true;
         if (formCooperativa.valid) {
             formCooperativa.value.id = this.cooperativa.id;
-            var resultado_1 = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value, this.cooperativa).subscribe(function (result) {
+            var resultado_1 = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value).subscribe(function (result) {
                 if (resultado_1) {
                     alert("Datos guardados correctamente");
                     _this.router.navigateByUrl('cooperativa/listadoCooperativa');
