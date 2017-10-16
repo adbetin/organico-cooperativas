@@ -8,7 +8,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from productor.models import Productor
 from productor.serializers import ProductorSerializer
+from cooperativa.serializers import CooperativaSerializer
 
+import json
 
 # Create your views here.
 
@@ -52,3 +54,26 @@ def productorGet(request, id):
     productor = Productor.objects.get(pk=id)
     serializer = ProductorSerializer(productor)
     return modeloJSON(serializer.data)
+
+@csrf_exempt
+def productorEditar(request, id):
+    respuesta = False
+    if request.method == 'POST':
+        productorPost = json.loads(request.body)
+        productor = Productor.objects.get(pk=id)
+
+        productor.nombre = productorPost["nombre"]
+        productor.descripcion = productorPost["descripcion"]
+        productor.direccion = productorPost["direccion"]
+        productor.documento = productorPost["documento"]
+        productor.foto = productorPost["foto"]
+        productor.latitud = float(productorPost["latitud"])
+        productor.longitud = float(productorPost["longitud"])
+
+        #productor.cooperativa = CooperativaSerializer(data=productorPost["cooperativa"])
+        #productor.tipo_documento = TipoDocumentoSerializer(data=productorPost["tipo_documento"])
+        print productor
+        productor.save()
+        respuesta = True
+        return modeloJSON(respuesta)
+    return modeloJSON(respuesta)

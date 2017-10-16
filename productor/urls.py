@@ -24,8 +24,10 @@ urlpatterns = [
     url(r'^registro/$', views.productorAdmin, name="registrar_productor"),
     url(r'^lista', views.productorLista, name="listar_productor"),
     url(r'^detalle/(?P<id>.+)$', views.productorDetail, name='detalle_productor'),
+    url(r'^editar/(?P<id>.+)$', views.productorDetail, name='editar_productor'),
 
     # rest services
     url(r'^service$', views.productoresList, name="servicios_productor"),
     url(r'^get/(?P<id>.+)$', views.productorGet, name='get_productor'),
+    url(r'^editarProductor/(?P<id>.+)$', views.productorEditar, name='editar_productor'),
 ]

@@ -15,6 +15,7 @@ import { CooperativaDetalleComponent } from './cooperativa/cooperativa-detalle/c
 import { ProductorRegistroComponent } from './productor/productorRegistro.component';
 import { ProductorDetalleComponent } from './productor/productor-detalle/productor-detalle.component';
 import { ProductorListaComponent } from './productor/productor-lista/productor-lista.component';
+import { ProductorEditarComponent } from './productor/productor-editar/productorEditar.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,8 @@ import { ProductorListaComponent } from './productor/productor-lista/productor-l
     CooperativaDetalleComponent,
     ProductorRegistroComponent,
     ProductorDetalleComponent,
-
     ProductorListaComponent,
+    ProductorEditarComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +65,10 @@ import { ProductorListaComponent } from './productor/productor-lista/productor-l
       {
         path: 'productor/lista',
         component: ProductorListaComponent
+      },
+      {
+        path: 'productor/editar/:id',
+        component: ProductorEditarComponent
       }
     ])
   ],

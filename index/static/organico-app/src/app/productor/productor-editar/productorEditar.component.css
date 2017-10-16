@@ -1,0 +1,13 @@
+input[type="file"]{
+  margin: 0 auto;
+  border: none;
+}
+
+.productor-registro-section{
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+agm-map {
+  height: 300px;
+}

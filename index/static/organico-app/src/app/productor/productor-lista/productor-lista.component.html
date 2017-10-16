@@ -34,7 +34,18 @@
 
                 <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef> Acciones</mat-header-cell>
-                    <mat-cell *matCellDef="let element"><a href="detalle/{{ element.id }}">Ver</a></mat-cell>
+                    <mat-cell *matCellDef="let element">
+
+                      <a routerLink="/productor/detalle/{{ element.id }}">
+                        <span class="fa fa-search title-box title" title="Detalles productor"></span>
+                      </a>
+
+                      <a routerLink="/productor/editar/{{ element.id }}">
+                        <span class="fa fa-edit title-box title" title="Editar productor"></span>
+                      </a>
+                      <!--<a href="detalle/{{ element.id }}">Ver</a>
+                      <a href="editar/{{ element.id }}">Editar</a>-->
+                    </mat-cell>
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
