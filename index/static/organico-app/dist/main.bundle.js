@@ -235,6 +235,10 @@ var ActualizarDatosService = (function () {
         if (parts.length == 2)
             return parts.pop().split(";").shift();
     };
+    ActualizarDatosService.prototype.getCoop = function (id) {
+        return this.http.get('/cooperativa/consultarCooperativa/' + id)
+            .map(function (response) { return response.json(); });
+    };
     return ActualizarDatosService;
 }());
 ActualizarDatosService = __decorate([
@@ -250,7 +254,7 @@ var _a;
 /***/ "../../../../../src/app/cooperativa/actualizardatos.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Actualizar Datos Cooperativa</h1>\r\n        <div class=\"contact-form default-form\" *ngIf=\"cooperativa != null\">\r\n\r\n           <form #formCooperativa=\"ngForm\" (ngSubmit)=\"guardarCooperativa(formCooperativa)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormCooperativa}\" type=\"text\" name=\"nombre\" value=\"{{ cooperativa.nombre }}\" placeholder=\"* Nombre [Solo letras por favor]\" ngModel required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nit=\"ngModel\" [ngClass]=\"{'error':!nit.valid && envioFormCooperativa}\" type=\"text\" name=\"nit\" value=\"{{ cooperativa.nit }}\" placeholder=\"* NIT [Solo numeros]\" ngModel required maxlength=\"70\" pattern=\"[0-9-]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #correo=\"ngModel\" [ngClass]=\"{'error':!correo.valid && envioFormCooperativa}\" type=\"email\" name=\"correo\" value=\"{{ cooperativa.correo }}\" placeholder=\"* Correo [text@texto]\" ngModel required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #responsable=\"ngModel\" [ngClass]=\"{'error':!responsable.valid && envioFormCooperativa}\" type=\"text\" name=\"responsable\" value=\"{{ cooperativa.responsable }}\" placeholder=\"* Responsable [Solo letras]\" ngModel required maxlength=\"70\" pattern=\"[a-zA-Z ]*\">\r\n                    </div>\r\n\r\n                   <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #direccion=\"ngModel\" [ngClass]=\"{'error':!direccion.valid && envioFormCooperativa}\" type=\"text\" name=\"direccion\" value=\"{{ cooperativa.direccion }}\" placeholder=\"* Dirección\" ngModel required maxlength=\"255\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                          <input #telefono=\"ngModel\" [ngClass]=\"{'error':!telefono.valid && envioFormCooperativa}\" type=\"text\" name=\"telefono\" value=\"{{ cooperativa.telefono }}\" placeholder=\"* Telefono\" ngModel required maxlength=\"70\" pattern=\"[0-9-()+ ]*\">\r\n                    </div>\r\n\r\n                   <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #zona=\"ngModel\" [ngClass]=\"{'error':!zona.valid && envioFormCooperativa}\" type=\"text\" name=\"zona\" value=\"{{ cooperativa.zona }}\" placeholder=\"* Zona \" ngModel required maxlength=\"70\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormCooperativa}\" name=\"descripcion\" placeholder=\"Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\">{{ cooperativa.descripcion }}</textarea>\r\n                    </div>\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formCooperativa.valid && !envioFormCooperativa\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formCooperativa.valid && envioFormCooperativa\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\">\r\n                            <button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button>\r\n                            <button class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Atrás</button>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n"
+module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Actualizar Datos Cooperativa</h1>\r\n        <div class=\"contact-form default-form\" *ngIf=\"cooperativa != null\">\r\n\r\n           <form #formCooperativa=\"ngForm\" (ngSubmit)=\"guardarCooperativa(formCooperativa)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormCooperativa}\" type=\"text\" name=\"nombre\" [(ngModel)]=\"cooperativa.nombre\" placeholder=\"* Nombre [Solo letras por favor]\" required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nit=\"ngModel\" [ngClass]=\"{'error':!nit.valid && envioFormCooperativa}\" type=\"text\" name=\"nit\" [(ngModel)]=\"cooperativa.nit\" placeholder=\"* NIT [Solo numeros]\" required maxlength=\"70\" pattern=\"[0-9-]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #correo=\"ngModel\" [ngClass]=\"{'error':!correo.valid && envioFormCooperativa}\" type=\"email\" name=\"correo\" [(ngModel)]=\"cooperativa.correo\" placeholder=\"* Correo [text@texto]\" required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #responsable=\"ngModel\" [ngClass]=\"{'error':!responsable.valid && envioFormCooperativa}\" type=\"text\" name=\"responsable\" [(ngModel)]=\"cooperativa.responsable\" placeholder=\"* Responsable [Solo letras]\" required maxlength=\"70\" pattern=\"[a-zA-Z ]*\">\r\n                    </div>\r\n\r\n                   <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #direccion=\"ngModel\" [ngClass]=\"{'error':!direccion.valid && envioFormCooperativa}\" type=\"text\" name=\"direccion\" [(ngModel)]=\"cooperativa.direccion\" placeholder=\"* Dirección\" required maxlength=\"255\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                          <input #telefono=\"ngModel\" [ngClass]=\"{'error':!telefono.valid && envioFormCooperativa}\" type=\"text\" name=\"telefono\" [(ngModel)]=\"cooperativa.telefono\" placeholder=\"* Telefono\" required maxlength=\"70\" pattern=\"[0-9-()+ ]*\">\r\n                    </div>\r\n\r\n                   <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #zona=\"ngModel\" [ngClass]=\"{'error':!zona.valid && envioFormCooperativa}\" type=\"text\" name=\"zona\" [(ngModel)]=\"cooperativa.zona\" placeholder=\"* Zona \" required maxlength=\"70\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormCooperativa}\" name=\"descripcion\" placeholder=\"Descripción [Máx 550 caracteres]\" [(ngModel)]=\"cooperativa.descripcion\" maxlength=\"550\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formCooperativa.valid && !envioFormCooperativa\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formCooperativa.valid && envioFormCooperativa\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\">\r\n                            <button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button>\r\n                            <button class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Atrás</button>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n"
 
 /***/ }),
 
@@ -275,12 +279,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ActualizarDatosComponent = (function () {
-    function ActualizarDatosComponent(ActualizarDatosServices, router) {
-        this.ActualizarDatosServices = ActualizarDatosServices;
+    function ActualizarDatosComponent(element, route, router, cd, ActualizarDatosServices) {
+        this.element = element;
+        this.route = route;
         this.router = router;
+        this.cd = cd;
+        this.ActualizarDatosServices = ActualizarDatosServices;
         this.title = 'Actualizar cooperativa';
         this.envioFormCooperativa = false;
+        this.cooperativa = null;
     }
+    ActualizarDatosComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params
+            .switchMap(function (params) {
+            return _this.ActualizarDatosServices.getCoop(+params["id"]);
+        })
+            .subscribe(function (response) {
+            _this.cooperativa = response;
+            _this.cd.detectChanges();
+        }, function (reason) {
+            _this.cooperativa = null;
+            alert("error al cargar datos");
+        });
+    };
     ActualizarDatosComponent.prototype.guardarCooperativa = function (formCooperativa) {
         //console.log(formCooperativa.value);
         //console.log(formCooperativa.valid);
@@ -309,10 +331,10 @@ ActualizarDatosComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__["a" /* ActualizarDatosService */]
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__["a" /* ActualizarDatosService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__["a" /* ActualizarDatosService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__["a" /* ActualizarDatosService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__["a" /* ActualizarDatosService */]) === "function" && _e || Object])
 ], ActualizarDatosComponent);
 
-var _a, _b;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=actualizardatos.component.js.map
 
 /***/ }),

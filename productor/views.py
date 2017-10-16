@@ -87,7 +87,7 @@ def productorEditar(request, id):
 
         #productor.cooperativa = CooperativaSerializer(data=productorPost["cooperativa"])
         #productor.tipo_documento = TipoDocumentoSerializer(data=productorPost["tipo_documento"])
-        print productor
+        #print productor
         productor.save()
         respuesta = True
         return modeloJSON(respuesta)

@@ -1,5 +1,6 @@
 import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
 import {NgForm } from '@angular/forms';
+import { NgModel } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { ActualizarDatosService } from './ActualizarDatos.service';
 
