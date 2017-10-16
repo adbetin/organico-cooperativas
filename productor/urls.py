@@ -22,6 +22,7 @@ urlpatterns = [
     # views
     url(r'^$', views.productorAdmin, name="home_productor"),
     url(r'^registro/$', views.productorAdmin, name="registrar_productor"),
+    url(r'^admin/registro$', views.productorAdmin, name="registrar_productor_administrador"),
     url(r'^lista', views.productorLista, name="listar_productor"),
     url(r'^detalle/(?P<id>.+)$', views.productorDetail, name='detalle_productor'),
     url(r'^editar/(?P<id>.+)$', views.productorDetail, name='editar_productor'),

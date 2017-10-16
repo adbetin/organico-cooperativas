@@ -5,7 +5,7 @@
 
       <div class="productor-form default-form row col-md-8 col-md-offset-2">
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="nombreProductor" placeholder=" * Nombre" />
+          <input type="text" id="nombreProductor" [(ngModel)]="productor.nombre" placeholder=" * Nombre" />
         </div>
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
           <input type="text" id="descripcionProductor" placeholder="Acerca de m&iacute;" [(ngModel)]="productor.descripcion"/>
