@@ -38,18 +38,18 @@ export class ActualizarDatosComponent{
         });
   }
 
-  guardarCooperativa( formCooperativa: NgForm ) {
-    //console.log(formCooperativa.value);
-    //console.log(formCooperativa.valid);
+  actualizarCooperativa( formCooperativa: NgForm ) {
     this.envioFormCooperativa = true;
     if (formCooperativa.valid) {
-      let resultado = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value).subscribe();
-      if( resultado ){
-        alert("Datos guardados correctamente");
-        this.router.navigateByUrl('cooperativa/listadoCooperativa');
-      }else{
-        alert("Error almacenando datos");
-      }
+      formCooperativa.value.id = this.cooperativa.id;
+      let resultado = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value, this.cooperativa).subscribe(result => {
+        if( resultado ){
+          alert("Datos guardados correctamente");
+          this.router.navigateByUrl('cooperativa/listadoCooperativa');
+        }else{
+          alert("Error almacenando datos");
+        }
+      });
     }else{
       //alert("Por favor llene todos los campos que son obligatorios y necesarios para la pagina. (*) ");
     }

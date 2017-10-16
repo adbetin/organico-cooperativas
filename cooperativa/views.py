@@ -4,6 +4,7 @@ import json
 from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
+from rest_framework.parsers import JSONParser
 from cooperativa.models import Cooperativa
 from cooperativa.serializers import CooperativaSerializer
 
@@ -49,6 +50,27 @@ def guardarCooperativa(request):
                                                  );
 
         cooperativa.save()
+        respuesta = True
+    return modeloJSON(respuesta)
+
+@csrf_exempt
+def actualizarCooperativa(request):
+    respuesta = False
+    if (request.method == 'POST'):
+        print(request.body)
+        cooperativaPost = JSONParser().parse(request)
+        print(cooperativaPost)
+        coop = Cooperativa.objects.get(id=cooperativaPost['id'])
+        coop.nombre=cooperativaPost["nombre"]
+        coop.nit=cooperativaPost["nit"]
+        coop.descripcion=cooperativaPost["descripcion"]
+        coop.zona=cooperativaPost["zona"]
+        coop.responsable=cooperativaPost["responsable"]
+        coop.correo=cooperativaPost["correo"]
+        coop.direccion=cooperativaPost["direccion"]
+        coop.telefono=cooperativaPost["telefono"]
+
+        coop.save()
         respuesta = True
     return modeloJSON(respuesta)
 
