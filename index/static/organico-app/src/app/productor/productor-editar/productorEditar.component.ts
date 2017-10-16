@@ -81,25 +81,36 @@ export class ProductorEditarComponent implements OnInit {
 
   }
 
+  setCooperativa( cooperativa ){
+    this.productor.cooperativa = cooperativa
+  }
+
+
   editarProductor() {
 
-    console.log(this.marker)
+    //console.log(this.productor)
 
     if(this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
         && this.productor.documento && this.productor.direccion && this.productor.cooperativa
-        && this.productor.foto && this.marker){
+        && this.productor.foto){
 
-      console.log(this.productor)
-      return false
+      this.productor.latitud = this.marker.latitud;
+      this.productor.longitud = this.marker.longitud;
 
-      /*this.route.params
+    this.productor.id_cooperativa = this.productor.cooperativa.id;
+      this.productor.id_tipo_documento = this.productor.tipo_documento.id;
+
+      /*console.log(this.productor)
+      return false*/
+
+      this.route.params
       .switchMap((params: Params) =>
         this.productorService.editarProductor(this.productor, params["id"])
       ).subscribe(response => {
         alert("Productor actualizado!");
         this.productor = {};
         this.router.navigateByUrl('productor/lista');
-      });*/
+      });
     }
   }
 
@@ -117,8 +128,7 @@ export class ProductorEditarComponent implements OnInit {
 
   mapClicked($event: any) {
 
-    this.productor.latitud = $event.coords.lat
-    this.productor.latitud = $event.coords.lng
+
 
     this.marker = {
       latitud: $event.coords.lat,

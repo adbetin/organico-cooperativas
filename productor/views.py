@@ -85,9 +85,9 @@ def productorEditar(request, id):
         productor.latitud = float(productorPost["latitud"])
         productor.longitud = float(productorPost["longitud"])
 
-        #productor.cooperativa = CooperativaSerializer(data=productorPost["cooperativa"])
-        #productor.tipo_documento = TipoDocumentoSerializer(data=productorPost["tipo_documento"])
-        print productor
+        productor.cooperativa = Cooperativa.objects.get(pk=productorPost["id_cooperativa"])
+        productor.tipo_documento = TipoDocumento.objects.get(pk=productorPost["id_tipo_documento"])
+
         productor.save()
         respuesta = True
         return modeloJSON(respuesta)

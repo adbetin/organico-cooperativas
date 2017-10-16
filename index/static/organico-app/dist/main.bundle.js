@@ -852,7 +852,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productor-editar/productorEditar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"productor-registro-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Nuevo Productor</h1>\r\n\r\n      <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\" * Nombre\" [(ngModel)]=\"productor.nombre\" />\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\" >C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa.id\">\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-12\">\r\n          <div class=\"col-md-6 col-md-offset-3\">\r\n            <label for=\"foto\">Foto*:</label>\r\n            <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n            <img src=\"{{productor.foto}}\" width=\"200\" >\r\n          </div>\r\n          <div class=\"col-md-6 col-md-offset-3\">\r\n            <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\">\r\n              <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n            </agm-map>\r\n          </div>\r\n        </div>\r\n        <div>\r\n          <button (click)=\"editarProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n"
+module.exports = "<section class=\"productor-registro-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Nuevo Productor</h1>\r\n\r\n      <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\" * Nombre\" [(ngModel)]=\"productor.nombre\" />\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento.id\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\" >C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa.id\" >\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\" [attr.selected]=\"selected\"  >{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-12\">\r\n          <div class=\"col-md-6 col-md-offset-3\">\r\n            <label for=\"foto\">Foto*:</label>\r\n            <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n            <img src=\"{{productor.foto}}\" width=\"200\" >\r\n          </div>\r\n          <div class=\"col-md-6 col-md-offset-3\">\r\n            <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\">\r\n              <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n            </agm-map>\r\n          </div>\r\n        </div>\r\n        <div>\r\n          <button (click)=\"editarProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -934,21 +934,29 @@ var ProductorEditarComponent = (function () {
             console.log(_this.marker);
         });
     };
+    ProductorEditarComponent.prototype.setCooperativa = function (cooperativa) {
+        this.productor.cooperativa = cooperativa;
+    };
     ProductorEditarComponent.prototype.editarProductor = function () {
-        console.log(this.marker);
+        //console.log(this.productor)
+        var _this = this;
         if (this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
             && this.productor.documento && this.productor.direccion && this.productor.cooperativa
-            && this.productor.foto && this.marker) {
-            console.log(this.productor);
-            return false;
-            /*this.route.params
-            .switchMap((params: Params) =>
-              this.productorService.editarProductor(this.productor, params["id"])
-            ).subscribe(response => {
-              alert("Productor actualizado!");
-              this.productor = {};
-              this.router.navigateByUrl('productor/lista');
-            });*/
+            && this.productor.foto) {
+            this.productor.latitud = this.marker.latitud;
+            this.productor.longitud = this.marker.longitud;
+            this.productor.id_cooperativa = this.productor.cooperativa.id;
+            this.productor.id_tipo_documento = this.productor.tipo_documento.id;
+            /*console.log(this.productor)
+            return false*/
+            this.route.params
+                .switchMap(function (params) {
+                return _this.productorService.editarProductor(_this.productor, params["id"]);
+            }).subscribe(function (response) {
+                alert("Productor actualizado!");
+                _this.productor = {};
+                _this.router.navigateByUrl('productor/lista');
+            });
         }
     };
     ProductorEditarComponent.prototype.loadFoto = function (input) {
@@ -961,8 +969,6 @@ var ProductorEditarComponent = (function () {
         }
     };
     ProductorEditarComponent.prototype.mapClicked = function ($event) {
-        this.productor.latitud = $event.coords.lat;
-        this.productor.latitud = $event.coords.lng;
         this.marker = {
             latitud: $event.coords.lat,
             longitud: $event.coords.lng

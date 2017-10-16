@@ -11,7 +11,7 @@
           <input type="text" id="descripcionProductor" placeholder="Acerca de m&iacute;" [(ngModel)]="productor.descripcion"/>
         </div>
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-          <select id="tipoDocumento" [(ngModel)]="productor.tipo_documento">
+          <select id="tipoDocumento" [(ngModel)]="productor.tipo_documento.id">
             <option value="-1">-- Tipo de Documento --</option>
             <option value="1" >C&eacute;dula de ciudadan&iacute;a</option>
           </select>
@@ -23,9 +23,9 @@
           <input type="text" id="direccionProductor" placeholder="Direcci&oacute;n" [(ngModel)]="productor.direccion"/>
         </div>
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-          <select id="cooperativa" [(ngModel)]="productor.cooperativa.id">
+          <select id="cooperativa" [(ngModel)]="productor.cooperativa.id" >
             <option value="-1">-- Cooperativa --</option>
-            <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
+            <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}" [attr.selected]="selected"  >{{cooperativa.nombre}}</option>
           </select>
         </div>
         <div class="form-group col-md-12">
