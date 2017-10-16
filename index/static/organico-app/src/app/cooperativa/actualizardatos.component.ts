@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
 import {NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import { ActualizarDatosService } from './ActualizarDatos.service';
 
 @Component({
@@ -14,9 +13,28 @@ import { ActualizarDatosService } from './ActualizarDatos.service';
 export class ActualizarDatosComponent{
   title = 'Actualizar cooperativa';
   envioFormCooperativa = false;
+  cooperativa: any = null;
 
-  constructor(private ActualizarDatosServices: ActualizarDatosService, private router: Router ){
+  constructor(private element: ElementRef,
+              private route: ActivatedRoute,
+              private router: Router,
+              private cd: ChangeDetectorRef,
+              private ActualizarDatosServices: ActualizarDatosService) {
+  }
 
+  ngOnInit() {
+    this.route.params
+      .switchMap((params: Params) =>
+        this.ActualizarDatosServices.getCoop(+params["id"])
+      )
+      .subscribe(response => {
+          this.cooperativa = response;
+          this.cd.detectChanges();
+        },
+        reason => {
+          this.cooperativa = null;
+          alert("error al cargar datos");
+        });
   }
 
   guardarCooperativa( formCooperativa: NgForm ) {

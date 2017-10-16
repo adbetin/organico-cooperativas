@@ -2,6 +2,7 @@ import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CooperativaService} from './cooperativa.service';
 
+
 @Component({
   selector: 'app-cooperativa-detalle',
   templateUrl: './cooperativa-detalle.component.html',

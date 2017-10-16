@@ -11,6 +11,7 @@ import { MatTableModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { ListadoCooperativaComponent } from './cooperativa/listadoCooperativa.component';
 import { CrearCooperativaComponent } from './cooperativa/crearCooperativa.component';
+import { ActualizarDatosComponent } from './cooperativa/actualizardatos.component';
 import { CooperativaDetalleComponent } from './cooperativa/cooperativa-detalle/cooperativa-detalle.component';
 import { ProductorRegistroComponent } from './productor/productorRegistro.component';
 import { ProductorDetalleComponent } from './productor/productor-detalle/productor-detalle.component';
@@ -22,6 +23,7 @@ import { ProductorListaComponent } from './productor/productor-lista/productor-l
     ListadoCooperativaComponent,
     CrearCooperativaComponent,
     CooperativaDetalleComponent,
+    ActualizarDatosComponent,
     ProductorRegistroComponent,
     ProductorDetalleComponent,
 
@@ -46,8 +48,8 @@ import { ProductorListaComponent } from './productor/productor-lista/productor-l
         component: ListadoCooperativaComponent
       },
       {
-        path: 'cooperativa/editarCooperativa',
-        component: CrearCooperativaComponent
+        path: 'cooperativa/actualizardatos/:id',
+        component: ActualizarDatosComponent
       },
       {
         path: 'cooperativa/detalle/:id',

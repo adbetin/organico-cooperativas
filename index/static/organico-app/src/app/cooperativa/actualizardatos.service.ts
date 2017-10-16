@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http , Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ActualizarDatosService {
@@ -22,5 +23,11 @@ export class ActualizarDatosService {
       if (parts.length == 2)
         return parts.pop().split(";").shift();
     }
+
+    getCoop(id: number): Observable<string> {
+        return this.http.get('/cooperativa/consultarCooperativa/' + id)
+            .map(response => <string>response.json());
+    }
+
 
 }
