@@ -6,9 +6,9 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from productor.models import Productor
+from productor.models import Productor, TipoDocumento
+from cooperativa.models import Cooperativa
 from productor.serializers import ProductorSerializer
-
 
 # Create your views here.
 
@@ -31,7 +31,6 @@ class modeloJSON(HttpResponse):
         kwargs['content_type'] = 'application/json'
         super(modeloJSON, self).__init__(content, **kwargs)
 
-@csrf_exempt
 @api_view(['GET', 'POST', ])
 def productoresList(request):
     if (request.method == 'GET'):
@@ -40,10 +39,25 @@ def productoresList(request):
         return modeloJSON(serializer.data)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = ProductorSerializer(data=data)
+        serializer = ProductorSerializer(data=data, many=False, )
         if serializer.is_valid():
-            serializer.save()
+            cooperativa = get_object_or_404(Cooperativa, id=data['cooperativa'])
+            tipo_documento = get_object_or_404(TipoDocumento, id=data['tipo_documento'])
+            productor = Productor(
+                nombre=data['nombre'],
+                descripcion=data['descripcion'],
+                tipo_documento = tipo_documento,
+                documento = data['documento'],
+                direccion = data['direccion'],
+                cooperativa = cooperativa,
+                latitud = data['latitud'],
+                longitud = data['longitud'],
+                foto = data['foto'],
+                aprobado = data['aprobado'],
+            )
+            productor.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print(serializer.errors)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 @csrf_exempt

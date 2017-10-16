@@ -28,6 +28,7 @@ class Productor(models.Model):
     latitud = models.FloatField(blank=True, null=True)
     longitud = models.FloatField(blank=True, null=True)
     foto = models.TextField()
+    aprobado = models.CharField(max_length=20)
 
     class Meta:
         verbose_name = 'Productor'

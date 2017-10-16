@@ -21,7 +21,8 @@ export class ProductorRegistroComponent implements OnInit {
 
   productor: any = {
     "tipo_documento": -1,
-    "cooperativa": -1
+    "cooperativa": -1,
+    "aprobado": "False"
   };
   cooperativas: any[];
 
@@ -63,11 +64,15 @@ export class ProductorRegistroComponent implements OnInit {
   saveProductor() {
     if(this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
         && this.productor.documento && this.productor.direccion && this.productor.cooperativa
-        && this.productor.foto && this.marker){
+        && this.productor.foto){
+        this.productor.latitud = this.marker.latitud;
+        this.productor.longitud = this.marker.longitud;
       this.productorService.setProductor(this.productor).subscribe(response => {
         alert("Su informaci?n fue agregada con ?xito.");
         this.productor = {};
       });
+    }else{
+      alert("Alguno de los datos está incompleto.");
     }
   }
 
