@@ -40,7 +40,9 @@ export class ActualizarDatosComponent{
 
   actualizarCooperativa( formCooperativa: NgForm ) {
     this.envioFormCooperativa = true;
+
     if (formCooperativa.valid) {
+    
       formCooperativa.value.id = this.cooperativa.id;
       let resultado = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value).subscribe(result => {
         if( resultado ){
