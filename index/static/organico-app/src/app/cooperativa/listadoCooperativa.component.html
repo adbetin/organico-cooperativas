@@ -24,6 +24,10 @@
             <td>{{ item.direccion }}</td>
             <td>{{ item.zona }}</td>
             <td>
+              <a routerLink="/cooperativa/detalle/{{ item.id }}">
+                <span class="fa fa-search title-box title" title="Detalles productor"></span>
+              </a>
+
               <a routerLink="/cooperativa/actualizardatos/{{ item.id }}">
                 <span class="fa fa-edit title-box title" title="Editar Cooperativa"></span>
               </a>
