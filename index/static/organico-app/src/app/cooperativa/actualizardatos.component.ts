@@ -42,7 +42,7 @@ export class ActualizarDatosComponent{
     this.envioFormCooperativa = true;
     if (formCooperativa.valid) {
       formCooperativa.value.id = this.cooperativa.id;
-      let resultado = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value, this.cooperativa).subscribe(result => {
+      let resultado = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value).subscribe(result => {
         if( resultado ){
           alert("Datos guardados correctamente");
           this.router.navigateByUrl('cooperativa/listadoCooperativa');
