@@ -95,12 +95,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__productor_productorRegistro_component__ = __webpack_require__("../../../../../src/app/productor/productorRegistro.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__productor_productor_detalle_productor_detalle_component__ = __webpack_require__("../../../../../src/app/productor/productor-detalle/productor-detalle.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__productor_productor_lista_productor_lista_component__ = __webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__ = __webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -134,6 +136,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__productor_productorRegistro_component__["a" /* ProductorRegistroComponent */],
             __WEBPACK_IMPORTED_MODULE_15__productor_productor_detalle_productor_detalle_component__["a" /* ProductorDetalleComponent */],
             __WEBPACK_IMPORTED_MODULE_16__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -172,6 +175,10 @@ AppModule = __decorate([
                 {
                     path: 'productor/lista',
                     component: __WEBPACK_IMPORTED_MODULE_16__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */]
+                },
+                {
+                    path: 'productor/admin/registro',
+                    component: __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */]
                 }
             ])
         ],
@@ -912,6 +919,10 @@ var ProductorListaComponent = (function () {
         this.productorServices.getProductor()
             .subscribe(function (productores) {
             _this.productores = productores;
+            console.log(_this.productores);
+            _this.productores = _this.productores.filter(function (data) {
+                return data.aprobado === 'True';
+            });
             _this.dataSource = new ProductorDataSource(_this.productores);
         });
     };
@@ -1135,6 +1146,147 @@ ProductorRegistroComponent = __decorate([
 
 var _a, _b, _c;
 //# sourceMappingURL=productorRegistro.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/registro-admin/registro-admin.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "input[type=\"file\"]{\r\n  margin: 0 auto;\r\n  border: none;\r\n}\r\n\r\n.productor-registro-section{\r\n  overflow: hidden;\r\n  padding-bottom: 20px;\r\n}\r\n\r\nagm-map {\r\n  height: 300px;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/registro-admin/registro-admin.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"productor-registro-section\">\n  <div class=\"auto-container\">\n      <!--Section Title-->\n        <h1>Administrador: Nuevo Productor</h1>\n\n      <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n          <input type=\"text\" id=\"nombreProductor\" [(ngModel)]=\"productor.nombre\" placeholder=\" * Nombre\" />\n        </div>\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\n        </div>\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento\">\n            <option value=\"-1\">-- Tipo de Documento --</option>\n            <option value=\"1\">C&eacute;dula de ciudadan&iacute;a</option>\n          </select>\n        </div>\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\n        </div>\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n          <input type=\"text\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" [(ngModel)]=\"productor.direccion\"/>\n        </div>\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa\">\n            <option value=\"-1\">-- Cooperativa --</option>\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\n          </select>\n        </div>\n        <div class=\"form-group col-md-12\">\n          <div class=\"col-md-6 col-md-offset-3\">\n            <label for=\"foto\">Foto*:</label>\n            <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\n            <img src=\"{{productor.foto}}\" width=\"200\" >\n          </div>\n          <div class=\"col-md-6 col-md-offset-3\">\n            <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\">\n              <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\n            </agm-map>\n          </div>\n        </div>\n        <div>\n          <button (click)=\"saveProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Env&iacute;ar datos</button>\n        </div>\n      </div>\n  </div>\n</section>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/registro-admin/registro-admin.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegistroAdminComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var RegistroAdminComponent = (function () {
+    function RegistroAdminComponent(productorService, cooperativaService, gMaps) {
+        this.productorService = productorService;
+        this.cooperativaService = cooperativaService;
+        this.gMaps = gMaps;
+        this.title = "Administración: Registrar Productor";
+        this.marker = {};
+        this.productor = {
+            "tipo_documento": -1,
+            "cooperativa": -1,
+            "aprobado": "True"
+        };
+    }
+    RegistroAdminComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.cooperativaService.getCooperativas()
+            .subscribe(function (response) {
+            _this.cooperativas = response;
+        });
+        if (window.navigator && window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition(function (position) {
+                _this.marker = {
+                    latitud: position.coords.latitude,
+                    longitud: position.coords.longitude
+                };
+            }, function (error) {
+                switch (error.code) {
+                    case 1:
+                        console.log('Permission Denied');
+                        break;
+                    case 2:
+                        console.log('Position Unavailable');
+                        break;
+                    case 3:
+                        console.log('Timeout');
+                        break;
+                }
+            });
+        }
+        ;
+    };
+    RegistroAdminComponent.prototype.saveProductor = function () {
+        var _this = this;
+        if (this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
+            && this.productor.documento && this.productor.direccion && this.productor.cooperativa
+            && this.productor.foto) {
+            this.productor.latitud = this.marker.latitud;
+            this.productor.longitud = this.marker.longitud;
+            this.productorService.setProductor(this.productor).subscribe(function (response) {
+                alert("Su informaci?n fue agregada con ?xito.");
+                _this.productor = {};
+            });
+        }
+        else {
+            alert("Alguno de los datos está incompleto.");
+        }
+    };
+    RegistroAdminComponent.prototype.loadFoto = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                this.productor.foto = e.target.result;
+            }.bind(this);
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+    RegistroAdminComponent.prototype.mapClicked = function ($event) {
+        this.marker = {
+            latitud: $event.coords.lat,
+            longitud: $event.coords.lng
+        };
+    };
+    return RegistroAdminComponent;
+}());
+RegistroAdminComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-registro-admin',
+        template: __webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.css")],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */],
+            __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */],
+            __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]
+        ],
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]) === "function" && _c || Object])
+], RegistroAdminComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=registro-admin.component.js.map
 
 /***/ }),
 

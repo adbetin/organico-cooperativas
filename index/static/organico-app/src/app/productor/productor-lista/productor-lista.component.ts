@@ -22,6 +22,10 @@ export class ProductorListaComponent implements OnInit {
     this.productorServices.getProductor()
           .subscribe(productores =>{
             this.productores = productores;
+            console.log(this.productores );
+            this.productores = this.productores.filter(function(data){
+              return data.aprobado === 'True';
+            })
             this.dataSource = new ProductorDataSource(this.productores);
           });
   }
