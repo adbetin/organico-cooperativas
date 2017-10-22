@@ -11,3 +11,15 @@ input[type="file"]{
 agm-map {
   height: 300px;
 }
+
+.productor-section{
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.checkbox-container{
+  height: 48px;
+  line-height: 48px;
+}
+
+
