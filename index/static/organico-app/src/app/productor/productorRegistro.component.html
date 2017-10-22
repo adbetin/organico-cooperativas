@@ -1,60 +1,61 @@
-<div class="productor-form">
-  <div class="form-item">
-    <label for="nombreProductor">Nombre*: </label>
-    <input type="text" id="nombreProductor" placeholder="Nombre" />
+<section class="productor-section">
+  <div class="auto-container">
+    <!--Section Title-->
+    <h1>Nuevo Productor</h1>
+    <div class="productor-form default-form">
+      <div class="row clearfix">
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <input type="text" id="nombreProductor" placeholder="Nombre" [(ngModel)]="productor.nombre"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <input type="text" id="descripcionProductor" placeholder="Acerca de m&iacute;" [(ngModel)]="productor.descripcion"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <select id="tipoDocumento" [(ngModel)]="productor.tipo_documento">
+            <option value="-1">-- Tipo de Documento --</option>
+            <option value="1">C&eacute;dula de ciudadan&iacute;a</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <input type="text" id="numeroDocumentoProductor" placeholder="N&uacute;mero de documento" [(ngModel)]="productor.documento"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <input type="text" id="direccionProductor" placeholder="Direcci&oacute;n" [(ngModel)]="productor.direccion"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12 checkbox-container">
+          <label for="fincaCertificada">Finca Certificada*: </label>
+          <input type="checkbox" id="fincaCertificada" placeholder="" [(ngModel)]="productor.fincaCertificada"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <input type="text" id="nombreFinca" placeholder="Nombre Finca" [(ngModel)]="productor.nombreFinca"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <input type="email" id="emailProductor" placeholder="E-Mail" [(ngModel)]="productor.email"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12 checkbox-container">
+          <label for="productosOrganicos">Productos Organicos*: </label>
+          <input type="checkbox" id="productosOrganicos" placeholder="" [(ngModel)]="productor.productosOrganicos"/>
+        </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <select id="cooperativa" [(ngModel)]="productor.cooperativa">
+            <option value="-1">-- Cooperativa --</option>
+            <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <label for="foto">Foto*:</label>
+          <input type="file" #entradaFoto (change)="loadFoto(entradaFoto)">
+          <canvas width="200" height="200" id="photoPreview"></canvas>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+          <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)">
+            <agm-marker [latitude]="marker.latitud" [longitude]="marker.longitud"></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+      <div>
+        <button (click)="saveProductor()">Env&iacute;ar datos</button>
+      </div>
+    </div>
   </div>
-  <div class="form-item">
-    <label for="descripcionProductor">Acerca de m&iacute;*: </label>
-    <input type="text" id="descripcionProductor" placeholder="Acerca de m&iacute;" [(ngModel)]="productor.descripcion"/>
-  </div>
-  <div class="form-item">
-    <label for="tipoDocumento">Tipo de documento*: </label>
-    <select id="tipoDocumento" [(ngModel)]="productor.tipo_documento">
-      <option value="-1">-- Tipo de Documento --</option>
-      <option value="1">C&eacute;dula de ciudadan&iacute;a</option>
-    </select>
-  </div>
-  <div class="form-item">
-    <label for="numeroDocumentoProductor">N&uacute;mero de documento*: </label>
-    <input type="text" id="numeroDocumentoProductor" placeholder="N&uacute;mero de documento" [(ngModel)]="productor.documento"/>
-  </div>
-  <div class="form-item">
-    <label for="direccionProductor">Direcci&oacute;n*: </label>
-    <input type="text" id="direccionProductor" placeholder="Direcci&oacute;n" [(ngModel)]="productor.direccion"/>
-  </div>
-  <div class="form-item">
-    <label for="nombreFinca">Nombre Finca*: </label>
-    <input type="text" id="nombreFinca" placeholder="Nombre Finca" [(ngModel)]="productor.nombreFinca"/>
-  </div>
-  <div class="form-item">
-    <label for="emailProductor">*: </label>
-    <input type="email" id="emailProductor" placeholder="E-Mail" [(ngModel)]="productor.email"/>
-  </div>
-  <div class="form-item">
-    <label for="fincaCertificada">Finca Certificada*: </label>
-    <input type="checkbox" id="fincaCertificada" placeholder="" [(ngModel)]="productor.fincaCertificada"/>
-  </div>
-  <div class="form-item">
-    <label for="productosOrganicos">Productos Organicos*: </label>
-    <input type="checkbox" id="productosOrganicos" placeholder="" [(ngModel)]="productor.productosOrganicos"/>
-  </div>
-  <div class="form-item">
-    <label for="direccionProductor">Direcci&oacute;n*: </label>
-    <input type="text" id="direccionProductor" placeholder="Direcci&oacute;n" [(ngModel)]="productor.direccion"/>
-  </div>
-  <div class="form-item">
-    <label for="cooperativa">Cooperativa*: </label>
-    <select id="cooperativa" [(ngModel)]="productor.cooperativa">
-      <option value="-1">-- Cooperativa --</option>
-      <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
-    </select>
-  </div>
-  <div>
-    <label for="foto">Foto*:</label>
-    <input type="file" #entradaFoto (change)="loadFoto(entradaFoto)">
-    <img src="{{productor.foto}}" width="200" >
-  </div>
-  <div>
-    <button (click)="saveProductor()">Env&iacute;ar datos</button>
-  </div>
-</div>
+</section>
