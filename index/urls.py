@@ -19,4 +19,5 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name="home"),
     url(r'^shop$', views.shop, name="shop"),
+    url(r'^team$', views.team, name="team"),
 ]

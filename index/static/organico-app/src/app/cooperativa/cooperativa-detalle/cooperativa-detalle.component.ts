@@ -1,0 +1,39 @@
+import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {CooperativaService} from './cooperativa.service';
+
+
+@Component({
+  selector: 'app-cooperativa-detalle',
+  templateUrl: './cooperativa-detalle.component.html',
+  styleUrls: ['./cooperativa-detalle.component.css'],
+  providers: [
+    CooperativaService
+  ]
+})
+export class CooperativaDetalleComponent implements OnInit {
+
+  cooperativa: any = null;
+
+  constructor(private element: ElementRef,
+              private route: ActivatedRoute,
+              private router: Router,
+              private cd: ChangeDetectorRef,
+              private cooperativaServices: CooperativaService) {
+  }
+
+  ngOnInit() {
+    this.route.params
+      .switchMap((params: Params) =>
+        this.cooperativaServices.getCoop(+params["id"])
+      )
+      .subscribe(response => {
+          this.cooperativa = response;
+          this.cd.detectChanges();
+        },
+        reason => {
+          this.cooperativa = null;
+          alert("error al cargar datos");
+        });
+  }
+}

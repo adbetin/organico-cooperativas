@@ -1,0 +1,63 @@
+<!--Contact Section-->
+<section class="contact-section">
+  <div class="auto-container">
+      <!--Section Title-->
+        <h1>Actualizar Datos Cooperativa</h1>
+        <div class="contact-form default-form" *ngIf="cooperativa != null">
+
+           <form #formCooperativa="ngForm" (ngSubmit)="actualizarCooperativa(formCooperativa)">
+                <div class="row clearfix">
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #nombre="ngModel" [ngClass]="{'error':!nombre.valid && envioFormCooperativa}" type="text" name="nombre" [(ngModel)]="cooperativa.nombre" placeholder="* Nombre [Solo letras por favor]" required maxlength="70"  >
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #nit="ngModel" [ngClass]="{'error':!nit.valid && envioFormCooperativa}" type="text" name="nit" [(ngModel)]="cooperativa.nit" placeholder="* NIT [Solo numeros]" required maxlength="70" pattern="[0-9-]*">
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #correo="ngModel" [ngClass]="{'error':!correo.valid && envioFormCooperativa}" type="email" name="correo" [(ngModel)]="cooperativa.correo" placeholder="* Correo [text@texto]" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #responsable="ngModel" [ngClass]="{'error':!responsable.valid && envioFormCooperativa}" type="text" name="responsable" [(ngModel)]="cooperativa.responsable" placeholder="* Responsable [Solo letras]" required maxlength="70" pattern="[a-zA-Z ]*">
+                    </div>
+
+                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #direccion="ngModel" [ngClass]="{'error':!direccion.valid && envioFormCooperativa}" type="text" name="direccion" [(ngModel)]="cooperativa.direccion" placeholder="* Dirección" required maxlength="255">
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                          <input #telefono="ngModel" [ngClass]="{'error':!telefono.valid && envioFormCooperativa}" type="text" name="telefono" [(ngModel)]="cooperativa.telefono" placeholder="* Telefono" required maxlength="70" pattern="[0-9-()+ ]*">
+                    </div>
+
+                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #zona="ngModel" [ngClass]="{'error':!zona.valid && envioFormCooperativa}" type="text" name="zona" [(ngModel)]="cooperativa.zona" placeholder="* Zona " required maxlength="70">
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormCooperativa}" name="descripcion" placeholder="Descripción [Máx 550 caracteres]" [(ngModel)]="cooperativa.descripcion" maxlength="550"></textarea>
+                    </div>
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
+                      <span *ngIf="!formCooperativa.valid && !envioFormCooperativa"> * Campos obligatorios</span>
+                      <br>
+                      <label *ngIf="!formCooperativa.valid && envioFormCooperativa" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div class="text-center">
+                            <button type="submit" class="theme-btn btn-style-two ui-state-disabled">Guardar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+            <div class="text-center">
+                <button type="button" class="theme-btn btn-style-two ui-state-disabled" onclick="window.history.go(-1)">Atrás</button>
+            </div>
+        </div>
+    </div>
+</section>
+

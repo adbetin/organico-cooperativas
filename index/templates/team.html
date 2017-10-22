@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="{% static "css/team.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <section class="page-title" style="background-image:url(/static/images/background/bg-page-title-1a.jpg);">
+        <div class="auto-container">
+            <h1>Nuestro Equipo</h1>
+        </div>
+    </section>
+    <section class="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="col-lg-12">
+                        <div class="row pt-md">
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+                                <div class="img-box">
+                                    <img src="{% static "images/team/efrain.jpg" %}" class="img-responsive">
+                                </div>
+                                <h1>Efrain Aperador</h1>
+                                <h2>Scrum Master</h2>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+                                <div class="img-box">
+                                    <img src="{% static "images/team/julian.jpg" %}" class="img-responsive">
+                                </div>
+                                <h1>Julian Osorio</h1>
+                                <h2>Desarrollador</h2>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+                                <div class="img-box">
+                                    <img src="{% static "images/team/betin.jpeg" %}" class="img-responsive">
+                                </div>
+                                <h1>Andres Betin</h1>
+                                <h2>Desarrollador</h2>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+                                <div class="img-box">
+                                    <img src="{% static "images/team/rafael.jpg" %}" class="img-responsive">
+                                </div>
+                                <h1>Rafael Medrano</h1>
+                                <h2>Desarrollador/Devops </h2>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+                                <div class="img-box">
+                                    <img src="{% static "images/team/wilfrido.jpg" %}" class="img-responsive">
+                                </div>
+                                <h1>Wilfrido Torres B</h1>
+                                <h2>Desarrollador/Arquitecto</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

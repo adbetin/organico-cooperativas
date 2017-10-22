@@ -1,0 +1,83 @@
+<div class="shop-single">
+    <!--Page Title-->
+    <section class="page-title" style="background-image:url(/static/images/background/bg-page-title-1a.jpg);">
+        <div class="auto-container">
+            <h1>Información de la Cooperativa</h1>
+        </div>
+    </section>
+
+    <div *ngIf="cooperativa != null">
+        <!--Product Details Section-->
+        <section class="product-details">
+            <div class="auto-container">
+                <!--Basic Details-->
+                <div class="basic-details">
+                    <div class="row clearfix">
+                        <div class="info-column col-md-8 col-sm-7 col-xs-12" style="text-align: left">
+                            <div class="details-header">
+                                <h4>{{ cooperativa.nombre }}</h4>
+                            </div>
+
+                            <div class="text">
+                                {{ cooperativa.descripcion }}
+                            </div>
+                            <div>
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="cvv">NIT:</label>
+                                        <div class="col-sm-9">
+                                            {{ cooperativa.nit }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="cvv">Responsable:</label>
+                                        <div class="col-sm-9">
+                                            {{ cooperativa.responsable }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="cvv">Dirección:</label>
+                                        <div class="col-sm-9">
+                                            {{ cooperativa.direccion }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="cvv">Zona:</label>
+                                        <div class="col-sm-9">
+                                            {{ cooperativa.zona }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="cvv">Teléfono:</label>
+                                        <div class="col-sm-9">
+                                            {{ cooperativa.telefono }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="cvv">Correo:</label>
+                                        <div class="col-sm-9">
+                                            {{ cooperativa.correo }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="text-center"><button class="theme-btn btn-style-two ui-state-disabled" onclick="window.history.go(-1)">Atrás</button></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!--Basic Details-->
+                <!--Fluid Section Two-->
+                <section class="fluid-section-two">
+                    <div class="outer-box clearfix">
+
+
+                    </div>
+                </section>
+
+            </div>
+        </section>
+    </div>
+</div>

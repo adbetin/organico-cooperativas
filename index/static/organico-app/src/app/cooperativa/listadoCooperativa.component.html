@@ -11,26 +11,29 @@
               <th>Responsable</th>
               <th>Dirección</th>
               <th>Zona</th>
-              <th>Descripción</th>
               <th>Acciones</th>
           </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of cooperativas">
-            <td>{{ item.nombre }}</td>
+            <td><a routerLink="/cooperativa/detalle/{{ item.id }}">
+                {{ item.nombre }}</a></td>
             <td>{{ item.nit }}</td>
             <td>{{ item.correo }}</td>
             <td>{{ item.responsable }}</td>
             <td>{{ item.direccion }}</td>
             <td>{{ item.zona }}</td>
-            <td>{{ item.descripcion }}</td>
             <td>
-              <a routerLink="/cooperativa/editarCooperativa">
+              <a routerLink="/cooperativa/detalle/{{ item.id }}">
+                <span class="fa fa-search title-box title" title="Detalles productor"></span>
+              </a>
+
+              <a routerLink="/cooperativa/actualizardatos/{{ item.id }}">
                 <span class="fa fa-edit title-box title" title="Editar Cooperativa"></span>
               </a>
-              <a routerLink="mapaCooperativa">
+              <!-- <a routerLink="mapaCooperativa">
                 <span class="fa fa-map-o title-box title" title="Ubicar en el mapa"></span>
-              </a>
+              </a> -->
             </td>
         </tr>
       </tbody>
