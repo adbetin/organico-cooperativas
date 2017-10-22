@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Warsaw : Organic Fruits &amp; Vegetables  HTML Template | Homepage One</title>
+<title>Organico Cooperativas - Inicio</title>
 <!-- Stylesheets -->
 <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
 <link href="{% static "css/revolution-slider.css" %}"  rel="stylesheet">
@@ -25,7 +25,6 @@
     <!-- Preloader -->
     <div class="preloader"></div>
 
-    <!-- Main Header-->
     <header class="main-header">
 
         <!-- Main Box -->
@@ -34,7 +33,7 @@
             	<div class="outer-container clearfix">
                     <!--Logo Box-->
                     <div class="logo-box">
-                        <div class="logo"><a href="index.html"><img src="{% static "images/logo.png" %}" alt=""></a></div>
+                        <div class="logo"><a href="#"><img src="{% static "images/logo.png" %}" alt=""></a></div>
                     </div>
 
                     <!--Nav Outer-->
@@ -52,7 +51,9 @@
 
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation clearfix">
-                                    <li class="current dropdown"><a href="#">Inicio</a>
+                                    <li><a href="{% url 'home' %}">Inicio</a></li>
+
+                                    <!--<li class="current dropdown"><a href="#">Inicio</a>
                                     	<ul>
                                             <li><a href="index.html">Homepage One</a></li>
                                             <li><a href="index-2.html">Homepage Two</a></li>
@@ -65,36 +66,41 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li class="current dropdown"><a href="#">Cooperativas</a>
+                                    </li>-->
+                                    <li class="dropdown"><a href="#">Cooperativas</a>
                                     	<ul>
-                                            <li><a href="/cooperativa/crearCooperativa">Crear Cooperativas</a></li>
-                                            <li><a href="/cooperativa/listadoCooperativa">Listado de Cooperativas</a></li>
-                                            <li><a href="/mapaCooperativa">Ver mapa de cooperativas</a></li>
+                                            <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
+                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
+                                            <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
                                         </ul>
                                     </li>
-
+                                    <!--<li><a href="about-us.html">About Us</a></li>-->
                                     <li class="dropdown"><a href="#">Productores</a>
-                                    	<ul>
-                                            <li><a href="/productor/registro">Registrar Productor</a></li>
+                                        <ul>
+                                            <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
+                                            <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown"><a href="#">Blog</a>
+                                    <li class="dropdown"><a href="#">Administrador</a>
+                                        <ul>
+                                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--<li class="dropdown"><a href="#">Blog</a>
                                     	<ul>
                                             <li><a href="blog.html">Our Blog</a></li>
                                             <li><a href="blog-single.html">Blog Single</a></li>
                                         </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Shop</a>
+                                    </li>-->
+                                    <!--<li class="dropdown"><a href="#">Shop</a>
                                     	<ul>
                                             <li><a href="/shop">Our Shop</a></li>
                                             <li><a href="shop-single.html">Shop Single</a></li>
                                             <li><a href="shopping-cart.html">Shopping Cart</a></li>
                                             <li><a href="checkout.html">Checkout</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    </li>-->
+                                    <li><a href="{% url 'team' %}">Nuestro Equipo</a></li>
                                  </ul>
                             </div>
                         </nav><!-- Main Menu End-->
@@ -111,7 +117,6 @@
         </div>
 
     </header>
-    <!--End Main Header -->
 
 
     <!-- Hidden Navigation Bar -->
@@ -133,41 +138,56 @@
             <div class="side-menu">
             <!-- .navigation -->
                 <ul class="navigation">
-                    <li class="current dropdown"><a href="#">Home</a>
-                        <ul>
-                            <li><a href="index.html">Homepage One</a></li>
-                            <li><a href="index-2.html">Homepage Two</a></li>
-                            <li><a href="index-3.html">Homepage Three</a></li>
-                            <li class="dropdown"><a href="index-3.html">Header Styles</a>
-                                <ul>
-                                    <li><a href="index.html">Header Style One</a></li>
-                                    <li><a href="index-2.html">Header Style Two</a></li>
-                                    <li><a href="index-3.html">Header Style Three</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li class="dropdown"><a href="#">Productores</a>
-                        <ul>
-                            <li><a href="/productor/registro">Registrar Productor</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#">Blog</a>
-                        <ul>
-                            <li><a href="blog.html">Our Blog</a></li>
-                            <li><a href="blog-single.html">Blog Single</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#">Shop</a>
-                        <ul>
-                            <li><a href="shop.html">Our Shop</a></li>
-                            <li><a href="shop-single.html">Shop Single</a></li>
-                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+
+                                    <!--<li class="current dropdown"><a href="#">Inicio</a>
+                                    	<ul>
+                                            <li><a href="index.html">Homepage One</a></li>
+                                            <li><a href="index-2.html">Homepage Two</a></li>
+                                            <li><a href="index-3.html">Homepage Three</a></li>
+                                            <li class="dropdown"><a href="index-3.html">Header Styles</a>
+                                            	<ul>
+                                                	<li><a href="index.html">Header Style One</a></li>
+                                                    <li><a href="index-2.html">Header Style Two</a></li>
+                                                    <li><a href="index-3.html">Header Style Three</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>-->
+                                    <li class="dropdown"><a href="#">Cooperativas</a>
+                                    	<ul>
+                                            <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
+                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
+                                            <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
+                                        </ul>
+                                    </li>
+                                    <!--<li><a href="about-us.html">About Us</a></li>-->
+                                    <li class="dropdown"><a href="#">Productores</a>
+                                        <ul>
+                                            <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
+                                            <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#">Administrador</a>
+                                        <ul>
+                                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--<li class="dropdown"><a href="#">Blog</a>
+                                    	<ul>
+                                            <li><a href="blog.html">Our Blog</a></li>
+                                            <li><a href="blog-single.html">Blog Single</a></li>
+                                        </ul>
+                                    </li>-->
+                                    <!--<li class="dropdown"><a href="#">Shop</a>
+                                    	<ul>
+                                            <li><a href="/shop">Our Shop</a></li>
+                                            <li><a href="shop-single.html">Shop Single</a></li>
+                                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                        </ul>
+                                    </li>-->
+                                    <li><a href="{% url 'team' %}">Nuestro Equipo</a></li>
                 </ul>
             </div><!-- /.Side-menu -->
 
@@ -206,7 +226,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h2>Farm fresh</h2></div>
+                    data-endeasing="Power4.easeIn"><h2>Granja Fresca</h2></div>
 
                     <div class="tp-caption sfr sfb tp-resizeme"
                     data-x="center" data-hoffset="0"
@@ -219,7 +239,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><div class="big-text">Locally Grown</div></div>
+                    data-endeasing="Power4.easeIn"><div class="big-text">Cultivadas localmente</div></div>
 
                     <div class="tp-caption sfl sfb tp-resizeme"
                     data-x="center" data-hoffset="0"
@@ -232,7 +252,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><a href="shop.html" class="theme-btn btn-style-one">Shop Now</a></div>
+                    data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra ahora</a></div>
 
 
                     </li>
@@ -264,7 +284,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h3>The Huge variety of the freshest <br>fruits and vegetables</h3></div>
+                    data-endeasing="Power4.easeIn"><h3>La gran variedad de frutas y vegetales <br/>mas frescos</h3></div>
 
                     <div class="tp-caption sfl sfb tp-resizeme"
                     data-x="left" data-hoffset="15"
@@ -277,7 +297,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><a href="shop.html" class="theme-btn btn-style-one">Shop Now</a> &ensp;&ensp; <a href="shop.html" class="theme-btn btn-style-three">Buy Now</a></div>
+                    data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra Ahora</a> &ensp;&ensp;</div>
 
 
                     </li>
@@ -309,7 +329,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h3 class="text-center">The Huge variety of the freshest <br>fruits and vegetables</h3></div>
+                    data-endeasing="Power4.easeIn"><h3 class="text-center">La gran variedad de frutas y vegetales <br/>mas frescos</h3></div>
 
                     <div class="tp-caption sfb sfb tp-resizeme"
                     data-x="center" data-hoffset="0"
@@ -322,7 +342,7 @@
                     data-elementdelay="0.01"
                     data-endelementdelay="0.3"
                     data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><a href="shop.html" class="theme-btn btn-style-one">Shop Now</a> &ensp;&ensp; <a href="shop.html" class="theme-btn btn-style-three">Buy Now</a></div>
+                    data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra Ahora</a> &ensp;&ensp;</div>
 
 
                     </li>
@@ -343,24 +363,24 @@
                 	<div class="inner-box">
                         <!--Section Title-->
                         <div class="sec-title-one">
-                            <h2>Welcome to our healthy form</h2>
+                            <h2>Bienvenido a nuestra tienda saludable</h2>
                         </div>
 
                         <div class="row clearfix">
                             <!--Content Column-->
                             <div class="content-column col-md-6 col-sm-6 col-xs-12">
                                 <div class="inner text-left wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                                    <h3>01. 100% Organic</h3>
-                                    <div class="text">Cheese strings bocconcini gouda. Parmesan emmental danish fontina cheese triangles bocconcini rubber cheese cheese slices bavarian bergkase.</div>
-                                    <a href="blog-single.html" class="theme-btn btn-style-two">Read More</a>
+                                    <h3>01. 100% Organico</h3>
+                                    <div class="text">Los productos que se ofrecen en esta p&aacute;gina son 100% cultivados con productos naturales, asegurando que no se utilicen pesticidas al momento de su tratamiento.</div>
+                                    <a href="#" class="theme-btn btn-style-two">Leer Mas</a>
                                 </div>
                             </div>
                             <!--Content Column-->
                             <div class="content-column col-md-6 col-sm-6 col-xs-12">
                                 <div class="inner text-right wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-                                    <h3>02. Best Quality Products</h3>
-                                    <div class="text">Cheese strings bocconcini gouda. Parmesan emmental danish fontina cheese triangles bocconcini rubber cheese cheese slices bavarian bergkase.</div>
-                                    <a href="blog-single.html" class="theme-btn btn-style-two">Read More</a>
+                                    <h3>02. Los mejores productos de calidad</h3>
+                                    <div class="text">Todos los productos estan avalados bajo los mas rigurosos estandares de calidad</div>
+                                    <a href="#" class="theme-btn btn-style-two">Leer Mas</a>
                                 </div>
                             </div>
                         </div>
@@ -464,7 +484,7 @@
                     <div class="inner-box">
                     	<h3>Save up to 50 %</h3>
                         <h5>on your first purchase</h5>
-                        <a href="shop-single.html" class="theme-btn btn-style-three">Shop Now</a>
+                        <a href="#" class="theme-btn btn-style-three">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -475,7 +495,7 @@
                     <div class="inner-box">
                     	<h3>Free Shipping</h3>
                         <h5>On order over $99</h5>
-                        <a href="shop-single.html" class="theme-btn btn-style-three">Track Now</a>
+                        <a href="#" class="theme-btn btn-style-three">Track Now</a>
                     </div>
                 </div>
             </div>
@@ -514,7 +534,7 @@
                             <div class="image-box">
                             	<figure class="image"><a class="lightbox-image option-btn" data-fancybox-group="example-gallery" href="{% static "images/gallery/1.jpg"%}"  title="Image Title Here"><img src="{% static "images/gallery/1.jpg"%}"  alt=""></a></figure>
                                 <div class="lower-content">
-                                	<h3><a href="shop.html">Passion Fruits</a></h3>
+                                	<h3><a href="#">Passion Fruits</a></h3>
                                     <div class="price">$ 25.00</div>
                                 </div>
                             </div>
@@ -527,7 +547,7 @@
                             <div class="image-box">
                             	<figure class="image"><a class="lightbox-image option-btn" data-fancybox-group="example-gallery" href="{% static "images/gallery/2.jpg"%}"  title="Image Title Here"><img src="{% static "images/gallery/2.jpg"%}"  alt=""></a></figure>
                                 <div class="lower-content">
-                                	<h3><a href="shop.html">Kiwi Fruits</a></h3>
+                                	<h3><a href="#">Kiwi Fruits</a></h3>
                                     <div class="price">$ 18.00</div>
                                 </div>
                             </div>
@@ -540,7 +560,7 @@
                             <div class="image-box">
                             	<figure class="image"><a class="lightbox-image option-btn" data-fancybox-group="example-gallery" href="{% static "images/gallery/3.jpg"%}"  title="Image Title Here"><img src="{% static "images/gallery/3.jpg"%}"  alt=""></a></figure>
                                 <div class="lower-content">
-                                	<h3><a href="shop.html">Tomatoes</a></h3>
+                                	<h3><a href="#">Tomatoes</a></h3>
                                     <div class="price">$ 30.00</div>
                                 </div>
                             </div>
@@ -553,7 +573,7 @@
                             <div class="image-box">
                             	<figure class="image"><a class="lightbox-image option-btn" data-fancybox-group="example-gallery" href="{% static "images/gallery/4.jpg"%}"  title="Image Title Here"><img src="{% static "images/gallery/4.jpg"%}"  alt=""></a></figure>
                                 <div class="lower-content">
-                                	<h3><a href="shop.html">Ripe pea</a></h3>
+                                	<h3><a href="#">Ripe pea</a></h3>
                                     <div class="price">$ 15.00</div>
                                 </div>
                             </div>
@@ -566,7 +586,7 @@
                             <div class="image-box">
                             	<figure class="image"><a class="lightbox-image option-btn" data-fancybox-group="example-gallery" href="{% static "images/gallery/5.jpg"%}"  title="Image Title Here"><img src="{% static "images/gallery/5.jpg"%}"  alt=""></a></figure>
                                 <div class="lower-content">
-                                	<h3><a href="shop.html">Figs Sweet</a></h3>
+                                	<h3><a href="#">Figs Sweet</a></h3>
                                     <div class="price">$ 18.00</div>
                                 </div>
                             </div>
@@ -579,7 +599,7 @@
                             <div class="image-box">
                             	<figure class="image"><a class="lightbox-image option-btn" data-fancybox-group="example-gallery" href="{% static "images/gallery/6.jpg"%}"  title="Image Title Here"><img src="{% static "images/gallery/6.jpg"%}"  alt=""></a></figure>
                                 <div class="lower-content">
-                                	<h3><a href="shop.html">Rye Bread</a></h3>
+                                	<h3><a href="#">Rye Bread</a></h3>
                                     <div class="price">$ 20.00</div>
                                 </div>
                             </div>
@@ -589,7 +609,7 @@
                 </div>
 
 				<!--Button Outer-->
-				<div class="more-btn-outer text-center"><a href="shop.html" class="theme-btn btn-style-four">View More</a></div>
+				<div class="more-btn-outer text-center"><a href="#" class="theme-btn btn-style-four">View More</a></div>
 
             </div>
 
@@ -623,9 +643,9 @@
                                     <div class="price">Price: $350</div>
                                     <div class="text">Boursin boursin cheese strings. Cheesy feet roquefort pecorino danish fontina cheesecake chalk.</div>
                                     <div class="options clearfix">
-                                        <a href="shop.html" class="theme-btn normal-btn"><span class="flaticon-shopping-bag"></span></a>
-                                        <a href="shop.html" class="theme-btn shop-btn">Shop Now</a>
-                                        <a href="shop.html" class="theme-btn normal-btn"><span class="flaticon-connection"></span></a>
+                                        <a href="#" class="theme-btn normal-btn"><span class="flaticon-shopping-bag"></span></a>
+                                        <a href="#" class="theme-btn shop-btn">Shop Now</a>
+                                        <a href="#" class="theme-btn normal-btn"><span class="flaticon-connection"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -646,9 +666,9 @@
                                     <div class="price">Price: $350</div>
                                     <div class="text">Boursin boursin cheese strings. Cheesy feet roquefort pecorino danish fontina cheesecake chalk.</div>
                                     <div class="options clearfix">
-                                        <a href="shop.html" class="theme-btn normal-btn"><span class="flaticon-shopping-bag"></span></a>
-                                        <a href="shop.html" class="theme-btn shop-btn">Shop Now</a>
-                                        <a href="shop.html" class="theme-btn normal-btn"><span class="flaticon-connection"></span></a>
+                                        <a href="#" class="theme-btn normal-btn"><span class="flaticon-shopping-bag"></span></a>
+                                        <a href="#" class="theme-btn shop-btn">Shop Now</a>
+                                        <a href="#" class="theme-btn normal-btn"><span class="flaticon-connection"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -669,9 +689,9 @@
                                     <div class="price">Price: $350</div>
                                     <div class="text">Boursin boursin cheese strings. Cheesy feet roquefort pecorino danish fontina cheesecake chalk.</div>
                                     <div class="options clearfix">
-                                        <a href="shop.html" class="theme-btn normal-btn"><span class="flaticon-shopping-bag"></span></a>
-                                        <a href="shop.html" class="theme-btn shop-btn">Shop Now</a>
-                                        <a href="shop.html" class="theme-btn normal-btn"><span class="flaticon-connection"></span></a>
+                                        <a href="#" class="theme-btn normal-btn"><span class="flaticon-shopping-bag"></span></a>
+                                        <a href="#" class="theme-btn shop-btn">Shop Now</a>
+                                        <a href="#" class="theme-btn normal-btn"><span class="flaticon-connection"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -853,7 +873,7 @@
                     	<h3>Stay tune for updates</h3>
 
                         <div class="subscribe-form">
-                        	<form method="post" action="contact.html">
+                        	<form method="post" action="#">
                             	<div class="form-group">
                                 	<input type="email" name="email" value="" placeholder="Enter Your Email" required>
                                     <button type="submit" class="theme-btn btn-style-three">Send Now</button>
@@ -894,7 +914,7 @@
                     <!--Footer Column-->
                 	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column">
                         <div class="footer-widget about-widget">
-                            <figure class="footer-logo"><a href="index.html"><img src="{% static "images/logo-3.png"%}"  alt=""></a></figure>
+                            <figure class="footer-logo"><a href="#"><img src="{% static "images/logo-3.png"%}"  alt=""></a></figure>
 
                             <div class="text">
                             	<p>Vestibulum facilisis rhoncus tempor. Duis non ipsum volutpat, rhoat nacus nisi sed, pulvinar ex.</p>

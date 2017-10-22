@@ -51,7 +51,9 @@
                             
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation clearfix">
-                                    <li class="current dropdown"><a href="#">Inicio</a>
+                                    <li><a href="{% url 'home' %}">Inicio</a></li>
+
+                                    <!--<li class="current dropdown"><a href="#">Inicio</a>
                                     	<ul>
                                             <li><a href="index.html">Homepage One</a></li>
                                             <li><a href="index-2.html">Homepage Two</a></li>
@@ -64,35 +66,41 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li class="current dropdown"><a href="#">Cooperativas</a>
+                                    </li>-->
+                                    <li class="dropdown"><a href="#">Cooperativas</a>
                                     	<ul>
-                                            <li><a href="/cooperativa/crearCooperativa/">Crear Cooperativas</a></li>
-                                            <li><a href="/cooperativa/listadoCooperativa/">Listado de Cooperativas</a></li>
-                                            <li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>
+                                            <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
+                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
+                                            <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
                                         </ul>
                                     </li>
-                                    <li><a href="about-us.html">About Us</a></li>
+                                    <!--<li><a href="about-us.html">About Us</a></li>-->
                                     <li class="dropdown"><a href="#">Productores</a>
                                         <ul>
-                                            <li><a href="/productor/registro">Registrar Productor</a></li>
+                                            <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
+                                            <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown"><a href="#">Blog</a>
+                                    <li class="dropdown"><a href="#">Administrador</a>
+                                        <ul>
+                                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--<li class="dropdown"><a href="#">Blog</a>
                                     	<ul>
                                             <li><a href="blog.html">Our Blog</a></li>
                                             <li><a href="blog-single.html">Blog Single</a></li>
                                         </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Shop</a>
+                                    </li>-->
+                                    <!--<li class="dropdown"><a href="#">Shop</a>
                                     	<ul>
                                             <li><a href="/shop">Our Shop</a></li>
                                             <li><a href="shop-single.html">Shop Single</a></li>
                                             <li><a href="shopping-cart.html">Shopping Cart</a></li>
                                             <li><a href="checkout.html">Checkout</a></li>
                                         </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    </li>-->
+                                    <li><a href="{% url 'team' %}">Nuestro Equipo</a></li>
                                  </ul>
                             </div>
                         </nav><!-- Main Menu End-->
@@ -131,43 +139,56 @@
             <div class="side-menu">
             <!-- .navigation -->
                 <ul class="navigation">
-                    <li class="current dropdown"><a href="#">Home</a>
-                        <ul>
-                            <li><a href="index.html">Homepage One</a></li>
-                            <li><a href="index-2.html">Homepage Two</a></li>
-                            <li><a href="index-3.html">Homepage Three</a></li>
-                            <li class="dropdown"><a href="index-3.html">Header Styles</a>
-                                <ul>
-                                    <li><a href="index.html">Header Style One</a></li>
-                                    <li><a href="index-2.html">Header Style Two</a></li>
-                                    <li><a href="index-3.html">Header Style Three</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li class="dropdown"><a href="#">Gallery</a>
-                        <ul>
-                            <li><a href="gallery-three-column.html">Gallery Three Column</a></li>
-                            <li><a href="gallery-masonry.html">Gallery Masonry</a></li>
-                            <li><a href="gallery-fullwidth.html">Gallery Fullwidth</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#">Blog</a>
-                        <ul>
-                            <li><a href="blog.html">Our Blog</a></li>
-                            <li><a href="blog-single.html">Blog Single</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#">Shop</a>
-                        <ul>
-                            <li><a href="shop.html">Our Shop</a></li>
-                            <li><a href="shop-single.html">Shop Single</a></li>
-                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+
+                                    <!--<li class="current dropdown"><a href="#">Inicio</a>
+                                    	<ul>
+                                            <li><a href="index.html">Homepage One</a></li>
+                                            <li><a href="index-2.html">Homepage Two</a></li>
+                                            <li><a href="index-3.html">Homepage Three</a></li>
+                                            <li class="dropdown"><a href="index-3.html">Header Styles</a>
+                                            	<ul>
+                                                	<li><a href="index.html">Header Style One</a></li>
+                                                    <li><a href="index-2.html">Header Style Two</a></li>
+                                                    <li><a href="index-3.html">Header Style Three</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>-->
+                                    <li class="dropdown"><a href="#">Cooperativas</a>
+                                    	<ul>
+                                            <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
+                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
+                                            <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
+                                        </ul>
+                                    </li>
+                                    <!--<li><a href="about-us.html">About Us</a></li>-->
+                                    <li class="dropdown"><a href="#">Productores</a>
+                                        <ul>
+                                            <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
+                                            <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#">Administrador</a>
+                                        <ul>
+                                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--<li class="dropdown"><a href="#">Blog</a>
+                                    	<ul>
+                                            <li><a href="blog.html">Our Blog</a></li>
+                                            <li><a href="blog-single.html">Blog Single</a></li>
+                                        </ul>
+                                    </li>-->
+                                    <!--<li class="dropdown"><a href="#">Shop</a>
+                                    	<ul>
+                                            <li><a href="/shop">Our Shop</a></li>
+                                            <li><a href="shop-single.html">Shop Single</a></li>
+                                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                        </ul>
+                                    </li>-->
+                                    <li><a href="{% url 'team' %}">Nuestro Equipo</a></li>
                 </ul>
             </div><!-- /.Side-menu -->
         

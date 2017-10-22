@@ -14,9 +14,16 @@ export class ProductorService {
 
     }
 
+    editarProductor(productor: any , id: number): Observable<string[]> {
+        return this.http.post('/productor/editarProductor/'+id, productor)
+            .map(response => <string[]>response.json());
+
+    }
+
     getProductor(): Observable<string[]> {
         return this.http.get('/productor/service')
             .map(response => <string[]>response.json());
+        //console.log("texto");
 
     }
 

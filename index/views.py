@@ -12,3 +12,7 @@ def home(request):
 def shop(request):
     context = {}
     return render(request, 'shop.html', context)
+
+def team(request):
+    context = {}
+    return render(request, 'team.html', context)

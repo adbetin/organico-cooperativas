@@ -21,8 +21,18 @@ from . import views
 urlpatterns = [
     url(r'^$', views.cooperativasAdmin, name="home_cooperativas"),
 
+    # Vistas
     url(r'^crearCooperativa/$', views.cooperativasAdmin, name="crear_cooperativa"),
     url(r'^listadoCooperativa/$', views.cooperativasAdmin, name="listado_cooperativa"),
+    url(r'^actualizardatos/(?P<id>.+)$', views.cooperativasDetail, name="actualizar_datos"),
+    url(r'^detalle/(?P<id>.+)$', views.cooperativasDetail, name='detalle_cooperativa'),
+
+    # Almacenamiento de datos
+    url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),
+
+    url(r'^actualizarCooperativa/$', views.actualizarCooperativa, name="actualizar_cooperativa"),
+
+    # Consulta de datos
     url(r'^cooperativalist$', views.cooperativasList, name="cooperativas_list"),
-    url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa")
+    url(r'consultarCooperativa/(?P<id>.+)/$', views.cooperativasGet, name="ver_cooperativa")
 ]

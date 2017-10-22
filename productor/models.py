@@ -29,6 +29,7 @@ class Productor(models.Model):
     longitud = models.FloatField(blank=True, null=True)
     foto = models.TextField()
     email = models.TextField()
+    aprobado = models.CharField(max_length=20)
     nombreFinca = models.TextField()
     fincaCertificada = models.BooleanField()
     productosOrganicos = models.BooleanField()
