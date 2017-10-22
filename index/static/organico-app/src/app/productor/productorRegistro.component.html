@@ -23,6 +23,26 @@
     <input type="text" id="direccionProductor" placeholder="Direcci&oacute;n" [(ngModel)]="productor.direccion"/>
   </div>
   <div class="form-item">
+    <label for="nombreFinca">Nombre Finca*: </label>
+    <input type="text" id="nombreFinca" placeholder="Nombre Finca" [(ngModel)]="productor.nombreFinca"/>
+  </div>
+  <div class="form-item">
+    <label for="emailProductor">*: </label>
+    <input type="email" id="emailProductor" placeholder="E-Mail" [(ngModel)]="productor.email"/>
+  </div>
+  <div class="form-item">
+    <label for="fincaCertificada">Finca Certificada*: </label>
+    <input type="checkbox" id="fincaCertificada" placeholder="" [(ngModel)]="productor.fincaCertificada"/>
+  </div>
+  <div class="form-item">
+    <label for="productosOrganicos">Productos Organicos*: </label>
+    <input type="checkbox" id="productosOrganicos" placeholder="" [(ngModel)]="productor.productosOrganicos"/>
+  </div>
+  <div class="form-item">
+    <label for="direccionProductor">Direcci&oacute;n*: </label>
+    <input type="text" id="direccionProductor" placeholder="Direcci&oacute;n" [(ngModel)]="productor.direccion"/>
+  </div>
+  <div class="form-item">
     <label for="cooperativa">Cooperativa*: </label>
     <select id="cooperativa" [(ngModel)]="productor.cooperativa">
       <option value="-1">-- Cooperativa --</option>
