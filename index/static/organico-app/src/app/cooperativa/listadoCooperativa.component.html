@@ -1,45 +1,64 @@
-<section class="contact-section">
-  <div class="center centered center-block auto-container">
-    <h1>Listado de Cooperativas</h1>
+<!--Main Slider-->
+<section class="main-slider" id="scroll-section-one" data-start-height="900" data-slide-overlay="yes">
 
-    <table class="table-bordered cart-table table-responsive centered-column auto-container">
-      <thead>
-          <tr>
-              <th>Nombre</th>
-              <th>NIT</th>
-              <th>Correo</th>
-              <th>Responsable</th>
-              <th>Dirección</th>
-              <th>Zona</th>
-              <th>Acciones</th>
-          </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of cooperativas">
-            <td><a routerLink="/cooperativa/detalle/{{ item.id }}">
-                {{ item.nombre }}</a></td>
-            <td>{{ item.nit }}</td>
-            <td>{{ item.correo }}</td>
-            <td>{{ item.responsable }}</td>
-            <td>{{ item.direccion }}</td>
-            <td>{{ item.zona }}</td>
-            <td>
-              <a routerLink="/cooperativa/detalle/{{ item.id }}">
-                <span class="fa fa-search title-box title" title="Detalles productor"></span>
-              </a>
+    <div class="tp-banner-container">
+        <div class="tp-banner">
+            <ul>
+                <!-- Inicio Slide  -->
+                <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="../static/images/main-slider/image-1.jpg" data-saveperformance="off" *ngFor="let item of cooperativas" data-title="Cool title">
+                <img src="../static/images/main-slider/image-1.jpg" alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
 
-              <a routerLink="/cooperativa/actualizardatos/{{ item.id }}">
-                <span class="fa fa-edit title-box title" title="Editar Cooperativa"></span>
-              </a>
-              <!-- <a routerLink="mapaCooperativa">
-                <span class="fa fa-map-o title-box title" title="Ubicar en el mapa"></span>
-              </a> -->
-            </td>
-        </tr>
-      </tbody>
-      <tfoot>
+                <div class="tp-caption sfl sfb tp-resizeme"
+                data-x="center" data-hoffset="0"
+                data-y="center" data-voffset="-150"
+                data-speed="1500"
+                data-start="500"
+                data-easing="easeOutExpo"
+                data-splitin="none"
+                data-splitout="none"
+                data-elementdelay="0.01"
+                data-endelementdelay="0.3"
+                data-endspeed="1200"
 
-      </tfoot>
-    </table>
-  </div>
+                data-endeasing="Power4.easeIn"><h2>{{ item.nombre }}</h2></div>
+
+                <div class="tp-caption sfr sfb tp-resizeme"
+                data-x="center" data-hoffset="0"
+                data-y="center" data-voffset="-70"
+                data-speed="1500"
+                data-start="500"
+                data-easing="easeOutExpo"
+                data-splitin="none"
+                data-splitout="none"
+                data-elementdelay="0.01"
+                data-endelementdelay="0.3"
+                data-endspeed="1200"
+                data-endeasing="Power4.easeIn"><div class="big-text">{{ item.responsable }}</div></div>
+
+                <div class="tp-caption sfl sfb tp-resizeme"
+                data-x="center" data-hoffset="0"
+                data-y="center" data-voffset="0"
+                data-speed="1500"
+                data-start="500"
+                data-easing="easeOutExpo"
+                data-splitin="none"
+                data-splitout="none"
+                data-elementdelay="0.01"
+                data-endelementdelay="0.3"
+                data-endspeed="1200"
+                data-endeasing="Power4.easeIn"><a routerLink="/cooperativa/detalle/{{ item.id }}" class="theme-btn btn-style-one">
+                    <span class="fa fa-search title-box title" title="Detalles productor"> Ver más</span>
+                  </a>
+
+                  <a routerLink="/cooperativa/actualizardatos/{{ item.id }}" class="theme-btn btn-style-one">
+                    <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                  </a></div>
+
+                </li>
+
+            </ul>
+
+            <div class="tp-bannertimer"></div>
+        </div>
+    </div>
 </section>
