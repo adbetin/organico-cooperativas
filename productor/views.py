@@ -57,6 +57,10 @@ def productoresList(request):
                 longitud = data['longitud'],
                 foto = data['foto'],
                 aprobado = data['aprobado'],
+                fincaCertificada = data['fincaCertificada'],
+                productosOrganicos = data['productosOrganicos'],
+                email = data['email'],
+                nombreFinca = data['nombreFinca']
             )
             productor.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

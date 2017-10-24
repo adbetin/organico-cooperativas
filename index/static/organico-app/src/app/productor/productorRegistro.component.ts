@@ -70,6 +70,7 @@ export class ProductorRegistroComponent implements OnInit {
       this.productorService.setProductor(this.productor).subscribe(response => {
         alert("Su informaci?n fue agregada con ?xito.");
         this.productor = {};
+        window.location.href = '/productor/lista';
       });
     }else{
       alert("Alguno de los datos está incompleto.");
@@ -81,7 +82,15 @@ export class ProductorRegistroComponent implements OnInit {
         var reader = new FileReader();
 
         reader.onload = function (e:FileReaderEvent) {
-            this.productor.foto = e.target.result;
+            var photo = new Image();
+            photo.src = e.target.result;
+            photo.onload = function () {
+              var canvas: any = document.getElementById('photoPreview'),
+              context = canvas.getContext('2d');
+              context.drawImage(photo,0,0,200,200);
+              this.productor.foto = canvas.toDataURL();
+            }.bind(this);
+
         }.bind(this);
 
         reader.readAsDataURL(input.files[0]);
