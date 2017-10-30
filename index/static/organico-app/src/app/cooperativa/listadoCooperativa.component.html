@@ -1,64 +1,92 @@
-<!--Main Slider-->
-<section class="main-slider" id="scroll-section-one" data-start-height="900" data-slide-overlay="yes">
+    <!--Our Team-->
+    <section class="team-section">
+    	<div class="auto-container">
+        	<!--Section Title-->
+            <div class="sec-title-one">
+                <h2><a routerLink="/cooperativa/listadoCooperativa">Nuestras cooperativas</a></h2>
+            </div>
 
-    <div class="tp-banner-container">
-        <div class="tp-banner">
-            <ul>
-                <!-- Inicio Slide  -->
-                <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="../static/images/main-slider/image-1.jpg" data-saveperformance="off" *ngFor="let item of cooperativas" data-title="Cool title">
-                <img src="../static/images/main-slider/image-1.jpg" alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+        	<div class="row clearfix" *ngFor="let item of cooperativas">
+            	<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                	<!--Default Team Member-->
+                    <div class="default-team-member" *ngIf="item[0]">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="../static/images/resource/team-image-1.jpg"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[0].nombre }}
+                                    <br><small><b>Zona</b> {{ item[0].zona }} | {{ item[0].direccion }} | {{ item[0].email }} |
+                                        <br><b>NIT</b> {{ item[0].nit }} | {{ item[0].responsable }}</small></h3>
+                                    <div class="text">{{ item[0].descripcion.slice(0, sizeDescripcion) + "..." }}</div>
+                                    <div class="social-links">
+                                        <a routerLink="/cooperativa/detalle/{{ item[0].id }}">
+                                          <span class="fa fa-search title-box title" title="Detalles productor"> Ver más</span>
+                                        </a>
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[0].id }}">
+                                          <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="tp-caption sfl sfb tp-resizeme"
-                data-x="center" data-hoffset="0"
-                data-y="center" data-voffset="-150"
-                data-speed="1500"
-                data-start="500"
-                data-easing="easeOutExpo"
-                data-splitin="none"
-                data-splitout="none"
-                data-elementdelay="0.01"
-                data-endelementdelay="0.3"
-                data-endspeed="1200"
+                    <!--Default Team Member-->
+                    <div class="default-team-member" *ngIf="item[1]">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="../static/images/resource/team-image-2.jpg"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[1].nombre }}
+                                    <br><small><b>Zona</b> {{ item[1].zona }} | {{ item[1].direccion }} | {{ item[1].email }} |
+                                        <br><b>NIT</b> {{ item[1].nit }} | {{ item[1].responsable }}</small></h3>
+                                    <div class="text">{{ item[1].descripcion.slice(0, sizeDescripcion) + "..." }}</div>
+                                    <div class="social-links">
+                                        <a routerLink="/cooperativa/detalle/{{ item[1].id }}">
+                                          <span class="fa fa-search title-box title" title="Detalles productor"> Ver más</span>
+                                        </a>
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[1].id }}">
+                                          <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                data-endeasing="Power4.easeIn"><h2>{{ item.nombre }}</h2></div>
+                </div>
 
-                <div class="tp-caption sfr sfb tp-resizeme"
-                data-x="center" data-hoffset="0"
-                data-y="center" data-voffset="-70"
-                data-speed="1500"
-                data-start="500"
-                data-easing="easeOutExpo"
-                data-splitin="none"
-                data-splitout="none"
-                data-elementdelay="0.01"
-                data-endelementdelay="0.3"
-                data-endspeed="1200"
-                data-endeasing="Power4.easeIn"><div class="big-text">{{ item.responsable }}</div></div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="item[2]">
+                	<!--Default Team Member / Vertical-->
+                    <div class="default-team-member vertical">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="../static/images/resource/team-image-3.jpg"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[2].nombre }}
+                                    <br><small><b>Zona</b> {{ item[2].zona }} | {{ item[2].direccion }} | {{ item[2].email }} |
+                                        <br><b>NIT</b> {{ item[2].nit }} | {{ item[2].responsable }}</small></h3>
+                                    <div class="text">{{ item[2].descripcion.slice(0, sizeDescripcion) + "..." }}</div>
+                                    <div class="social-links">
+                                        <a routerLink="/cooperativa/detalle/{{ item[2].id }}">
+                                          <span class="fa fa-search title-box title" title="Detalles productor"> Ver más</span>
+                                        </a>
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[2].id }}">
+                                          <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="tp-caption sfl sfb tp-resizeme"
-                data-x="center" data-hoffset="0"
-                data-y="center" data-voffset="0"
-                data-speed="1500"
-                data-start="500"
-                data-easing="easeOutExpo"
-                data-splitin="none"
-                data-splitout="none"
-                data-elementdelay="0.01"
-                data-endelementdelay="0.3"
-                data-endspeed="1200"
-                data-endeasing="Power4.easeIn"><a routerLink="/cooperativa/detalle/{{ item.id }}" class="theme-btn btn-style-one">
-                    <span class="fa fa-search title-box title" title="Detalles productor"> Ver más</span>
-                  </a>
-
-                  <a routerLink="/cooperativa/actualizardatos/{{ item.id }}" class="theme-btn btn-style-one">
-                    <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
-                  </a></div>
-
-                </li>
-
-            </ul>
-
-            <div class="tp-bannertimer"></div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>

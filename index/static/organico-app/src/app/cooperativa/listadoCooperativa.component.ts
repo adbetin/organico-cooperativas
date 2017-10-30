@@ -16,7 +16,8 @@ import { ListadoCooperativaService } from './listadoCooperativa.service';
 export class ListadoCooperativaComponent implements OnInit {
   title = 'Listado cooperativas';
 
-  cooperativas: any[];
+  cooperativas: any[] = new Array();
+  sizeDescripcion: number = 120;
   displayedColumns = ['nombre', 'nit', 'responsable', 'id'];
   dataSource: CooperativaDataSource = null;
 
@@ -26,8 +27,24 @@ export class ListadoCooperativaComponent implements OnInit {
   ngOnInit() {
     this.listadoCooperativaServices.getCooperativas()
           .subscribe(cooperativas =>{
-            this.cooperativas = cooperativas;
-            /* console.log(this.cooperativas ); */
+            let grupoCooperativa: any[] = new Array();
+            let contador: number = 0;
+            let index: number = 0;
+            for(let cooperativa of cooperativas)
+            {
+              contador++;
+              grupoCooperativa.push(cooperativa);
+
+              if( contador == 3 || index == cooperativas.length-1 )
+              {
+                this.cooperativas.push(grupoCooperativa);
+                grupoCooperativa = new Array();
+                contador = 0;
+              }
+              index++;
+            }
+            /* this.cooperativas = cooperativas; */
+            /*console.log(this.cooperativas );*/
             this.dataSource = new CooperativaDataSource(this.cooperativas);
           });
   }
