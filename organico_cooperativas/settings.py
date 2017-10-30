@@ -90,10 +90,10 @@ DATABASES = {
         'HOST': 'ec2-54-221-254-72.compute-1.amazonaws.com',
         'PORT': '5432',
         'TEST': {
-            'NAME': 'd8ooprlh6gjl6c',
-            'USER': 'cbglzkvrxtbydm',
-            'PASSWORD': 'd5d996ea89c136496a151030719d6419fc8fbc995f725014948dcbc76c73fd6f',
-            'HOST': 'ec2-107-22-250-33.compute-1.amazonaws.com',
+            'NAME': 'test',
+            'USER': os.environ.get('PGUSER'),
+            'PASSWORD': os.environ.get('PGPASSWORD'),
+            'HOST': '127.0.0.1',
         }
     }
 }
