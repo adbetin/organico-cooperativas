@@ -21,14 +21,14 @@
                                       <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
                                     </a></div>
                                 <div class="inner"><h3>{{ cooperativa.nombre }}
-                                    <br><small><b>Zona</b> {{ cooperativa.zona }} | {{ cooperativa.direccion }} | {{ cooperativa.email }} |
+                                    <br><small><b>Zona</b> {{ cooperativa.zona }} | {{ cooperativa.direccion }} | {{ cooperativa.correo }} |
                                         <br><b>NIT</b> {{ cooperativa.nit }} | {{ cooperativa.responsable }}</small></h3>
                                     <div class="text">{{ cooperativa.descripcion }}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <app-productor-lista filtrocooperativa="{{ cooperativa.id }}"></app-productor-lista>
             </div>
         </div>
     </section>
