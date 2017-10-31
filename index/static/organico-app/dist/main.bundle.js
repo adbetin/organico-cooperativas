@@ -361,7 +361,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"shop-single\">\r\n    <!--Page Title-->\r\n    <section class=\"page-title\" style=\"background-image:url(/static/images/background/bg-page-title-1a.jpg);\">\r\n        <div class=\"auto-container\">\r\n            <h1>Información de la Cooperativa</h1>\r\n        </div>\r\n    </section>\r\n\r\n    <div *ngIf=\"cooperativa != null\">\r\n        <!--Product Details Section-->\r\n        <section class=\"product-details\">\r\n            <div class=\"auto-container\">\r\n                <!--Basic Details-->\r\n                <div class=\"basic-details\">\r\n                    <div class=\"row clearfix\">\r\n                        <div class=\"info-column col-md-8 col-sm-7 col-xs-12\" style=\"text-align: left\">\r\n                            <div class=\"details-header\">\r\n                                <h4>{{ cooperativa.nombre }}</h4>\r\n                            </div>\r\n\r\n                            <div class=\"text\">\r\n                                {{ cooperativa.descripcion }}\r\n                            </div>\r\n                            <div>\r\n                                <div class=\"form-horizontal\">\r\n                                    <div class=\"form-group\">\r\n                                        <label class=\"col-sm-3 control-label\" for=\"cvv\">NIT:</label>\r\n                                        <div class=\"col-sm-9\">\r\n                                            {{ cooperativa.nit }}\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"form-group\">\r\n                                        <label class=\"col-sm-3 control-label\" for=\"cvv\">Responsable:</label>\r\n                                        <div class=\"col-sm-9\">\r\n                                            {{ cooperativa.responsable }}\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"form-group\">\r\n                                        <label class=\"col-sm-3 control-label\" for=\"cvv\">Dirección:</label>\r\n                                        <div class=\"col-sm-9\">\r\n                                            {{ cooperativa.direccion }}\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"form-group\">\r\n                                        <label class=\"col-sm-3 control-label\" for=\"cvv\">Zona:</label>\r\n                                        <div class=\"col-sm-9\">\r\n                                            {{ cooperativa.zona }}\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"form-group\">\r\n                                        <label class=\"col-sm-3 control-label\" for=\"cvv\">Teléfono:</label>\r\n                                        <div class=\"col-sm-9\">\r\n                                            {{ cooperativa.telefono }}\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"form-group\">\r\n                                        <label class=\"col-sm-3 control-label\" for=\"cvv\">Correo:</label>\r\n                                        <div class=\"col-sm-9\">\r\n                                            {{ cooperativa.correo }}\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                                <div class=\"text-center\"><button class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Atrás</button></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                    </div>\r\n                </div><!--Basic Details-->\r\n                <!--Fluid Section Two-->\r\n                <section class=\"fluid-section-two\">\r\n                    <div class=\"outer-box clearfix\">\r\n\r\n\r\n                    </div>\r\n                </section>\r\n\r\n            </div>\r\n        </section>\r\n    </div>\r\n</div>\r\n"
+module.exports = "    <!--Our Team-->\r\n    <section class=\"team-section\">\r\n    \t<div class=\"auto-container\">\r\n        \t<!--Section Title-->\r\n            <div class=\"sec-title-one\">\r\n                <h2><a routerLink=\"/cooperativa/listadoCooperativa\">Nuestras cooperativas</a></h2>\r\n            </div>\r\n\r\n        \t<div class=\"row clearfix\" *ngIf=\"cooperativa != null\">\r\n                \t<!--Default Team Member-->\r\n                    <div class=\"default-team-member\" *ngIf=\"cooperativa\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../../static/images/resource/team-image-1.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"social-links\"><small></small><a routerLink=\"/cooperativa/listadoCooperativa\">\r\n                                      <span class=\"fa fa-step-backward title-box title\" title=\"Volver\"> Volver</span>\r\n                                    </a>\r\n                                    <a routerLink=\"/cooperativa/actualizardatos/{{ cooperativa.id }}\">\r\n                                      <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                    </a></div>\r\n                                <div class=\"inner\"><h3>{{ cooperativa.nombre }}\r\n                                    <br><small><b>Zona</b> {{ cooperativa.zona }} | {{ cooperativa.direccion }} | {{ cooperativa.correo }} |\r\n                                        <br><b>NIT</b> {{ cooperativa.nit }} | {{ cooperativa.responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ cooperativa.descripcion }}</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <app-productor-lista filtrocooperativa=\"{{ cooperativa.id }}\"></app-productor-lista>\r\n            </div>\r\n        </div>\r\n    </section>\r\n"
 
 /***/ }),
 
@@ -373,6 +373,7 @@ module.exports = "<div class=\"shop-single\">\r\n    <!--Page Title-->\r\n    <s
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__productor_productor_lista_productor_lista_component__ = __webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -382,6 +383,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -416,7 +418,8 @@ CooperativaDetalleComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.html"),
         styles: [__webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.css")],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */]
+            __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */],
+            __WEBPACK_IMPORTED_MODULE_3__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */]
         ]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */]) === "function" && _e || Object])
@@ -587,10 +590,28 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/cooperativa/listadoCooperativa.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+exports.i(__webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../material/prebuilt-themes/indigo-pink.css"), "");
+
+// module
+exports.push([module.i, "/*.example-container {\r\n  display: flex;\r\n  flex-direction: column;\r\n  max-height: 500px;\r\n  min-width: 300px;\r\n}\r\n\r\n.mat-table {\r\n  overflow: auto;\r\n  max-height: 500px;\r\n}*/\r\n\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/cooperativa/listadoCooperativa.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"contact-section\">\r\n  <div class=\"center centered center-block auto-container\">\r\n    <h1>Listado de Cooperativas</h1>\r\n\r\n    <table class=\"table-bordered cart-table table-responsive centered-column auto-container\">\r\n      <thead>\r\n          <tr>\r\n              <th>Nombre</th>\r\n              <th>NIT</th>\r\n              <th>Correo</th>\r\n              <th>Responsable</th>\r\n              <th>Dirección</th>\r\n              <th>Zona</th>\r\n              <th>Acciones</th>\r\n          </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of cooperativas\">\r\n            <td><a routerLink=\"/cooperativa/detalle/{{ item.id }}\">\r\n                {{ item.nombre }}</a></td>\r\n            <td>{{ item.nit }}</td>\r\n            <td>{{ item.correo }}</td>\r\n            <td>{{ item.responsable }}</td>\r\n            <td>{{ item.direccion }}</td>\r\n            <td>{{ item.zona }}</td>\r\n            <td>\r\n              <a routerLink=\"/cooperativa/detalle/{{ item.id }}\">\r\n                <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"></span>\r\n              </a>\r\n\r\n              <a routerLink=\"/cooperativa/actualizardatos/{{ item.id }}\">\r\n                <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"></span>\r\n              </a>\r\n              <!-- <a routerLink=\"mapaCooperativa\">\r\n                <span class=\"fa fa-map-o title-box title\" title=\"Ubicar en el mapa\"></span>\r\n              </a> -->\r\n            </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</section>\r\n"
+module.exports = "    <!--Our Team-->\r\n    <section class=\"team-section\">\r\n    \t<div class=\"auto-container\">\r\n        \t<!--Section Title-->\r\n            <div class=\"sec-title-one\">\r\n                <h2><a routerLink=\"/cooperativa/listadoCooperativa\">Nuestras cooperativas</a></h2>\r\n            </div>\r\n\r\n        \t<div class=\"row clearfix\" *ngFor=\"let item of cooperativas\">\r\n            \t<div class=\"col-lg-8 col-md-12 col-sm-12 col-xs-12\">\r\n                \t<!--Default Team Member-->\r\n                    <div class=\"default-team-member\" *ngIf=\"item[0]\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-1.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[0].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[0].zona }} | {{ item[0].direccion }} | {{ item[0].correo }} |\r\n                                        <br><b>NIT</b> {{ item[0].nit }} | {{ item[0].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[0].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <!--Default Team Member-->\r\n                    <div class=\"default-team-member\" *ngIf=\"item[1]\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-2.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[1].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[1].zona }} | {{ item[1].direccion }} | {{ item[1].correo }} |\r\n                                        <br><b>NIT</b> {{ item[1].nit }} | {{ item[1].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[1].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <div class=\"col-lg-4 col-md-12 col-sm-12 col-xs-12\" *ngIf=\"item[2]\">\r\n                \t<!--Default Team Member / Vertical-->\r\n                    <div class=\"default-team-member vertical\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-3.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[2].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[2].zona }} | {{ item[2].direccion }} | {{ item[2].correo }} |\r\n                                        <br><b>NIT</b> {{ item[2].nit }} | {{ item[2].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[2].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </section>\r\n"
 
 /***/ }),
 
@@ -599,8 +620,24 @@ module.exports = "<section class=\"contact-section\">\r\n  <div class=\"center c
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListadoCooperativaComponent; });
+/* unused harmony export CooperativaDataSource */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_cdk_collections__ = __webpack_require__("../../../cdk/esm5/collections.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -612,28 +649,69 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var ListadoCooperativaComponent = (function () {
     function ListadoCooperativaComponent(listadoCooperativaServices) {
         this.listadoCooperativaServices = listadoCooperativaServices;
         this.title = 'Listado cooperativas';
+        this.cooperativas = new Array();
+        this.sizeDescripcion = 120;
+        this.displayedColumns = ['nombre', 'nit', 'responsable', 'id'];
+        this.dataSource = null;
     }
     ListadoCooperativaComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.listadoCooperativaServices.getCooperativas()
-            .subscribe(function (cooperativas) { return _this.cooperativas = cooperativas; });
+            .subscribe(function (cooperativas) {
+            var grupoCooperativa = new Array();
+            var contador = 0;
+            var index = 0;
+            for (var _i = 0, cooperativas_1 = cooperativas; _i < cooperativas_1.length; _i++) {
+                var cooperativa = cooperativas_1[_i];
+                contador++;
+                grupoCooperativa.push(cooperativa);
+                if (contador == 3 || index == cooperativas.length - 1) {
+                    _this.cooperativas.push(grupoCooperativa);
+                    grupoCooperativa = new Array();
+                    contador = 0;
+                }
+                index++;
+            }
+            /* this.cooperativas = cooperativas; */
+            /*console.log(this.cooperativas );*/
+            _this.dataSource = new CooperativaDataSource(_this.cooperativas);
+        });
     };
     return ListadoCooperativaComponent;
 }());
 ListadoCooperativaComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        //selector: 'app-cooperativa',
+        selector: 'app-listadocooperativa',
         template: __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.component.css")],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_1__listadoCooperativa_service__["a" /* ListadoCooperativaService */]
+            __WEBPACK_IMPORTED_MODULE_4__listadoCooperativa_service__["a" /* ListadoCooperativaService */]
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _a || Object])
 ], ListadoCooperativaComponent);
+
+var CooperativaDataSource = (function (_super) {
+    __extends(CooperativaDataSource, _super);
+    function CooperativaDataSource(data) {
+        var _this = _super.call(this) || this;
+        _this.data = data;
+        return _this;
+    }
+    /** Connect function called by the table to retrieve one stream containing the data to render. */
+    CooperativaDataSource.prototype.connect = function () {
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].of(this.data);
+    };
+    CooperativaDataSource.prototype.disconnect = function () { };
+    return CooperativaDataSource;
+}(__WEBPACK_IMPORTED_MODULE_1__angular_cdk_collections__["a" /* DataSource */]));
 
 var _a;
 //# sourceMappingURL=listadoCooperativa.component.js.map
@@ -1009,7 +1087,7 @@ ProductorEditarComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */],
             __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* GoogleMapsAPIWrapper */]
         ],
-        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None,
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* GoogleMapsAPIWrapper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* GoogleMapsAPIWrapper */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object])
 ], ProductorEditarComponent);
@@ -1084,6 +1162,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ProductorListaComponent = (function () {
     function ProductorListaComponent(productorServices) {
         this.productorServices = productorServices;
+        this.filtrocooperativa = 0;
         this.displayedColumns = ['foto', 'nombre', 'documento', 'id'];
         this.dataSource = null;
     }
@@ -1092,15 +1171,30 @@ var ProductorListaComponent = (function () {
         this.productorServices.getProductor()
             .subscribe(function (productores) {
             _this.productores = productores;
-            console.log(_this.productores);
+            /*console.log(this.productores );*/
             _this.productores = _this.productores.filter(function (data) {
                 return data.aprobado === 'True';
             });
+            var filtrocooperativa2 = _this.filtrocooperativa;
+            _this.productores = _this.productores.filter(function (data) {
+                if (filtrocooperativa2 > 0) {
+                    return data.cooperativa.id == filtrocooperativa2;
+                }
+                else {
+                    return 'True';
+                }
+            });
+            /*console.log(filtrocooperativa2 );*/
+            /*console.log(this.productores );*/
             _this.dataSource = new ProductorDataSource(_this.productores);
         });
     };
     return ProductorListaComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], ProductorListaComponent.prototype, "filtrocooperativa", void 0);
 ProductorListaComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-productor-lista',
@@ -1323,7 +1417,7 @@ ProductorRegistroComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */],
             __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]
         ],
-        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None,
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]) === "function" && _c || Object])
 ], ProductorRegistroComponent);
@@ -1464,7 +1558,7 @@ RegistroAdminComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */],
             __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]
         ],
-        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None,
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]) === "function" && _c || Object])
 ], RegistroAdminComponent);
@@ -1505,7 +1599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_24" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_23" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });

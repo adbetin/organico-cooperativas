@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -12,6 +12,7 @@ import {ProductorService} from '../productor.service';
 })
 export class ProductorListaComponent implements OnInit {
 
+  @Input() filtrocooperativa = 0;
   productores: any[];
   displayedColumns = ['foto', 'nombre', 'documento', 'id'];
   dataSource : ProductorDataSource = null;
@@ -22,10 +23,20 @@ export class ProductorListaComponent implements OnInit {
     this.productorServices.getProductor()
           .subscribe(productores =>{
             this.productores = productores;
-            console.log(this.productores );
+            /*console.log(this.productores );*/
             this.productores = this.productores.filter(function(data){
               return data.aprobado === 'True';
             })
+            const filtrocooperativa2 = this.filtrocooperativa;
+            this.productores = this.productores.filter(function(data){
+                if ( filtrocooperativa2 > 0 ) {
+                  return data.cooperativa.id == filtrocooperativa2;
+                } else {
+                  return 'True';
+                }
+            })
+            /*console.log(filtrocooperativa2 );*/
+            /*console.log(this.productores );*/
             this.dataSource = new ProductorDataSource(this.productores);
           });
   }
