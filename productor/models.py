@@ -28,7 +28,11 @@ class Productor(models.Model):
     latitud = models.FloatField(blank=True, null=True)
     longitud = models.FloatField(blank=True, null=True)
     foto = models.TextField()
+    email = models.TextField()
     aprobado = models.CharField(max_length=20)
+    nombreFinca = models.TextField()
+    fincaCertificada = models.BooleanField()
+    productosOrganicos = models.BooleanField()
 
     class Meta:
         verbose_name = 'Productor'
