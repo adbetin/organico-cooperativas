@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ElementRef, ChangeDetectorRef, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ProductorService} from '../productor.service';
 import 'rxjs/add/operator/switchMap';
@@ -9,7 +9,8 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./productor-detalle.component.css'],
   providers: [
     ProductorService
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductorDetalleComponent implements OnInit {
 
