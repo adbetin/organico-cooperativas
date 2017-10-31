@@ -38,27 +38,27 @@
                             </div>
                             <div>
                                 <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="cvv">Cooperativa</label>
-                                        <div class="col-sm-9">
+                                    <div class="informacion-cooperativa">
+                                        <h4>Cooperativa</h4>
+                                        <div class="col-sm-12">
                                             {{ productor.cooperativa.nombre }}
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="cvv">Tipo Doc.</label>
-                                        <div class="col-sm-9">
-                                            {{ productor.tipo_documento.nombre }}
+                                        <div class="col-sm-12">
+                                          <strong>NIT </strong>
+                                            {{ productor.cooperativa.nit }}
+                                        </div>
+                                        <div class="col-sm-12">
+                                          <strong class="col-sm-12 text-left no-padding">Representante Legal </strong>
+                                            {{ productor.cooperativa.responsable }}
+                                        </div>
+                                        <div class="col-sm-12">
+                                          <strong class="col-sm-12 text-left no-padding">Zona </strong>
+                                            {{ productor.cooperativa.zona }}
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="cvv">Documento</label>
-                                        <div class="col-sm-9">
-                                            {{ productor.documento }}
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="cvv">Direcci&oacute;n</label>
-                                        <div class="col-sm-9">
+                                    <div class="informacion-productor text" >
+                                        <h4>Dirección</h4>
+                                        <div class="col-sm-9 no-padding">
                                             {{ productor.direccion }}
                                         </div>
                                     </div>
