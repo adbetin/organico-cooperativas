@@ -1,14 +1,15 @@
 import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CooperativaService} from './cooperativa.service';
-
+import {ProductorListaComponent} from '../../productor/productor-lista/productor-lista.component';
 
 @Component({
   selector: 'app-cooperativa-detalle',
   templateUrl: './cooperativa-detalle.component.html',
   styleUrls: ['./cooperativa-detalle.component.css'],
   providers: [
-    CooperativaService
+    CooperativaService,
+    ProductorListaComponent
   ]
 })
 export class CooperativaDetalleComponent implements OnInit {
