@@ -1,10 +1,12 @@
-<!DOCTYPE html>{% load static %}
+<!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 <meta charset="utf-8">
 <title>Organico Cooperativas - {% block title %}{% endblock %}</title>
 <!-- Stylesheets -->
 <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+<link href="{% static "css/revolution-slider.css" %}"  rel="stylesheet">
 <link href="{% static "css/style.css" %}" rel="stylesheet">
 <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 <link rel="icon" href="{% static "images/favicon.ico"%}" type="image/x-icon">
@@ -320,6 +322,7 @@
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-long-arrow-up"></span></div>
 
+{% block scripts%} {% endblock %}
 
 <script src="{% static "js/jquery.js" %}"></script>
 <script src="{% static "js/bootstrap.min.js" %}"></script>
@@ -332,7 +335,6 @@
 <script src="{% static "js/wow.js" %}"></script>
 <script src="{% static "js/script.js" %}"></script>
 
-{% block scripts%} {% endblock %}
 
 </body>
 </html>
