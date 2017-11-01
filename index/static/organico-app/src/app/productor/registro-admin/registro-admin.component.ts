@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, NgZone, ViewChild  } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ProductorService } from '../productor.service';
-import { NgModel } from '@angular/forms';
 import { ListadoCooperativaService } from '../../cooperativa/listadoCooperativa.service';
-import { GoogleMapsAPIWrapper } from '@agm/core';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-registro-admin',
@@ -10,14 +11,17 @@ import { GoogleMapsAPIWrapper } from '@agm/core';
   styleUrls: ['./registro-admin.component.css'],
   providers: [
     ProductorService,
-    ListadoCooperativaService,
-    GoogleMapsAPIWrapper
+    ListadoCooperativaService
   ],
   encapsulation: ViewEncapsulation.None,
 })
 export class RegistroAdminComponent implements OnInit {
   title: String = "Administración: Registrar Productor";
   marker: any = {};
+
+  public searchControl: FormControl;
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
   productor: any = {
     "tipo_documento": -1,
@@ -28,7 +32,8 @@ export class RegistroAdminComponent implements OnInit {
 
   constructor(private productorService: ProductorService,
               private cooperativaService: ListadoCooperativaService,
-              public gMaps: GoogleMapsAPIWrapper) { }
+              private mapsAPILoader: MapsAPILoader,
+              private ngZone: NgZone) { }
 
   ngOnInit() {
     this.cooperativaService.getCooperativas()
@@ -36,29 +41,20 @@ export class RegistroAdminComponent implements OnInit {
             this.cooperativas = response;
           });
 
-    if (window.navigator && window.navigator.geolocation) {
-        window.navigator.geolocation.getCurrentPosition(
-            position => {
-                this.marker = {
-                  latitud: position.coords.latitude,
-                  longitud: position.coords.longitude
-                };
-            },
-            error => {
-                switch (error.code) {
-                    case 1:
-                        console.log('Permission Denied');
-                        break;
-                    case 2:
-                        console.log('Position Unavailable');
-                        break;
-                    case 3:
-                        console.log('Timeout');
-                        break;
-                }
-            }
-        );
-    };
+     //create search FormControl
+    this.searchControl = new FormControl();
+    this.setGeoLocalitation();
+    this.setAutocomplete();
+
+    if( !this.marker.latitud  ){ //Sino tiene posicion se asigna por defecto en bogota
+
+      this.marker = {
+        latitud: 4.6486259,
+        longitud: -74.2478963,
+        zoom : 5
+      }
+    }
+
   }
 
   saveProductor() {
@@ -74,6 +70,57 @@ export class RegistroAdminComponent implements OnInit {
     }else{
       alert("Alguno de los datos está incompleto.");
     }
+  }
+
+  setAutocomplete(){
+
+//load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          //set latitude, longitude and zoom
+          this.marker.latitud = place.geometry.location.lat();
+          this.marker.longitud = place.geometry.location.lng();
+          this.marker.zoom = 12;
+
+        });
+      });
+    });
+  }
+
+  setGeoLocalitation(){
+    if (window.navigator && window.navigator.geolocation) {
+          window.navigator.geolocation.getCurrentPosition(
+              position => {
+                  this.marker = {
+                    latitud: position.coords.latitude,
+                    longitud: position.coords.longitude
+                  };
+              },
+              error => {
+                  switch (error.code) {
+                      case 1:
+                          console.log('Permission Denied');
+                          break;
+                      case 2:
+                          console.log('Position Unavailable');
+                          break;
+                      case 3:
+                          console.log('Timeout');
+                          break;
+                  }
+              }
+          );
+      };
   }
 
   loadFoto(input) {
