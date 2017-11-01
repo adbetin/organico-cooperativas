@@ -72,7 +72,7 @@ export class ProductorEditarComponent implements OnInit {
             //console.log( this.productor )
       });
   }
-
+  
   setAutocomplete(){//load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
