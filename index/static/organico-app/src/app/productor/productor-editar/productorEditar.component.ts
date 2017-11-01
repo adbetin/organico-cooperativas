@@ -35,43 +35,45 @@ export class ProductorEditarComponent implements OnInit {
               private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone,
               private route: ActivatedRoute,
-              private router: Router,) { }
+              private router: Router,) {
+
+
+     //create search FormControl
+    this.searchControl = new FormControl();
+
+    this.marker = {
+        latitud: 4.6486259,
+        longitud: -74.2478963,
+        zoom : 10
+    }
+  }
 
   ngOnInit() {
+
     this.cooperativaService.getCooperativas()
           .subscribe(response => {
             this.cooperativas = response;
           });
-
-    //create search FormControl
-    this.searchControl = new FormControl();
-    this.setGeoLocalitation();
-    this.setAutocomplete();
-
-
-
-
-
 
     //Capturar informacion del productor a editar
     this.route.params
       .switchMap((params: Params) =>
         this.productorService.getProd(+params["id"])
       ).subscribe(response => {
-            this.productor = response;
-              this.marker = {
-                latitud: this.productor.latitud,
-                longitud: this.productor.longitud
-              };
-              console.log( this.marker)
+          this.productor = response;
+          console.log( this.productor );
 
-          });
+            this.marker.latitud = this.productor.latitud;
+            this.marker.longitud = this.productor.longitud;
+            this.marker.zoom = 12;
 
+            this.setGeoLocalitation();
+            this.setAutocomplete();
+            //console.log( this.productor )
+      });
   }
 
-  setAutocomplete(){
-
-//load Places Autocomplete
+  setAutocomplete(){//load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
@@ -126,9 +128,6 @@ export class ProductorEditarComponent implements OnInit {
 
 
   editarProductor() {
-
-    //console.log(this.productor)
-
     if(this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
         && this.productor.documento && this.productor.direccion && this.productor.cooperativa
         && this.productor.foto){
@@ -168,21 +167,17 @@ export class ProductorEditarComponent implements OnInit {
   mapClicked($event: any) {// Esta funcion fue modificada para cuando de clic cargue la direccion desde el mapa
     this.marker.latitud = $event.coords.lat;
     this.marker.longitud = $event.coords.lng;
-    this.marker.zoom = 15;
+    this.marker.zoom = 12;
 
     let geocoder = new google.maps.Geocoder();
     let latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
-    let request = { latLng: latlng };
+    let request = { location : latlng };
 
     geocoder.geocode(request, (results, status) => {
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[0] != null) {
-         //let city = results[0].address_components[results[0].address_components.length-4].short_name;
           this.productor.direccion= results[0].formatted_address ;
-          //console.log( results[0].formatted_address )
-         //this.shareService.setLocationDetails(city);
         } else {
-          //alert("No address available");
           console.log( "No address available" )
         }
       }else

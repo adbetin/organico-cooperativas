@@ -56,14 +56,12 @@ export class ProductorRegistroComponent implements OnInit {
       this.marker = {
         latitud: 4.6486259,
         longitud: -74.2478963,
-        zoom : 5
+        zoom : 7
       }
     }
   }
 
-  setAutocomplete(){
-
-//load Places Autocomplete
+  setAutocomplete(){ //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
@@ -79,7 +77,7 @@ export class ProductorRegistroComponent implements OnInit {
           //set latitude, longitude and zoom
           this.marker.latitud = place.geometry.location.lat();
           this.marker.longitud = place.geometry.location.lng();
-          this.marker.zoom = 12;
+          this.marker.zoom = 10;
 
         });
       });
@@ -150,13 +148,13 @@ export class ProductorRegistroComponent implements OnInit {
    mapClicked($event: any) {// Esta funcion fue modificada para cuando de clic cargue la direccion desde el mapa
     this.marker.latitud = $event.coords.lat;
     this.marker.longitud = $event.coords.lng;
-    this.marker.zoom = 15;
+    this.marker.zoom = 10;
 
     let geocoder = new google.maps.Geocoder();
     let latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
-    let request = { latLng: latlng };
+    let request = { location: latlng };
 
-    geocoder.geocode(request, (results, status) => {
+    geocoder.geocode( request, (results, status) => {
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[0] != null) {
          //let city = results[0].address_components[results[0].address_components.length-4].short_name;

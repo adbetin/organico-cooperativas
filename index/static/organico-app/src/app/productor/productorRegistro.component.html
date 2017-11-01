@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-md-12 col-md-offset-0" style="margin-bottom: 20px">
-          <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)">
+          <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)" [zoom]="marker.zoom">
             <agm-marker [latitude]="marker.latitud" [longitude]="marker.longitud"></agm-marker>
           </agm-map>
         </div>

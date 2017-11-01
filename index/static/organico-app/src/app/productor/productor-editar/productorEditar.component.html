@@ -39,7 +39,7 @@
           <input type="text" autocapitalize="off" spellcheck="off" id="direccionProductor" placeholder="Direcci&oacute;n" #search [formControl]="searchControl" [(ngModel)]="productor.direccion"/>
         </div>
         <div class="col-md-12 col-md-offset-0 col-sm-12 row" style="margin-bottom: 20px">
-            <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)">
+            <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)" [zoom]="marker.zoom">
               <agm-marker [latitude]="marker.latitud" [longitude]="marker.longitud"></agm-marker>
             </agm-map>
           </div>
@@ -51,8 +51,8 @@
         </div>
 
         <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <button type="button" class="theme-btn btn-style-five ui-state-disabled" onclick="window.history.go(-1)"> <span class="fa fa-angle-double-left"></span> Atrás</button>
           <button (click)="editarProductor()" class="theme-btn btn-style-two ui-state-disabled">Actualizar</button>
-          <button class="theme-btn btn-style-two ui-state-disabled" onclick="window.history.go(-1)">Atrás</button>
         </div>
       </div>
   </div>
