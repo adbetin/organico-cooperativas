@@ -19,8 +19,20 @@ agm-map {
 .informacion-cooperativa .no-padding,
 .informacion-cooperativa > div,
 .informacion-productor .no-padding,
-.informacion-productor > div{
+.informacion-productor > div,
+.no-padding{
   padding: 0;
   padding-left: 0;
   padding-right: 0;
+}
+
+.envio-correo input[type="email"], .envio-correo textarea {
+  border: solid 1px #777777;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.envio-correo button{
+  display: block;
+  float: left;
 }

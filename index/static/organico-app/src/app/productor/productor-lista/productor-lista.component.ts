@@ -14,7 +14,7 @@ export class ProductorListaComponent implements OnInit {
 
   @Input() filtrocooperativa = 0;
   productores: any[];
-  displayedColumns = ['foto', 'nombre', 'documento', 'id'];
+  displayedColumns = ['foto', 'nombre', 'documento', 'aprobado', 'id'];
   dataSource : ProductorDataSource = null;
 
   constructor(private productorServices: ProductorService) {}
@@ -24,9 +24,6 @@ export class ProductorListaComponent implements OnInit {
           .subscribe(productores =>{
             this.productores = productores;
             /*console.log(this.productores );*/
-            this.productores = this.productores.filter(function(data){
-              return data.aprobado === 'True';
-            })
             const filtrocooperativa2 = this.filtrocooperativa;
             this.productores = this.productores.filter(function(data){
                 if ( filtrocooperativa2 > 0 ) {

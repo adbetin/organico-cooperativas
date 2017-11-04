@@ -40,6 +40,29 @@ export class ProductorEditarComponent implements OnInit {
             this.cooperativas = response;
           });
 
+    //Capturar informacion del productor a editar
+
+    this.route.params
+      .switchMap((params: Params) =>
+        this.productorService.getProd(+params["id"])
+      ).subscribe(response => {
+            this.productor = response;
+            if(this.productor.latitud && this.productor.longitud){
+              this.marker = {
+                latitud: this.productor.latitud,
+                longitud: this.productor.longitud
+              };
+            }else {
+              this.loadUserPosition();
+            }
+
+              this.productor.aprobado = this.productor.aprobado == "True" ? true : false;
+
+          });
+
+  }
+
+  loadUserPosition () {
     if (window.navigator && window.navigator.geolocation) {
         window.navigator.geolocation.getCurrentPosition(
             position => {
@@ -62,23 +85,9 @@ export class ProductorEditarComponent implements OnInit {
                 }
             }
         );
+        this.productor.latitud = this.marker.latitud;
+        this.productor.longitud = this.marker.longitud;
     };
-
-    //Capturar informacion del productor a editar
-
-    this.route.params
-      .switchMap((params: Params) =>
-        this.productorService.getProd(+params["id"])
-      ).subscribe(response => {
-            this.productor = response;
-              this.marker = {
-                latitud: this.productor.latitud,
-                longitud: this.productor.longitud
-              };
-              console.log( this.marker)
-
-          });
-
   }
 
   setCooperativa( cooperativa ){

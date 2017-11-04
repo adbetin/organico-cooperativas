@@ -6,16 +6,33 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from productor.models import Productor, TipoDocumento
+from productor.models import Productor, TipoDocumento, EnvioCorreos
 from cooperativa.models import Cooperativa
 from productor.serializers import ProductorSerializer
+from django.core.mail import send_mail
 from cooperativa.serializers import CooperativaSerializer
 
 import json
 
+email_template = """
+
+Alguien quiere comunicarse contigo
+
+%s te envio un mensaje:
+%s
+
+Gracias por usar nuestra aplicación
+
+Para acceder a la aplicacion haga click http://organico-cooperativas.herokuapp.com
+"""
+
 # Create your views here.
 
 def productorAdmin(request):
+    context = {}
+    return render(request, 'productor.html', context)
+
+def activarCorreos(request):
     context = {}
     return render(request, 'productor.html', context)
 
@@ -78,9 +95,8 @@ def productorGet(request, id):
 def productorEditar(request, id):
     respuesta = False
     if request.method == 'POST':
-        productorPost = json.loads(request.body)
+        productorPost = decode(request.body)
         productor = Productor.objects.get(pk=id)
-
         productor.nombre = productorPost["nombre"]
         productor.descripcion = productorPost["descripcion"]
         productor.direccion = productorPost["direccion"]
@@ -88,6 +104,7 @@ def productorEditar(request, id):
         productor.foto = productorPost["foto"]
         productor.latitud = float(productorPost["latitud"])
         productor.longitud = float(productorPost["longitud"])
+        productor.aprobado = productorPost["aprobado"];
 
         productor.cooperativa = Cooperativa.objects.get(pk=productorPost["id_cooperativa"])
         productor.tipo_documento = TipoDocumento.objects.get(pk=productorPost["id_tipo_documento"])
@@ -96,3 +113,60 @@ def productorEditar(request, id):
         respuesta = True
         return modeloJSON(respuesta)
     return modeloJSON(respuesta)
+
+@csrf_exempt
+@api_view(['POST'])
+def activarCorreo(request):
+    data = JSONParser().parse(request)
+    estado = EnvioCorreos.objects.all()
+    print(len(estado))
+    if(len(estado) > 0):
+        estado = estado[0]
+    else:
+        EnvioCorreos.objects.create(activo=data['activar'])
+        return Response("Estado modificado correctamente", status=status.HTTP_201_CREATED)
+    estado.activo = data['activar']
+    estado.save()
+    return Response("Estado modificado correctamente", status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+@api_view(['GET'])
+def verificarEstadoCorreos(request):
+    estado = EnvioCorreos.objects.all()
+    if(len(estado)>0):
+        print(estado)
+        estado = estado[0]
+        respuesta = ""
+        if(estado.activo == True):
+            respuesta = True
+        else:
+            respuesta = False
+        return Response(respuesta, status=status.HTTP_200_OK)
+    else:
+        estado = False
+        return Response(estado, status=status.HTTP_200_OK)
+    return Response("No se puede obtener el estado del envio de correos", status=status.HTTP_400_BAD_REQUEST)
+
+
+@csrf_exempt
+@api_view(['POST'])
+def enviarCorreo(request):
+    data = JSONParser().parse(request)
+    if(data['message'] and data['sender'] and data['receiver']):
+        message = data['message']
+        sender = data['sender']
+        receiver = data['receiver']
+        send_mail(
+            'Alguien quiere comunicarse contigo',
+            email_template % (sender, message),
+            'no-reply@organico-cooperativas.com',
+            [receiver],
+            fail_silently=False,
+        )
+        return Response("Correo enviado satisfactoriamente", status=status.HTTP_201_CREATED)
+    return Response("Error en el envío de correo", status=status.HTTP_400_BAD_REQUEST)
+
+def decode(data):
+    new_data = data.decode("utf-8", "strict")
+
+    return json.loads(new_data)

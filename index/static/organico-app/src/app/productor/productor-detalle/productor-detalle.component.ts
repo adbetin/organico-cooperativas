@@ -1,6 +1,7 @@
 import {Component, OnInit, ElementRef, ChangeDetectorRef, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ProductorService} from '../productor.service';
+import { NgModel } from '@angular/forms';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -15,6 +16,8 @@ import 'rxjs/add/operator/switchMap';
 export class ProductorDetalleComponent implements OnInit {
 
   private productor: any = null;
+
+  correoActivo: any = false;
 
   styles: any = [
     {
@@ -100,6 +103,13 @@ export class ProductorDetalleComponent implements OnInit {
     }
   ];
 
+  email: any = {
+    sender: '',
+    message: '',
+    receiver: '',
+    activo: false
+  }
+
   constructor(private element: ElementRef,
               private route: ActivatedRoute,
               private router: Router,
@@ -114,11 +124,42 @@ export class ProductorDetalleComponent implements OnInit {
       )
       .subscribe(response => {
           this.productor = response;
+          console.log(this.productor);
+          this.email.receiver = this.productor.email;
           this.cd.detectChanges();
         },
         reason => {
           this.productor = null;
           alert("error al cargar datos del productor");
         });
+
+    this.productorServices.correoActivo().subscribe(response => {
+      this.correoActivo = response;
+    });
+  }
+
+  mostrarFormularioCorreo() {
+    console.log("Hola mundo");
+    this.email.activo = true;
+  }
+
+  enviarCorreo(){
+    if(this.email.sender && this.email.message && this.email.receiver) {
+      this.productorServices.enviarCorreo(this.email).subscribe(response => {
+        alert(response);
+        this.email = {
+          sender: '',
+          message: '',
+          receiver: this.productor.email,
+          activo: false
+        }
+      },
+
+      reason => {
+        console.log(reason);
+      });
+    }else {
+      alert("Todos los campos son obligatorios");
+    }
   }
 }
