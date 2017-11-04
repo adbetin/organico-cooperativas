@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,17 +31,19 @@ import { ActivarCorreoComponent } from './productor/activar-correo/activar-corre
     ProductorDetalleComponent,
     ProductorListaComponent,
     ProductorEditarComponent,
-    RegistroAdminComponent,
+    RegistroAdminComponent
     ActivarCorreoComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyArw7TOl_K1zuxYi_8nR6niG5kBTyegHfU'
+      apiKey: 'AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo',
+      libraries: ["places"]
     }),
     RouterModule.forRoot([
       {
@@ -87,7 +89,8 @@ import { ActivarCorreoComponent } from './productor/activar-correo/activar-corre
     ])
   ],
  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 

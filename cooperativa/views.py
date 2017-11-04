@@ -47,6 +47,8 @@ def guardarCooperativa(request):
                                                  correo=cooperativaPost["correo"],
                                                  direccion=cooperativaPost["direccion"],
                                                  telefono=cooperativaPost["telefono"],
+                                                 latitud=cooperativaPost["latitud"],
+                                                 longitud=cooperativaPost["longitud"],
                                                  );
 
         cooperativa.save()
@@ -69,6 +71,8 @@ def actualizarCooperativa(request):
         coop.correo=cooperativaPost["correo"]
         coop.direccion=cooperativaPost["direccion"]
         coop.telefono=cooperativaPost["telefono"]
+        coop.latitud=cooperativaPost["latitud"]
+        coop.longitud = cooperativaPost["longitud"]
 
         coop.save()
         respuesta = True
