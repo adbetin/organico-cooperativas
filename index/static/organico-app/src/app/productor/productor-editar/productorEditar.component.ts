@@ -55,26 +55,25 @@ export class ProductorEditarComponent implements OnInit {
             this.cooperativas = response;
           });
 
-    //Capturar informacion del productor a editar
-
     this.route.params
       .switchMap((params: Params) =>
         this.productorService.getProd(+params["id"])
       ).subscribe(response => {
             this.productor = response;
             if(this.productor.latitud && this.productor.longitud){
-            this.marker.latitud = this.productor.latitud;
-            this.marker.longitud = this.productor.longitud;
-            this.marker.zoom = 12;
+              this.marker.latitud = this.productor.latitud;
+              this.marker.longitud = this.productor.longitud;
+              this.marker.zoom = 12;
 
             }else {
               this.loadUserPosition();
             }
 
-              this.productor.aprobado = this.productor.aprobado == "True" ? true : false;
-
+            this.productor.aprobado = this.productor.aprobado == "True" ? true : false;
+            this.setGeoLocalitation();
+            this.setAutocomplete();
+            //console.log( this.productor )
           });
-
   }
 
   loadUserPosition () {
@@ -103,10 +102,6 @@ export class ProductorEditarComponent implements OnInit {
         this.productor.latitud = this.marker.latitud;
         this.productor.longitud = this.marker.longitud;
     };
-            this.setGeoLocalitation();
-            this.setAutocomplete();
-            //console.log( this.productor )
-      });
   }
 
   setAutocomplete(){//load Places Autocomplete

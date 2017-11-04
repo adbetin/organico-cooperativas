@@ -31,7 +31,7 @@ import { ActivarCorreoComponent } from './productor/activar-correo/activar-corre
     ProductorDetalleComponent,
     ProductorListaComponent,
     ProductorEditarComponent,
-    RegistroAdminComponent
+    RegistroAdminComponent,
     ActivarCorreoComponent,
   ],
   imports: [
