@@ -64,7 +64,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="envio-correo">
+                              <button class="theme-btn btn-style-two ui-state-disabled" *ngIf="!email.activo && correoActivo" (click)="mostrarFormularioCorreo()">Contactar</button>
+                              <div class="message-content" *ngIf="email.activo">
+                                <input class="col-sm-9" type="email" [(ngModel)]="email.sender" placeholder="Tu correo">
+                                <textarea class="col-sm-12" placeholder="Mensaje" [(ngModel)]="email.message"></textarea>
+                                <strong class="col-sm-12 no-padding">Enviado a: {{email.receiver}}</strong>
 
+                                <button (click)="enviarCorreo()" class="theme-btn btn-style-two ui-state-disabled">Enviar</button>
+                              </div>
+                            </div>
                         </div>
                     </div>
                   <button class="theme-btn btn-style-two ui-state-disabled" onclick="window.history.go(-1)">Atrás</button>

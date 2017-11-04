@@ -18,6 +18,7 @@ import { ProductorListaComponent } from './productor/productor-lista/productor-l
 import { ActualizarDatosComponent } from './cooperativa/actualizardatos.component';
 import { RegistroAdminComponent } from './productor/registro-admin/registro-admin.component';
 import { ProductorEditarComponent } from './productor/productor-editar/productorEditar.component';
+import { ActivarCorreoComponent } from './productor/activar-correo/activar-correo.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProductorEditarComponent } from './productor/productor-editar/productor
     ProductorDetalleComponent,
     ProductorListaComponent,
     ProductorEditarComponent,
-    RegistroAdminComponent
+    RegistroAdminComponent,
+    ActivarCorreoComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +81,10 @@ import { ProductorEditarComponent } from './productor/productor-editar/productor
       {
         path: 'productor/admin/registro',
         component: RegistroAdminComponent
+      },
+      {
+        path: 'productor/correo/activar',
+        component: ActivarCorreoComponent
       }
     ])
   ],

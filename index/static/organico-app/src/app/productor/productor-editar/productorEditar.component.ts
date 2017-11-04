@@ -55,22 +55,53 @@ export class ProductorEditarComponent implements OnInit {
             this.cooperativas = response;
           });
 
-    //Capturar informacion del productor a editar
     this.route.params
       .switchMap((params: Params) =>
         this.productorService.getProd(+params["id"])
       ).subscribe(response => {
-          this.productor = response;
-          console.log( this.productor );
+            this.productor = response;
+            if(this.productor.latitud && this.productor.longitud){
+              this.marker.latitud = this.productor.latitud;
+              this.marker.longitud = this.productor.longitud;
+              this.marker.zoom = 12;
 
-            this.marker.latitud = this.productor.latitud;
-            this.marker.longitud = this.productor.longitud;
-            this.marker.zoom = 12;
+            }else {
+              this.loadUserPosition();
+            }
 
+            this.productor.aprobado = this.productor.aprobado == "True" ? true : false;
             this.setGeoLocalitation();
             this.setAutocomplete();
             //console.log( this.productor )
-      });
+          });
+  }
+
+  loadUserPosition () {
+    if (window.navigator && window.navigator.geolocation) {
+        window.navigator.geolocation.getCurrentPosition(
+            position => {
+                this.marker = {
+                  latitud: position.coords.latitude,
+                  longitud: position.coords.longitude
+                };
+            },
+            error => {
+                switch (error.code) {
+                    case 1:
+                        console.log('Permission Denied');
+                        break;
+                    case 2:
+                        console.log('Position Unavailable');
+                        break;
+                    case 3:
+                        console.log('Timeout');
+                        break;
+                }
+            }
+        );
+        this.productor.latitud = this.marker.latitud;
+        this.productor.longitud = this.marker.longitud;
+    };
   }
 
   setAutocomplete(){//load Places Autocomplete

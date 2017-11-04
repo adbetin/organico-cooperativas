@@ -97,12 +97,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__cooperativa_actualizardatos_component__ = __webpack_require__("../../../../../src/app/cooperativa/actualizardatos.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__ = __webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__productor_productor_editar_productorEditar_component__ = __webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__productor_activar_correo_activar_correo_component__ = __webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -140,15 +142,18 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_15__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */],
             __WEBPACK_IMPORTED_MODULE_18__productor_productor_editar_productorEditar_component__["a" /* ProductorEditarComponent */],
             __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["i" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatTableModule */],
             __WEBPACK_IMPORTED_MODULE_6__agm_core__["a" /* AgmCoreModule */].forRoot({
-                apiKey: 'AIzaSyArw7TOl_K1zuxYi_8nR6niG5kBTyegHfU'
+                apiKey: 'AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo',
+                libraries: ["places"]
             }),
             __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* RouterModule */].forRoot([
                 {
@@ -186,11 +191,16 @@ AppModule = __decorate([
                 {
                     path: 'productor/admin/registro',
                     component: __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */]
+                },
+                {
+                    path: 'productor/correo/activar',
+                    component: __WEBPACK_IMPORTED_MODULE_19__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */]
                 }
             ])
         ],
         providers: [{ provide: __WEBPACK_IMPORTED_MODULE_5__angular_common__["a" /* APP_BASE_HREF */], useValue: '/' }],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]],
+        schemas: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["j" /* CUSTOM_ELEMENTS_SCHEMA */]]
     })
 ], AppModule);
 
@@ -254,7 +264,7 @@ var _a;
 /***/ "../../../../../src/app/cooperativa/actualizardatos.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Actualizar Datos Cooperativa</h1>\r\n        <div class=\"contact-form default-form\" *ngIf=\"cooperativa != null\">\r\n\r\n           <form #formCooperativa=\"ngForm\" (ngSubmit)=\"actualizarCooperativa(formCooperativa)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormCooperativa}\" type=\"text\" name=\"nombre\" [(ngModel)]=\"cooperativa.nombre\" placeholder=\"* Nombre [Solo letras por favor]\" required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nit=\"ngModel\" [ngClass]=\"{'error':!nit.valid && envioFormCooperativa}\" type=\"text\" name=\"nit\" [(ngModel)]=\"cooperativa.nit\" placeholder=\"* NIT [Solo numeros]\" required maxlength=\"70\" pattern=\"[0-9-]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #correo=\"ngModel\" [ngClass]=\"{'error':!correo.valid && envioFormCooperativa}\" type=\"email\" name=\"correo\" [(ngModel)]=\"cooperativa.correo\" placeholder=\"* Correo [text@texto]\" required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #responsable=\"ngModel\" [ngClass]=\"{'error':!responsable.valid && envioFormCooperativa}\" type=\"text\" name=\"responsable\" [(ngModel)]=\"cooperativa.responsable\" placeholder=\"* Responsable [Solo letras]\" required maxlength=\"70\" pattern=\"[a-zA-Z ]*\">\r\n                    </div>\r\n\r\n                   <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #direccion=\"ngModel\" [ngClass]=\"{'error':!direccion.valid && envioFormCooperativa}\" type=\"text\" name=\"direccion\" [(ngModel)]=\"cooperativa.direccion\" placeholder=\"* Dirección\" required maxlength=\"255\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                          <input #telefono=\"ngModel\" [ngClass]=\"{'error':!telefono.valid && envioFormCooperativa}\" type=\"text\" name=\"telefono\" [(ngModel)]=\"cooperativa.telefono\" placeholder=\"* Telefono\" required maxlength=\"70\" pattern=\"[0-9-()+ ]*\">\r\n                    </div>\r\n\r\n                   <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #zona=\"ngModel\" [ngClass]=\"{'error':!zona.valid && envioFormCooperativa}\" type=\"text\" name=\"zona\" [(ngModel)]=\"cooperativa.zona\" placeholder=\"* Zona \" required maxlength=\"70\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormCooperativa}\" name=\"descripcion\" placeholder=\"Descripción [Máx 550 caracteres]\" [(ngModel)]=\"cooperativa.descripcion\" maxlength=\"550\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formCooperativa.valid && !envioFormCooperativa\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formCooperativa.valid && envioFormCooperativa\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\">\r\n                            <button type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </form>\r\n            <div class=\"text-center\">\r\n                <button type=\"button\" class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Atrás</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n"
+module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Actualizar Datos Cooperativa</h1>\r\n        <div class=\"contact-form default-form\" *ngIf=\"cooperativa != null\">\r\n\r\n           <form #formCooperativa=\"ngForm\" (ngSubmit)=\"actualizarCooperativa(formCooperativa)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormCooperativa}\" type=\"text\" name=\"nombre\" [(ngModel)]=\"cooperativa.nombre\" placeholder=\"* Nombre [Solo letras por favor]\" required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nit=\"ngModel\" [ngClass]=\"{'error':!nit.valid && envioFormCooperativa}\" type=\"text\" name=\"nit\" [(ngModel)]=\"cooperativa.nit\" placeholder=\"* NIT [Solo numeros]\" required maxlength=\"70\" pattern=\"[0-9-]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #correo=\"ngModel\" [ngClass]=\"{'error':!correo.valid && envioFormCooperativa}\" type=\"email\" name=\"correo\" [(ngModel)]=\"cooperativa.correo\" placeholder=\"* Correo [text@texto]\" required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #responsable=\"ngModel\" [ngClass]=\"{'error':!responsable.valid && envioFormCooperativa}\" type=\"text\" name=\"responsable\" [(ngModel)]=\"cooperativa.responsable\" placeholder=\"* Responsable [Solo letras]\" required maxlength=\"70\" pattern=\"[a-zA-Z ]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                          <input #telefono=\"ngModel\" [ngClass]=\"{'error':!telefono.valid && envioFormCooperativa}\" type=\"text\" name=\"telefono\" [(ngModel)]=\"cooperativa.telefono\" placeholder=\"* Telefono\" required maxlength=\"70\" pattern=\"[0-9-()+ ]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #zona=\"ngModel\" [ngClass]=\"{'error':!zona.valid && envioFormCooperativa}\" type=\"text\" name=\"zona\" [(ngModel)]=\"cooperativa.zona\" placeholder=\"* Zona \" required maxlength=\"70\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                       <input #direccion [ngClass]=\"{'error':!direccion.valid && envioFormCooperativa}\" type=\"text\" name=\"direccion\" [(ngModel)]=\"cooperativa.direccion\" placeholder=\"* Dirección\" required maxlength=\"255\">\r\n                       <!--<input #direccion [ngClass]=\"{'error':!direccion.valid && envioFormCooperativa}\" type=\"text\" name=\"direccion\" value=\"\" placeholder=\"* Dirección\" required maxlength=\"255\" ngModel >-->\r\n                    </div>\r\n\r\n                    <div class=\"col-md-12 col-md-offset-0\" style=\"margin-bottom: 20px\">\r\n                      <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event , formCooperativa)\" [zoom]=\"marker.zoom\" style=\"height: 300px;\" >\r\n                        <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n                      </agm-map>\r\n                      <input #latitud=\"ngModel\" type=\"hidden\" name=\"latitud\" value=\"\" [(ngModel)]=\"cooperativa.latitud\" >\r\n                      <input #longitud=\"ngModel\" type=\"hidden\" name=\"longitud\" value=\"\" [(ngModel)]=\"cooperativa.longitud\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormCooperativa}\" name=\"descripcion\" placeholder=\"Descripción [Máx 550 caracteres]\" [(ngModel)]=\"cooperativa.descripcion\" maxlength=\"550\"></textarea>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formCooperativa.valid && !envioFormCooperativa\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formCooperativa.valid && envioFormCooperativa\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\">\r\n                            <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" onclick=\"window.history.go(-1)\"> <span class=\"fa fa-angle-double-left\"></span> Atrás</button>\r\n                            <button type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </form>\r\n            <div class=\"text-center\">\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n"
 
 /***/ }),
 
@@ -264,8 +274,10 @@ module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActualizarDatosComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__ = __webpack_require__("../../../../../src/app/cooperativa/ActualizarDatos.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ActualizarDatos_service__ = __webpack_require__("../../../../../src/app/cooperativa/ActualizarDatos.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -278,16 +290,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ActualizarDatosComponent = (function () {
-    function ActualizarDatosComponent(element, route, router, cd, ActualizarDatosServices) {
-        this.element = element;
+    function ActualizarDatosComponent(route, router, cd, ActualizarDatosServices, mapsAPILoader, ngZone) {
         this.route = route;
         this.router = router;
         this.cd = cd;
         this.ActualizarDatosServices = ActualizarDatosServices;
+        this.mapsAPILoader = mapsAPILoader;
+        this.ngZone = ngZone;
         this.title = 'Actualizar cooperativa';
         this.envioFormCooperativa = false;
         this.cooperativa = null;
+        this.marker = {};
+        this.searchControl = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]();
+        this.marker = {
+            latitud: 4.6486259,
+            longitud: -74.2478963,
+            zoom: 10
+        };
     }
     ActualizarDatosComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -298,13 +320,69 @@ var ActualizarDatosComponent = (function () {
             .subscribe(function (response) {
             _this.cooperativa = response;
             _this.cd.detectChanges();
+            //Cargar datos
+            _this.marker = {
+                latitud: _this.cooperativa.latitud,
+                longitud: _this.cooperativa.longitud,
+                zoom: 10
+            };
+            _this.setGeoLocalitation();
+            _this.setAutocomplete();
         }, function (reason) {
             _this.cooperativa = null;
             alert("error al cargar datos");
         });
     };
+    ActualizarDatosComponent.prototype.setAutocomplete = function () {
+        var _this = this;
+        this.mapsAPILoader.load().then(function () {
+            var autocomplete = new google.maps.places.Autocomplete(_this.searchElementRef.nativeElement, {
+                types: ["address"]
+            });
+            autocomplete.addListener("place_changed", function () {
+                _this.ngZone.run(function () {
+                    //get the place result
+                    var place = autocomplete.getPlace();
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+                    //set latitude, longitude and zoom
+                    _this.marker.latitud = place.geometry.location.lat();
+                    _this.marker.longitud = place.geometry.location.lng();
+                    _this.marker.zoom = 12;
+                });
+            });
+        });
+    };
+    ActualizarDatosComponent.prototype.setGeoLocalitation = function () {
+        var _this = this;
+        if (window.navigator && window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition(function (position) {
+                _this.marker = {
+                    latitud: position.coords.latitude,
+                    longitud: position.coords.longitude
+                };
+            }, function (error) {
+                switch (error.code) {
+                    case 1:
+                        console.log('Permission Denied');
+                        break;
+                    case 2:
+                        console.log('Position Unavailable');
+                        break;
+                    case 3:
+                        console.log('Timeout');
+                        break;
+                }
+            });
+        }
+        ;
+    };
     ActualizarDatosComponent.prototype.actualizarCooperativa = function (formCooperativa) {
         var _this = this;
+        formCooperativa.controls['latitud'].setValue(this.marker.latitud);
+        formCooperativa.controls['longitud'].setValue(this.marker.longitud);
         this.envioFormCooperativa = true;
         if (formCooperativa.valid) {
             formCooperativa.value.id = this.cooperativa.id;
@@ -322,20 +400,47 @@ var ActualizarDatosComponent = (function () {
             //alert("Por favor llene todos los campos que son obligatorios y necesarios para la pagina. (*) ");
         }
     };
+    ActualizarDatosComponent.prototype.mapClicked = function ($event, formCooperativa) {
+        this.marker.latitud = $event.coords.lat;
+        this.marker.longitud = $event.coords.lng;
+        this.marker.zoom = 15;
+        this.cooperativa.latitud = $event.coords.lat;
+        this.cooperativa.longitud = $event.coords.lng;
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
+        var request = { location: latlng };
+        geocoder.geocode(request, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0] != null) {
+                    formCooperativa.controls['direccion'].setValue(results[0].formatted_address);
+                    formCooperativa.value.direccion = results[0].formatted_address;
+                }
+                else {
+                    console.log("No address available");
+                }
+            }
+            else
+                console.log("No esta disponible el geocoder");
+        });
+    };
     return ActualizarDatosComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("direccion"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+], ActualizarDatosComponent.prototype, "searchElementRef", void 0);
 ActualizarDatosComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         //selector: 'app-crearCooperativa',
         template: __webpack_require__("../../../../../src/app/cooperativa/actualizardatos.component.html"),
         providers: [
-            __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__["a" /* ActualizarDatosService */]
+            __WEBPACK_IMPORTED_MODULE_3__ActualizarDatos_service__["a" /* ActualizarDatosService */]
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__["a" /* ActualizarDatosService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ActualizarDatos_service__["a" /* ActualizarDatosService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ActualizarDatos_service__["a" /* ActualizarDatosService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ActualizarDatos_service__["a" /* ActualizarDatosService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _g || Object])
 ], ActualizarDatosComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=actualizardatos.component.js.map
 
 /***/ }),
@@ -474,7 +579,7 @@ var _a;
 /***/ "../../../../../src/app/cooperativa/crearCooperativa.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Nueva Cooperativa</h1>\r\n        <div class=\"contact-form default-form\">\r\n\r\n           <form #formCooperativa=\"ngForm\" (ngSubmit)=\"guardarCooperativa(formCooperativa)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormCooperativa}\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"* Nombre [Solo letras por favor]\" ngModel required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nit=\"ngModel\" [ngClass]=\"{'error':!nit.valid && envioFormCooperativa}\" type=\"text\" name=\"nit\" value=\"\" placeholder=\"* NIT [Solo numeros]\" ngModel required maxlength=\"70\" pattern=\"[0-9-]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #correo=\"ngModel\" [ngClass]=\"{'error':!correo.valid && envioFormCooperativa}\" type=\"email\" name=\"correo\" value=\"\" placeholder=\"* Correo [text@texto]\" ngModel required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #responsable=\"ngModel\" [ngClass]=\"{'error':!responsable.valid && envioFormCooperativa}\" type=\"text\" name=\"responsable\" value=\"\" placeholder=\"* Responsable [Solo letras]\" ngModel required maxlength=\"70\" pattern=\"[a-zA-Z ]*\">\r\n                    </div>\r\n\r\n                   <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #direccion=\"ngModel\" [ngClass]=\"{'error':!direccion.valid && envioFormCooperativa}\" type=\"text\" name=\"direccion\" value=\"\" placeholder=\"* Dirección\" ngModel required maxlength=\"255\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                          <input #telefono=\"ngModel\" [ngClass]=\"{'error':!telefono.valid && envioFormCooperativa}\" type=\"text\" name=\"telefono\" value=\"\" placeholder=\"* Telefono\" ngModel required maxlength=\"70\" pattern=\"[0-9-()+ ]*\">\r\n                    </div>\r\n\r\n                   <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #zona=\"ngModel\" [ngClass]=\"{'error':!zona.valid && envioFormCooperativa}\" type=\"text\" name=\"zona\" value=\"\" placeholder=\"* Zona \" ngModel required maxlength=\"70\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormCooperativa}\" name=\"descripcion\" placeholder=\"Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\"></textarea>\r\n                    </div>\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formCooperativa.valid && !envioFormCooperativa\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formCooperativa.valid && envioFormCooperativa\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button></div>\r\n\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n"
+module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Nueva Cooperativa</h1>\r\n        <div class=\"contact-form default-form\">\r\n\r\n           <form #formCooperativa=\"ngForm\" (ngSubmit)=\"guardarCooperativa(formCooperativa)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormCooperativa}\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"* Nombre [Solo letras por favor]\" ngModel required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nit=\"ngModel\" [ngClass]=\"{'error':!nit.valid && envioFormCooperativa}\" type=\"text\" name=\"nit\" value=\"\" placeholder=\"* NIT [Solo numeros]\" ngModel required maxlength=\"70\" pattern=\"[0-9-]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #correo=\"ngModel\" [ngClass]=\"{'error':!correo.valid && envioFormCooperativa}\" type=\"email\" name=\"correo\" value=\"\" placeholder=\"* Correo [text@texto]\" ngModel required pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #responsable=\"ngModel\" [ngClass]=\"{'error':!responsable.valid && envioFormCooperativa}\" type=\"text\" name=\"responsable\" value=\"\" placeholder=\"* Responsable [Solo letras]\" ngModel required maxlength=\"70\" pattern=\"[a-zA-Z ]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                          <input #telefono=\"ngModel\" [ngClass]=\"{'error':!telefono.valid && envioFormCooperativa}\" type=\"text\" name=\"telefono\" value=\"\" placeholder=\"* Telefono\" ngModel required maxlength=\"70\" pattern=\"[0-9-()+ ]*\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #zona=\"ngModel\" [ngClass]=\"{'error':!zona.valid && envioFormCooperativa}\" type=\"text\" name=\"zona\" value=\"\" placeholder=\"* Zona \" ngModel required maxlength=\"70\">\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                          <input #direccion [ngClass]=\"{'error':!direccion.valid && envioFormCooperativa}\" type=\"text\" name=\"direccion\" value=\"\" placeholder=\"* Dirección\" required maxlength=\"255\" ngModel >\r\n                    </div>\r\n\r\n                    <div class=\"col-md-12 col-md-offset-0\" style=\"margin-bottom: 20px\">\r\n                      <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event , formCooperativa)\" [zoom]=\"marker.zoom\" style=\"height: 300px;\">\r\n                        <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n                      </agm-map>\r\n                      <input #latitud=\"ngModel\" type=\"hidden\" name=\"latitud\" value=\"\" ngModel>\r\n                      <input #longitud=\"ngModel\" type=\"hidden\" name=\"longitud\" value=\"\" ngModel>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormCooperativa}\" name=\"descripcion\" placeholder=\"Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\"></textarea>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formCooperativa.valid && !envioFormCooperativa\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formCooperativa.valid && envioFormCooperativa\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button></div>\r\n\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n"
 
 /***/ }),
 
@@ -486,6 +591,7 @@ module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/crearCooperativa.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -498,16 +604,75 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CrearCooperativaComponent = (function () {
-    function CrearCooperativaComponent(crearCooperativaServices, router) {
+    function CrearCooperativaComponent(crearCooperativaServices, router, mapsAPILoader, ngZone) {
         this.crearCooperativaServices = crearCooperativaServices;
         this.router = router;
+        this.mapsAPILoader = mapsAPILoader;
+        this.ngZone = ngZone;
         this.title = 'Crear cooperativa';
         this.envioFormCooperativa = false;
+        this.marker = {};
+        this.marker = {
+            latitud: 4.6486259,
+            longitud: -74.2478963,
+            zoom: 10
+        };
+        this.setGeoLocalitation();
+        this.setAutocomplete();
     }
+    CrearCooperativaComponent.prototype.setAutocomplete = function () {
+        var _this = this;
+        this.mapsAPILoader.load().then(function () {
+            var autocomplete = new google.maps.places.Autocomplete(_this.searchElementRef.nativeElement, {
+                types: ["address"]
+            });
+            autocomplete.addListener("place_changed", function () {
+                _this.ngZone.run(function () {
+                    //get the place result
+                    var place = autocomplete.getPlace();
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+                    //set latitude, longitude and zoom
+                    _this.marker.latitud = place.geometry.location.lat();
+                    _this.marker.longitud = place.geometry.location.lng();
+                    _this.marker.zoom = 12;
+                });
+            });
+        });
+    };
+    CrearCooperativaComponent.prototype.setGeoLocalitation = function () {
+        var _this = this;
+        if (window.navigator && window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition(function (position) {
+                _this.marker = {
+                    latitud: position.coords.latitude,
+                    longitud: position.coords.longitude
+                };
+            }, function (error) {
+                switch (error.code) {
+                    case 1:
+                        console.log('Permission Denied');
+                        break;
+                    case 2:
+                        console.log('Position Unavailable');
+                        break;
+                    case 3:
+                        console.log('Timeout');
+                        break;
+                }
+            });
+        }
+        ;
+    };
     CrearCooperativaComponent.prototype.guardarCooperativa = function (formCooperativa) {
         //console.log(formCooperativa.value);
         //console.log(formCooperativa.valid);
+        formCooperativa.controls['latitud'].setValue(this.marker.latitud);
+        formCooperativa.controls['longitud'].setValue(this.marker.longitud);
         this.envioFormCooperativa = true;
         if (formCooperativa.valid) {
             var resultado = this.crearCooperativaServices.guardarCooperativa(formCooperativa.value).subscribe();
@@ -523,8 +688,33 @@ var CrearCooperativaComponent = (function () {
             //alert("Por favor llene todos los campos que son obligatorios. (*) ");
         }
     };
+    CrearCooperativaComponent.prototype.mapClicked = function ($event, formCooperativa) {
+        this.marker.latitud = $event.coords.lat;
+        this.marker.longitud = $event.coords.lng;
+        this.marker.zoom = 12;
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
+        var request = { location: latlng };
+        geocoder.geocode(request, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0] != null) {
+                    formCooperativa.controls['direccion'].setValue(results[0].formatted_address);
+                    //formCooperativa.value.direccion = results[0].formatted_address ;
+                }
+                else {
+                    console.log("No address available");
+                }
+            }
+            else
+                console.log("No esta disponible el geocoder");
+        });
+    };
     return CrearCooperativaComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("direccion"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+], CrearCooperativaComponent.prototype, "searchElementRef", void 0);
 CrearCooperativaComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         //selector: 'app-crearCooperativa',
@@ -533,10 +723,10 @@ CrearCooperativaComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */]
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _e || Object])
 ], CrearCooperativaComponent);
 
-var _a, _b;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=crearCooperativa.component.js.map
 
 /***/ }),
@@ -759,6 +949,90 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/productor/activar-correo/activar-correo.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".activar-desactivar-module section{\r\n  width: 100px;\r\n  height: 100px;\r\n  background: #555;\r\n  display: inline-block;\r\n  position: relative;\r\n  text-align: center;\r\n  margin-top: 5px;\r\n  border: 1px solid gray;\r\n  border-radius: 5px;\r\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;\r\n}\r\n\r\n.activar-desactivar-module .slideThree {\r\n  width: 80px;\r\n  height: 26px;\r\n  background: #333;\r\n  margin: 20px auto;\r\n  position: relative;\r\n  border-radius: 50px;\r\n  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);\r\n}\r\n\r\n.activar-desactivar-module .slideThree:before {\r\n    content: 'ON';\r\n    color: #27ae60;\r\n    position: absolute;\r\n    left: 10px;\r\n    z-index: 0;\r\n    font: 12px/26px Arial, sans-serif;\r\n    font-weight: bold;\r\n}\r\n\r\n.activar-desactivar-module .slideThree:after {\r\n    content: 'OFF';\r\n    color: #000;\r\n    position: absolute;\r\n    right: 10px;\r\n    z-index: 0;\r\n    font: 12px/26px Arial, sans-serif;\r\n    font-weight: bold;\r\n    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);\r\n}\r\n\r\n.activar-desactivar-module input[type=checkbox] {\r\n  visibility: hidden;\r\n}\r\n\r\n.slideThree input[type=checkbox]:checked + label {\r\n    left: 43px;\r\n}\r\n\r\n.slideThree label {\r\n    display: block;\r\n    width: 34px;\r\n    height: 20px;\r\n    cursor: pointer;\r\n    position: absolute;\r\n    top: 3px;\r\n    left: 3px;\r\n    z-index: 1;\r\n    background: #fcfff4;\r\n    background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);\r\n    border-radius: 50px;\r\n    transition: all 0.4s ease;\r\n    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/activar-correo/activar-correo.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"activar-desactivar-module\">\n  <h1>Activar/Desactivar envio de correos</h1>\n  <section class=\"styled-checkbox\" style=\"background: none; border: none; box-shadow: none;\">\n    <div class=\"slideThree\">\n      <input type=\"checkbox\" [(ngModel)]=\"correoActivo\" (change)=\"activarCorreo()\" value=\"None\" id=\"slideThree\" name=\"check\" checked=\"\">\n      <label for=\"slideThree\"></label>\n    </div>\n  </section>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/activar-correo/activar-correo.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivarCorreoComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ActivarCorreoComponent = (function () {
+    function ActivarCorreoComponent(productorService) {
+        this.productorService = productorService;
+        this.correoActivo = false;
+    }
+    ActivarCorreoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.productorService.correoActivo().subscribe(function (response) {
+            _this.correoActivo = response;
+        });
+    };
+    ActivarCorreoComponent.prototype.activarCorreo = function () {
+        var _this = this;
+        var body = {
+            activar: this.correoActivo
+        };
+        this.productorService.activarCorreo(body).subscribe(function (response) {
+            var mensaje = _this.correoActivo ? "activado" : "desactivado";
+            alert("El envio de correos fue " + mensaje + "correctamente.");
+        });
+    };
+    return ActivarCorreoComponent;
+}());
+ActivarCorreoComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-activar-correo',
+        template: __webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.css")],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]
+        ],
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]) === "function" && _a || Object])
+], ActivarCorreoComponent);
+
+var _a;
+//# sourceMappingURL=activar-correo.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/productor/productor-detalle/productor-detalle.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -767,7 +1041,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "agm-map {\r\n  height: 300px;\r\n}\r\n\r\n.informacion-cooperativa{\r\n  overflow: hidden;\r\n}\r\n\r\n.informacion-cooperativa h4, .informacion-productor h4{\r\n  font-size: 20px;\r\n  font-weight: 700;\r\n  margin: 0px 0px;\r\n  font-family: 'Roboto Slab',serif;\r\n  line-height: 1.4em;\r\n  color: #333333;\r\n  margin-bottom: 15px;\r\n}\r\n\r\n.informacion-cooperativa .no-padding,\r\n.informacion-cooperativa > div,\r\n.informacion-productor .no-padding,\r\n.informacion-productor > div{\r\n  padding: 0;\r\n  padding-left: 0;\r\n  padding-right: 0;\r\n}\r\n", ""]);
+exports.push([module.i, "agm-map {\r\n  height: 300px;\r\n}\r\n\r\n.informacion-cooperativa{\r\n  overflow: hidden;\r\n}\r\n\r\n.informacion-cooperativa h4, .informacion-productor h4{\r\n  font-size: 20px;\r\n  font-weight: 700;\r\n  margin: 0px 0px;\r\n  font-family: 'Roboto Slab',serif;\r\n  line-height: 1.4em;\r\n  color: #333333;\r\n  margin-bottom: 15px;\r\n}\r\n\r\n.informacion-cooperativa .no-padding,\r\n.informacion-cooperativa > div,\r\n.informacion-productor .no-padding,\r\n.informacion-productor > div,\r\n.no-padding{\r\n  padding: 0;\r\n  padding-left: 0;\r\n  padding-right: 0;\r\n}\r\n\r\n.envio-correo input[type=\"email\"], .envio-correo textarea {\r\n  border: solid 1px #777777;\r\n  border-radius: 5px;\r\n  margin: 10px 0;\r\n}\r\n\r\n.envio-correo button{\r\n  display: block;\r\n  float: left;\r\n}\r\n", ""]);
 
 // exports
 
@@ -780,7 +1054,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productor-detalle/productor-detalle.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"shop-single\">\r\n    <!--Page Title-->\r\n    <section class=\"page-title\" style=\"background-image:url(/static/images/background/bg-page-title-1a.jpg);\">\r\n        <div class=\"auto-container\">\r\n            <h1>Productor</h1>\r\n        </div>\r\n    </section>\r\n\r\n    <div *ngIf=\"productor != null\">\r\n        <!--Product Details Section-->\r\n        <section class=\"product-details\">\r\n            <div class=\"auto-container\">\r\n                <!--Basic Details-->\r\n                <div class=\"basic-details\">\r\n                    <div class=\"row clearfix\">\r\n                        <div class=\"image-column col-md-4 col-sm-5 col-xs-12\">\r\n                            <figure class=\"image-box\"><a href=\"{{ productor.foto }}\"\r\n                                                         class=\"lightbox-image\"\r\n                                                         title=\"{{ productor.nombre }}\"><img\r\n                                    src=\"{{ productor.foto }}\" alt=\"\"></a></figure>\r\n                            <div *ngIf=\"!!productor.latitud && !!productor.longitud\">\r\n                                <h2 style=\"text-align: left\">Ubicacion</h2>\r\n                                <agm-map [latitude]=\"productor.latitud\"\r\n                                         [longitude]=\"productor.longitud\"\r\n                                         [zoom]=\"12\">\r\n                                    <agm-marker [latitude]=\"productor.latitud\"\r\n                                                [longitude]=\"productor.longitud\"></agm-marker>\r\n                                </agm-map>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"info-column col-md-8 col-sm-7 col-xs-12\" style=\"text-align: left\">\r\n                            <div class=\"details-header\">\r\n                                <h4>{{ productor.nombre }}</h4>\r\n                            </div>\r\n\r\n                            <div class=\"text\">\r\n                                {{ productor.descripcion }}\r\n                            </div>\r\n                            <div>\r\n                                <div class=\"form-horizontal\">\r\n                                    <div class=\"informacion-cooperativa\">\r\n                                        <h4>Cooperativa</h4>\r\n                                        <div class=\"col-sm-12\">\r\n                                            {{ productor.cooperativa.nombre }}\r\n                                        </div>\r\n                                        <div class=\"col-sm-12\">\r\n                                          <strong>NIT </strong>\r\n                                            {{ productor.cooperativa.nit }}\r\n                                        </div>\r\n                                        <div class=\"col-sm-12\">\r\n                                          <strong class=\"col-sm-12 text-left no-padding\">Representante Legal </strong>\r\n                                            {{ productor.cooperativa.responsable }}\r\n                                        </div>\r\n                                        <div class=\"col-sm-12\">\r\n                                          <strong class=\"col-sm-12 text-left no-padding\">Zona </strong>\r\n                                            {{ productor.cooperativa.zona }}\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"informacion-productor text\" >\r\n                                        <h4>Dirección</h4>\r\n                                        <div class=\"col-sm-9 no-padding\">\r\n                                            {{ productor.direccion }}\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n\r\n                        </div>\r\n                    </div>\r\n                  <button class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Atrás</button>\r\n                </div>\r\n              <!--Basic Details-->\r\n                <!--Fluid Section Two-->\r\n                <section class=\"fluid-section-two\">\r\n                    <div class=\"outer-box clearfix\">\r\n\r\n\r\n                    </div>\r\n                </section>\r\n\r\n            </div>\r\n        </section>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"shop-single\">\r\n    <!--Page Title-->\r\n    <section class=\"page-title\" style=\"background-image:url(/static/images/background/bg-page-title-1a.jpg);\">\r\n        <div class=\"auto-container\">\r\n            <h1>Productor</h1>\r\n        </div>\r\n    </section>\r\n\r\n    <div *ngIf=\"productor != null\">\r\n        <!--Product Details Section-->\r\n        <section class=\"product-details\">\r\n            <div class=\"auto-container\">\r\n                <!--Basic Details-->\r\n                <div class=\"basic-details\">\r\n                    <div class=\"row clearfix\">\r\n                        <div class=\"image-column col-md-4 col-sm-5 col-xs-12\">\r\n                            <figure class=\"image-box\"><a href=\"{{ productor.foto }}\"\r\n                                                         class=\"lightbox-image\"\r\n                                                         title=\"{{ productor.nombre }}\"><img\r\n                                    src=\"{{ productor.foto }}\" alt=\"\"></a></figure>\r\n                            <div *ngIf=\"!!productor.latitud && !!productor.longitud\">\r\n                                <h2 style=\"text-align: left\">Ubicacion</h2>\r\n                                <agm-map [latitude]=\"productor.latitud\"\r\n                                         [longitude]=\"productor.longitud\"\r\n                                         [zoom]=\"12\">\r\n                                    <agm-marker [latitude]=\"productor.latitud\"\r\n                                                [longitude]=\"productor.longitud\"></agm-marker>\r\n                                </agm-map>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"info-column col-md-8 col-sm-7 col-xs-12\" style=\"text-align: left\">\r\n                            <div class=\"details-header\">\r\n                                <h4>{{ productor.nombre }}</h4>\r\n                            </div>\r\n\r\n                            <div class=\"text\">\r\n                                {{ productor.descripcion }}\r\n                            </div>\r\n                            <div>\r\n                                <div class=\"form-horizontal\">\r\n                                    <div class=\"informacion-cooperativa\">\r\n                                        <h4>Cooperativa</h4>\r\n                                        <div class=\"col-sm-12\">\r\n                                            {{ productor.cooperativa.nombre }}\r\n                                        </div>\r\n                                        <div class=\"col-sm-12\">\r\n                                          <strong>NIT </strong>\r\n                                            {{ productor.cooperativa.nit }}\r\n                                        </div>\r\n                                        <div class=\"col-sm-12\">\r\n                                          <strong class=\"col-sm-12 text-left no-padding\">Representante Legal </strong>\r\n                                            {{ productor.cooperativa.responsable }}\r\n                                        </div>\r\n                                        <div class=\"col-sm-12\">\r\n                                          <strong class=\"col-sm-12 text-left no-padding\">Zona </strong>\r\n                                            {{ productor.cooperativa.zona }}\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"informacion-productor text\" >\r\n                                        <h4>Dirección</h4>\r\n                                        <div class=\"col-sm-9 no-padding\">\r\n                                            {{ productor.direccion }}\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"envio-correo\">\r\n                              <button class=\"theme-btn btn-style-two ui-state-disabled\" *ngIf=\"!email.activo && correoActivo\" (click)=\"mostrarFormularioCorreo()\">Contactar</button>\r\n                              <div class=\"message-content\" *ngIf=\"email.activo\">\r\n                                <input class=\"col-sm-9\" type=\"email\" [(ngModel)]=\"email.sender\" placeholder=\"Tu correo\">\r\n                                <textarea class=\"col-sm-12\" placeholder=\"Mensaje\" [(ngModel)]=\"email.message\"></textarea>\r\n                                <strong class=\"col-sm-12 no-padding\">Enviado a: {{email.receiver}}</strong>\r\n\r\n                                <button (click)=\"enviarCorreo()\" class=\"theme-btn btn-style-two ui-state-disabled\">Enviar</button>\r\n                              </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                  <button class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Atrás</button>\r\n                </div>\r\n              <!--Basic Details-->\r\n                <!--Fluid Section Two-->\r\n                <section class=\"fluid-section-two\">\r\n                    <div class=\"outer-box clearfix\">\r\n\r\n\r\n                    </div>\r\n                </section>\r\n\r\n            </div>\r\n        </section>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -815,6 +1089,7 @@ var ProductorDetalleComponent = (function () {
         this.cd = cd;
         this.productorServices = productorServices;
         this.productor = null;
+        this.correoActivo = false;
         this.styles = [
             {
                 "featureType": "administrative",
@@ -898,6 +1173,12 @@ var ProductorDetalleComponent = (function () {
                 ]
             }
         ];
+        this.email = {
+            sender: '',
+            message: '',
+            receiver: '',
+            activo: false
+        };
     }
     ProductorDetalleComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -907,11 +1188,39 @@ var ProductorDetalleComponent = (function () {
         })
             .subscribe(function (response) {
             _this.productor = response;
+            console.log(_this.productor);
+            _this.email.receiver = _this.productor.email;
             _this.cd.detectChanges();
         }, function (reason) {
             _this.productor = null;
             alert("error al cargar datos del productor");
         });
+        this.productorServices.correoActivo().subscribe(function (response) {
+            _this.correoActivo = response;
+        });
+    };
+    ProductorDetalleComponent.prototype.mostrarFormularioCorreo = function () {
+        console.log("Hola mundo");
+        this.email.activo = true;
+    };
+    ProductorDetalleComponent.prototype.enviarCorreo = function () {
+        var _this = this;
+        if (this.email.sender && this.email.message && this.email.receiver) {
+            this.productorServices.enviarCorreo(this.email).subscribe(function (response) {
+                alert(response);
+                _this.email = {
+                    sender: '',
+                    message: '',
+                    receiver: _this.productor.email,
+                    activo: false
+                };
+            }, function (reason) {
+                console.log(reason);
+            });
+        }
+        else {
+            alert("Todos los campos son obligatorios");
+        }
     };
     return ProductorDetalleComponent;
 }());
@@ -941,7 +1250,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "input[type=\"file\"]{\r\n  margin: 0 auto;\r\n  border: none;\r\n}\r\n\r\n.productor-registro-section{\r\n  overflow: hidden;\r\n  padding-bottom: 20px;\r\n}\r\n\r\nagm-map {\r\n  height: 300px;\r\n}\r\n", ""]);
+exports.push([module.i, "input[type=\"file\"]{\r\n  margin: 0 auto;\r\n  border: none;\r\n}\r\n\r\n.productor-registro-section{\r\n  overflow: hidden;\r\n  padding-bottom: 20px;\r\n}\r\n\r\nagm-map {\r\n  height: 300px;\r\n}\r\n\r\n.activar-desactivar-module section{\r\n  width: 100px;\r\n  height: 100px;\r\n  background: #555;\r\n  display: inline-block;\r\n  position: relative;\r\n  text-align: center;\r\n  margin-top: 5px;\r\n  border: 1px solid gray;\r\n  border-radius: 5px;\r\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;\r\n}\r\n\r\n.activar-desactivar-module .slideThree {\r\n  width: 80px;\r\n  height: 26px;\r\n  background: #333;\r\n  margin: 20px auto;\r\n  position: relative;\r\n  border-radius: 50px;\r\n  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);\r\n}\r\n\r\n.activar-desactivar-module .slideThree:before {\r\n    content: 'ON';\r\n    color: #27ae60;\r\n    position: absolute;\r\n    left: 10px;\r\n    z-index: 0;\r\n    font: 12px/26px Arial, sans-serif;\r\n    font-weight: bold;\r\n}\r\n\r\n.activar-desactivar-module .slideThree:after {\r\n    content: 'OFF';\r\n    color: #000;\r\n    position: absolute;\r\n    right: 10px;\r\n    z-index: 0;\r\n    font: 12px/26px Arial, sans-serif;\r\n    font-weight: bold;\r\n    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);\r\n}\r\n\r\n.activar-desactivar-module input[type=checkbox] {\r\n  visibility: hidden;\r\n}\r\n\r\n.slideThree input[type=checkbox]:checked + label {\r\n    left: 43px;\r\n}\r\n\r\n.slideThree label {\r\n    display: block;\r\n    width: 34px;\r\n    height: 20px;\r\n    cursor: pointer;\r\n    position: absolute;\r\n    top: 3px;\r\n    left: 3px;\r\n    z-index: 1;\r\n    background: #fcfff4;\r\n    background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);\r\n    border-radius: 50px;\r\n    transition: all 0.4s ease;\r\n    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);\r\n}\r\n", ""]);
 
 // exports
 
@@ -954,7 +1263,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productor-editar/productorEditar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"productor-registro-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Nuevo Productor</h1>\r\n\r\n      <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\" * Nombre\" [(ngModel)]=\"productor.nombre\" />\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento.id\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\" >C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa.id\" >\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\" [attr.selected]=\"selected\"  >{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-12\">\r\n          <div class=\"col-md-6 col-md-offset-3\">\r\n            <label for=\"foto\">Foto*:</label>\r\n            <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n            <img src=\"{{productor.foto}}\" width=\"200\" >\r\n          </div>\r\n          <div class=\"col-md-6 col-md-offset-3\">\r\n            <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\">\r\n              <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n            </agm-map>\r\n          </div>\r\n        </div>\r\n        <div>\r\n\r\n          <button (click)=\"editarProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\r\n          <button class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Atrás</button>\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n"
+module.exports = "<section class=\"productor-registro-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Nuevo Productor</h1>\r\n\r\n      <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\" * Nombre\" [(ngModel)]=\"productor.nombre\" />\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento.id\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\" >C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa.id\" >\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\" [attr.selected]=\"selected\"  >{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"fincaCertificada\">Finca Certificada*: </label>\r\n          <input type=\"checkbox\" id=\"fincaCertificada\" placeholder=\"\" [(ngModel)]=\"productor.fincaCertificada\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"productosOrganicos\">Productos Organicos*: </label>\r\n          <input type=\"checkbox\" id=\"productosOrganicos\" placeholder=\"\" [(ngModel)]=\"productor.productosOrganicos\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <input type=\"text\" autocapitalize=\"off\" spellcheck=\"off\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" #search [formControl]=\"searchControl\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n        <div class=\"col-md-12 col-md-offset-0 col-sm-12 row\" style=\"margin-bottom: 20px\">\r\n            <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\" [zoom]=\"marker.zoom\">\r\n              <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n            </agm-map>\r\n          </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12 activar-desactivar-module\">\r\n          <label>Productor Activo: </label>\r\n          <section class=\"styled-checkbox\" style=\"background: none; border: none; box-shadow: none;\">\r\n            <div class=\"slideThree\">\r\n              <input type=\"checkbox\" [(ngModel)]=\"productor.aprobado\" value=\"None\" id=\"slideThree\" name=\"check\">\r\n              <label for=\"slideThree\"></label>\r\n            </div>\r\n          </section>\r\n        </div>\r\n        <div class=\"col-md-6 col-md-offset-3\"  style=\"margin-bottom: 20px\">\r\n            <label for=\"foto\">Foto*:</label>\r\n            <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n            <img src=\"{{productor.foto}}\" width=\"200\" >\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" onclick=\"window.history.go(-1)\"> <span class=\"fa fa-angle-double-left\"></span> Atrás</button>\r\n          <button (click)=\"editarProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -964,10 +1273,11 @@ module.exports = "<section class=\"productor-registro-section\">\r\n  <div class
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductorEditarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -982,11 +1292,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProductorEditarComponent = (function () {
-    function ProductorEditarComponent(productorService, cooperativaService, gMaps, route, router) {
+    function ProductorEditarComponent(productorService, cooperativaService, mapsAPILoader, ngZone, route, router) {
         this.productorService = productorService;
         this.cooperativaService = cooperativaService;
-        this.gMaps = gMaps;
+        this.mapsAPILoader = mapsAPILoader;
+        this.ngZone = ngZone;
         this.route = route;
         this.router = router;
         this.title = "Editar Productor";
@@ -995,6 +1307,13 @@ var ProductorEditarComponent = (function () {
             "tipo_documento": -1,
             "cooperativa": -1
         };
+        //create search FormControl
+        this.searchControl = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]();
+        this.marker = {
+            latitud: 4.6486259,
+            longitud: -74.2478963,
+            zoom: 10
+        };
     }
     ProductorEditarComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1002,6 +1321,75 @@ var ProductorEditarComponent = (function () {
             .subscribe(function (response) {
             _this.cooperativas = response;
         });
+        this.route.params
+            .switchMap(function (params) {
+            return _this.productorService.getProd(+params["id"]);
+        }).subscribe(function (response) {
+            _this.productor = response;
+            if (_this.productor.latitud && _this.productor.longitud) {
+                _this.marker.latitud = _this.productor.latitud;
+                _this.marker.longitud = _this.productor.longitud;
+                _this.marker.zoom = 12;
+            }
+            else {
+                _this.loadUserPosition();
+            }
+            _this.productor.aprobado = _this.productor.aprobado == "True" ? true : false;
+            _this.setGeoLocalitation();
+            _this.setAutocomplete();
+            //console.log( this.productor )
+        });
+    };
+    ProductorEditarComponent.prototype.loadUserPosition = function () {
+        var _this = this;
+        if (window.navigator && window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition(function (position) {
+                _this.marker = {
+                    latitud: position.coords.latitude,
+                    longitud: position.coords.longitude
+                };
+            }, function (error) {
+                switch (error.code) {
+                    case 1:
+                        console.log('Permission Denied');
+                        break;
+                    case 2:
+                        console.log('Position Unavailable');
+                        break;
+                    case 3:
+                        console.log('Timeout');
+                        break;
+                }
+            });
+            this.productor.latitud = this.marker.latitud;
+            this.productor.longitud = this.marker.longitud;
+        }
+        ;
+    };
+    ProductorEditarComponent.prototype.setAutocomplete = function () {
+        var _this = this;
+        this.mapsAPILoader.load().then(function () {
+            var autocomplete = new google.maps.places.Autocomplete(_this.searchElementRef.nativeElement, {
+                types: ["address"]
+            });
+            autocomplete.addListener("place_changed", function () {
+                _this.ngZone.run(function () {
+                    //get the place result
+                    var place = autocomplete.getPlace();
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+                    //set latitude, longitude and zoom
+                    _this.marker.latitud = place.geometry.location.lat();
+                    _this.marker.longitud = place.geometry.location.lng();
+                    _this.marker.zoom = 12;
+                });
+            });
+        });
+    };
+    ProductorEditarComponent.prototype.setGeoLocalitation = function () {
+        var _this = this;
         if (window.navigator && window.navigator.geolocation) {
             window.navigator.geolocation.getCurrentPosition(function (position) {
                 _this.marker = {
@@ -1023,24 +1411,11 @@ var ProductorEditarComponent = (function () {
             });
         }
         ;
-        //Capturar informacion del productor a editar
-        this.route.params
-            .switchMap(function (params) {
-            return _this.productorService.getProd(+params["id"]);
-        }).subscribe(function (response) {
-            _this.productor = response;
-            _this.marker = {
-                latitud: _this.productor.latitud,
-                longitud: _this.productor.longitud
-            };
-            console.log(_this.marker);
-        });
     };
     ProductorEditarComponent.prototype.setCooperativa = function (cooperativa) {
         this.productor.cooperativa = cooperativa;
     };
     ProductorEditarComponent.prototype.editarProductor = function () {
-        //console.log(this.productor)
         var _this = this;
         if (this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
             && this.productor.documento && this.productor.direccion && this.productor.cooperativa
@@ -1071,29 +1446,47 @@ var ProductorEditarComponent = (function () {
         }
     };
     ProductorEditarComponent.prototype.mapClicked = function ($event) {
-        this.marker = {
-            latitud: $event.coords.lat,
-            longitud: $event.coords.lng
-        };
+        var _this = this;
+        this.marker.latitud = $event.coords.lat;
+        this.marker.longitud = $event.coords.lng;
+        this.marker.zoom = 12;
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
+        var request = { location: latlng };
+        geocoder.geocode(request, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0] != null) {
+                    _this.productor.direccion = results[0].formatted_address;
+                }
+                else {
+                    console.log("No address available");
+                }
+            }
+            else
+                console.log("No esta disponible el geocoder");
+        });
     };
     return ProductorEditarComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("search"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+], ProductorEditarComponent.prototype, "searchElementRef", void 0);
 ProductorEditarComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        selector: 'app-productor-registro',
+        //selector: 'app-productor-registro',
         template: __webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.css")],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */],
-            __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */],
-            __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* GoogleMapsAPIWrapper */]
+            __WEBPACK_IMPORTED_MODULE_3__productor_service__["a" /* ProductorService */],
+            __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
         ],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* GoogleMapsAPIWrapper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* GoogleMapsAPIWrapper */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _g || Object])
 ], ProductorEditarComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=productorEditar.component.js.map
 
 /***/ }),
@@ -1119,7 +1512,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productor-lista/productor-lista.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Page Title-->\r\n<section class=\"page-title\" style=\"background-image:url(/static/images/background/bg-page-title-1a.jpg);\">\r\n    <div class=\"auto-container\">\r\n        <h1>Productores</h1>\r\n    </div>\r\n</section>\r\n\r\n<!--Shop Section-->\r\n<section class=\"shop-section\">\r\n    <div class=\"auto-container\">\r\n        <div class=\"example-container mat-elevation-z8\">\r\n            <mat-table #table [dataSource]=\"dataSource\">\r\n\r\n                <!--- Note that these columns can be defined in any order.\r\n                      The actual rendered columns are set as a property on the row definition\" -->\r\n\r\n                <!-- Name Column -->\r\n                <ng-container matColumnDef=\"foto\">\r\n                    <mat-header-cell *matHeaderCellDef> Foto</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\"> <img src=\"{{ element.foto }}\" style=\"width: 80%;\"/></mat-cell>\r\n                </ng-container>\r\n\r\n                <!-- Name Column -->\r\n                <ng-container matColumnDef=\"nombre\">\r\n                    <mat-header-cell *matHeaderCellDef> Nombre</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\"> {{ element.nombre }} </mat-cell>\r\n                </ng-container>\r\n\r\n                <!-- Weight Column -->\r\n                <ng-container matColumnDef=\"documento\">\r\n                    <mat-header-cell *matHeaderCellDef> Documento</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\"> {{ element.documento }} </mat-cell>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"id\">\r\n                    <mat-header-cell *matHeaderCellDef> Acciones</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\">\r\n\r\n                      <a routerLink=\"/productor/detalle/{{ element.id }}\">\r\n                        <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"></span>\r\n                      </a>\r\n\r\n                      <a routerLink=\"/productor/editar/{{ element.id }}\">\r\n                        <span class=\"fa fa-edit title-box title\" title=\"Editar productor\"></span>\r\n                      </a>\r\n                      <!--<a href=\"detalle/{{ element.id }}\">Ver</a>\r\n                      <a href=\"editar/{{ element.id }}\">Editar</a>-->\r\n                    </mat-cell>\r\n                </ng-container>\r\n\r\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n            </mat-table>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n\r\n"
+module.exports = "<!--Page Title-->\r\n<section class=\"page-title\" style=\"background-image:url(/static/images/background/bg-page-title-1a.jpg);\">\r\n    <div class=\"auto-container\">\r\n        <h1>Productores</h1>\r\n    </div>\r\n</section>\r\n\r\n<!--Shop Section-->\r\n<section class=\"shop-section\">\r\n    <div class=\"auto-container\">\r\n        <div class=\"example-container mat-elevation-z8\">\r\n            <mat-table #table [dataSource]=\"dataSource\">\r\n\r\n                <!--- Note that these columns can be defined in any order.\r\n                      The actual rendered columns are set as a property on the row definition\" -->\r\n\r\n                <!-- Name Column -->\r\n                <ng-container matColumnDef=\"foto\">\r\n                    <mat-header-cell *matHeaderCellDef> Foto</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\"> <img src=\"{{ element.foto }}\" style=\"width: 80%;\"/></mat-cell>\r\n                </ng-container>\r\n\r\n                <!-- Name Column -->\r\n                <ng-container matColumnDef=\"nombre\">\r\n                    <mat-header-cell *matHeaderCellDef> Nombre</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\"> {{ element.nombre }} </mat-cell>\r\n                </ng-container>\r\n\r\n                <!-- Weight Column -->\r\n                <ng-container matColumnDef=\"documento\">\r\n                    <mat-header-cell *matHeaderCellDef> Documento</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\"> {{ element.documento }} </mat-cell>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"aprobado\">\r\n                    <mat-header-cell *matHeaderCellDef> Aprobado</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\"> {{ element.aprobado }} </mat-cell>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"id\">\r\n                    <mat-header-cell *matHeaderCellDef> Acciones</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let element\">\r\n\r\n                      <a routerLink=\"/productor/detalle/{{ element.id }}\">\r\n                        <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"></span>\r\n                      </a>\r\n\r\n                      <a routerLink=\"/productor/editar/{{ element.id }}\">\r\n                        <span class=\"fa fa-edit title-box title\" title=\"Editar productor\"></span>\r\n                      </a>\r\n                      <!--<a href=\"detalle/{{ element.id }}\">Ver</a>\r\n                      <a href=\"editar/{{ element.id }}\">Editar</a>-->\r\n                    </mat-cell>\r\n                </ng-container>\r\n\r\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n            </mat-table>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1164,7 +1557,7 @@ var ProductorListaComponent = (function () {
     function ProductorListaComponent(productorServices) {
         this.productorServices = productorServices;
         this.filtrocooperativa = 0;
-        this.displayedColumns = ['foto', 'nombre', 'documento', 'id'];
+        this.displayedColumns = ['foto', 'nombre', 'documento', 'aprobado', 'id'];
         this.dataSource = null;
     }
     ProductorListaComponent.prototype.ngOnInit = function () {
@@ -1173,9 +1566,6 @@ var ProductorListaComponent = (function () {
             .subscribe(function (productores) {
             _this.productores = productores;
             /*console.log(this.productores );*/
-            _this.productores = _this.productores.filter(function (data) {
-                return data.aprobado === 'True';
-            });
             var filtrocooperativa2 = _this.filtrocooperativa;
             _this.productores = _this.productores.filter(function (data) {
                 if (filtrocooperativa2 > 0) {
@@ -1250,6 +1640,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ProductorService = (function () {
     function ProductorService(http) {
         this.http = http;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
+        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
     }
     ProductorService.prototype.setProductor = function (productor) {
         return this.http.post('/productor/service', productor)
@@ -1267,6 +1662,15 @@ var ProductorService = (function () {
     ProductorService.prototype.getProd = function (id) {
         return this.http.get('/productor/get/' + id)
             .map(function (response) { return response.json(); });
+    };
+    ProductorService.prototype.enviarCorreo = function (email) {
+        return this.http.post('/productor/correo', email, this.options).map(function (response) { return response.json(); });
+    };
+    ProductorService.prototype.correoActivo = function () {
+        return this.http.get('/productor/correo/active/obtener').map(function (response) { return response.json(); });
+    };
+    ProductorService.prototype.activarCorreo = function (correo) {
+        return this.http.post('/productor/correo/active', correo, this.options).map(function (response) { return response.json(); });
     };
     return ProductorService;
 }());
@@ -1301,7 +1705,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productorRegistro.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"productor-section\">\r\n  <div class=\"auto-container\">\r\n    <!--Section Title-->\r\n    <h1>Nuevo Productor</h1>\r\n    <div class=\"productor-form default-form\">\r\n      <div class=\"row clearfix\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\"Nombre\" [(ngModel)]=\"productor.nombre\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\">C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"fincaCertificada\">Finca Certificada*: </label>\r\n          <input type=\"checkbox\" id=\"fincaCertificada\" placeholder=\"\" [(ngModel)]=\"productor.fincaCertificada\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreFinca\" placeholder=\"Nombre Finca\" [(ngModel)]=\"productor.nombreFinca\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"email\" id=\"emailProductor\" placeholder=\"E-Mail\" [(ngModel)]=\"productor.email\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"productosOrganicos\">Productos Organicos*: </label>\r\n          <input type=\"checkbox\" id=\"productosOrganicos\" placeholder=\"\" [(ngModel)]=\"productor.productosOrganicos\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa\">\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <label for=\"foto\">Foto*:</label>\r\n          <input type=\"file\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n          <canvas width=\"200\" height=\"200\" id=\"photoPreview\"></canvas>\r\n        </div>\r\n        <div class=\"col-md-6 col-md-offset-3\">\r\n          <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n          </agm-map>\r\n        </div>\r\n      </div>\r\n      <div>\r\n        <button (click)=\"saveProductor()\">Env&iacute;ar datos</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>\r\n"
+module.exports = "<section class=\"productor-section\">\r\n  <div class=\"auto-container\">\r\n    <!--Section Title-->\r\n    <h1>Nuevo Productor</h1>\r\n    <div class=\"productor-form default-form\">\r\n      <div class=\"row clearfix\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\"Nombre\" [(ngModel)]=\"productor.nombre\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\">C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreFinca\" placeholder=\"Nombre Finca\" [(ngModel)]=\"productor.nombreFinca\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"email\" id=\"emailProductor\" placeholder=\"E-Mail\" [(ngModel)]=\"productor.email\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa\">\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"fincaCertificada\">Finca Certificada*: </label>\r\n          <input type=\"checkbox\" id=\"fincaCertificada\" placeholder=\"\" [(ngModel)]=\"productor.fincaCertificada\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"productosOrganicos\">Productos Organicos*: </label>\r\n          <input type=\"checkbox\" id=\"productosOrganicos\" placeholder=\"\" [(ngModel)]=\"productor.productosOrganicos\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <input type=\"text\" autocapitalize=\"off\" spellcheck=\"off\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" #search [formControl]=\"searchControl\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n\r\n        <div class=\"col-md-12 col-md-offset-0\" style=\"margin-bottom: 20px\">\r\n          <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\" [zoom]=\"marker.zoom\">\r\n            <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n          </agm-map>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 \">\r\n          <label> Foto*: </label>\r\n          <input type=\"file\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n          <canvas max-width=\"200\" max-height=\"200\" id=\"photoPreview\"></canvas>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <div class=\"text-center\"><button  (click)=\"saveProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button></div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -1311,9 +1715,10 @@ module.exports = "<section class=\"productor-section\">\r\n  <div class=\"auto-c
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductorRegistroComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1327,11 +1732,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProductorRegistroComponent = (function () {
-    function ProductorRegistroComponent(productorService, cooperativaService, gMaps) {
+    function ProductorRegistroComponent(productorService, cooperativaService, mapsAPILoader, ngZone) {
         this.productorService = productorService;
         this.cooperativaService = cooperativaService;
-        this.gMaps = gMaps;
+        this.mapsAPILoader = mapsAPILoader;
+        this.ngZone = ngZone;
         this.title = "Registrar Productor";
         this.marker = {};
         this.productor = {
@@ -1346,6 +1753,43 @@ var ProductorRegistroComponent = (function () {
             .subscribe(function (response) {
             _this.cooperativas = response;
         });
+        //create search FormControl
+        this.searchControl = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]();
+        this.setGeoLocalitation();
+        this.setAutocomplete();
+        //console.log( this.marker.latitud )
+        if (!this.marker.latitud) {
+            this.marker = {
+                latitud: 4.6486259,
+                longitud: -74.2478963,
+                zoom: 7
+            };
+        }
+    };
+    ProductorRegistroComponent.prototype.setAutocomplete = function () {
+        var _this = this;
+        this.mapsAPILoader.load().then(function () {
+            var autocomplete = new google.maps.places.Autocomplete(_this.searchElementRef.nativeElement, {
+                types: ["address"]
+            });
+            autocomplete.addListener("place_changed", function () {
+                _this.ngZone.run(function () {
+                    //get the place result
+                    var place = autocomplete.getPlace();
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+                    //set latitude, longitude and zoom
+                    _this.marker.latitud = place.geometry.location.lat();
+                    _this.marker.longitud = place.geometry.location.lng();
+                    _this.marker.zoom = 10;
+                });
+            });
+        });
+    };
+    ProductorRegistroComponent.prototype.setGeoLocalitation = function () {
+        var _this = this;
         if (window.navigator && window.navigator.geolocation) {
             window.navigator.geolocation.getCurrentPosition(function (position) {
                 _this.marker = {
@@ -1378,7 +1822,6 @@ var ProductorRegistroComponent = (function () {
             this.productorService.setProductor(this.productor).subscribe(function (response) {
                 alert("Su informaci?n fue agregada con ?xito.");
                 _this.productor = {};
-                window.location.href = '/productor/lista';
             });
         }
         else {
@@ -1396,34 +1839,57 @@ var ProductorRegistroComponent = (function () {
                     context.drawImage(photo, 0, 0, 200, 200);
                     this.productor.foto = canvas.toDataURL();
                 }.bind(this);
+                this.productor.foto = e.target.result;
             }.bind(this);
             reader.readAsDataURL(input.files[0]);
         }
     };
     ProductorRegistroComponent.prototype.mapClicked = function ($event) {
-        this.marker = {
-            latitud: $event.coords.lat,
-            longitud: $event.coords.lng
-        };
+        var _this = this;
+        this.marker.latitud = $event.coords.lat;
+        this.marker.longitud = $event.coords.lng;
+        this.marker.zoom = 10;
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
+        var request = { location: latlng };
+        geocoder.geocode(request, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0] != null) {
+                    //let city = results[0].address_components[results[0].address_components.length-4].short_name;
+                    _this.productor.direccion = results[0].formatted_address;
+                    //console.log( results[0].formatted_address )
+                    //this.shareService.setLocationDetails(city);
+                }
+                else {
+                    //alert("No address available");
+                    console.log("No address available");
+                }
+            }
+            else
+                console.log("No esta disponible el geocoder");
+        });
     };
     return ProductorRegistroComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("search"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+], ProductorRegistroComponent.prototype, "searchElementRef", void 0);
 ProductorRegistroComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        selector: 'app-productor-registro',
+        //  selector: 'app-productor-registro',
         template: __webpack_require__("../../../../../src/app/productor/productorRegistro.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/productorRegistro.component.css")],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */],
-            __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */],
-            __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]
+            __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */],
+            __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
         ],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _e || Object])
 ], ProductorRegistroComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=productorRegistro.component.js.map
 
 /***/ }),
@@ -1449,7 +1915,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/registro-admin/registro-admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"productor-registro-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Administrador: Nuevo Productor</h1>\r\n\r\n      <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" [(ngModel)]=\"productor.nombre\" placeholder=\" * Nombre\" />\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\">C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa\">\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-12\">\r\n          <div class=\"col-md-6 col-md-offset-3\">\r\n            <label for=\"foto\">Foto*:</label>\r\n            <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n            <img src=\"{{productor.foto}}\" width=\"200\" >\r\n          </div>\r\n          <div class=\"col-md-6 col-md-offset-3\">\r\n            <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\">\r\n              <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n            </agm-map>\r\n          </div>\r\n        </div>\r\n        <div>\r\n          <button (click)=\"saveProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Env&iacute;ar datos</button>\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n"
+module.exports = "<section class=\"productor-registro-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Administrador: Nuevo Productor</h1>\r\n\r\n      <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" [(ngModel)]=\"productor.nombre\" placeholder=\" * Nombre\" />\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\">C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreFinca\" placeholder=\"Nombre Finca\" [(ngModel)]=\"productor.nombreFinca\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"email\" id=\"emailProductor\" placeholder=\"E-Mail\" [(ngModel)]=\"productor.email\"/>\r\n        </div>\r\n\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa\">\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"fincaCertificada\">Finca Certificada*: </label>\r\n          <input type=\"checkbox\" id=\"fincaCertificada\" placeholder=\"\" [(ngModel)]=\"productor.fincaCertificada\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"productosOrganicos\">Productos Organicos*: </label>\r\n          <input type=\"checkbox\" id=\"productosOrganicos\" placeholder=\"\" [(ngModel)]=\"productor.productosOrganicos\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <input type=\"text\" autocapitalize=\"off\" spellcheck=\"off\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" #search [formControl]=\"searchControl\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n\r\n        <div class=\"col-md-12 col-md-offset-0\" style=\"margin-bottom: 20px\">\r\n          <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\" [zoom]=\"marker.zoom\">\r\n            <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n          </agm-map>\r\n        </div>\r\n\r\n        <div class=\"col-md-6 col-md-offset-3\">\r\n          <label for=\"foto\">Foto*:</label>\r\n          <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n          <img src=\"{{productor.foto}}\" width=\"200\" >\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <button (click)=\"saveProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button>\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -1459,9 +1925,10 @@ module.exports = "<section class=\"productor-registro-section\">\r\n  <div class
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegistroAdminComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1475,11 +1942,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RegistroAdminComponent = (function () {
-    function RegistroAdminComponent(productorService, cooperativaService, gMaps) {
+    function RegistroAdminComponent(productorService, cooperativaService, mapsAPILoader, ngZone) {
         this.productorService = productorService;
         this.cooperativaService = cooperativaService;
-        this.gMaps = gMaps;
+        this.mapsAPILoader = mapsAPILoader;
+        this.ngZone = ngZone;
         this.title = "Administración: Registrar Productor";
         this.marker = {};
         this.productor = {
@@ -1494,6 +1963,59 @@ var RegistroAdminComponent = (function () {
             .subscribe(function (response) {
             _this.cooperativas = response;
         });
+        //create search FormControl
+        this.searchControl = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]();
+        this.setGeoLocalitation();
+        this.setAutocomplete();
+        if (!this.marker.latitud) {
+            this.marker = {
+                latitud: 4.6486259,
+                longitud: -74.2478963,
+                zoom: 5
+            };
+        }
+    };
+    RegistroAdminComponent.prototype.saveProductor = function () {
+        var _this = this;
+        if (this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
+            && this.productor.documento && this.productor.direccion && this.productor.cooperativa
+            && this.productor.foto) {
+            this.productor.latitud = this.marker.latitud;
+            this.productor.longitud = this.marker.longitud;
+            this.productorService.setProductor(this.productor).subscribe(function (response) {
+                alert("Su informaci?n fue agregada con ?xito.");
+                _this.productor = {};
+            });
+        }
+        else {
+            alert("Alguno de los datos está incompleto.");
+        }
+    };
+    RegistroAdminComponent.prototype.setAutocomplete = function () {
+        var _this = this;
+        //load Places Autocomplete
+        this.mapsAPILoader.load().then(function () {
+            var autocomplete = new google.maps.places.Autocomplete(_this.searchElementRef.nativeElement, {
+                types: ["address"]
+            });
+            autocomplete.addListener("place_changed", function () {
+                _this.ngZone.run(function () {
+                    //get the place result
+                    var place = autocomplete.getPlace();
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+                    //set latitude, longitude and zoom
+                    _this.marker.latitud = place.geometry.location.lat();
+                    _this.marker.longitud = place.geometry.location.lng();
+                    _this.marker.zoom = 12;
+                });
+            });
+        });
+    };
+    RegistroAdminComponent.prototype.setGeoLocalitation = function () {
+        var _this = this;
         if (window.navigator && window.navigator.geolocation) {
             window.navigator.geolocation.getCurrentPosition(function (position) {
                 _this.marker = {
@@ -1516,22 +2038,6 @@ var RegistroAdminComponent = (function () {
         }
         ;
     };
-    RegistroAdminComponent.prototype.saveProductor = function () {
-        var _this = this;
-        if (this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
-            && this.productor.documento && this.productor.direccion && this.productor.cooperativa
-            && this.productor.foto) {
-            this.productor.latitud = this.marker.latitud;
-            this.productor.longitud = this.marker.longitud;
-            this.productorService.setProductor(this.productor).subscribe(function (response) {
-                alert("Su informaci?n fue agregada con ?xito.");
-                _this.productor = {};
-            });
-        }
-        else {
-            alert("Alguno de los datos está incompleto.");
-        }
-    };
     RegistroAdminComponent.prototype.loadFoto = function (input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -1549,22 +2055,25 @@ var RegistroAdminComponent = (function () {
     };
     return RegistroAdminComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("search"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+], RegistroAdminComponent.prototype, "searchElementRef", void 0);
 RegistroAdminComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-registro-admin',
         template: __webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.css")],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */],
-            __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */],
-            __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]
+            __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */],
+            __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
         ],
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* GoogleMapsAPIWrapper */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _e || Object])
 ], RegistroAdminComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=registro-admin.component.js.map
 
 /***/ }),

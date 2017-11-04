@@ -2,7 +2,17 @@ from django.db import models
 from cooperativa.models import Cooperativa
 
 # Create your models here.
+class EnvioCorreos(models.Model):
+    activo = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name = 'Envio Correo'
+
+    def __str__(self):
+        return '%s' % self.activo
+
+    def __unicode__(self):
+        return self.activo
 
 class TipoDocumento(models.Model):
     nombre = models.CharField(max_length=70)
