@@ -100,7 +100,8 @@ def cooperativasDetail(request, id):
     return render(request, 'cooperativas.html', context)
 
 def serviciosAdmin(request, cooperativa_id):
-    servicio = get_object_or_404(Servicio, cooperativa=cooperativa_id)
+    servicio = Servicio.objects.all()
+    #servicio = get_object_or_404(Servicio, cooperativa=cooperativa_id)
     context = {'servicio': servicio}
     return render(request, 'cooperativas.html', context)
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import 'rxjs/add/observable/of';
 import { ListadoServicioService } from './listadoServicio.service';
 
@@ -18,16 +19,19 @@ export class ListadoServicioComponent implements OnInit {
 
   servicios: any[] = new Array();
   sizeDescripcion: number = 120;
-  displayedColumns = ['nombre', 'nit', 'responsable', 'id'];
   dataSource: ServicioDataSource = null;
 
 
-  constructor(private listadoServicioServices: ListadoServicioService){ }
+  constructor(private listadoServicioServices: ListadoServicioService,
+              private route: ActivatedRoute,
+              private router: Router
+              ){ }
 
   ngOnInit() {
-    let cooperativa_id = 1;
-    this.listadoServicioServices.getServicios(cooperativa_id)
-          .subscribe(servicios =>{
+      this.route.params
+       .switchMap((params: Params) =>
+              this.listadoServicioServices.getServicios(+params["id"])
+            ).subscribe(servicios =>{
             let grupoServicio: any[] = new Array();
             let contador: number = 0;
             let index: number = 0;

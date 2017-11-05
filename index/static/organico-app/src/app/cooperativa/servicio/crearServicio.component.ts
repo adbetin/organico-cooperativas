@@ -40,9 +40,10 @@ export class CrearServicioComponent {
     this.envioFormServicio = true;
     if ( this.servicio.cooperativa && this.servicio.titulo && this.servicio.descripcion && this.servicio.foto ) {
         this.crearServicioServices.guardarServicio(this.servicio).subscribe(response => {
-        alert("Su informaci?n fue agregada con ?xito.");
+        alert("Su información fue agregada con éxito.");
+        let cooperativa_id = this.servicio.cooperativa;
         this.servicio = {};
-        /* this.router.navigateByUrl('cooperativa/servicio/listadoServicios'); */
+        this.router.navigateByUrl('cooperativa/servicio/listadoServicios/'+cooperativa_id);
       });
     } else {
       alert("Alguno de los datos está incompleto.");
