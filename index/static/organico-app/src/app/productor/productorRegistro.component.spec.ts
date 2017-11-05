@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ProductorRegistroComponent  } from './ProductorRegistro.component';
+import { ProductorRegistroComponent  } from "./ProductorRegistro.component";
 
-describe('ProductorRegistroComponent', () => {
+describe("ProductorRegistroComponent", () => {
   let component: ProductorRegistroComponent;
   let fixture: ComponentFixture<ProductorRegistroComponent>;
 
@@ -19,7 +19,7 @@ describe('ProductorRegistroComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
