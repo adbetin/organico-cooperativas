@@ -6,7 +6,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule,MatDatepickerModule,MatNativeDateModule,MatDialogModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ListadoCooperativaComponent } from './cooperativa/listadoCooperativa.component';
@@ -18,6 +18,10 @@ import { ProductorListaComponent } from './productor/productor-lista/productor-l
 import { ActualizarDatosComponent } from './cooperativa/actualizardatos.component';
 import { RegistroAdminComponent } from './productor/registro-admin/registro-admin.component';
 import { ProductorEditarComponent } from './productor/productor-editar/productorEditar.component';
+import { CrearForoComponent } from './administrador/foro/crearForo.component';
+import { ListadoForosComponent } from './administrador/foro/listadoForos.component';
+import { EditarForoComponent } from './administrador/foro/editarForo.component';
+import { RespuestaForoComponent } from './administrador/foro/respuestaForo.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { ProductorEditarComponent } from './productor/productor-editar/productor
     ProductorDetalleComponent,
     ProductorListaComponent,
     ProductorEditarComponent,
-    RegistroAdminComponent
+    RegistroAdminComponent,
+    CrearForoComponent,
+    ListadoForosComponent,
+    EditarForoComponent,
+    RespuestaForoComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +47,9 @@ import { ProductorEditarComponent } from './productor/productor-editar/productor
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo',
       libraries: ["places"]
@@ -79,7 +90,23 @@ import { ProductorEditarComponent } from './productor/productor-editar/productor
       {
         path: 'productor/admin/registro',
         component: RegistroAdminComponent
-      }
+      },
+      {
+        path: 'administrador/crearForo',
+        component: CrearForoComponent
+      },
+      {
+        path: 'administrador/listaForo',
+        component: ListadoForosComponent
+      },
+      {
+        path: 'administrador/editarForo/:id',
+        component: EditarForoComponent
+      },
+      {
+        path: 'administrador/respuestaForo/:id',
+        component: RespuestaForoComponent
+      },
     ])
   ],
  providers: [{provide: APP_BASE_HREF, useValue : '/' }],

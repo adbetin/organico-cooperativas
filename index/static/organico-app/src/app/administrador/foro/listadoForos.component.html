@@ -1,0 +1,41 @@
+    <!--Our Team-->
+    <section class="team-section">
+    	<div class="auto-container">
+        	<!--Section Title-->
+            <div class="sec-title-one">
+                <h2><a routerLink="/administrador/listadoForos">Nuevos foros</a></h2>
+            </div>
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Cooperativa</th>
+                <th class="text-center">Tema</th>
+                <th class="text-center">Fecha Cierre</th>
+                <th class="text-center">Estado</th>
+                <th class="text-center">Respuestas</th>
+                <th class="text-center">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let foro of foros">
+                <td>{{ foro.cooperativa.nombre }}</td>
+                <td>{{ foro.tema.nombre }}</td>
+                <td>{{ foro.fecha_cierre }}</td>
+                <td>{{ foro.estado }}</td>
+                <td>
+                  <a routerLink="/administrador/respuestaForo/{{ foro.id }}">
+                    <span class="fa fa-reply title-box title" title="Respuestas agregadas recientemente"></span>
+                  </a>
+                </td>
+                <td>
+                  <a routerLink="/administrador/editarForo/{{ foro.id }}">
+                    <span class="fa fa-edit title-box title" title="Editar foro"></span>
+                  </a>
+                 </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+    </section>

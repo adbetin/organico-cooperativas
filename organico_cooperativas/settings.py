@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'index',
     'cooperativa',
-    'productor'
+    'productor',
+    'administrador'
 ]
 
 MIDDLEWARE = [
