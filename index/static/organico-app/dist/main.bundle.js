@@ -1006,7 +1006,7 @@ var CrearServicioComponent = (function () {
     CrearServicioComponent.prototype.guardarServicio = function (formServicio) {
         var _this = this;
         this.envioFormServicio = true;
-        if (this.servicio.cooperativa && this.servicio.titulo && this.servicio.descripcion) {
+        if (this.servicio.cooperativa && this.servicio.titulo && this.servicio.descripcion && this.servicio.foto) {
             this.crearServicioServices.guardarServicio(this.servicio).subscribe(function (response) {
                 alert("Su informaci?n fue agregada con ?xito.");
                 _this.servicio = {};

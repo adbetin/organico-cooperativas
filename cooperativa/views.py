@@ -106,11 +106,11 @@ def serviciosAdmin(request, cooperativa_id):
 
 
 @csrf_exempt
-@api_view(['GET'])
 def serviciosList(request, cooperativa_id):
     if (request.method == 'GET'):
-        servicios = get_object_or_404(Servicio, cooperativa=cooperativa_id)
-        serializer = CooperativaSerializer(servicios, many=True)
+        #servicios = get_object_or_404(Servicio, cooperativa=cooperativa_id)
+        servicios = Servicio.objects.all()
+        serializer = ServicioSerializer(servicios, many=True)
         return modeloJSON(serializer.data)
 
 @csrf_exempt

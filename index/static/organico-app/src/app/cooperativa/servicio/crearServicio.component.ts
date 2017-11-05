@@ -38,13 +38,13 @@ export class CrearServicioComponent {
 
   guardarServicio(formServicio: NgForm) {
     this.envioFormServicio = true;
-    if( this.servicio.cooperativa && this.servicio.titulo && this.servicio.descripcion ){
+    if ( this.servicio.cooperativa && this.servicio.titulo && this.servicio.descripcion && this.servicio.foto ) {
         this.crearServicioServices.guardarServicio(this.servicio).subscribe(response => {
         alert("Su informaci?n fue agregada con ?xito.");
         this.servicio = {};
         /* this.router.navigateByUrl('cooperativa/servicio/listadoServicios'); */
       });
-    }else{
+    } else {
       alert("Alguno de los datos está incompleto.");
     }
   }

@@ -1,0 +1,92 @@
+    <!--Our Team-->
+    <section class="team-section">
+    	<div class="auto-container">
+        	<!--Section Title-->
+            <div class="sec-title-one">
+                <h2><a routerLink="/cooperativa/listadoCooperativa">Nuestras cooperativas</a></h2>
+            </div>
+
+        	<div class="row clearfix" *ngFor="let item of cooperativas">
+            	<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                	<!--Default Team Member-->
+                    <div class="default-team-member" *ngIf="item[0]">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="../static/images/resource/team-image-1.jpg"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[0].nombre }}
+                                    <br><small><b>Zona</b> {{ item[0].zona }} | {{ item[0].direccion }} | {{ item[0].correo }} |
+                                        <br><b>NIT</b> {{ item[0].nit }} | {{ item[0].responsable }}</small></h3>
+                                    <div class="text">{{ item[0].descripcion.slice(0, sizeDescripcion) + "..." }}</div>
+                                    <div class="social-links">
+                                        <a routerLink="/cooperativa/detalle/{{ item[0].id }}">
+                                          <span class="fa fa-search title-box title" title="Detalles productor"> Ver más</span>
+                                        </a>
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[0].id }}">
+                                          <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Default Team Member-->
+                    <div class="default-team-member" *ngIf="item[1]">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="../static/images/resource/team-image-2.jpg"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[1].nombre }}
+                                    <br><small><b>Zona</b> {{ item[1].zona }} | {{ item[1].direccion }} | {{ item[1].correo }} |
+                                        <br><b>NIT</b> {{ item[1].nit }} | {{ item[1].responsable }}</small></h3>
+                                    <div class="text">{{ item[1].descripcion.slice(0, sizeDescripcion) + "..." }}</div>
+                                    <div class="social-links">
+                                        <a routerLink="/cooperativa/detalle/{{ item[1].id }}">
+                                          <span class="fa fa-search title-box title" title="Detalles productor"> Ver más</span>
+                                        </a>
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[1].id }}">
+                                          <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="item[2]">
+                	<!--Default Team Member / Vertical-->
+                    <div class="default-team-member vertical">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="../static/images/resource/team-image-3.jpg"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[2].nombre }}
+                                    <br><small><b>Zona</b> {{ item[2].zona }} | {{ item[2].direccion }} | {{ item[2].correo }} |
+                                        <br><b>NIT</b> {{ item[2].nit }} | {{ item[2].responsable }}</small></h3>
+                                    <div class="text">{{ item[2].descripcion.slice(0, sizeDescripcion) + "..." }}</div>
+                                    <div class="social-links">
+                                        <a routerLink="/cooperativa/detalle/{{ item[2].id }}">
+                                          <span class="fa fa-search title-box title" title="Detalles productor"> Ver más</span>
+                                        </a>
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[2].id }}">
+                                          <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
