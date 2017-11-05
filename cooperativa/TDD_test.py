@@ -5,6 +5,8 @@ __author__ = 'asistente'
 from unittest import TestCase
 from selenium import webdriver
 
+from selenium import webbrowser
+
 from selenium.webdriver.common.by import By
 
 class TDDTest(TestCase):
