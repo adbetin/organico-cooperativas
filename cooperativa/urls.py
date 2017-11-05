@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^listadoCooperativa/$', views.cooperativasAdmin, name="listado_cooperativa"),
     url(r'^actualizardatos/(?P<id>.+)$', views.cooperativasDetail, name="actualizar_datos"),
     url(r'^detalle/(?P<id>.+)$', views.cooperativasDetail, name='detalle_cooperativa'),
+    url(r'^servicio/crearServicio', views.cooperativasAdmin, name="crear_servicio"),
 
     # Almacenamiento de datos
     url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),

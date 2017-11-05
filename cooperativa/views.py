@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
-from cooperativa.models import Cooperativa
+from cooperativa.models import Cooperativa,Servicio
 from cooperativa.serializers import CooperativaSerializer
 
 # Create your views here.
@@ -81,4 +81,10 @@ def actualizarCooperativa(request):
 def cooperativasDetail(request, id):
     cooperativa = get_object_or_404(Cooperativa, id=id)
     context = {'cooperativa': cooperativa}
+    return render(request, 'cooperativas.html', context)
+
+def serviciosAdmin(request, cooperativa_id):
+    servicio = Servicio.objects.all()
+    #servicio = get_object_or_404(Servicio, cooperativa=cooperativa_id)
+    context = {'servicio': servicio}
     return render(request, 'cooperativas.html', context)
