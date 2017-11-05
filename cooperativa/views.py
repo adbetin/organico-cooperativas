@@ -57,12 +57,12 @@ def guardarCooperativa(request):
     return modeloJSON(respuesta)
 
 @csrf_exempt
-@api_view(['POST'])
 def guardarServicio(request):
     respuesta = False
     if (request.method == 'POST'):
-        servicioPost = json.loads(request.body)
-        servicio = Servicio.objects.create(  cooperativa=servicioPost["cooperativa"],
+        servicioPost = decode(request.body)
+        cooperativa = get_object_or_404(Cooperativa, id=servicioPost['cooperativa'])
+        servicio = Servicio.objects.create(  cooperativa=cooperativa,
                                              titulo=servicioPost["titulo"],
                                              descripcion=servicioPost["descripcion"],
                                              foto=servicioPost["foto"]
@@ -120,3 +120,7 @@ def serviciosGet(request, cooperativa_id):
     serializer = ServicioSerializer(servicio)
     return modeloJSON(serializer.data)
 
+def decode(data):
+    new_data = data.decode("utf-8", "strict")
+
+    return json.loads(new_data)

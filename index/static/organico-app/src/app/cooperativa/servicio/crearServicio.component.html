@@ -10,18 +10,18 @@
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                       <select #cooperativa="ngModel" id="cooperativa"
-                              name="cooperativa" placeholder="* Cooperativa" ngModel required >
+                              name="cooperativa" placeholder="* Cooperativa" [(ngModel)]="servicio.cooperativa" required >
                         <option value="-1">-- Cooperativa --</option>
                         <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
                       </select>
                     </div>
 
-                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                        <input #titulo="ngModel" [ngClass]="{'error':!titulo.valid && envioFormServicio}" type="text" name="titulo" value="" placeholder="* Título [Máx 100 caracteres]" ngModel required maxlength="100"  >
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <input #titulo="ngModel" [ngClass]="{'error':!titulo.valid && envioFormServicio}" type="text" name="titulo" value="" placeholder="* Título [Máx 100 caracteres]" [(ngModel)]="servicio.titulo" required maxlength="100"  >
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormServicio}" name="descripcion" placeholder="* Descripción [Máx 550 caracteres]" ngModel maxlength="550"></textarea>
+                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormServicio}" name="descripcion" placeholder="* Descripción [Máx 550 caracteres]" [(ngModel)]="servicio.descripcion" maxlength="550"></textarea>
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">

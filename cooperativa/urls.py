@@ -32,11 +32,11 @@ urlpatterns = [
     # Almacenamiento de datos
     url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),
     url(r'^actualizarCooperativa/$', views.actualizarCooperativa, name="actualizar_cooperativa"),
-    url(r'^guardarservicio/$', views.guardarServicio, name="guardar_servicio"),
+    url(r'^servicio/guardarServicio/$', views.guardarServicio, name="guardar_servicio"),
 
     # Consulta de datos
     url(r'^cooperativalist$', views.cooperativasList, name="cooperativas_list"),
-    url(r'consultarCooperativa/(?P<id>.+)/$', views.cooperativasGet, name="ver_cooperativa"),
+    url(r'^consultarCooperativa/(?P<id>.+)/$', views.cooperativasGet, name="ver_cooperativa"),
     url(r'^servicioslist/(?P<cooperativa_id>.+)/$', views.serviciosList, name="servicios_list"),
-    url(r'consultarservicio/(?P<cooperativa_id>.+)/$', views.serviciosGet, name="servicios_get")
+    url(r'^consultarservicio/(?P<cooperativa_id>.+)/$', views.serviciosGet, name="servicios_get")
 ]
