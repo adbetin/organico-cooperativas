@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
@@ -10,7 +10,6 @@ from productor.models import Productor, TipoDocumento, EnvioCorreos
 from cooperativa.models import Cooperativa
 from productor.serializers import ProductorSerializer
 from django.core.mail import send_mail
-from cooperativa.serializers import CooperativaSerializer
 
 import json
 

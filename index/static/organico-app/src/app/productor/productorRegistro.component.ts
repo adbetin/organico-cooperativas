@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewEncapsulation , ElementRef, NgZone, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { ProductorService } from './productor.service';
-import { ListadoCooperativaService } from '../cooperativa/listadoCooperativa.service';
-import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
+import { Component, OnInit, ViewEncapsulation , ElementRef, NgZone, ViewChild } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { ProductorService } from "./productor.service";
+import { ListadoCooperativaService } from "../cooperativa/listadoCooperativa.service";
+import { } from "googlemaps";
+import { MapsAPILoader } from "@agm/core";
 
 
 @Component({
-//  selector: 'app-productor-registro',
-  templateUrl: './productorRegistro.component.html',
-  styleUrls: ['./productorRegistro.component.css'],
+//  selector: "app-productor-registro",
+  templateUrl: "./productorRegistro.component.html",
+  styleUrls: ["./productorRegistro.component.css"],
   providers: [
     ProductorService,
     ListadoCooperativaService
@@ -96,13 +96,13 @@ export class ProductorRegistroComponent implements OnInit {
               error => {
                   switch (error.code) {
                       case 1:
-                          console.log('Permission Denied');
+                          console.log("Permission Denied");
                           break;
                       case 2:
-                          console.log('Position Unavailable');
+                          console.log("Position Unavailable");
                           break;
                       case 3:
-                          console.log('Timeout');
+                          console.log("Timeout");
                           break;
                   }
               }
@@ -111,30 +111,30 @@ export class ProductorRegistroComponent implements OnInit {
   }
 
   saveProductor() {
-    if(this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
+    if (this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
         && this.productor.documento && this.productor.direccion && this.productor.cooperativa
-        && this.productor.foto){
+        && this.productor.foto) {
         this.productor.latitud = this.marker.latitud;
         this.productor.longitud = this.marker.longitud;
       this.productorService.setProductor(this.productor).subscribe(response => {
         alert("Su informaci?n fue agregada con ?xito.");
         this.productor = {};
       });
-    }else{
+    } else {
       alert("Alguno de los datos está incompleto.");
     }
   }
 
-  loadFoto(input) {
+  loadFoto(input: any) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        let reader = new FileReader();
 
-        reader.onload = function (e:FileReaderEvent) {
-          var photo = new Image();
+        reader.onload = function (e: any) {
+          let photo = new Image();
             photo.src = e.target.result;
             photo.onload = function () {
-              var canvas: any = document.getElementById('photoPreview'),
-              context = canvas.getContext('2d');
+              let canvas: any = document.getElementById("photoPreview"),
+              context = canvas.getContext("2d");
               context.drawImage(photo,0,0,200,200);
               this.productor.foto = canvas.toDataURL();
             }.bind(this);
@@ -169,14 +169,4 @@ export class ProductorRegistroComponent implements OnInit {
         console.log( "No esta disponible el geocoder" )
     });
   }
-
-}
-
-interface FileReaderEventTarget extends EventTarget {
-    result:string
-}
-
-interface FileReaderEvent extends Event {
-    target: FileReaderEventTarget;
-    getMessage():string;
 }
