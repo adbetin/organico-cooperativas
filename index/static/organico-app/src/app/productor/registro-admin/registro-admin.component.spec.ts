@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { RegistroAdminComponent } from './registro-admin.component';
+import { RegistroAdminComponent } from "./registro-admin.component";
 
-describe('RegistroAdminComponent', () => {
+describe("RegistroAdminComponent", () => {
   let component: RegistroAdminComponent;
   let fixture: ComponentFixture<RegistroAdminComponent>;
 
@@ -19,7 +19,7 @@ describe('RegistroAdminComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -13,6 +13,8 @@ class Cooperativa(models.Model):
     correo = models.CharField(max_length=70)
     telefono = models.CharField(max_length=70)
     direccion = models.CharField(max_length=255)
+    latitud = models.FloatField(blank=True, null=True)
+    longitud = models.FloatField(blank=True, null=True)
 
     class Meta:
         verbose_name = 'Cooperativa'

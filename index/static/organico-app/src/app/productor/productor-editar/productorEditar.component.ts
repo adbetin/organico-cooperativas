@@ -1,26 +1,28 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { ProductorService } from '../productor.service';
-import { NgModel } from '@angular/forms';
 import { ListadoCooperativaService } from '../../cooperativa/listadoCooperativa.service';
-import { GoogleMapsAPIWrapper } from '@agm/core';
-import {mapTo} from "rxjs/operator/mapTo";
-
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
-  selector: 'app-productor-registro',
+  //selector: 'app-productor-registro',
   templateUrl: './productorEditar.component.html',
   styleUrls: ['./productorEditar.component.css'],
   providers: [
     ProductorService,
-    ListadoCooperativaService,
-    GoogleMapsAPIWrapper
+    ListadoCooperativaService
   ],
   encapsulation: ViewEncapsulation.None,
 })
 export class ProductorEditarComponent implements OnInit {
   title: String = "Editar Productor";
   marker: any = {};
+
+  public searchControl: FormControl;
+
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
   productor: any = {
     "tipo_documento": -1,
@@ -30,16 +32,51 @@ export class ProductorEditarComponent implements OnInit {
 
   constructor(private productorService: ProductorService,
               private cooperativaService: ListadoCooperativaService,
-              public gMaps: GoogleMapsAPIWrapper,
+              private mapsAPILoader: MapsAPILoader,
+              private ngZone: NgZone,
               private route: ActivatedRoute,
-              private router: Router,) { }
+              private router: Router,) {
+
+
+     //create search FormControl
+    this.searchControl = new FormControl();
+
+    this.marker = {
+        latitud: 4.6486259,
+        longitud: -74.2478963,
+        zoom : 10
+    }
+  }
 
   ngOnInit() {
+
     this.cooperativaService.getCooperativas()
           .subscribe(response => {
             this.cooperativas = response;
           });
 
+    this.route.params
+      .switchMap((params: Params) =>
+        this.productorService.getProd(+params["id"])
+      ).subscribe(response => {
+            this.productor = response;
+            if(this.productor.latitud && this.productor.longitud){
+              this.marker.latitud = this.productor.latitud;
+              this.marker.longitud = this.productor.longitud;
+              this.marker.zoom = 12;
+
+            }else {
+              this.loadUserPosition();
+            }
+
+            this.productor.aprobado = this.productor.aprobado == "True" ? true : false;
+            this.setGeoLocalitation();
+            this.setAutocomplete();
+            //console.log( this.productor )
+          });
+  }
+
+  loadUserPosition () {
     if (window.navigator && window.navigator.geolocation) {
         window.navigator.geolocation.getCurrentPosition(
             position => {
@@ -62,23 +99,58 @@ export class ProductorEditarComponent implements OnInit {
                 }
             }
         );
+        this.productor.latitud = this.marker.latitud;
+        this.productor.longitud = this.marker.longitud;
     };
+  }
 
-    //Capturar informacion del productor a editar
+  setAutocomplete(){//load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          //set latitude, longitude and zoom
+          this.marker.latitud = place.geometry.location.lat();
+          this.marker.longitud = place.geometry.location.lng();
+          this.marker.zoom = 12;
 
-    this.route.params
-      .switchMap((params: Params) =>
-        this.productorService.getProd(+params["id"])
-      ).subscribe(response => {
-            this.productor = response;
-              this.marker = {
-                latitud: this.productor.latitud,
-                longitud: this.productor.longitud
-              };
-              console.log( this.marker)
+        });
+      });
+    });
+  }
 
-          });
-
+  setGeoLocalitation(){
+    if (window.navigator && window.navigator.geolocation) {
+          window.navigator.geolocation.getCurrentPosition(
+              position => {
+                  this.marker = {
+                    latitud: position.coords.latitude,
+                    longitud: position.coords.longitude
+                  };
+              },
+              error => {
+                  switch (error.code) {
+                      case 1:
+                          console.log('Permission Denied');
+                          break;
+                      case 2:
+                          console.log('Position Unavailable');
+                          break;
+                      case 3:
+                          console.log('Timeout');
+                          break;
+                  }
+              }
+          );
+      };
   }
 
   setCooperativa( cooperativa ){
@@ -87,9 +159,6 @@ export class ProductorEditarComponent implements OnInit {
 
 
   editarProductor() {
-
-    //console.log(this.productor)
-
     if(this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
         && this.productor.documento && this.productor.direccion && this.productor.cooperativa
         && this.productor.foto){
@@ -126,14 +195,25 @@ export class ProductorEditarComponent implements OnInit {
     }
   }
 
-  mapClicked($event: any) {
+  mapClicked($event: any) {// Esta funcion fue modificada para cuando de clic cargue la direccion desde el mapa
+    this.marker.latitud = $event.coords.lat;
+    this.marker.longitud = $event.coords.lng;
+    this.marker.zoom = 12;
 
+    let geocoder = new google.maps.Geocoder();
+    let latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
+    let request = { location : latlng };
 
-
-    this.marker = {
-      latitud: $event.coords.lat,
-      longitud: $event.coords.lng
-    };
+    geocoder.geocode(request, (results, status) => {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0] != null) {
+          this.productor.direccion= results[0].formatted_address ;
+        } else {
+          console.log( "No address available" )
+        }
+      }else
+        console.log( "No esta disponible el geocoder" )
+    });
   }
 
 }
