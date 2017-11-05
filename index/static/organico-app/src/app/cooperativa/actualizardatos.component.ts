@@ -1,7 +1,7 @@
 import {Component, OnInit, ElementRef, ChangeDetectorRef,  NgZone, ViewChild } from '@angular/core';
 import {NgForm, FormControl } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import { ActualizarDatosService } from './ActualizarDatos.service';
+import { ActualizarDatosService } from './actualizardatos.service';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
