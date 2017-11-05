@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef, NgZone, ViewChild  } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { ProductorService } from '../productor.service';
-import { ListadoCooperativaService } from '../../cooperativa/listadoCooperativa.service';
-import { } from 'googlemaps';
-import { MapsAPILoader } from '@agm/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, NgZone, ViewChild  } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { ProductorService } from "../productor.service";
+import { ListadoCooperativaService } from "../../cooperativa/listadoCooperativa.service";
+import { } from "googlemaps";
+import { MapsAPILoader } from "@agm/core";
 
 @Component({
-  selector: 'app-registro-admin',
-  templateUrl: './registro-admin.component.html',
-  styleUrls: ['./registro-admin.component.css'],
+  selector: "app-registro-admin",
+  templateUrl: "./registro-admin.component.html",
+  styleUrls: ["./registro-admin.component.css"],
   providers: [
     ProductorService,
     ListadoCooperativaService
@@ -58,16 +58,16 @@ export class RegistroAdminComponent implements OnInit {
   }
 
   saveProductor() {
-    if(this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
+    if (this.productor.nombre && this.productor.descripcion && this.productor.tipo_documento
         && this.productor.documento && this.productor.direccion && this.productor.cooperativa
-        && this.productor.foto){
+        && this.productor.foto) {
         this.productor.latitud = this.marker.latitud;
         this.productor.longitud = this.marker.longitud;
-      this.productorService.setProductor(this.productor).subscribe(response => {
-        alert("Su informaci?n fue agregada con ?xito.");
-        this.productor = {};
-      });
-    }else{
+        this.productorService.setProductor(this.productor).subscribe(response => {
+          alert("Su informaci?n fue agregada con ?xito.");
+          this.productor = {};
+        });
+    } else {
       alert("Alguno de los datos está incompleto.");
     }
   }
@@ -109,13 +109,13 @@ export class RegistroAdminComponent implements OnInit {
               error => {
                   switch (error.code) {
                       case 1:
-                          console.log('Permission Denied');
+                          console.log("Permission Denied");
                           break;
                       case 2:
-                          console.log('Position Unavailable');
+                          console.log("Position Unavailable");
                           break;
                       case 3:
-                          console.log('Timeout');
+                          console.log("Timeout");
                           break;
                   }
               }
@@ -123,14 +123,12 @@ export class RegistroAdminComponent implements OnInit {
       };
   }
 
-  loadFoto(input) {
+  loadFoto (input: any) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e:FileReaderEvent) {
+        let reader = new FileReader();
+        reader.onload = function (e: any) {
             this.productor.foto = e.target.result;
         }.bind(this);
-
         reader.readAsDataURL(input.files[0]);
     }
   }
@@ -141,14 +139,4 @@ export class RegistroAdminComponent implements OnInit {
       longitud: $event.coords.lng
     };
   }
-
-}
-
-interface FileReaderEventTarget extends EventTarget {
-    result:string
-}
-
-interface FileReaderEvent extends Event {
-    target: FileReaderEventTarget;
-    getMessage():string;
 }

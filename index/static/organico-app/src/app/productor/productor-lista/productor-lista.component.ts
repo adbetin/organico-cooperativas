@@ -32,11 +32,9 @@ export class ProductorListaComponent implements OnInit {
                 if ( filtrocooperativa2 > 0 ) {
                   return data.cooperativa.id == filtrocooperativa2;
                 } else {
-                  return 'True';
+                  return "True";
                 }
-            })
-            /*console.log(filtrocooperativa2 );*/
-            /*console.log(this.productores );*/
+            });
             this.dataSource = new ProductorDataSource(this.productores);
             this.loading = false;
           });
