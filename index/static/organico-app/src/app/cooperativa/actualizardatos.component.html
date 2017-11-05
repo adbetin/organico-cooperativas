@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                        <input #nit="ngModel" [ngClass]="{'error':!nit.valid && envioFormCooperativa}" type="text" name="nit" [(ngModel)]="cooperativa.nit" placeholder="* NIT [Solo numeros]" required maxlength="70" pattern="[0-9-]*">
+                        <input #nit="ngModel" [ngClass]="{'error':!nit.valid && envioFormCooperativa}" type="text" name="nit" [(ngModel)]="cooperativa.nit" placeholder="* NIT [Solo numeros enteros]" required maxlength="70" pattern="[0-9-]*">
                     </div>
 
                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
