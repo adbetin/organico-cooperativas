@@ -6,7 +6,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatProgressSpinnerModule } from '@angular/material';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { AppComponent } from './app.component';
 import { ListadoCooperativaComponent } from './cooperativa/listadoCooperativa.component';
@@ -41,6 +42,8 @@ import { ActivarCorreoComponent } from './productor/activar-correo/activar-corre
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatProgressSpinnerModule,
+    LazyLoadImageModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo',
       libraries: ["places"]

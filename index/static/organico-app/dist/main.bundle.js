@@ -62,7 +62,7 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 AppComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
@@ -87,17 +87,19 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cooperativa_listadoCooperativa_component__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cooperativa_crearCooperativa_component__ = __webpack_require__("../../../../../src/app/cooperativa/crearCooperativa.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__cooperativa_cooperativa_detalle_cooperativa_detalle_component__ = __webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__productor_productorRegistro_component__ = __webpack_require__("../../../../../src/app/productor/productorRegistro.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__productor_productor_detalle_productor_detalle_component__ = __webpack_require__("../../../../../src/app/productor/productor-detalle/productor-detalle.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__productor_productor_lista_productor_lista_component__ = __webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__cooperativa_actualizardatos_component__ = __webpack_require__("../../../../../src/app/cooperativa/actualizardatos.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__ = __webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__productor_productor_editar_productorEditar_component__ = __webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__productor_activar_correo_activar_correo_component__ = __webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng_lazyload_image__ = __webpack_require__("../../../../ng-lazyload-image/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng_lazyload_image___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_ng_lazyload_image__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cooperativa_listadoCooperativa_component__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__cooperativa_crearCooperativa_component__ = __webpack_require__("../../../../../src/app/cooperativa/crearCooperativa.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__cooperativa_cooperativa_detalle_cooperativa_detalle_component__ = __webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__productor_productorRegistro_component__ = __webpack_require__("../../../../../src/app/productor/productorRegistro.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__productor_productor_detalle_productor_detalle_component__ = __webpack_require__("../../../../../src/app/productor/productor-detalle/productor-detalle.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__productor_productor_lista_productor_lista_component__ = __webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__cooperativa_actualizardatos_component__ = __webpack_require__("../../../../../src/app/cooperativa/actualizardatos.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__productor_registro_admin_registro_admin_component__ = __webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__productor_productor_editar_productorEditar_component__ = __webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__productor_activar_correo_activar_correo_component__ = __webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -124,25 +126,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
     return AppModule;
 }());
 AppModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["M" /* NgModule */])({
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__cooperativa_listadoCooperativa_component__["a" /* ListadoCooperativaComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__cooperativa_crearCooperativa_component__["a" /* CrearCooperativaComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__cooperativa_cooperativa_detalle_cooperativa_detalle_component__["a" /* CooperativaDetalleComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__cooperativa_actualizardatos_component__["a" /* ActualizarDatosComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__productor_productorRegistro_component__["a" /* ProductorRegistroComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__productor_productor_detalle_productor_detalle_component__["a" /* ProductorDetalleComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__productor_productor_editar_productorEditar_component__["a" /* ProductorEditarComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__cooperativa_listadoCooperativa_component__["a" /* ListadoCooperativaComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__cooperativa_crearCooperativa_component__["a" /* CrearCooperativaComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__cooperativa_cooperativa_detalle_cooperativa_detalle_component__["a" /* CooperativaDetalleComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__cooperativa_actualizardatos_component__["a" /* ActualizarDatosComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__productor_productorRegistro_component__["a" /* ProductorRegistroComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__productor_productor_detalle_productor_detalle_component__["a" /* ProductorDetalleComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__productor_productor_editar_productorEditar_component__["a" /* ProductorEditarComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -150,7 +153,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["i" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatTableModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["b" /* MatTableModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatProgressSpinnerModule */],
+            __WEBPACK_IMPORTED_MODULE_9_ng_lazyload_image__["LazyLoadImageModule"],
             __WEBPACK_IMPORTED_MODULE_6__agm_core__["a" /* AgmCoreModule */].forRoot({
                 apiKey: 'AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo',
                 libraries: ["places"]
@@ -158,49 +163,49 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* RouterModule */].forRoot([
                 {
                     path: 'cooperativa/crearCooperativa',
-                    component: __WEBPACK_IMPORTED_MODULE_11__cooperativa_crearCooperativa_component__["a" /* CrearCooperativaComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_12__cooperativa_crearCooperativa_component__["a" /* CrearCooperativaComponent */]
                 },
                 {
                     path: 'cooperativa/listadoCooperativa',
-                    component: __WEBPACK_IMPORTED_MODULE_10__cooperativa_listadoCooperativa_component__["a" /* ListadoCooperativaComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_11__cooperativa_listadoCooperativa_component__["a" /* ListadoCooperativaComponent */]
                 },
                 {
                     path: 'cooperativa/actualizardatos/:id',
-                    component: __WEBPACK_IMPORTED_MODULE_16__cooperativa_actualizardatos_component__["a" /* ActualizarDatosComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_17__cooperativa_actualizardatos_component__["a" /* ActualizarDatosComponent */]
                 },
                 {
                     path: 'cooperativa/detalle/:id',
-                    component: __WEBPACK_IMPORTED_MODULE_12__cooperativa_cooperativa_detalle_cooperativa_detalle_component__["a" /* CooperativaDetalleComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_13__cooperativa_cooperativa_detalle_cooperativa_detalle_component__["a" /* CooperativaDetalleComponent */]
                 },
                 {
                     path: 'productor/registro',
-                    component: __WEBPACK_IMPORTED_MODULE_13__productor_productorRegistro_component__["a" /* ProductorRegistroComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_14__productor_productorRegistro_component__["a" /* ProductorRegistroComponent */]
                 },
                 {
                     path: 'productor/detalle/:id',
-                    component: __WEBPACK_IMPORTED_MODULE_14__productor_productor_detalle_productor_detalle_component__["a" /* ProductorDetalleComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_15__productor_productor_detalle_productor_detalle_component__["a" /* ProductorDetalleComponent */]
                 },
                 {
                     path: 'productor/lista',
-                    component: __WEBPACK_IMPORTED_MODULE_15__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_16__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */]
                 },
                 {
                     path: 'productor/editar/:id',
-                    component: __WEBPACK_IMPORTED_MODULE_18__productor_productor_editar_productorEditar_component__["a" /* ProductorEditarComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_19__productor_productor_editar_productorEditar_component__["a" /* ProductorEditarComponent */]
                 },
                 {
                     path: 'productor/admin/registro',
-                    component: __WEBPACK_IMPORTED_MODULE_17__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_18__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */]
                 },
                 {
                     path: 'productor/correo/activar',
-                    component: __WEBPACK_IMPORTED_MODULE_19__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_20__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */]
                 }
             ])
         ],
         providers: [{ provide: __WEBPACK_IMPORTED_MODULE_5__angular_common__["a" /* APP_BASE_HREF */], useValue: '/' }],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]],
-        schemas: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["j" /* CUSTOM_ELEMENTS_SCHEMA */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* AppComponent */]],
+        schemas: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]]
     })
 ], AppModule);
 
@@ -373,18 +378,18 @@ var ActualizarDatosComponent = (function () {
     return ActualizarDatosComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("direccion"),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("direccion"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
 ], ActualizarDatosComponent.prototype, "searchElementRef", void 0);
 ActualizarDatosComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         //selector: 'app-crearCooperativa',
         template: __webpack_require__("../../../../../src/app/cooperativa/actualizardatos.component.html"),
         providers: [
             __WEBPACK_IMPORTED_MODULE_3__actualizardatos_service__["a" /* ActualizarDatosService */]
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__actualizardatos_service__["a" /* ActualizarDatosService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actualizardatos_service__["a" /* ActualizarDatosService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__actualizardatos_service__["a" /* ActualizarDatosService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actualizardatos_service__["a" /* ActualizarDatosService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _g || Object])
 ], ActualizarDatosComponent);
 
 var _a, _b, _c, _d, _e, _f, _g;
@@ -436,7 +441,7 @@ var ActualizarDatosService = (function () {
     return ActualizarDatosService;
 }());
 ActualizarDatosService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], ActualizarDatosService);
 
@@ -518,7 +523,7 @@ var CooperativaDetalleComponent = (function () {
     return CooperativaDetalleComponent;
 }());
 CooperativaDetalleComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-cooperativa-detalle',
         template: __webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.html"),
         styles: [__webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.css")],
@@ -527,7 +532,7 @@ CooperativaDetalleComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */]
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */]) === "function" && _e || Object])
 ], CooperativaDetalleComponent);
 
 var _a, _b, _c, _d, _e;
@@ -567,7 +572,7 @@ var CooperativaService = (function () {
     return CooperativaService;
 }());
 CooperativaService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], CooperativaService);
 
@@ -712,18 +717,18 @@ var CrearCooperativaComponent = (function () {
     return CrearCooperativaComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("direccion"),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("direccion"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
 ], CrearCooperativaComponent.prototype, "searchElementRef", void 0);
 CrearCooperativaComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         //selector: 'app-crearCooperativa',
         template: __webpack_require__("../../../../../src/app/cooperativa/crearCooperativa.component.html"),
         providers: [
             __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */]
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__crearCooperativa_service__["a" /* CrearCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _e || Object])
 ], CrearCooperativaComponent);
 
 var _a, _b, _c, _d, _e;
@@ -771,7 +776,7 @@ var CrearCooperativaService = (function () {
     return CrearCooperativaService;
 }());
 CrearCooperativaService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], CrearCooperativaService);
 
@@ -877,7 +882,7 @@ var ListadoCooperativaComponent = (function () {
     return ListadoCooperativaComponent;
 }());
 ListadoCooperativaComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-listadocooperativa',
         template: __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.component.html"),
         styles: [__webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.component.css")],
@@ -940,7 +945,7 @@ var ListadoCooperativaService = (function () {
     return ListadoCooperativaService;
 }());
 ListadoCooperativaService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], ListadoCooperativaService);
 
@@ -1016,14 +1021,14 @@ var ActivarCorreoComponent = (function () {
     return ActivarCorreoComponent;
 }());
 ActivarCorreoComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-activar-correo',
         template: __webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.css")],
         providers: [
             __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]
         ],
-        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__productor_service__["a" /* ProductorService */]) === "function" && _a || Object])
 ], ActivarCorreoComponent);
@@ -1225,16 +1230,16 @@ var ProductorDetalleComponent = (function () {
     return ProductorDetalleComponent;
 }());
 ProductorDetalleComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-productor-detalle',
         template: __webpack_require__("../../../../../src/app/productor/productor-detalle/productor-detalle.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/productor-detalle/productor-detalle.component.css")],
         providers: [
             __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]
         ],
-        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ChangeDetectorRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _e || Object])
 ], ProductorDetalleComponent);
 
 var _a, _b, _c, _d, _e;
@@ -1469,11 +1474,11 @@ var ProductorEditarComponent = (function () {
     return ProductorEditarComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("search"),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("search"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
 ], ProductorEditarComponent.prototype, "searchElementRef", void 0);
 ProductorEditarComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         //selector: 'app-productor-registro',
         template: __webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.css")],
@@ -1481,9 +1486,9 @@ ProductorEditarComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__productor_service__["a" /* ProductorService */],
             __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
         ],
-        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _g || Object])
 ], ProductorEditarComponent);
 
 var _a, _b, _c, _d, _e, _f, _g;
@@ -1499,7 +1504,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.i(__webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../material/prebuilt-themes/indigo-pink.css"), "");
 
 // module
-exports.push([module.i, "/*.example-container {\n  display: flex;\n  flex-direction: column;\n  max-height: 500px;\n  min-width: 300px;\n}\n\n.mat-table {\n  overflow: auto;\n  max-height: 500px;\n}*/\n\n", ""]);
+exports.push([module.i, "/* Absolute Center Spinner */\n.loading-indicator {\n  position: fixed;\n  z-index: 999;\n  height: 2em;\n  width: 2em;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n}\n\n/* Transparent Overlay */\n.loading-indicator:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n", ""]);
 
 // exports
 
@@ -1512,7 +1517,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productor-lista/productor-lista.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Page Title-->\n<section class=\"page-title\" style=\"background-image:url(/static/images/background/bg-page-title-1a.jpg);\">\n    <div class=\"auto-container\">\n        <h1>Productores</h1>\n    </div>\n</section>\n\n<!--Shop Section-->\n<section class=\"shop-section\">\n    <div class=\"auto-container\">\n        <div class=\"example-container mat-elevation-z8\">\n            <mat-table #table [dataSource]=\"dataSource\">\n\n                <!--- Note that these columns can be defined in any order.\n                      The actual rendered columns are set as a property on the row definition\" -->\n\n                <!-- Name Column -->\n                <ng-container matColumnDef=\"foto\">\n                    <mat-header-cell *matHeaderCellDef> Foto</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\"> <img src=\"{{ element.foto }}\" style=\"width: 80%;\"/></mat-cell>\n                </ng-container>\n\n                <!-- Name Column -->\n                <ng-container matColumnDef=\"nombre\">\n                    <mat-header-cell *matHeaderCellDef> Nombre</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\"> {{ element.nombre }} </mat-cell>\n                </ng-container>\n\n                <!-- Weight Column -->\n                <ng-container matColumnDef=\"documento\">\n                    <mat-header-cell *matHeaderCellDef> Documento</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\"> {{ element.documento }} </mat-cell>\n                </ng-container>\n\n                <ng-container matColumnDef=\"aprobado\">\n                    <mat-header-cell *matHeaderCellDef> Aprobado</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\"> {{ element.aprobado }} </mat-cell>\n                </ng-container>\n\n                <ng-container matColumnDef=\"id\">\n                    <mat-header-cell *matHeaderCellDef> Acciones</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\">\n\n                      <a routerLink=\"/productor/detalle/{{ element.id }}\">\n                        <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"></span>\n                      </a>\n\n                      <a routerLink=\"/productor/editar/{{ element.id }}\">\n                        <span class=\"fa fa-edit title-box title\" title=\"Editar productor\"></span>\n                      </a>\n                      <!--<a href=\"detalle/{{ element.id }}\">Ver</a>\n                      <a href=\"editar/{{ element.id }}\">Editar</a>-->\n                    </mat-cell>\n                </ng-container>\n\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n            </mat-table>\n        </div>\n    </div>\n</section>\n\n\n\n"
+module.exports = "<!--Page Title-->\n<section class=\"page-title\" style=\"background-image:url(/static/images/background/bg-page-title-1a.jpg);\">\n    <div class=\"auto-container\">\n        <h1>Productores</h1>\n    </div>\n</section>\n\n<!--Shop Section-->\n<section class=\"shop-section\">\n    <div class=\"auto-container\">\n        <div class=\"example-container mat-elevation-z8\">\n            <mat-table #table [dataSource]=\"dataSource\">\n\n                <!--- Note that these columns can be defined in any order.\n                      The actual rendered columns are set as a property on the row definition\" -->\n\n                <!-- Name Column -->\n                <ng-container matColumnDef=\"foto\">\n                    <mat-header-cell *matHeaderCellDef> Foto</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\"><img [lazyLoad]=\"element.foto\" style=\"width: 80%;\"/></mat-cell>\n                </ng-container>\n\n                <!-- Name Column -->\n                <ng-container matColumnDef=\"nombre\">\n                    <mat-header-cell *matHeaderCellDef> Nombre</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\"> {{ element.nombre }} </mat-cell>\n                </ng-container>\n\n                <!-- Weight Column -->\n                <ng-container matColumnDef=\"documento\">\n                    <mat-header-cell *matHeaderCellDef> Documento</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\"> {{ element.documento }} </mat-cell>\n                </ng-container>\n\n                <ng-container matColumnDef=\"aprobado\">\n                    <mat-header-cell *matHeaderCellDef> Aprobado</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\"> {{ element.aprobado }} </mat-cell>\n                </ng-container>\n\n                <ng-container matColumnDef=\"id\">\n                    <mat-header-cell *matHeaderCellDef> Acciones</mat-header-cell>\n                    <mat-cell *matCellDef=\"let element\">\n\n                        <a routerLink=\"/productor/detalle/{{ element.id }}\">\n                            <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"></span>\n                        </a>\n\n                        <a routerLink=\"/productor/editar/{{ element.id }}\">\n                            <span class=\"fa fa-edit title-box title\" title=\"Editar productor\"></span>\n                        </a>\n                        <!--<a href=\"detalle/{{ element.id }}\">Ver</a>\n                      <a href=\"editar/{{ element.id }}\">Editar</a>-->\n                    </mat-cell>\n                </ng-container>\n\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n            </mat-table>\n\n            <div class=\"loading-indicator\" *ngIf=\"loading\">\n                <mat-progress-spinner mode=\"indeterminate\" color=\"accent\"></mat-progress-spinner>\n            </div>\n        </div>\n    </div>\n</section>\n\n\n\n"
 
 /***/ }),
 
@@ -1559,9 +1564,11 @@ var ProductorListaComponent = (function () {
         this.filtrocooperativa = 0;
         this.displayedColumns = ['foto', 'nombre', 'documento', 'aprobado', 'id'];
         this.dataSource = null;
+        this.loading = false;
     }
     ProductorListaComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.loading = true;
         this.productorServices.getProductor()
             .subscribe(function (productores) {
             _this.productores = productores;
@@ -1578,16 +1585,17 @@ var ProductorListaComponent = (function () {
             /*console.log(filtrocooperativa2 );*/
             /*console.log(this.productores );*/
             _this.dataSource = new ProductorDataSource(_this.productores);
+            _this.loading = false;
         });
     };
     return ProductorListaComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], ProductorListaComponent.prototype, "filtrocooperativa", void 0);
 ProductorListaComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-productor-lista',
         template: __webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.css")],
@@ -1675,7 +1683,7 @@ var ProductorService = (function () {
     return ProductorService;
 }());
 ProductorService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], ProductorService);
 
@@ -1872,11 +1880,11 @@ var ProductorRegistroComponent = (function () {
     return ProductorRegistroComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("search"),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("search"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
 ], ProductorRegistroComponent.prototype, "searchElementRef", void 0);
 ProductorRegistroComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         //  selector: 'app-productor-registro',
         template: __webpack_require__("../../../../../src/app/productor/productorRegistro.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/productorRegistro.component.css")],
@@ -1884,9 +1892,9 @@ ProductorRegistroComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */],
             __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
         ],
-        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _e || Object])
 ], ProductorRegistroComponent);
 
 var _a, _b, _c, _d, _e;
@@ -2056,11 +2064,11 @@ var RegistroAdminComponent = (function () {
     return RegistroAdminComponent;
 }());
 __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* ViewChild */])("search"),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("search"),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
 ], RegistroAdminComponent.prototype, "searchElementRef", void 0);
 RegistroAdminComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-registro-admin',
         template: __webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.css")],
@@ -2068,9 +2076,9 @@ RegistroAdminComponent = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */],
             __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
         ],
-        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* ViewEncapsulation */].None,
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* NgZone */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _e || Object])
 ], RegistroAdminComponent);
 
 var _a, _b, _c, _d, _e;
@@ -2109,7 +2117,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_24" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });

@@ -17,9 +17,12 @@ export class ProductorListaComponent implements OnInit {
   displayedColumns = ['foto', 'nombre', 'documento', 'aprobado', 'id'];
   dataSource : ProductorDataSource = null;
 
+  loading:boolean=false;
+
   constructor(private productorServices: ProductorService) {}
 
   ngOnInit() {
+    this.loading=true;
     this.productorServices.getProductor()
           .subscribe(productores =>{
             this.productores = productores;
@@ -35,6 +38,7 @@ export class ProductorListaComponent implements OnInit {
             /*console.log(filtrocooperativa2 );*/
             /*console.log(this.productores );*/
             this.dataSource = new ProductorDataSource(this.productores);
+            this.loading = false;
           });
   }
 
