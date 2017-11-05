@@ -6,8 +6,8 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { APP_BASE_HREF } from "@angular/common";
 import { AgmCoreModule } from "@agm/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatTableModule, MatProgressSpinnerModule } from '@angular/material';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { MatTableModule, MatProgressSpinnerModule } from "@angular/material";
+import { LazyLoadImageModule } from "ng-lazyload-image";
 
 import { AppComponent } from "./app.component";
 import { ListadoCooperativaComponent } from "./cooperativa/listadoCooperativa.component";
