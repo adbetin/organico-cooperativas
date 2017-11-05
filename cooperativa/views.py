@@ -73,7 +73,6 @@ def actualizarCooperativa(request):
         coop.telefono=cooperativaPost["telefono"]
         coop.latitud=cooperativaPost["latitud"]
         coop.longitud = cooperativaPost["longitud"]
-
         coop.save()
         respuesta = True
     return modeloJSON(respuesta)
@@ -85,6 +84,5 @@ def cooperativasDetail(request, id):
 
 def serviciosAdmin(request, cooperativa_id):
     servicio = Servicio.objects.all()
-    #servicio = get_object_or_404(Servicio, cooperativa=cooperativa_id)
     context = {'servicio': servicio}
     return render(request, 'cooperativas.html', context)

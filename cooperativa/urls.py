@@ -30,7 +30,6 @@ urlpatterns = [
 
     # Almacenamiento de datos
     url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),
-
     url(r'^actualizarCooperativa/$', views.actualizarCooperativa, name="actualizar_cooperativa"),
 
     # Consulta de datos
