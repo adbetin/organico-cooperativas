@@ -2,9 +2,9 @@
 
 /* Absolute Center Spinner */
 .loading-indicator {
-  position: fixed;
+  /*position: inherit;
   z-index: 999;
-  height: 2em;
+  height: 2em;*/
   width: 2em;
   overflow: show;
   margin: auto;
@@ -14,7 +14,7 @@
   right: 0;
 }
 
-/* Transparent Overlay */
+/* Transparent Overlay
 .loading-indicator:before {
   content: '';
   display: block;
@@ -24,4 +24,4 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.3);
-}
+}*/

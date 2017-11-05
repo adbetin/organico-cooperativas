@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="{% static "css/team.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    404 No encontrado</h2>
+                <div class="error-details">
+                    Lo sentimos, ha ocurrido un error. La página solicitada no existe
+                </div>
+                <div>
+                    <a href="{% url 'home' %}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Ir al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
