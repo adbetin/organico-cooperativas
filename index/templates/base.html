@@ -99,6 +99,12 @@
                                             <li><a href="{% url 'activar_envio_correos' %}">Activar correo</a></li>
                                         </ul>
                                     </li>
+                                     <li class="dropdown"><a href="#">Productos</a>
+                                        <ul>
+                                           <li><a href="{% url 'productos' %}">Listado de Cooperativas</a>
+                                            </li>
+                                         </ul>
+                                    </li>
                                     {% if user.is_authenticated %}
                                         <li class="dropdown"><a href="#">{{ user.email }}</a>
                                             <ul>
