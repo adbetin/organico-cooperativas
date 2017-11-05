@@ -11,7 +11,8 @@ from cooperativa.serializers import CooperativaSerializer, ServicioSerializer
 # Create your views here.
 
 def cooperativasAdmin(request):
-    context = {}
+    cooperativas = Cooperativa.objects.all()
+    context = {'cooperativas': cooperativas}
     return render(request, 'cooperativas.html', context)
 
 class modeloJSON(HttpResponse):
