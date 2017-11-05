@@ -970,7 +970,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/activar-correo/activar-correo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activar-desactivar-module\">\n  <h1>Activar/Desactivar envio de correos</h1>\n  <section class=\"styled-checkbox\" style=\"background: none; border: none; box-shadow: none;\">\n    <div class=\"slideThree\">\n      <input type=\"checkbox\" [(ngModel)]=\"correoActivo\" (change)=\"activarCorreo()\" value=\"None\" id=\"slideThree\" name=\"check\" checked=\"\">\n      <label for=\"slideThree\"></label>\n    </div>\n  </section>\n</div>\n"
+module.exports = "<div class=\"activar-desactivar-module\">\r\n  <h1>Activar/Desactivar envio de correos</h1>\r\n  <section class=\"styled-checkbox\" style=\"background: none; border: none; box-shadow: none;\">\r\n    <div class=\"slideThree\">\r\n      <input type=\"checkbox\" [(ngModel)]=\"correoActivo\" (change)=\"activarCorreo()\" value=\"None\" id=\"slideThree\" name=\"check\" checked=\"\">\r\n      <label for=\"slideThree\"></label>\r\n    </div>\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
