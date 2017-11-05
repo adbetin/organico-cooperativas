@@ -32,6 +32,11 @@
                     <mat-cell *matCellDef="let element"> {{ element.documento }} </mat-cell>
                 </ng-container>
 
+                <ng-container matColumnDef="aprobado">
+                    <mat-header-cell *matHeaderCellDef> Aprobado</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.aprobado }} </mat-cell>
+                </ng-container>
+
                 <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef> Acciones</mat-header-cell>
                     <mat-cell *matCellDef="let element">
