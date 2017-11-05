@@ -143,7 +143,8 @@ export class ActualizarDatosComponent{
     this.marker.zoom = 15;
     this.cooperativa.latitud = $event.coords.lat;
     this.cooperativa.longitud = $event.coords.lng;
-    
+
+
     let geocoder = new google.maps.Geocoder();
     let latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
     let request = { location: latlng };

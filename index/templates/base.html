@@ -2,21 +2,26 @@
 {% load static %}
 <html>
 <head>
-<meta charset="utf-8">
-<title>Organico Cooperativas - {% block title %}{% endblock %}</title>
-<!-- Stylesheets -->
-<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-<link href="{% static "css/revolution-slider.css" %}"  rel="stylesheet">
-<link href="{% static "css/style.css" %}" rel="stylesheet">
-<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
-<link rel="icon" href="{% static "images/favicon.ico"%}" type="image/x-icon">
-<!-- Responsive -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<link href="{% static "css/responsive.css" %}" rel="stylesheet">
-<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
-{% block styles%} {% endblock %}
+    <meta charset="utf-8">
+    <title>Organico Cooperativas - {% block title %}{% endblock %}</title>
+    <!-- Stylesheets -->
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/revolution-slider.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/login.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+    <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="{% static "css/responsive.css" %}" rel="stylesheet">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+
+    <link href="{% static "organico-app/node_modules/@angular/material/prebuilt-themes/purple-green.css" %}"
+          rel="stylesheet">
+    {% block styles %} {% endblock %}
 </head>
 
 <body>
@@ -85,6 +90,9 @@
                                     </li>
                                     <li class="dropdown"><a href="#">Administrador</a>
                                         <ul>
+                                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar
+                                                Productor</a></li>
+                                            <li><a href="{% url 'activar_envio_correos' %}">Activar correo</a></li>
                                             <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
                                             <li><a href="{% url 'crear_foro' %}">Crear foro</a></li>
                                             <li><a href="{% url 'lista_foro' %}">Listado de foros</a></li>
@@ -145,6 +153,48 @@
                 <ul class="navigation">
                     <li><a href="{% url 'home' %}">Inicio</a></li>
 
+                    <!--<li class="current dropdown"><a href="#">Inicio</a>
+                        <ul>
+                            <li><a href="index.html">Homepage One</a></li>
+                            <li><a href="index-2.html">Homepage Two</a></li>
+                            <li><a href="index-3.html">Homepage Three</a></li>
+                            <li class="dropdown"><a href="index-3.html">Header Styles</a>
+                                <ul>
+                                    <li><a href="index.html">Header Style One</a></li>
+                                    <li><a href="index-2.html">Header Style Two</a></li>
+                                    <li><a href="index-3.html">Header Style Three</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li class="dropdown"><a href="#">Cooperativas</a>
+                        <ul>
+                            <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
+                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
+                            <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
+                        </ul>
+                    </li>
+                    <!--<li><a href="about-us.html">About Us</a></li>-->
+                    <li class="dropdown"><a href="#">Productores</a>
+                        <ul>
+                            <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
+                            <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">Administrador</a>
+                        <ul>
+                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
+                            <li><a href="{% url 'registrar_productor_administrador' %}">Activar correo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                    <!--<li class="dropdown"><a href="#">Blog</a>
+                        <ul>
+                            <li><a href="blog.html">Our Blog</a></li>
+                            <li><a href="blog-single.html">Blog Single</a></li>
+                        </ul>
+                    </li>-->
+                    <!--<li class="dropdown"><a href="#">Shop</a>
                                     <!--<li class="current dropdown"><a href="#">Inicio</a>
                                     	<ul>
                                             <li><a href="index.html">Homepage One</a></li>

@@ -1,12 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
-import { AgmCoreModule } from '@agm/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule,MatDatepickerModule,MatNativeDateModule,MatDialogModule } from '@angular/material';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { HttpModule } from "@angular/http";
+import { RouterModule } from "@angular/router";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { APP_BASE_HREF } from "@angular/common";
+import { AgmCoreModule } from "@agm/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatTableModule, MatProgressSpinnerModule } from "@angular/material";
+import { LazyLoadImageModule } from "ng-lazyload-image";
 
 import { AppComponent } from './app.component';
 import { ListadoCooperativaComponent } from './cooperativa/listadoCooperativa.component';
@@ -38,7 +39,9 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
     CrearForoComponent,
     ListadoForosComponent,
     EditarForoComponent,
-    RespuestaForoComponent
+    RespuestaForoComponent,
+    RegistroAdminComponent,
+    ActivarCorreoComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,8 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    LazyLoadImageModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo',
       libraries: ["places"]
@@ -107,6 +112,10 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
         path: 'administrador/respuestaForo/:id',
         component: RespuestaForoComponent
       },
+      {
+        path: "productor/correo/activar",
+        component: ActivarCorreoComponent
+      }
     ])
   ],
  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
