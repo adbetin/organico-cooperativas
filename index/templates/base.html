@@ -2,55 +2,63 @@
 {% load static %}
 <html>
 <head>
-<meta charset="utf-8">
-<title>Organico Cooperativas - {% block title %}{% endblock %}</title>
-<!-- Stylesheets -->
-<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-<link href="{% static "css/revolution-slider.css" %}"  rel="stylesheet">
-<link href="{% static "css/style.css" %}" rel="stylesheet">
-<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
-<link rel="icon" href="{% static "images/favicon.ico"%}" type="image/x-icon">
-<!-- Responsive -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<link href="{% static "css/responsive.css" %}" rel="stylesheet">
-<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
-{% block styles%} {% endblock %}
+    <meta charset="utf-8">
+    <title>Organico Cooperativas - {% block title %}{% endblock %}</title>
+    <!-- Stylesheets -->
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/revolution-slider.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/login.css" %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+    <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="{% static "css/responsive.css" %}" rel="stylesheet">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+
+    <link href="{% static "organico-app/node_modules/@angular/material/prebuilt-themes/purple-green.css" %}"
+          rel="stylesheet">
+    {% block styles %} {% endblock %}
 </head>
 
 <body>
 
 <div class="page-wrapper">
- 	
+
     <!-- Preloader -->
     <div class="preloader"></div>
- 	
+
     <!-- Main Header-->
     <header class="main-header">
-        
+
         <!-- Main Box -->
-    	<div class="main-box">
-        	<div class="auto-container">
-            	<div class="outer-container clearfix">
+        <div class="main-box">
+            <div class="auto-container">
+                <div class="outer-container clearfix">
                     <!--Logo Box-->
                     <div class="logo-box">
-                        <div class="logo"><a href="index.html"><img src="{% static "images/logo.png" %}" alt=""></a></div>
+                        <div class="logo"><a href="{% url 'home' %}"><img src="{% static "images/logo.png" %}"
+                                                                          alt=""></a>
+                        </div>
                     </div>
-                    
+
                     <!--Nav Outer-->
                     <div class="nav-outer clearfix">
                         <!-- Main Menu -->
                         <nav class="main-menu">
                             <div class="navbar-header">
-                                <!-- Toggle Button -->    	
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
+                                <!-- Toggle Button -->
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
                                 </button>
                             </div>
-                            
+
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation clearfix">
                                     <li><a href="{% url 'home' %}">Inicio</a></li>
@@ -70,9 +78,10 @@
                                         </ul>
                                     </li>-->
                                     <li class="dropdown"><a href="#">Cooperativas</a>
-                                    	<ul>
+                                        <ul>
                                             <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
-                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
+                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a>
+                                            </li>
                                             <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
                                         </ul>
                                     </li>
@@ -85,10 +94,23 @@
                                     </li>
                                     <li class="dropdown"><a href="#">Administrador</a>
                                         <ul>
-                                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
+                                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar
+                                                Productor</a></li>
                                             <li><a href="{% url 'activar_envio_correos' %}">Activar correo</a></li>
                                         </ul>
                                     </li>
+                                    {% if user.is_authenticated %}
+                                        <li class="dropdown"><a href="#">{{ user.email }}</a>
+                                            <ul>
+                                                <li><a href="{% url 'logout' %}">Cerrar Sesi&oacute;n</a></li>
+                                            </ul>
+                                        </li>
+                                    {% else %}
+                                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                                    {% endif %}
+
+
+
                                     <!--<li class="dropdown"><a href="#">Blog</a>
                                     	<ul>
                                             <li><a href="blog.html">Our Blog</a></li>
@@ -104,87 +126,88 @@
                                         </ul>
                                     </li>
                                     <li><a href="{% url 'team' %}">Nuestro Equipo</a></li>-->
-                                 </ul>
+                                </ul>
                             </div>
                         </nav><!-- Main Menu End-->
-                        
+
                     </div><!--Nav Outer End-->
-                    
+
                     <!-- Hidden Nav Toggler -->
                     <div class="nav-toggler">
-                    <button class="hidden-bar-opener"><span class="icon fa fa-bars"></span></button>
+                        <button class="hidden-bar-opener"><span class="icon fa fa-bars"></span></button>
                     </div><!-- / Hidden Nav Toggler -->
-                    
-            	</div>    
+
+                </div>
             </div>
         </div>
-    
+
     </header>
     <!--End Main Header -->
-    
-    
+
+
     <!-- Hidden Navigation Bar -->
     <section class="hidden-bar right-align">
-        
+
         <div class="hidden-bar-closer">
             <button class="btn"><i class="fa fa-close"></i></button>
         </div>
-        
+
         <!-- Hidden Bar Wrapper -->
         <div class="hidden-bar-wrapper">
-        
+
             <!-- .logo -->
             <div class="logo text-center">
-                <a href="index.html"><img src="{% static "images/logo-4.png" %}" alt=""></a>
+                <a href="{% url 'home' %}"><img src="{% static "images/logo-4.png" %}" alt=""></a>
             </div><!-- /.logo -->
-            
+
             <!-- .Side-menu -->
             <div class="side-menu">
-            <!-- .navigation -->
+                <!-- .navigation -->
                 <ul class="navigation">
                     <li><a href="{% url 'home' %}">Inicio</a></li>
 
-                                    <!--<li class="current dropdown"><a href="#">Inicio</a>
-                                    	<ul>
-                                            <li><a href="index.html">Homepage One</a></li>
-                                            <li><a href="index-2.html">Homepage Two</a></li>
-                                            <li><a href="index-3.html">Homepage Three</a></li>
-                                            <li class="dropdown"><a href="index-3.html">Header Styles</a>
-                                            	<ul>
-                                                	<li><a href="index.html">Header Style One</a></li>
-                                                    <li><a href="index-2.html">Header Style Two</a></li>
-                                                    <li><a href="index-3.html">Header Style Three</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>-->
-                                    <li class="dropdown"><a href="#">Cooperativas</a>
-                                    	<ul>
-                                            <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
-                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
-                                            <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
-                                        </ul>
-                                    </li>
-                                    <!--<li><a href="about-us.html">About Us</a></li>-->
-                                    <li class="dropdown"><a href="#">Productores</a>
-                                        <ul>
-                                            <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
-                                            <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Administrador</a>
-                                        <ul>
-                                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
-                                            <li><a href="{% url 'registrar_productor_administrador' %}">Activar correo</a></li>
-                                        </ul>
-                                    </li>
-                                    <!--<li class="dropdown"><a href="#">Blog</a>
-                                    	<ul>
-                                            <li><a href="blog.html">Our Blog</a></li>
-                                            <li><a href="blog-single.html">Blog Single</a></li>
-                                        </ul>
-                                    </li>-->
-                                    <!--<li class="dropdown"><a href="#">Shop</a>
+                    <!--<li class="current dropdown"><a href="#">Inicio</a>
+                        <ul>
+                            <li><a href="index.html">Homepage One</a></li>
+                            <li><a href="index-2.html">Homepage Two</a></li>
+                            <li><a href="index-3.html">Homepage Three</a></li>
+                            <li class="dropdown"><a href="index-3.html">Header Styles</a>
+                                <ul>
+                                    <li><a href="index.html">Header Style One</a></li>
+                                    <li><a href="index-2.html">Header Style Two</a></li>
+                                    <li><a href="index-3.html">Header Style Three</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li class="dropdown"><a href="#">Cooperativas</a>
+                        <ul>
+                            <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
+                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
+                            <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
+                        </ul>
+                    </li>
+                    <!--<li><a href="about-us.html">About Us</a></li>-->
+                    <li class="dropdown"><a href="#">Productores</a>
+                        <ul>
+                            <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
+                            <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">Administrador</a>
+                        <ul>
+                            <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
+                            <li><a href="{% url 'registrar_productor_administrador' %}">Activar correo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                    <!--<li class="dropdown"><a href="#">Blog</a>
+                        <ul>
+                            <li><a href="blog.html">Our Blog</a></li>
+                            <li><a href="blog-single.html">Blog Single</a></li>
+                        </ul>
+                    </li>-->
+                    <!--<li class="dropdown"><a href="#">Shop</a>
                                     	<ul>
                                             <li><a href="/shop">Our Shop</a></li>
                                             <li><a href="shop-single.html">Shop Single</a></li>
@@ -195,96 +218,141 @@
                                     <li><a href="{% url 'team' %}">Nuestro Equipo</a></li>-->
                 </ul>
             </div><!-- /.Side-menu -->
-        
-            <div class="social-icons">
+
+            <!--div class="social-icons">
                 <ul>
                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
-            </div>
-        
+            </div-->
+
         </div><!-- / Hidden Bar Wrapper -->
     </section>
     <!-- / Hidden Bar -->
-    
-    
-    {% block content%} {% endblock %}
-    
+
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="loginmodal-container">
+                <h1>Iniciar Sesi&oacute;n</h1><br>
+                {% if form.errors %}
+                    <p>Tu usuario o contrase&ntilde;a no coiniciden. Intenta nuevamente</p>
+                {% endif %}
+                <p id="formErrors"></p>
+                <form id="loginForm">
+                    {% csrf_token %}
+                    <input type="text" name="user" placeholder="Usuario o Correo">
+                    <input type="password" name="password" placeholder="Contrase&ntilde;a">
+                    <input type="submit" name="login" id="loginButton"
+                           class="login loginmodal-submit" value="Log In">
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </form>
+
+                <div class="login-help">
+                    <!--a href="#">Register</a> - <a href="#">Forgot Password</a-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block content %} {% endblock %}
+
     <!--Main Footer / Footer Style One-->
     <footer class="main-footer footer-style-one">
-    	
-        <!--Footer Upper-->        
+
+        <!--Footer Upper-->
         <div class="footer-upper">
             <div class="auto-container">
                 <div class="row clearfix">
-                	
+
                     <!--Footer Column-->
-                	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column">
                         <div class="footer-widget about-widget">
-                            <figure class="footer-logo"><a href="index.html"><img src="{% static "images/logo-3.png"%}"  alt=""></a></figure>
-                            
+                            <figure class="footer-logo"><a href="index.html"><img src="{% static "images/logo-3.png" %}"
+                                                                                  alt=""></a></figure>
+
                             <div class="text">
-                            	<p>Vestibulum facilisis rhoncus tempor. Duis non ipsum volutpat, rhoat nacus nisi sed, pulvinar ex.</p>
+                                <p>Vestibulum facilisis rhoncus tempor. Duis non ipsum volutpat, rhoat nacus nisi sed,
+                                    pulvinar ex.</p>
                                 <p>Etiam sit amet libero consea typoe, convallis odio estibulum urna.</p>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                     <!--Footer Column-->
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column">
                         <div class="footer-widget info-widget">
-                        	<h2>KEEP IN TOUCH</h2>
+                            <h2>KEEP IN TOUCH</h2>
                             <ul class="info">
-                            	<li>Address : 44 New Design Street, Down Town,  Melbourne 005</li>
-                                <li>Phone :  800 433 633 (or) 452 23 4354</li>
+                                <li>Address : 44 New Design Street, Down Town, Melbourne 005</li>
+                                <li>Phone : 800 433 633 (or) 452 23 4354</li>
                                 <li>Email : Stevan@Example.com</li>
                             </ul>
                         </div>
                     </div>
-                    
-                    
+
+
                     <!--Footer Column-->
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column">
-                    	<div class="footer-widget gallery-widget">
-                            <h2>Instagram Feed</h2>	
+                        <div class="footer-widget gallery-widget">
+                            <h2>Instagram Feed</h2>
                             <div class="clearfix">
-                                <figure class="image"><a href="{% static "images/resource/blog-image-4.jpg"%}"  class="lightbox-image" data-fancybox-group="fancybox" title="Caption Here"><img src="{% static "images/resource/footer-gallery-1.jpg"%}"  alt=""></a></figure>
-                                <figure class="image"><a href="{% static "images/resource/blog-image-5.jpg"%}"  class="lightbox-image" data-fancybox-group="fancybox" title="Caption Here"><img src="{% static "images/resource/footer-gallery-2.jpg"%}"  alt=""></a></figure>
-                                <figure class="image"><a href="{% static "images/resource/blog-image-6.jpg"%}"  class="lightbox-image" data-fancybox-group="fancybox" title="Caption Here"><img src="{% static "images/resource/footer-gallery-3.jpg"%}"  alt=""></a></figure>
-                                <figure class="image"><a href="{% static "images/resource/blog-image-7.jpg"%}"  class="lightbox-image" data-fancybox-group="fancybox" title="Caption Here"><img src="{% static "images/resource/footer-gallery-4.jpg"%}"  alt=""></a></figure>
-                                <figure class="image"><a href="{% static "images/resource/blog-image-8.jpg"%}"  class="lightbox-image" data-fancybox-group="fancybox" title="Caption Here"><img src="{% static "images/resource/footer-gallery-5.jpg"%}"  alt=""></a></figure>
-                                <figure class="image"><a href="{% static "images/resource/blog-image-9.jpg"%}"  class="lightbox-image" data-fancybox-group="fancybox" title="Caption Here"><img src="{% static "images/resource/footer-gallery-6.jpg"%}"  alt=""></a></figure>
+                                <figure class="image"><a href="{% static "images/resource/blog-image-4.jpg" %}"
+                                                         class="lightbox-image" data-fancybox-group="fancybox"
+                                                         title="Caption Here"><img
+                                        src="{% static "images/resource/footer-gallery-1.jpg" %}" alt=""></a></figure>
+                                <figure class="image"><a href="{% static "images/resource/blog-image-5.jpg" %}"
+                                                         class="lightbox-image" data-fancybox-group="fancybox"
+                                                         title="Caption Here"><img
+                                        src="{% static "images/resource/footer-gallery-2.jpg" %}" alt=""></a></figure>
+                                <figure class="image"><a href="{% static "images/resource/blog-image-6.jpg" %}"
+                                                         class="lightbox-image" data-fancybox-group="fancybox"
+                                                         title="Caption Here"><img
+                                        src="{% static "images/resource/footer-gallery-3.jpg" %}" alt=""></a></figure>
+                                <figure class="image"><a href="{% static "images/resource/blog-image-7.jpg" %}"
+                                                         class="lightbox-image" data-fancybox-group="fancybox"
+                                                         title="Caption Here"><img
+                                        src="{% static "images/resource/footer-gallery-4.jpg" %}" alt=""></a></figure>
+                                <figure class="image"><a href="{% static "images/resource/blog-image-8.jpg" %}"
+                                                         class="lightbox-image" data-fancybox-group="fancybox"
+                                                         title="Caption Here"><img
+                                        src="{% static "images/resource/footer-gallery-5.jpg" %}" alt=""></a></figure>
+                                <figure class="image"><a href="{% static "images/resource/blog-image-9.jpg" %}"
+                                                         class="lightbox-image" data-fancybox-group="fancybox"
+                                                         title="Caption Here"><img
+                                        src="{% static "images/resource/footer-gallery-6.jpg" %}" alt=""></a></figure>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!--Footer Column-->
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 column padd-left-60">
-                    	<div class="footer-widget links-widget">
-                        <h2>Featured links</h2>
-                        	<div class="row clearfix">
-                            	<div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="footer-widget links-widget">
+                            <h2>Featured links</h2>
+                            <div class="row clearfix">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <ul>
                                         <li><a href="#">About</a></li>
                                         <li><a href="#">Testimonial</a></li>
                                         <li><a href="#">Team Members</a></li>
                                     </ul>
                                 </div>
-                                
+
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <ul>
                                         <li><a href="#">What We Do</a></li>
                                         <li><a href="#">New Products</a></li>
-                                        <li><a href="#">Our  Careere</a></li>
+                                        <li><a href="#">Our Careere</a></li>
                                     </ul>
-                                </div>    
+                                </div>
                             </div>
                             <br>
                             <div class="social-links">
-                            	<h3>Follow Us On:</h3>
+                                <h3>Follow Us On:</h3>
                                 <div class="links">
                                     <a href="#"><span class="fa fa-facebook-official"></span></a>
                                     <a href="#"><span class="fa fa-twitter"></span></a>
@@ -294,37 +362,35 @@
                                     <a href="#"><span class="fa fa-youtube-play"></span></a>
                                     <a href="#"><span class="fa fa-dropbox"></span></a>
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
-                
+
             </div>
         </div>
-        
+
         <!--Footer Bottom-->
-    	<div class="footer-bottom">
+        <div class="footer-bottom">
             <div class="auto-container">
-                    
+
                 <!--Copyright-->
                 <div class="copyright">Copyrights &copy; Warsaw 2016. All rights reserved.</div>
-                
+
             </div>
         </div>
-        
+
     </footer>
-    
+
 </div>
 <!--End pagewrapper-->
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-long-arrow-up"></span></div>
-
-{% block scripts%} {% endblock %}
 
 <script src="{% static "js/jquery.js" %}"></script>
 <script src="{% static "js/bootstrap.min.js" %}"></script>
@@ -337,6 +403,32 @@
 <script src="{% static "js/wow.js" %}"></script>
 <script src="{% static "js/script.js" %}"></script>
 
+<script>
+    $("#loginForm").on("submit", function (e) {
+        e.preventDefault();
+        $("#formErrors").html("");
+        debugger;
+        $("#loginButton").prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: "{% url 'login' %}",
+            data: $('#loginForm').serialize(),
+            success: function (response) {
+                // do something with response
+                if (response['result'] == "failed") {
+                    $("#formErrors").html("Tu usuario o contrase&ntilde;a no coiniciden. Intenta nuevamente");
+                } else {
+                    location.reload();
+                }
+            },
+            complete: function( jqXHR, textStatus ) {
+                $("#loginButton").prop('disabled', false);
+            }
+        });
+    });
+</script>
+
+{% block scripts %} {% endblock %}
 
 </body>
 </html>

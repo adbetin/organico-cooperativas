@@ -20,7 +20,7 @@ Alguien quiere comunicarse contigo
 %s te envio un mensaje:
 %s
 
-Gracias por usar nuestra aplicación
+Gracias por usar nuestra aplicacion
 
 Para acceder a la aplicacion haga click http://organico-cooperativas.herokuapp.com
 """
@@ -163,7 +163,7 @@ def enviarCorreo(request):
             fail_silently=False,
         )
         return Response("Correo enviado satisfactoriamente", status=status.HTTP_201_CREATED)
-    return Response("Error en el envío de correo", status=status.HTTP_400_BAD_REQUEST)
+    return Response("Error en el envio de correo", status=status.HTTP_400_BAD_REQUEST)
 
 def decode(data):
     new_data = data.decode("utf-8", "strict")
