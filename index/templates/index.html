@@ -1,22 +1,5 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 {% load static %}
-<html>
-<head>
-<meta charset="utf-8">
-<title>Organico Cooperativas - Inicio</title>
-<!-- Stylesheets -->
-<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-<link href="{% static "css/revolution-slider.css" %}"  rel="stylesheet">
-<link href="{% static "css/style.css" %}" rel="stylesheet">
-<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
-<link rel="icon" href="{% static "images/favicon.ico"%}" type="image/x-icon">
-<!-- Responsive -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<link href="{% static "css/responsive.css" %}" rel="stylesheet">
-<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
-</head>
 
 {% block content %}
     <!--Main Slider-->
@@ -26,137 +9,161 @@
             <div class="tp-banner">
                 <ul>
 
-                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="{% static "images/main-slider/image-1.jpg"%}"   data-saveperformance="off"  data-title="Awesome Title Here">
-                    <img src="{% static "images/main-slider/image-1.jpg" %}"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000"
+                        data-thumb="{% static "images/main-slider/image-1.jpg" %}" data-saveperformance="off"
+                        data-title="Awesome Title Here">
+                        <img src="{% static "images/main-slider/image-1.jpg" %}" alt="" data-bgposition="center top"
+                             data-bgfit="cover" data-bgrepeat="no-repeat">
 
-                    <div class="tp-caption sfl sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="-150"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h2>Granja Fresca</h2></div>
+                        <div class="tp-caption sfl sfb tp-resizeme"
+                             data-x="center" data-hoffset="0"
+                             data-y="center" data-voffset="-150"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn"><h2>Granja Fresca</h2></div>
 
-                    <div class="tp-caption sfr sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="-70"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><div class="big-text">Cultivadas localmente</div></div>
+                        <div class="tp-caption sfr sfb tp-resizeme"
+                             data-x="center" data-hoffset="0"
+                             data-y="center" data-voffset="-70"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn">
+                            <div class="big-text">Cultivadas localmente</div>
+                        </div>
 
-                    <div class="tp-caption sfl sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="0"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra ahora</a></div>
-
-
-                    </li>
-
-                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="{% static "images/main-slider/image-2.jpg" %}"  data-saveperformance="off"  data-title="Awesome Title Here">
-                    <img src="{% static "images/main-slider/image-2.jpg" %} " alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-
-                    <div class="tp-caption sfl sfb tp-resizeme"
-                    data-x="left" data-hoffset="15"
-                    data-y="center" data-voffset="-140"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><figure class="content-image"><img src="{% static "images/main-slider/leaf-icon.png" %}" alt=""></figure></div>
-
-                    <div class="tp-caption sfr sfb tp-resizeme"
-                    data-x="left" data-hoffset="15"
-                    data-y="center" data-voffset="-10"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h3>La gran variedad de frutas y vegetales <br/>mas frescos</h3></div>
-
-                    <div class="tp-caption sfl sfb tp-resizeme"
-                    data-x="left" data-hoffset="15"
-                    data-y="center" data-voffset="110"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra Ahora</a> &ensp;&ensp;</div>
+                        <div class="tp-caption sfl sfb tp-resizeme"
+                             data-x="center" data-hoffset="0"
+                             data-y="center" data-voffset="0"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra ahora</a>
+                        </div>
 
 
                     </li>
 
-                    <li data-transition="zoomout" data-slotamount="1" data-masterspeed="1000" data-thumb="{% static "images/main-slider/image-3.jpg"%}"  data-saveperformance="off"  data-title="Awesome Title Here">
-                    <img src="{% static "images/main-slider/image-3.jpg" %}"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1000"
+                        data-thumb="{% static "images/main-slider/image-2.jpg" %}" data-saveperformance="off"
+                        data-title="Awesome Title Here">
+                        <img src="{% static "images/main-slider/image-2.jpg" %} " alt="" data-bgposition="center top"
+                             data-bgfit="cover" data-bgrepeat="no-repeat">
 
-                    <div class="tp-caption sft sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="-140"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><figure class="content-image"><img src="{% static "images/main-slider/leaf-icon.png"%}"  alt=""></figure></div>
+                        <div class="tp-caption sfl sfb tp-resizeme"
+                             data-x="left" data-hoffset="15"
+                             data-y="center" data-voffset="-140"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn">
+                            <figure class="content-image"><img src="{% static "images/main-slider/leaf-icon.png" %}"
+                                                               alt=""></figure>
+                        </div>
 
-                    <div class="tp-caption sft sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="-10"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><h3 class="text-center">La gran variedad de frutas y vegetales <br/>mas frescos</h3></div>
+                        <div class="tp-caption sfr sfb tp-resizeme"
+                             data-x="left" data-hoffset="15"
+                             data-y="center" data-voffset="-10"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn"><h3>La gran variedad de frutas y vegetales <br/>mas frescos
+                        </h3></div>
 
-                    <div class="tp-caption sfb sfb tp-resizeme"
-                    data-x="center" data-hoffset="0"
-                    data-y="center" data-voffset="110"
-                    data-speed="1500"
-                    data-start="500"
-                    data-easing="easeOutExpo"
-                    data-splitin="none"
-                    data-splitout="none"
-                    data-elementdelay="0.01"
-                    data-endelementdelay="0.3"
-                    data-endspeed="1200"
-                    data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra Ahora</a> &ensp;&ensp;</div>
+                        <div class="tp-caption sfl sfb tp-resizeme"
+                             data-x="left" data-hoffset="15"
+                             data-y="center" data-voffset="110"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra Ahora</a>
+                            &ensp;&ensp;
+                        </div>
+
+
+                    </li>
+
+                    <li data-transition="zoomout" data-slotamount="1" data-masterspeed="1000"
+                        data-thumb="{% static "images/main-slider/image-3.jpg" %}" data-saveperformance="off"
+                        data-title="Awesome Title Here">
+                        <img src="{% static "images/main-slider/image-3.jpg" %}" alt="" data-bgposition="center top"
+                             data-bgfit="cover" data-bgrepeat="no-repeat">
+
+                        <div class="tp-caption sft sfb tp-resizeme"
+                             data-x="center" data-hoffset="0"
+                             data-y="center" data-voffset="-140"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn">
+                            <figure class="content-image"><img src="{% static "images/main-slider/leaf-icon.png" %}"
+                                                               alt=""></figure>
+                        </div>
+
+                        <div class="tp-caption sft sfb tp-resizeme"
+                             data-x="center" data-hoffset="0"
+                             data-y="center" data-voffset="-10"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn"><h3 class="text-center">La gran variedad de frutas y
+                            vegetales <br/>mas frescos</h3></div>
+
+                        <div class="tp-caption sfb sfb tp-resizeme"
+                             data-x="center" data-hoffset="0"
+                             data-y="center" data-voffset="110"
+                             data-speed="1500"
+                             data-start="500"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">Compra Ahora</a>
+                            &ensp;&ensp;
+                        </div>
 
 
                     </li>

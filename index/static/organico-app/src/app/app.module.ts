@@ -23,6 +23,7 @@ import { CrearForoComponent } from './administrador/foro/crearForo.component';
 import { ListadoForosComponent } from './administrador/foro/listadoForos.component';
 import { EditarForoComponent } from './administrador/foro/editarForo.component';
 import { RespuestaForoComponent } from './administrador/foro/respuestaForo.component';
+import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 
 @NgModule({
   declarations: [
@@ -53,6 +54,8 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    LazyLoadImageModule,
     MatProgressSpinnerModule,
     LazyLoadImageModule,
     AgmCoreModule.forRoot({
@@ -111,6 +114,10 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
       {
         path: 'administrador/respuestaForo/:id',
         component: RespuestaForoComponent
+      },
+      {
+        path: "productor/correo/activar",
+        component: ActivarCorreoComponent
       },
       {
         path: "productor/correo/activar",

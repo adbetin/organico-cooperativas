@@ -55,6 +55,7 @@ export class ProductorEditarComponent implements OnInit {
             this.cooperativas = response;
           });
 
+    //Capturar informacion del productor a editar
     this.route.params
       .switchMap((params: Params) =>
         this.productorService.getProd(+params["id"])
@@ -73,7 +74,7 @@ export class ProductorEditarComponent implements OnInit {
             this.setGeoLocalitation();
             this.setAutocomplete();
             //console.log( this.productor )
-          });
+      });
   }
 
   loadUserPosition () {
@@ -103,7 +104,7 @@ export class ProductorEditarComponent implements OnInit {
         this.productor.longitud = this.marker.longitud;
     };
   }
-  
+
   setAutocomplete(){//load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {

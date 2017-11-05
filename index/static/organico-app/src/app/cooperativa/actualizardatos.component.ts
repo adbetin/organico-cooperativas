@@ -1,7 +1,7 @@
 import {Component, OnInit, ElementRef, ChangeDetectorRef,  NgZone, ViewChild } from '@angular/core';
 import {NgForm, FormControl } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import { ActualizarDatosService } from './ActualizarDatos.service';
+import { ActualizarDatosService } from './actualizardatos.service';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
@@ -58,7 +58,6 @@ export class ActualizarDatosComponent{
 
           this.setGeoLocalitation();
           this.setAutocomplete();
-
         },
         reason => {
           this.cooperativa = null;
@@ -122,12 +121,11 @@ export class ActualizarDatosComponent{
 
     this.envioFormCooperativa = true;
     if (formCooperativa.valid) {
-
       formCooperativa.value.id = this.cooperativa.id;
       let resultado = this.ActualizarDatosServices.guardarCooperativa(formCooperativa.value).subscribe(result => {
-        if( resultado ){
+        if ( resultado ) {
           alert("Datos guardados correctamente");
-          this.router.navigateByUrl('cooperativa/listadoCooperativa');
+          this.router.navigateByUrl("cooperativa/listadoCooperativa");
         }else{
           alert("Error almacenando datos");
         }
@@ -143,7 +141,6 @@ export class ActualizarDatosComponent{
     this.marker.zoom = 15;
     this.cooperativa.latitud = $event.coords.lat;
     this.cooperativa.longitud = $event.coords.lng;
-
 
     let geocoder = new google.maps.Geocoder();
     let latlng = new google.maps.LatLng(this.marker.latitud, this.marker.longitud);
