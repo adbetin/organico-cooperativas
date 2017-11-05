@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   //selector: 'app-crearCooperativa',
+  styleUrls: ['crearForo.component.css'],
   templateUrl: 'editarForo.component.html',
   providers: [
     ForoService,

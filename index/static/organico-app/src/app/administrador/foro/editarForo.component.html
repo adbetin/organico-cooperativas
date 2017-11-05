@@ -26,15 +26,13 @@
                       </select>
                     </div>
 
-                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                        <input #fechacierre="ngModel" [(ngModel)]="foro.fecha_cierre" [ngClass]="{'error':!fechacierre.valid && envioFormForo}" type="text" name="fechacierre" value="" placeholder=" * Seleccione fecha cierre" ngModel required maxlength="70" pattern="[0-9- ]*">
+                    <div class="form-group col-md-6 col-sm-6 col-xs-4">
+                        <!--<input #fechacierre="ngModel" [ngClass]="{'error':!fechacierre.valid && envioFormForo}" type="text" name="fechacierre" value="" placeholder=" * Seleccione fecha cierre" ngModel required maxlength="70" pattern="[0-9- ]*">-->
+                        <input class="text-datepicker" readonly matInput [matDatepicker]="picker" #fechacierre="ngModel" [(ngModel)]="foro.fecha_cierre" [ngClass]="{'error':!fechacierre.valid && envioFormForo}" type="text" name="fechacierre" value="" placeholder=" * Seleccione fecha cierre" ngModel required maxlength="70">
+                        <!--<input matInput [matDatepicker]="picker" type="text" style="display: inline !important; width: 80%" placeholder="Choose a date">-->
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
                     </div>
-
-                  <!--<mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>-->
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <textarea #descripcion="ngModel" [(ngModel)]="foro.descripcion" [ngClass]="{'error':!descripcion.valid && envioFormForo}" name="descripcion" placeholder="* Descripción [Máx 550 caracteres]" ngModel maxlength="550" required></textarea>

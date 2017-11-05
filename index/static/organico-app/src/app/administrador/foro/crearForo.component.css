@@ -1,1 +1,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.text-datepicker{
+  display: inline !important;
+  width: 80% !important;
+}
