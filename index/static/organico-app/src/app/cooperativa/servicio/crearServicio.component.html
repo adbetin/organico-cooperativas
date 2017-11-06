@@ -17,16 +17,22 @@
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <input #titulo="ngModel" [ngClass]="{'error':!titulo.valid && envioFormServicio}" type="text" name="titulo" value="" placeholder="* Título [Máx 100 caracteres]" [(ngModel)]="servicio.titulo" required maxlength="100"  >
+                        <input #titulo="ngModel" [ngClass]="{'error':!titulo.valid && envioFormServicio}"
+                               type="text" name="titulo" value=""
+                               placeholder="* Título [Máx 100 caracteres]" [(ngModel)]="servicio.titulo"
+                               required maxlength="100" id="tituloServicio"
+                        >
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormServicio}" name="descripcion" placeholder="* Descripción [Máx 550 caracteres]" [(ngModel)]="servicio.descripcion" maxlength="550"></textarea>
+                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormServicio}"
+                                  name="descripcion" placeholder="* Descripción [Máx 550 caracteres]"
+                                  [(ngModel)]="servicio.descripcion" maxlength="550" id="descripcionServicio"></textarea>
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                       <label> Foto*: </label>
-                      <input type="file" #entradaFoto (change)="loadFoto(entradaFoto)">
+                      <input type="file" id="fotoServicio" #entradaFoto (change)="loadFoto(entradaFoto)">
                       <canvas max-width="200" max-height="200" id="photoPreview"></canvas>
                     </div>
 
@@ -34,10 +40,12 @@
                       <span *ngIf="!formServicio.valid && !envioFormServicio"> * Campos obligatorios</span>
                       <br>
                       <label *ngIf="!formServicio.valid && envioFormServicio" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>
+                      <br>
+                      <span *ngIf="exitoso==true">Servicio publicado exitosamente</span>
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <div class="text-center"><button  type="submit" class="theme-btn btn-style-two ui-state-disabled">Guardar</button>
+                        <div class="text-center"><button id="guardar"  type="submit" class="theme-btn btn-style-two ui-state-disabled">Guardar</button>
                         <button type="button" class="theme-btn btn-style-two ui-state-disabled" onclick="window.history.go(-1)">Cancelar</button></div>
 
                     </div>
@@ -48,4 +56,3 @@
         </div>
     </div>
 </section>
-

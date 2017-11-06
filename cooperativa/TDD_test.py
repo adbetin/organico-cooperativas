@@ -5,6 +5,8 @@ __author__ = 'asistente'
 from unittest import TestCase
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 
 #from selenium import webbrowser
 
@@ -29,23 +31,29 @@ class TDDTest(TestCase):
         self.browser.get('http://localhost:8000/cooperativa/servicio/crearServicio')
 
         self.browser.find_element_by_xpath(
-            "//select[@id='cooperativa']/option[text()='cooperativa']").click()
+            "//select[@id='cooperativa']/option[text()='Coop Bumanguesas 2']").click()
 
-        titulo = self.browser.find_element_by_id('titulo')
+        titulo = self.browser.find_element_by_id('tituloServicio')
         titulo.send_keys('Próximos eventos del mes de Octubre')
 
-        descripcion = self.browser.find_element_by_id('descripcion')
+        descripcion = self.browser.find_element_by_id('descripcionServicio')
         descripcion.send_keys('En el mes de octubre tendremos emocionantes eventos')
 
-        foto = self.browser.find_element_by_id('foto')
+        foto = self.browser.find_element_by_id('fotoServicio')
         foto.send_keys("C:\\chromedriver\\blog-image-4.jpg")
         self.browser.implicitly_wait(3)
 
         botonGrabar = self.browser.find_element_by_id('guardar')
+
         actions = ActionChains(self.browser)
         actions.move_to_element(botonGrabar).perform()
-        self.browser.implicitly_wait(3)
+
         botonGrabar.click()
 
-        span = self.browser.find_element(By.XPATH, '//span[text()="Servicio publicado exitosamente"]')
-        self.assertIn('Servicio publicado exitosamente', span.text)
+        self.browser.implicitly_wait(1000)
+
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(lambda driver: driver.current_url != "http://localhost:8000/cooperativa/servicio/crearServicio")
+
+        span = self.browser.find_element(By.XPATH, '//h3[text()="Próximos eventos del mes de Octubre"]')
+        self.assertIn('Próximos eventos del mes de Octubre', span.text)

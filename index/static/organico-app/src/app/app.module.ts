@@ -21,7 +21,6 @@ import { RegistroAdminComponent } from "./productor/registro-admin/registro-admi
 import { ProductorEditarComponent } from "./productor/productor-editar/productorEditar.component";
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
-import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 
 @NgModule({
