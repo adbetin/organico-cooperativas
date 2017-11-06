@@ -3,6 +3,8 @@ import json
 import logging
 from channels import Group
 from channels.sessions import channel_session
+
+from cooperativa.models import Cooperativa
 from .models import Room
 
 log = logging.getLogger(__name__)
@@ -13,17 +15,22 @@ from channels import Group
 
 # Connected to websocket.connect
 def ws_add(message):
+    prefix, label, productorid = message['path'].strip('/').split('/')
+    cooperativa = Cooperativa.objects.get(pk=label)
+    room = Room.objects.get(label='chat %s' % cooperativa.nombre)
+
     # Accept the connection
     message.reply_channel.send({"accept": True})
     # Add to the chat group
-    Group("chat").add(message.reply_channel)
+    Group('chat-' + label).add(message.reply_channel)
 
 # Connected to websocket.receive
 def ws_message(message):
     # Look up the room from the channel session, bailing if it doesn't exist
     try:
-        label = u'343'
-        room = Room.objects.get(label=label)
+        prefix, label, productorid = message['path'].strip('/').split('/')
+        cooperativa = Cooperativa.objects.get(pk=label)
+        room = Room.objects.get(label='chat %s' % cooperativa.nombre)
     except KeyError:
         log.debug('no room in channel_session')
         return
@@ -46,10 +53,10 @@ def ws_message(message):
     if data:
         log.debug('chat message room=%s handle=%s message=%s',
                   room.label, data['handle'], data['message'])
-        m = room.messages.create(productor_id=1, **data)
+        m = room.messages.create(productor_id=productorid, **data)
 
         # See above for the note about Group
-        Group('chat', channel_layer=message.channel_layer).send(
+        Group('chat-' + label, channel_layer=message.channel_layer).send(
             {'text': json.dumps(m.as_dict())})
 
 # Connected to websocket.disconnect

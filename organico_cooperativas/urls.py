@@ -22,6 +22,5 @@ urlpatterns = [
     url(r'^', include('index.urls')),
     url(r'^cooperativa/', include('cooperativa.urls')),
     url(r'^productor/', include('productor.urls')),
-    url(r'^chat1/', include('chat.urls')),
-    url(r'^(?P<label>[\w-]{,50})/$', views.chat_room, name='chat_room'),
+    url(r'^chat/', include('chat.urls')),
 ]

@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        var _userRoom = {{ cooperativaid }};
+        var _productorid =
+        {{ productorid }}
+    </script>
 </head>
 
 <body>
@@ -36,7 +41,8 @@
                     <span class="heading-online">Online</span>
                 </div>
                 <div class="col-sm-1 col-xs-1 heading-dot pull-right">
-                    <a href="{% url 'home' %}" title="regresar"><i class="fa fa-reply fa-2x  pull-right" aria-hidden="true"></i></a>
+                    <a href="{% url 'home' %}" title="regresar"><i class="fa fa-reply fa-2x  pull-right"
+                                                                   aria-hidden="true"></i></a>
                 </div>
             </div>
             <!-- Heading End -->
@@ -52,17 +58,33 @@
                     </div>
                 </div-->
                 {% for message in messages %}
-                    <div class="row message-body">
-                        <div class="col-sm-12 message-main-sender">
-                            <div class="sender">
-                                <div class="message-text">
-                                    <b>{{ message.handle }}</b><br>
-                                    {{ message.message }}
+                    {% if message.productor.id == productorid %}
+                        <div class="row message-body">
+                            <div class="col-sm-12 message-main-sender">
+                                <div class="sender">
+                                    <div class="message-text">
+                                        <b>{{ message.productor.nombre }}</b><br>
+                                        {{ message.message }}
+                                    </div>
+                                    <span class="message-time pull-right">{{ message.formatted_timestamp }}</span>
                                 </div>
-                                <span class="message-time pull-right">{{ message.formatted_timestamp }}</span>
                             </div>
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="row message-body">
+                            <div class="col-sm-12 message-main-receiver">
+                                <div class="receiver">
+                                    <div class="message-text">
+                                        <b>{{ message.productor.nombre }}</b><br>
+                                        {{ message.message }}
+                                    </div>
+                                    <span class="message-time pull-right">
+                   <span class="message-time pull-right">{{ message.formatted_timestamp }}</span>
+                </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
             <!-- Message Box End -->
