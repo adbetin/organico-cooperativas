@@ -24,17 +24,17 @@ urlpatterns = [
     # Vistas
     url(r'^crearCooperativa/$', views.cooperativasAdmin, name="crear_cooperativa"),
     url(r'^listadoCooperativa/$', views.cooperativasAdmin, name="listado_cooperativa"),
-    url(r'^productos/$', views.cooperativasAdmin, name="productos"),
-     url(r'^carrito/$', views.cooperativasAdmin, name="carrito"),
     url(r'^actualizardatos/(?P<id>.+)$', views.cooperativasDetail, name="actualizar_datos"),
     url(r'^detalle/(?P<id>.+)$', views.cooperativasDetail, name='detalle_cooperativa'),
     url(r'^servicio/crearServicio', views.cooperativasAdmin, name="crear_servicio"),
+    url(r'^Productos/crearProducto', views.cooperativasAdmin, name="crear_producto"),
     url(r'^servicio/listadoServicios/(?P<cooperativa_id>.+)$', views.serviciosAdmin, name="listado_servicio"),
 
     # Almacenamiento de datos
     url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),
     url(r'^actualizarCooperativa/$', views.actualizarCooperativa, name="actualizar_cooperativa"),
     url(r'^servicio/guardarServicio/$', views.guardarServicio, name="guardar_servicio"),
+    url(r'^Productos/guardarProducto/$', views.guardarProducto, name="guardar_producto"),
 
     # Consulta de datos
     url(r'^cooperativalist$', views.cooperativasList, name="cooperativas_list"),
