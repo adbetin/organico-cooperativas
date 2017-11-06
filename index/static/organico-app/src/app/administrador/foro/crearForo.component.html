@@ -1,0 +1,55 @@
+<!--Contact Section-->
+<section class="contact-section">
+  <div class="auto-container">
+      <!--Section Title-->
+        <h1>Nuevo Foro</h1>
+        <div class="contact-form default-form">
+
+           <form #formForo="ngForm" (ngSubmit)="saveForo(formForo)">
+                <div class="row clearfix">
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #nombre="ngModel" [ngClass]="{'error':!nombre.valid && envioFormForo}" type="text" name="nombre" value="" placeholder="* Nombre [Solo letras por favor]" ngModel required maxlength="70"  >
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                      <select #cooperativa="ngModel" id="cooperativa" [(ngModel)]="foro.cooperativa" name="cooperativa" [ngClass]="{'error':!cooperativa.valid && envioFormForo}" required>
+                        <option value="">-- Cooperativa --</option>
+                        <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                      <select #tema="ngModel" id="Tema" [(ngModel)]="foro.tema" name="tema" [ngClass]="{'error':!tema.valid && envioFormForo}" required>
+                        <option value="">-- Tema --</option>
+                        <option *ngFor="let tema of temas" value="{{tema.id}}">{{tema.nombre}}</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-4">
+                        <!--<input #fechacierre="ngModel" [ngClass]="{'error':!fechacierre.valid && envioFormForo}" type="text" name="fechacierre" value="" placeholder=" * Seleccione fecha cierre" ngModel required maxlength="70" pattern="[0-9- ]*">-->
+                        <input class="text-datepicker" matInput [matDatepicker]="picker" #fechacierre="ngModel" [ngClass]="{'error':!fechacierre.valid && envioFormForo}" type="text" name="fechacierre" value="" placeholder=" * Seleccione fecha cierre" ngModel required maxlength="70"  >
+                        <!--<input matInput [matDatepicker]="picker" type="text" style="display: inline !important; width: 80%" placeholder="Choose a date">-->
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormForo}" name="descripcion" placeholder="* Descripción [Máx 550 caracteres]" ngModel maxlength="550" required></textarea>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
+                      <span *ngIf="!formForo.valid && !envioFormForo"> * Campos obligatorios</span>
+                      <br>
+                      <label *ngIf="!formForo.valid && envioFormForo" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div class="text-center"><button  type="submit" class="theme-btn btn-style-two ui-state-disabled" >Guardar</button></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+

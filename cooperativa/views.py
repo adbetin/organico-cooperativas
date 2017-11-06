@@ -5,13 +5,14 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
-from cooperativa.models import Cooperativa
-from cooperativa.serializers import CooperativaSerializer
+from cooperativa.models import Cooperativa, Servicio
+from cooperativa.serializers import CooperativaSerializer, ServicioSerializer
 
 # Create your views here.
 
 def cooperativasAdmin(request):
-    context = {}
+    cooperativas = Cooperativa.objects.all()
+    context = {'cooperativas': cooperativas}
     return render(request, 'cooperativas.html', context)
 
 class modeloJSON(HttpResponse):
@@ -47,9 +48,26 @@ def guardarCooperativa(request):
                                                  correo=cooperativaPost["correo"],
                                                  direccion=cooperativaPost["direccion"],
                                                  telefono=cooperativaPost["telefono"],
+                                                 latitud=cooperativaPost["latitud"],
+                                                 longitud=cooperativaPost["longitud"],
                                                  );
 
         cooperativa.save()
+        respuesta = True
+    return modeloJSON(respuesta)
+
+@csrf_exempt
+def guardarServicio(request):
+    respuesta = False
+    if (request.method == 'POST'):
+        servicioPost = decode(request.body)
+        cooperativa = get_object_or_404(Cooperativa, id=servicioPost['cooperativa'])
+        servicio = Servicio.objects.create(  cooperativa=cooperativa,
+                                             titulo=servicioPost["titulo"],
+                                             descripcion=servicioPost["descripcion"],
+                                             foto=servicioPost["foto"]
+                                         );
+        servicio.save()
         respuesta = True
     return modeloJSON(respuesta)
 
@@ -69,7 +87,8 @@ def actualizarCooperativa(request):
         coop.correo=cooperativaPost["correo"]
         coop.direccion=cooperativaPost["direccion"]
         coop.telefono=cooperativaPost["telefono"]
-
+        coop.latitud=cooperativaPost["latitud"]
+        coop.longitud = cooperativaPost["longitud"]
         coop.save()
         respuesta = True
     return modeloJSON(respuesta)
@@ -78,3 +97,30 @@ def cooperativasDetail(request, id):
     cooperativa = get_object_or_404(Cooperativa, id=id)
     context = {'cooperativa': cooperativa}
     return render(request, 'cooperativas.html', context)
+
+def serviciosAdmin(request, cooperativa_id):
+    servicio = Servicio.objects.all()
+    #servicio = get_object_or_404(Servicio, cooperativa=cooperativa_id)
+    context = {'servicio': servicio}
+    return render(request, 'cooperativas.html', context)
+
+
+@csrf_exempt
+def serviciosList(request, cooperativa_id):
+    if (request.method == 'GET'):
+        servicios = get_list_or_404(Servicio, cooperativa=cooperativa_id)
+        #servicios = Servicio.objects.all()
+        serializer = ServicioSerializer(servicios, many=True)
+        return modeloJSON(serializer.data)
+
+@csrf_exempt
+@api_view(['GET'])
+def serviciosGet(request, id):
+    servicio = get_object_or_404(Servicio, id=id)
+    serializer = ServicioSerializer(servicio)
+    return modeloJSON(serializer.data)
+
+def decode(data):
+    new_data = data.decode("utf-8", "strict")
+
+    return json.loads(new_data)

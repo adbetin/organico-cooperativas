@@ -12,7 +12,7 @@ export class ActualizarDatosService {
       let headers = new Headers({ 'Content-Type': 'application/json','X-CSRFToken': this.getCookie('csrftoken') });
       let options = new RequestOptions({ headers: headers });
       let body = JSON.stringify( cooperativa );
-      return this.http.post('/cooperativa/actualizarCooperativa/', body, options).map(response => response.json());
+      return this.http.post("/cooperativa/actualizarCooperativa/", body, options).map(response => response.json());
     }
 
 

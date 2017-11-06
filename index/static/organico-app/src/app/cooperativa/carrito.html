@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="html js" lang="es-ES"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <script type="text/javascript">
+   if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["jquery-1.8.3.min.js", "museutils.js", "jquery.watch.js", "webpro.js", "musewpslideshow.js", "jquery.museoverlay.js", "touchswipe.js", "musewpdisclosure.js", "index.css"], "outOfDate":[]};
+</script>
+
+
+  <meta name="generator" content="2015.0.0.309">
+  <title>Carrito de compras - Inicio</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="./Carrito/site_global.css">
+  <link rel="stylesheet" type="text/css" href="./Carrito/master_a-p_g_-maestra.css">
+  <link rel="stylesheet" type="text/css" href="./Carrito/index.css" id="pagesheet">
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   document.documentElement.className += ' js';
+</script>
+    <!--custom head HTML-->
+    <script type="text/javascript" src="./Carrito/jquery-1.9.1.js"></script>
+
+
+      <link rel="stylesheet" type="text/css" href="./Carrito/bootstrap.css">
+
+
+
+      <script type="text/javascript" src="./Carrito/bootstrap.js"></script>
+
+
+
+      <script type="text/javascript" src="./Carrito/simpleCart.js"></script>
+
+
+  <style type="text/css">
+    #existingDiv {
+
+    padding: 10px;
+}
+
+.simpleCart_items table{width:100%}
+.test{color:brown;border-left:10px solid #ccc;margin-bottom:2px}
+
+.itemRow .item-remove a{
+	color:#FF0000;
+}
+.simpleCart_shelfItem {width:auto}
+.item_Quantity {width:50px}
+
+.headerRow{background-color:#c5c4be;color:#ffffff;padding:3px}
+.simpleCart_quantity, .simpleCart_total{
+	font-size:25px;
+	color:#000;
+}
+.headerRow .item-name,
+.headerRow .item-price,
+.itemRow .item-name,
+.itemRow .item-price,
+.itemRow .item-remove,
+.headerRow .item-quantity,
+.itemRow .item-quantity
+{
+
+
+	font-size:18px;
+	padding:10px;
+	color:#222222;
+}
+
+.menu-large {
+  position: static !important;
+}
+.megamenu{
+  padding: 20px 0px;
+  width:100%;
+}
+.megamenu> li > ul {
+  padding: 0;
+  margin: 0;
+}
+.megamenu> li > ul > li {
+  list-style: none;
+}
+.megamenu> li > ul > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #333333;
+  white-space: normal;
+}
+.megamenu> li ul > li > a:hover,
+.megamenu> li ul > li > a:focus {
+  text-decoration: none;
+  color: #262626;
+  background-color: #f5f5f5;
+}
+.megamenu.disabled > a,
+.megamenu.disabled > a:hover,
+.megamenu.disabled > a:focus {
+  color: #999999;
+}
+.megamenu.disabled > a:hover,
+.megamenu.disabled > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+  background-image: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  cursor: not-allowed;
+}
+.megamenu.dropdown-header {
+  color: #428bca;
+  font-size: 18px;
+}
+@media (max-width: 768px) {
+  .megamenu{
+    margin-left: 0 ;
+    margin-right: 0 ;
+  }
+  .megamenu> li {
+    margin-bottom: 30px;
+  }
+  .megamenu> li:last-child {
+    margin-bottom: 0;
+  }
+  .megamenu.dropdown-header {
+    padding: 3px 15px !important;
+
+  }
+  .navbar-nav .open .dropdown-menu .dropdown-header{
+	color:#fff;
+  }
+}
+  </style>
+
+
+
+
+<script type="text/javascript">//<![CDATA[
+$(window).load(function(){
+
+simpleCart.currency({
+    code: "COP" ,
+    name: "Pesos" ,
+    symbol: "$/."
+});
+	simpleCart({
+  checkout: {
+        type: "SendForm" ,
+        url: "/enviar.php" ,
+        method: "POST"   },
+  cartStyle: 'table',
+                        cartColumns: [{
+                            attr: "name",
+                            label: "Nombre"
+                        },
+                        {
+                            attr: "price",
+                            label: "Precio",
+                            view: 'currency'
+                        },
+                        { 	attr: "quantity" ,
+                        	label: "Cantidad" } ,
+                        {
+                            view: "remove",
+                            text: "Eliminar",
+                            label: false
+                        }]
+  });
+
+$(".btn").on('click', function(){
+
+  checkCart()
+
+});
+// simpleCart.grandTotal()
+//simpleCart.total();
+Cart.currency( "PEN" );
+function checkCart(){
+  var sum = simpleCart.quantity();
+  $("#dLabel").html('<span class="glyphicon glyphicon-shopping-cart"></span> Cart '+ sum +' items <span class="caret"></span>')
+
+    if (simpleCart.items().length == 0) {
+     $("#dLabel").html('<span class="glyphicon glyphicon-shopping-cart"></span> Cart Empty<span class="caret"></span>');
+
+    }else{
+        $("#dLabel").html('<span class="glyphicon glyphicon-shopping-cart"></span> Cart '+ sum +' items <span class="caret"></span>')
+    }
+
+
+}
+
+
+
+
+});//]]>
+
+</script>
+
+
+<meta content="PE-SAM" name="geo.region">
+<meta content="Bogota" name="geo.placename">
+<meta content="-6.482478;-76.372689" name="geo.position">
+<meta content="-6.482478, -76.372689" name="ICBM">
+<meta content="Wilfrido Torres" name="Author">
+
+ </head>
+ <body class="no_vert_scroll">
+
+  <div class="clearfix" id="page"><!-- column -->
+   <div class="position_content" id="page_position_content">
+    <div class="clearfix colelem" id="pu84"><!-- group -->
+     <div class="browser_width grpelem" id="u84-bw" style="height: 62px;">
+      <div id="u84"><!-- group -->
+       <div class="clearfix" id="u84_align_to_page">
+        <img class="grpelem" id="u85-4" alt="Carrito de Compras" width="477" height="58" src="./Carrito/u85-4.png"><!-- rasterized frame -->
+       </div>
+      </div>
+     </div>
+     <div class="PamphletWidget clearfix grpelem" id="pamphletu322"><!-- none box -->
+      <div class="popup_anchor" id="u334popup">
+       <div class="wp-slideshow-clip" style="position: absolute; width: 401px; height: 795px; overflow: hidden; left: 0px; top: 0px;"><div class="ContainerGroup clearfix" id="u334" style="width: 401px; height: 795px; position: relative; top: 0px; left: 401px; margin: 0px; overflow: visible;"><!-- stack box -->
+        <div class="Container clearfix grpelem wp-panel" id="u335" style="top: 0px; left: 0px; margin: 0px; position: absolute;"><!-- column -->
+         <div class="position_content" id="u335_position_content">
+          <div class="clearfix colelem" id="u348"><!-- group -->
+           <div class="grpelem" id="u349"><!-- custom html -->
+            <div class="container">
+   <span class="simpleCart_quantity glyphicon glyphicon-shopping-cart">0</span> items - <span class="simpleCart_total">$/.0.00</span>
+</div>
+
+</div>
+          </div>
+          <div class="Button clearfix colelem" id="buttonu343"><!-- container box -->
+           <div class="clip_frame grpelem" id="u346"><!-- image -->
+            <img class="block" id="u346_img" src="./Carrito/pointer.png" alt="" width="17" height="33">
+           </div>
+           <div class="grpelem" id="u344"><!-- custom html -->
+            			      <div>
+                              <div class="simpleCart_items"> <table><thead><tr class="headerRow"><th class="item-name">Nombre</th><th class="item-price">Precio</th><th class="item-quantity">Cantidad</th><th class="item-remove"></th></tr></thead></table></div>
+</div>
+          </div>
+          <div class="Button clearfix colelem" id="buttonu336"><!-- container box -->
+           <div class="boton-carrito grpelem" id="u341"><!-- custom html -->
+            <a href="http://organico-cooperativas.herokuapp.com/cooperativa/carrito/#" class="simpleCart_empty btn btn-lg btn-warning">LIMPIAR</a>
+</div>
+           <div class="boton-carrito grpelem" id="u339"><!-- custom html -->
+            <a href="http://organico-cooperativas.herokuapp.com/cooperativa/carrito/#" class="simpleCart_checkout btn btn-lg btn-warning">PROCESAR</a>
+</div>
+           <div class="clip_frame grpelem" id="u337"><!-- image -->
+            <img class="block" id="u337_img" src="./Carrito/pointer.png" alt="" width="17" height="33">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div></div>
+      <div class="ThumbGroup clearfix grpelem" id="u327"><!-- none box -->
+       <div class="popup_anchor">
+        <div class="Thumb popup_element clearfix" id="u328"><!-- group -->
+         <div class="grpelem" id="u329"><!-- image --></div>
+         <div class="grpelem" id="u372"><!-- custom html -->
+          <span class="simpleCart_quantity">0</span>
+</div>
+         <div class="clip_frame grpelem" id="u377"><!-- image -->
+          <img class="block" id="u377_img" src="./Carrito/shopping-cart.png" alt="" width="35" height="35">
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="popup_anchor">
+       <div class="PamphletCloseButton PamphletLightboxPart popup_element clearfix" id="u331" style="display: none;"><!-- group -->
+        <div class="clip_frame grpelem" id="u332"><!-- image -->
+         <img class="block" id="u332_img" src="./Carrito/close_light.png" alt="" width="51" height="53">
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <img class="colelem" id="u319-4" alt="Catálogo de Productos" width="378" height="38" src="./Carrito/u319-4.png"><!-- rasterized frame -->
+    <div class="TabbedPanelsWidget clearfix colelem" id="tab-panelu94"><!-- vertical box -->
+     <div class="TabbedPanelsTabGroup clearfix colelem" id="u108"><!-- horizontal box -->
+      <div class="TabbedPanelsTab clearfix grpelem TabbedPanelsTabSelected TabbedPanelsTabFirst" id="u109"><!-- horizontal box -->
+       <div class=" NoWrap clearfix grpelem" id="u111-4"><!-- content -->
+        <p>FRUTAS</p>
+       </div>
+      </div>
+      <div class="TabbedPanelsTab clearfix grpelem" id="u117"><!-- horizontal box -->
+       <div class=" NoWrap clearfix grpelem" id="u119-4"><!-- content -->
+        <p>VERDURAS</p>
+       </div>
+      </div>
+      <div class="TabbedPanelsTab clearfix grpelem TabbedPanelsTabLast" id="u142"><!-- horizontal box -->
+       <div class=" NoWrap clearfix grpelem" id="u144-4"><!-- content -->
+        <p>OTROS</p>
+       </div>
+      </div>
+     </div>
+     <div class="TabbedPanelsContentGroup clearfix colelem" id="u95"><!-- stack box -->
+      <div class="TabbedPanelsContent clearfix grpelem TabbedPanelsContentVisible" id="u96" style="display: block;"><!-- group -->
+       <div class="clearfix grpelem" id="pu391"><!-- column -->
+        <div class="clip_frame colelem" id="u391"><!-- image -->
+         <img class="block" id="u391_img" src="./Carrito/naranjas.jpg" alt="" width="202" height="211">
+        </div>
+        <div class="colelem" id="u156"><!-- custom html -->
+          <div class="simpleCart_shelfItem">
+<div class="panel panel-default">
+     <div class="panel-heading item_name">Naranjas</div>
+
+  <div class="panel-footer"><p class="item_price">$/ 2250</p>   <label>Cantidad: <input class="item_Quantity form-control" type="text" value="1"></label>
+<br>
+ <span class="btn btn-danger btn-md item_add">COMPRAR</span>
+</div>
+</div>
+</div><!-- end object -->
+</div>
+       </div>
+       <div class="clearfix grpelem" id="pu385"><!-- column -->
+        <div class="clip_frame colelem" id="u385"><!-- image -->
+         <img class="block" id="u385_img" src="./Carrito/peras.jpg" alt="" width="172" height="233">
+        </div>
+        <div class="colelem" id="u154"><!-- custom html -->
+          <div class="simpleCart_shelfItem">
+<div class="panel panel-default">
+     <div class="panel-heading item_name">PERAS</div>
+
+  <div class="panel-footer"><p class="item_price">$/ 2000</p>   <label>Cantidad: <input class="item_Quantity form-control" type="text" value="1"></label>
+<br>
+ <span class="btn btn-danger btn-md item_add">COMPRAR</span>
+</div>
+</div>
+</div><!-- end object -->
+
+
+</div>
+       </div>
+       <div class="clearfix grpelem" id="pu403"><!-- column -->
+        <div class="clip_frame colelem" id="u403"><!-- image -->
+         <img class="block" id="u403_img" src="./Carrito/manzanas.jpg" alt="" width="156" height="233">
+        </div>
+        <div class="colelem" id="u134"><!-- custom html -->
+          <div class="simpleCart_shelfItem">
+<div class="panel panel-default">
+     <div class="panel-heading item_name">MANZANAS</div>
+
+  <div class="panel-footer"><p class="item_price">$/ 1850</p>   <label>Cantidad: <input class="item_Quantity form-control" type="text" value="1"></label>
+<br>
+ <span class="btn btn-danger btn-md item_add">COMPRAR</span>
+</div>
+</div>
+</div><!-- end object -->
+
+
+</div>
+       </div>
+      </div>
+      <div class="TabbedPanelsContent clearfix grpelem" id="u100" style="display: none;"><!-- column -->
+       <div class="clip_frame colelem" id="u409"><!-- image -->
+        <img class="block" id="u409_img" src="./Carrito/coliflor.jpg" alt="" width="192" height="192">
+       </div>
+       <div class="colelem" id="u140"><!-- custom html -->
+         <div class="simpleCart_shelfItem">
+<div class="panel panel-default">
+     <div class="panel-heading item_name">COLIFLOR</div>
+
+  <div class="panel-footer"><p class="item_price">$/ 1300</p>   <label>Cantidad: <input class="item_Quantity form-control" type="text" value="1"></label>
+<br>
+ <span class="btn btn-danger btn-md item_add">COMPRAR</span>
+</div>
+</div>
+</div><!-- end object -->
+
+
+</div>
+      </div>
+      <div class="TabbedPanelsContent clearfix grpelem" id="u146" style="display: none;"><!-- group -->
+       <div class="clearfix grpelem" id="pu415"><!-- column -->
+        <div class="clip_frame colelem" id="u415"><!-- image -->
+         <img class="block" id="u415_img" src="./Carrito/ensalada.jpg" alt="" width="198" height="127">
+        </div>
+        <div class="colelem" id="u138"><!-- custom html -->
+          <div class="simpleCart_shelfItem">
+<div class="panel panel-default">
+     <div class="panel-heading item_name">Ensalada</div>
+
+  <div class="panel-footer"><p class="item_price">$/ 1800</p>   <label>Cantidad: <input class="item_Quantity form-control" type="text" value="1"></label>
+<br>
+ <span class="btn btn-danger btn-md item_add">COMPRAR</span>
+</div>
+</div>
+</div><!-- end object -->
+
+
+</div>
+       </div>
+       <div class="clearfix grpelem" id="pu421"><!-- column -->
+        <div class="clip_frame colelem" id="u421"><!-- image -->
+         <img class="block" id="u421_img" src="./Carrito/ensalada-rusa.jpg" alt="" width="198" height="176">
+        </div>
+        <div class="colelem" id="u136"><!-- custom html -->
+          <div class="simpleCart_shelfItem">
+<div class="panel panel-default">
+     <div class="panel-heading item_name">ENSALADA RUSA</div>
+
+  <div class="panel-footer"><p class="item_price">$/ 1600</p>   <label>Cantidad: <input class="item_Quantity form-control" type="text" value="1"></label>
+<br>
+ <span class="btn btn-danger btn-md item_add">COMPRAR</span>
+</div>
+</div>
+</div><!-- end object -->
+
+
+</div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="colelem"></div>
+    <div class="verticalspacer" style="min-height: 1px; height: 40px;"></div>
+   </div>
+  </div>
+  <!-- JS includes -->
+  <script type="text/javascript">
+   if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script><script src="./Carrito/jquery-1.8.3.min.js.descarga" type="text/javascript"></script>
+  <script type="text/javascript">
+   window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+  <script src="./Carrito/museutils.js.descarga" type="text/javascript"></script>
+  <script src="./Carrito/jquery.watch.js.descarga" type="text/javascript"></script>
+  <script src="./Carrito/webpro.js.descarga" type="text/javascript"></script>
+  <script src="./Carrito/musewpslideshow.js.descarga" type="text/javascript"></script>
+  <script src="./Carrito/jquery.museoverlay.js.descarga" type="text/javascript"></script>
+  <script src="./Carrito/touchswipe.js.descarga" type="text/javascript"></script>
+  <script src="./Carrito/musewpdisclosure.js.descarga" type="text/javascript"></script>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   $(document).ready(function() { try {
+(function(){var a={},b=function(a){if(a.match(/^rgb/))return a=a.replace(/\s+/g,"").match(/([\d\,]+)/gi)[0].split(","),(parseInt(a[0])<<16)+(parseInt(a[1])<<8)+parseInt(a[2]);if(a.match(/^\#/))return parseInt(a.substr(1),16);return 0};(function(){$('link[type="text/css"]').each(function(){var b=($(this).attr("href")||"").match(/\/?css\/([\w\-]+\.css)\?(\d+)/);b&&b[1]&&b[2]&&(a[b[1]]=b[2])})})();(function(){$("body").append('<div class="version" style="display:none; width:1px; height:1px;"></div>');
+for(var c=$(".version"),d=0;d<Muse.assets.required.length;){var f=Muse.assets.required[d],g=f.match(/([\w\-\.]+)\.(\w+)$/),k=g&&g[1]?g[1]:null,g=g&&g[2]?g[2]:null;switch(g.toLowerCase()){case "css":k=k.replace(/\W/gi,"_").replace(/^([^a-z])/gi,"_$1");c.addClass(k);var g=b(c.css("color")),h=b(c.css("background-color"));g!=0||h!=0?(Muse.assets.required.splice(d,1),"undefined"!=typeof a[f]&&(g!=a[f]>>>24||h!=(a[f]&16777215))&&Muse.assets.outOfDate.push(f)):d++;c.removeClass(k);break;case "js":k.match(/^jquery-[\d\.]+/gi)&&
+typeof $!="undefined"?Muse.assets.required.splice(d,1):d++;break;default:throw Error("Unsupported file type: "+g);}}c.remove();if(Muse.assets.outOfDate.length||Muse.assets.required.length)c="Puede que determinados archivos falten en el servidor o sean incorrectos. Limpie la cache del navegador e inténtelo de nuevo. Si el problema persiste, póngase en contacto con el administrador del sitio web.",(d=location&&location.search&&location.search.match&&location.search.match(/muse_debug/gi))&&Muse.assets.outOfDate.length&&(c+="\nOut of date: "+Muse.assets.outOfDate.join(",")),d&&Muse.assets.required.length&&(c+="\nMissing: "+Muse.assets.required.join(",")),alert(c)})()})();
+/* body */
+Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+Muse.Utils.prepHyperlinks(true);/* body */
+Muse.Utils.resizeHeight()/* resize height */
+Muse.Utils.initWidget('#pamphletu322', function(elem) { new WebPro.Widget.ContentSlideShow(elem, {contentLayout_runtime:'stack',event:'click',deactivationEvent:'none',autoPlay:false,displayInterval:3000,transitionStyle:'horizontal',transitionDuration:500,hideAllContentsFirst:true,shuffle:false,enableSwipe:true,resumeAutoplay:false,resumeAutoplayInterval:3000,playOnce:false,autoActivate_runtime:false}); });/* #pamphletu322 */
+Muse.Utils.initWidget('#tab-panelu94', function(elem) { return new WebPro.Widget.TabbedPanels(elem, {event:'click',defaultIndex:0}); });/* #tab-panelu94 */
+Muse.Utils.fullPage('#page');/* 100% height page */
+Muse.Utils.showWidgetsWhenReady();/* body */
+Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+} catch(e) { if (e && 'function' == typeof e.notify) e.notify(); else Muse.Assert.fail('Error calling selector function:' + e); }});
+</script>
+
+
+</div></body></html>

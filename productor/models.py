@@ -1,8 +1,19 @@
 from django.db import models
 from cooperativa.models import Cooperativa
+from django.contrib.auth.models import User
 
 # Create your models here.
+class EnvioCorreos(models.Model):
+    activo = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name = 'Envio Correo'
+
+    def __str__(self):
+        return '%s' % self.activo
+
+    def __unicode__(self):
+        return self.activo
 
 class TipoDocumento(models.Model):
     nombre = models.CharField(max_length=70)
@@ -28,7 +39,12 @@ class Productor(models.Model):
     latitud = models.FloatField(blank=True, null=True)
     longitud = models.FloatField(blank=True, null=True)
     foto = models.TextField()
+    email = models.TextField()
     aprobado = models.CharField(max_length=20)
+    nombreFinca = models.TextField()
+    fincaCertificada = models.BooleanField()
+    productosOrganicos = models.BooleanField()
+    usuario = models.ForeignKey(User, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Productor'

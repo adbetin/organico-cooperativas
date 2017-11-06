@@ -1,11 +1,11 @@
-<section class="productor-registro-section">
+<section class="productor-section">
   <div class="auto-container">
-      <!--Section Title-->
-        <h1>Nuevo Productor</h1>
-
-      <div class="productor-form default-form row col-md-8 col-md-offset-2">
+    <!--Section Title-->
+    <h1>Nuevo Productor</h1>
+    <div class="productor-form default-form">
+      <div class="row clearfix">
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="nombreProductor" [(ngModel)]="productor.nombre" placeholder=" * Nombre" />
+          <input type="text" id="nombreProductor" placeholder="Nombre" [(ngModel)]="productor.nombre"/>
         </div>
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
           <input type="text" id="descripcionProductor" placeholder="Acerca de m&iacute;" [(ngModel)]="productor.descripcion"/>
@@ -19,30 +19,47 @@
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
           <input type="text" id="numeroDocumentoProductor" placeholder="N&uacute;mero de documento" [(ngModel)]="productor.documento"/>
         </div>
+
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="direccionProductor" placeholder="Direcci&oacute;n" [(ngModel)]="productor.direccion"/>
+          <input type="text" id="nombreFinca" placeholder="Nombre Finca" [(ngModel)]="productor.nombreFinca"/>
         </div>
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
+          <input type="email" id="emailProductor" placeholder="E-Mail" [(ngModel)]="productor.email"/>
+        </div>
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
           <select id="cooperativa" [(ngModel)]="productor.cooperativa">
             <option value="-1">-- Cooperativa --</option>
             <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
           </select>
         </div>
-        <div class="form-group col-md-12">
-          <div class="col-md-6 col-md-offset-3">
-            <label for="foto">Foto*:</label>
-            <input type="file" id="foto" #entradaFoto (change)="loadFoto(entradaFoto)">
-            <img src="{{productor.foto}}" width="200" >
-          </div>
-          <div class="col-md-6 col-md-offset-3">
-            <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)">
-              <agm-marker [latitude]="marker.latitud" [longitude]="marker.longitud"></agm-marker>
-            </agm-map>
-          </div>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12 checkbox-container">
+          <label for="fincaCertificada">Finca Certificada*: </label>
+          <input type="checkbox" id="fincaCertificada" placeholder="" [(ngModel)]="productor.fincaCertificada"/>
         </div>
-        <div>
-          <button (click)="saveProductor()" class="theme-btn btn-style-two ui-state-disabled">Env&iacute;ar datos</button>
+        <div class="form-group col-md-6 col-sm-6 col-xs-12 checkbox-container">
+          <label for="productosOrganicos">Productos Organicos*: </label>
+          <input type="checkbox" id="productosOrganicos" placeholder="" [(ngModel)]="productor.productosOrganicos"/>
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <input type="text" autocapitalize="off" spellcheck="off" id="direccionProductor" placeholder="Direcci&oacute;n" #search [formControl]="searchControl" [(ngModel)]="productor.direccion"/>
+        </div>
+
+        <div class="col-md-12 col-md-offset-0" style="margin-bottom: 20px">
+          <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)" [zoom]="marker.zoom">
+            <agm-marker [latitude]="marker.latitud" [longitude]="marker.longitud"></agm-marker>
+          </agm-map>
+        </div>
+        <div class="form-group col-md-12 col-sm-12 ">
+          <label> Foto*: </label>
+          <input type="file" #entradaFoto (change)="loadFoto(entradaFoto)">
+          <canvas max-width="200" max-height="200" id="photoPreview"></canvas>
+        </div>
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <div class="text-center"><button  (click)="saveProductor()" class="theme-btn btn-style-two ui-state-disabled">Guardar</button></div>
         </div>
       </div>
+
+    </div>
   </div>
 </section>

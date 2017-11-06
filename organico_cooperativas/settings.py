@@ -25,7 +25,8 @@ SECRET_KEY = '_14%*x9q_g-(*(wxfeq$2#1mkt6r4*-_yxhiid4dgmo6y5*y6m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['organico-cooperativas.herokuapp.com', 'localhost', '127.0.0.1', 'localhost:*', '127.0.0.1:*',]
+#ALLOWED_HOSTS = ['organico-cooperativas.herokuapp.com', 'organico-cooperativas-dev.herokuapp.com', 'localhost', '127.0.0.1', 'localhost:*', '127.0.0.1:*',]
+ALLOWED_HOSTS = ['*']
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -41,7 +42,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'index',
     'cooperativa',
-    'productor'
+    'productor',
+    'channels',
+    'chat',
+    'administrador'
 ]
 
 MIDDLEWARE = [
@@ -88,6 +92,18 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+import sys
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd8ooprlh6gjl6c',
+        'USER': 'cbglzkvrxtbydm',
+        'PASSWORD': 'd5d996ea89c136496a151030719d6419fc8fbc995f725014948dcbc76c73fd6f',
+        'HOST': 'ec2-107-22-250-33.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+
 
 
 # Password validation
@@ -137,3 +153,20 @@ STATICFILES_DIRS = (
 REST_FRAMEWORK = {
 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
 }
+
+CHANNEL_LAYERS = {
+    "default": {
+        'BACKEND': 'asgiref.inmemory.ChannelLayer',
+        #"BACKEND": "asgi_redis.RedisChannelLayer",
+        #"CONFIG": {
+         #   "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        #},
+        "ROUTING": "organico_cooperativas.routing.channel_routing",
+    },
+}
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'organico-cooperativas'
+EMAIL_HOST_PASSWORD = 'a12345678'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

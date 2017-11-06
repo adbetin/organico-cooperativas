@@ -1,12 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
-import { AgmCoreModule } from '@agm/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { HttpModule } from "@angular/http";
+import { RouterModule } from "@angular/router";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { APP_BASE_HREF } from "@angular/common";
+import { AgmCoreModule } from "@agm/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatTableModule, MatProgressSpinnerModule,MatDatepickerModule ,MatNativeDateModule,MatDialogModule } from "@angular/material";
+import { LazyLoadImageModule } from "ng-lazyload-image";
 
 import { AppComponent } from './app.component';
 import { ListadoCooperativaComponent } from './cooperativa/listadoCooperativa.component';
@@ -18,6 +19,13 @@ import { ProductorListaComponent } from './productor/productor-lista/productor-l
 import { ActualizarDatosComponent } from './cooperativa/actualizardatos.component';
 import { RegistroAdminComponent } from './productor/registro-admin/registro-admin.component';
 import { ProductorEditarComponent } from './productor/productor-editar/productorEditar.component';
+import { CrearForoComponent } from './administrador/foro/crearForo.component';
+import { ListadoForosComponent } from './administrador/foro/listadoForos.component';
+import { EditarForoComponent } from './administrador/foro/editarForo.component';
+import { RespuestaForoComponent } from './administrador/foro/respuestaForo.component';
+import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
+import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
+import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 
 @NgModule({
   declarations: [
@@ -31,15 +39,32 @@ import { ProductorEditarComponent } from './productor/productor-editar/productor
     ProductorListaComponent,
     ProductorEditarComponent,
     RegistroAdminComponent,
+    CrearForoComponent,
+    ListadoForosComponent,
+    EditarForoComponent,
+    RespuestaForoComponent,
+    RegistroAdminComponent,
+    ActivarCorreoComponent,
+    CrearServicioComponent,
+    ListadoServicioComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    LazyLoadImageModule,
+    MatProgressSpinnerModule,
+    LazyLoadImageModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyArw7TOl_K1zuxYi_8nR6niG5kBTyegHfU'
+      apiKey: 'AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo',
+      libraries: ["places"]
     }),
     RouterModule.forRoot([
       {
@@ -77,11 +102,44 @@ import { ProductorEditarComponent } from './productor/productor-editar/productor
       {
         path: 'productor/admin/registro',
         component: RegistroAdminComponent
+      },
+      {
+        path: 'administrador/crearForo',
+        component: CrearForoComponent
+      },
+      {
+        path: 'administrador/listaForo',
+        component: ListadoForosComponent
+      },
+      {
+        path: 'administrador/editarForo/:id',
+        component: EditarForoComponent
+      },
+      {
+        path: 'administrador/respuestaForo/:id',
+        component: RespuestaForoComponent
+      },
+      {
+        path: "productor/correo/activar",
+        component: ActivarCorreoComponent
+      },
+      {
+        path: "productor/correo/activar",
+        component: ActivarCorreoComponent
+      },
+      {
+        path: 'cooperativa/servicio/crearServicio',
+        component: CrearServicioComponent
+      },
+      {
+        path: 'cooperativa/servicio/listadoServicios/:id',
+        component: ListadoServicioComponent
       }
     ])
   ],
  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 
