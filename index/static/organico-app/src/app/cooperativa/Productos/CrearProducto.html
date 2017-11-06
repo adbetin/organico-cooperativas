@@ -1,0 +1,63 @@
+<!--Contact Section-->
+<section class="contact-section">
+  <div class="auto-container">
+      <!--Section Title-->
+        <h1>Crear Productos</h1>
+        <div class="contact-form default-form">
+
+           <form #formProductos="ngForm" (ngSubmit)="guardarProductos(formProductos)">
+                <div class="row clearfix">
+                
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #producto="ngModel" [ngClass]="{'error':!nombre.valid && envioformProductos}" type="text" 
+                        name="producto" value="" placeholder="* Nombre del Producto [Solo letras]" ngModel required maxlength="50"  >
+                    </div>
+                    
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #valor="ngModel" [ngClass]="{'error':!nit.valid && envioformProductos}" type="text" 
+                        name="valor" value="" placeholder="* VALOR [Solo numeros]" ngModel required maxlength="7" pattern="[0-9-]*">
+                    </div>
+
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                      <select #cooperativa="ngModel" id="cooperativa"
+                              name="cooperativa" placeholder="* Cooperativa" [(ngModel)]="producto.cooperativa" required >
+                        <option value="-1">-- Cooperativa que produce --</option>
+                        <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
+                      </select>
+                    </div>
+
+
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormProductos}"
+                                  name="descripcion" placeholder="* Descripción [Máx 550 caracteres]"
+                                  [(ngModel)]="servicio.descripcion" maxlength="550" id="descripcionServicio"></textarea>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                      <label> Imagen*: </label>
+                      <input type="file" id="imagenProducto" #entradaFoto (change)="loadFoto(entradaFoto)">
+                      <canvas max-width="200" max-height="200" id="photoPreview"></canvas>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
+                      <span *ngIf="!formProductos.valid && !envioFormProductos"> * Campos obligatorios</span>
+                      <br>
+                      <label *ngIf="!formProductos.valid && envioFormProductos" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>
+                      <br>
+                      <span *ngIf="exitoso==true">Producto subido exitosamente</span>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div class="text-center"><button id="guardar"  type="submit" class="theme-btn btn-style-two ui-state-disabled">Guardar Producto</button>
+                        <button type="button" class="theme-btn btn-style-two ui-state-disabled" onclick="window.history.go(-1)">Cancelar</button></div>
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
