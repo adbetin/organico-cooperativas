@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.views.generic import TemplateView
 
 from . import views
 
@@ -31,4 +30,9 @@ urlpatterns = [
     url(r'^service$', views.productoresList, name="servicios_productor"),
     url(r'^get/(?P<id>.+)$', views.productorGet, name='get_productor'),
     url(r'^editarProductor/(?P<id>.+)$', views.productorEditar, name='editar_productor'),
+    url(r'^correo$', views.enviarCorreo, name='enviar_correo'),
+
+    url(r'^correo/active$', views.activarCorreo, name='activar_correo'),
+    url(r'^correo/active/obtener$', views.verificarEstadoCorreos, name='activar_correo'),
+    url(r'^correo/activar$', views.activarCorreos, name='activar_envio_correos')
 ]

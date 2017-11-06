@@ -17,7 +17,7 @@
                 <!-- Name Column -->
                 <ng-container matColumnDef="foto">
                     <mat-header-cell *matHeaderCellDef> Foto</mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <img src="{{ element.foto }}" style="width: 80%;"/></mat-cell>
+                    <mat-cell *matCellDef="let element"><img [lazyLoad]="element.foto" style="width: 80%;"/></mat-cell>
                 </ng-container>
 
                 <!-- Name Column -->
@@ -32,18 +32,23 @@
                     <mat-cell *matCellDef="let element"> {{ element.documento }} </mat-cell>
                 </ng-container>
 
+                <ng-container matColumnDef="aprobado">
+                    <mat-header-cell *matHeaderCellDef> Aprobado</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.aprobado }} </mat-cell>
+                </ng-container>
+
                 <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef> Acciones</mat-header-cell>
                     <mat-cell *matCellDef="let element">
 
-                      <a routerLink="/productor/detalle/{{ element.id }}">
-                        <span class="fa fa-search title-box title" title="Detalles productor"></span>
-                      </a>
+                        <a routerLink="/productor/detalle/{{ element.id }}">
+                            <span class="fa fa-search title-box title" title="Detalles productor"></span>
+                        </a>
 
-                      <a routerLink="/productor/editar/{{ element.id }}">
-                        <span class="fa fa-edit title-box title" title="Editar productor"></span>
-                      </a>
-                      <!--<a href="detalle/{{ element.id }}">Ver</a>
+                        <a routerLink="/productor/editar/{{ element.id }}">
+                            <span class="fa fa-edit title-box title" title="Editar productor"></span>
+                        </a>
+                        <!--<a href="detalle/{{ element.id }}">Ver</a>
                       <a href="editar/{{ element.id }}">Editar</a>-->
                     </mat-cell>
                 </ng-container>
@@ -51,6 +56,10 @@
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
+
+            <div class="loading-indicator" *ngIf="loading">
+                <mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
+            </div>
         </div>
     </div>
 </section>

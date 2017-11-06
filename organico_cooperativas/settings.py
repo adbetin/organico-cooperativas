@@ -161,3 +161,9 @@ CHANNEL_LAYERS = {
         "ROUTING": "organico_cooperativas.routing.channel_routing",
     },
 }
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'organico-cooperativas'
+EMAIL_HOST_PASSWORD = 'a12345678'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

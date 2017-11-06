@@ -24,21 +24,30 @@
                         <input #responsable="ngModel" [ngClass]="{'error':!responsable.valid && envioFormCooperativa}" type="text" name="responsable" value="" placeholder="* Responsable [Solo letras]" ngModel required maxlength="70" pattern="[a-zA-Z ]*">
                     </div>
 
-                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                        <input #direccion="ngModel" [ngClass]="{'error':!direccion.valid && envioFormCooperativa}" type="text" name="direccion" value="" placeholder="* Dirección" ngModel required maxlength="255">
-                    </div>
-
                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
                           <input #telefono="ngModel" [ngClass]="{'error':!telefono.valid && envioFormCooperativa}" type="text" name="telefono" value="" placeholder="* Telefono" ngModel required maxlength="70" pattern="[0-9-()+ ]*">
                     </div>
 
-                   <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
                         <input #zona="ngModel" [ngClass]="{'error':!zona.valid && envioFormCooperativa}" type="text" name="zona" value="" placeholder="* Zona " ngModel required maxlength="70">
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                          <input #direccion [ngClass]="{'error':!direccion.valid && envioFormCooperativa}" type="text" name="direccion" value="" placeholder="* Dirección" required maxlength="255" ngModel >
+                    </div>
+
+                    <div class="col-md-12 col-md-offset-0" style="margin-bottom: 20px">
+                      <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event , formCooperativa)" [zoom]="marker.zoom" style="height: 300px;">
+                        <agm-marker [latitude]="marker.latitud" [longitude]="marker.longitud"></agm-marker>
+                      </agm-map>
+                      <input #latitud="ngModel" type="hidden" name="latitud" value="" ngModel>
+                      <input #longitud="ngModel" type="hidden" name="longitud" value="" ngModel>
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormCooperativa}" name="descripcion" placeholder="Descripción [Máx 550 caracteres]" ngModel maxlength="550"></textarea>
                     </div>
+
                     <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
                       <span *ngIf="!formCooperativa.valid && !envioFormCooperativa"> * Campos obligatorios</span>
                       <br>

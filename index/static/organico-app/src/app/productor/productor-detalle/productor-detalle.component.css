@@ -1,3 +1,38 @@
 agm-map {
   height: 300px;
 }
+
+.informacion-cooperativa{
+  overflow: hidden;
+}
+
+.informacion-cooperativa h4, .informacion-productor h4{
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0px 0px;
+  font-family: 'Roboto Slab',serif;
+  line-height: 1.4em;
+  color: #333333;
+  margin-bottom: 15px;
+}
+
+.informacion-cooperativa .no-padding,
+.informacion-cooperativa > div,
+.informacion-productor .no-padding,
+.informacion-productor > div,
+.no-padding{
+  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.envio-correo input[type="email"], .envio-correo textarea {
+  border: solid 1px #777777;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.envio-correo button{
+  display: block;
+  float: left;
+}

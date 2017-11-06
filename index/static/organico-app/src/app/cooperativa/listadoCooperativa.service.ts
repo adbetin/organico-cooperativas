@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Injectable } from "@angular/core";
+import { Http } from "@angular/http";
+import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
@@ -9,7 +9,7 @@ export class ListadoCooperativaService {
     }
 
     getCooperativas(): Observable<string[]> {
-        return this.http.get('/cooperativa/cooperativalist')
+        return this.http.get("/cooperativa/cooperativalist")
             .map(response => <string[]>response.json());
 
     }
