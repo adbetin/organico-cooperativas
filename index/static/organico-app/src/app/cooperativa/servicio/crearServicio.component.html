@@ -8,35 +8,36 @@
            <form #formServicio="ngForm" (ngSubmit)="guardarServicio(formServicio)">
                 <div class="row clearfix">
 
-                    <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
-                      <span> * Campos obligatorios</span>
-                      <br>
-                      <span *ngIf="exitoso==true">Servicio publicado exitosamente</span>
-                    </div>
-
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                      <select id="cooperativa"
-                              name="cooperativa" placeholder="* Cooperativa" required >
+                      <select #cooperativa="ngModel" id="cooperativa"
+                              name="cooperativa" placeholder="* Cooperativa" [(ngModel)]="servicio.cooperativa" required >
                         <option value="-1">-- Cooperativa --</option>
-                        <option value="41">cooperativa</option>
+                        <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
                       </select>
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <input type="text" name="titulo" id="titulo" value="" placeholder="* Título [Máx 100 caracteres]" required maxlength="100"  >
+                        <input #titulo="ngModel" [ngClass]="{'error':!titulo.valid && envioFormServicio}" type="text" name="titulo" value="" placeholder="* Título [Máx 100 caracteres]" [(ngModel)]="servicio.titulo" required maxlength="100"  >
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <textarea name="descripcion" id="descripcion" placeholder="* Descripción [Máx 550 caracteres]" maxlength="550"></textarea>
+                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormServicio}" name="descripcion" placeholder="* Descripción [Máx 550 caracteres]" [(ngModel)]="servicio.descripcion" maxlength="550"></textarea>
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                       <label> Foto*: </label>
-                      <input type="file" id="foto" name="foto">
+                      <input type="file" #entradaFoto (change)="loadFoto(entradaFoto)">
+                      <canvas max-width="200" max-height="200" id="photoPreview"></canvas>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
+                      <span *ngIf="!formServicio.valid && !envioFormServicio"> * Campos obligatorios</span>
+                      <br>
+                      <label *ngIf="!formServicio.valid && envioFormServicio" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>
                     </div>
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <div class="text-center"><button  type="submit" id="guardar" name="guardar" class="theme-btn btn-style-two ui-state-disabled">Guardar</button>
+                        <div class="text-center"><button  type="submit" class="theme-btn btn-style-two ui-state-disabled">Guardar</button>
                         <button type="button" class="theme-btn btn-style-two ui-state-disabled" onclick="window.history.go(-1)">Cancelar</button></div>
 
                     </div>

@@ -21,6 +21,8 @@ import { RegistroAdminComponent } from "./productor/registro-admin/registro-admi
 import { ProductorEditarComponent } from "./productor/productor-editar/productorEditar.component";
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
+import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
+import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.com
     ProductorEditarComponent,
     RegistroAdminComponent,
     ActivarCorreoComponent,
-    CrearServicioComponent
+    CrearServicioComponent,
+    ListadoServicioComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,10 @@ import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.com
       {
         path: 'cooperativa/servicio/crearServicio',
         component: CrearServicioComponent
+      },
+      {
+        path: 'cooperativa/servicio/listadoServicios/:id',
+        component: ListadoServicioComponent
       }
     ])
   ],
