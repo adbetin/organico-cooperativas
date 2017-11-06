@@ -17,6 +17,490 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 
 /***/ }),
 
+/***/ "../../../../../src/app/administrador/foro/crearForo.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+exports.i(__webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../material/prebuilt-themes/indigo-pink.css"), "");
+
+// module
+exports.push([module.i, ".text-datepicker{\r\n  display: inline !important;\r\n  width: 80% !important;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/crearForo.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Nuevo Foro</h1>\r\n        <div class=\"contact-form default-form\">\r\n\r\n           <form #formForo=\"ngForm\" (ngSubmit)=\"saveForo(formForo)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormForo}\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"* Nombre [Solo letras por favor]\" ngModel required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                      <select #cooperativa=\"ngModel\" id=\"cooperativa\" [(ngModel)]=\"foro.cooperativa\" name=\"cooperativa\" [ngClass]=\"{'error':!cooperativa.valid && envioFormForo}\" required>\r\n                        <option value=\"\">-- Cooperativa --</option>\r\n                        <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n                      </select>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                      <select #tema=\"ngModel\" id=\"Tema\" [(ngModel)]=\"foro.tema\" name=\"tema\" [ngClass]=\"{'error':!tema.valid && envioFormForo}\" required>\r\n                        <option value=\"\">-- Tema --</option>\r\n                        <option *ngFor=\"let tema of temas\" value=\"{{tema.id}}\">{{tema.nombre}}</option>\r\n                      </select>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-4\">\r\n                        <!--<input #fechacierre=\"ngModel\" [ngClass]=\"{'error':!fechacierre.valid && envioFormForo}\" type=\"text\" name=\"fechacierre\" value=\"\" placeholder=\" * Seleccione fecha cierre\" ngModel required maxlength=\"70\" pattern=\"[0-9- ]*\">-->\r\n                        <input class=\"text-datepicker\" matInput [matDatepicker]=\"picker\" #fechacierre=\"ngModel\" [ngClass]=\"{'error':!fechacierre.valid && envioFormForo}\" type=\"text\" name=\"fechacierre\" value=\"\" placeholder=\" * Seleccione fecha cierre\" ngModel required maxlength=\"70\"  >\r\n                        <!--<input matInput [matDatepicker]=\"picker\" type=\"text\" style=\"display: inline !important; width: 80%\" placeholder=\"Choose a date\">-->\r\n                        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n                        <mat-datepicker #picker></mat-datepicker>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormForo}\" name=\"descripcion\" placeholder=\"* Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\" required></textarea>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formForo.valid && !envioFormForo\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formForo.valid && envioFormForo\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\" >Guardar</button></div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/crearForo.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CrearForoComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__foros_service__ = __webpack_require__("../../../../../src/app/administrador/foro/foros.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+//import * as swal from 'sweetalert2';
+var CrearForoComponent = (function () {
+    function CrearForoComponent(foroServices, router, cooperativaService) {
+        this.foroServices = foroServices;
+        this.router = router;
+        this.cooperativaService = cooperativaService;
+        this.title = 'Crear foro';
+        this.envioFormForo = false;
+        this.foro = {
+            "cooperativa": "",
+            "tema": ""
+        };
+    }
+    CrearForoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.cooperativaService.getCooperativas()
+            .subscribe(function (response) {
+            _this.cooperativas = response;
+        });
+        this.foroServices.getTemas()
+            .subscribe(function (response) {
+            _this.temas = response;
+        });
+        //this.openDialog();
+    };
+    CrearForoComponent.prototype.saveForo = function (formForo) {
+        this.envioFormForo = true;
+        if (formForo.valid) {
+            var resultado = this.foroServices.guardarForo(formForo.value).subscribe();
+            if (resultado) {
+                alert("Datos guardados correctamente");
+                //this.router.navigateByUrl('cooperativa/listadoCooperativa');
+            }
+            else {
+                alert("Error almacenando datos");
+            }
+        }
+        else {
+            //alert("Por favor llene todos los campos que son obligatorios. (*) ");
+        }
+    };
+    return CrearForoComponent;
+}());
+CrearForoComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        //selector: 'app-crearCooperativa',
+        template: __webpack_require__("../../../../../src/app/administrador/foro/crearForo.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/administrador/foro/crearForo.component.css")],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */],
+            __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _c || Object])
+], CrearForoComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=crearForo.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/editarForo.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Editar Foro</h1>\r\n        <div class=\"contact-form default-form\">\r\n\r\n           <form #formForo=\"ngForm\" (ngSubmit)=\"editarForo(formForo)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [(ngModel)]=\"foro.nombre\" [ngClass]=\"{'error':!nombre.valid && envioFormForo}\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"* Nombre [Solo letras por favor]\" ngModel required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                      <select #cooperativa=\"ngModel\" id=\"cooperativa\" [(ngModel)]=\"foro.cooperativa.id\" name=\"cooperativa\" [ngClass]=\"{'error':!cooperativa.valid && envioFormForo}\" required>\r\n                        <option value=\"\">-- Cooperativa --</option>\r\n                        <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n                      </select>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                      <select #tema=\"ngModel\" id=\"Tema\" [(ngModel)]=\"foro.tema.id\" name=\"tema\" [ngClass]=\"{'error':!tema.valid && envioFormForo}\" required>\r\n                        <option value=\"\">-- Tema --</option>\r\n                        <option *ngFor=\"let tema of temas\" value=\"{{tema.id}}\">{{tema.nombre}}</option>\r\n                      </select>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-4\">\r\n                        <!--<input #fechacierre=\"ngModel\" [ngClass]=\"{'error':!fechacierre.valid && envioFormForo}\" type=\"text\" name=\"fechacierre\" value=\"\" placeholder=\" * Seleccione fecha cierre\" ngModel required maxlength=\"70\" pattern=\"[0-9- ]*\">-->\r\n                        <input class=\"text-datepicker\" readonly matInput [matDatepicker]=\"picker\" #fechacierre=\"ngModel\" [(ngModel)]=\"foro.fecha_cierre\" [ngClass]=\"{'error':!fechacierre.valid && envioFormForo}\" type=\"text\" name=\"fechacierre\" value=\"\" placeholder=\" * Seleccione fecha cierre\" ngModel required maxlength=\"70\">\r\n                        <!--<input matInput [matDatepicker]=\"picker\" type=\"text\" style=\"display: inline !important; width: 80%\" placeholder=\"Choose a date\">-->\r\n                        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n                        <mat-datepicker #picker></mat-datepicker>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [(ngModel)]=\"foro.descripcion\" [ngClass]=\"{'error':!descripcion.valid && envioFormForo}\" name=\"descripcion\" placeholder=\"* Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\" required></textarea>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formForo.valid && !envioFormForo\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formForo.valid && envioFormForo\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\" >Guardar</button></div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/editarForo.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditarForoComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__foros_service__ = __webpack_require__("../../../../../src/app/administrador/foro/foros.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var EditarForoComponent = (function () {
+    function EditarForoComponent(foroService, route, router, cd, cooperativaService) {
+        this.foroService = foroService;
+        this.route = route;
+        this.router = router;
+        this.cd = cd;
+        this.cooperativaService = cooperativaService;
+        this.title = 'Editar foro';
+        this.envioFormForo = false;
+        this.foro = {
+            cooperativa: "",
+            tema: ""
+        };
+    }
+    EditarForoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params
+            .switchMap(function (params) {
+            return _this.foroService.getForo(+params["id"]);
+        })
+            .subscribe(function (response) {
+            _this.foro = response;
+            _this.cd.detectChanges();
+        }, function (reason) {
+            _this.foro = null;
+            alert("error al cargar datos");
+        });
+        this.cooperativaService.getCooperativas()
+            .subscribe(function (response) {
+            _this.cooperativas = response;
+        });
+        this.foroService.getTemas()
+            .subscribe(function (response) {
+            _this.temas = response;
+        });
+    };
+    EditarForoComponent.prototype.editarForo = function (formForo) {
+        this.envioFormForo = true;
+        if (formForo.valid) {
+            formForo.value.id = this.foro.id;
+            var resultado = this.foroService.editarForo(formForo.value).subscribe();
+            if (resultado) {
+                alert("Datos guardados correctamente");
+            }
+            else {
+                alert("Error almacenando datos");
+            }
+        }
+    };
+    return EditarForoComponent;
+}());
+EditarForoComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        //selector: 'app-crearCooperativa',
+        styles: [__webpack_require__("../../../../../src/app/administrador/foro/crearForo.component.css")],
+        template: __webpack_require__("../../../../../src/app/administrador/foro/editarForo.component.html"),
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */],
+            __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _e || Object])
+], EditarForoComponent);
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=editarForo.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/foros.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForoService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ForoService = (function () {
+    function ForoService(http) {
+        this.http = http;
+    }
+    ForoService.prototype.guardarForo = function (foro) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var body = JSON.stringify(foro);
+        return this.http.post('guardarForo/', body, options).map(function (response) { return response.json(); });
+    };
+    ForoService.prototype.editarForo = function (foro) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var body = JSON.stringify(foro);
+        return this.http.post('/administrador/editarDatosForo/', body, options).map(function (response) { return response.json(); });
+    };
+    ForoService.prototype.agregarRespuesta = function (foro) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var body = JSON.stringify(foro);
+        return this.http.post('/administrador/agregarRespuesta/', body, options).map(function (response) { return response.json(); });
+    };
+    ForoService.prototype.getTemas = function () {
+        return this.http.get('/administrador/temasForoList')
+            .map(function (response) { return response.json(); });
+    };
+    ForoService.prototype.getCookie = function (name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2)
+            return parts.pop().split(";").shift();
+    };
+    ForoService.prototype.getForo = function (id) {
+        return this.http.get('/administrador/consultarForo/' + id)
+            .map(function (response) { return response.json(); });
+    };
+    ForoService.prototype.getRespuestas = function (id) {
+        return this.http.get('/administrador/consultarRespuestas/' + id)
+            .map(function (response) { return response.json(); });
+    };
+    return ForoService;
+}());
+ForoService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], ForoService);
+
+var _a;
+//# sourceMappingURL=foros.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/listadoForos.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "    <!--Our Team-->\r\n    <section class=\"team-section\">\r\n    \t<div class=\"auto-container\">\r\n        \t<!--Section Title-->\r\n            <div class=\"sec-title-one\">\r\n                <h2><a routerLink=\"/administrador/listadoForos\">Nuevos foros</a></h2>\r\n            </div>\r\n\r\n          <table class=\"table table-bordered\">\r\n            <thead>\r\n              <tr>\r\n                <th class=\"text-center\">Cooperativa</th>\r\n                <th class=\"text-center\">Tema</th>\r\n                <th class=\"text-center\">Fecha Cierre</th>\r\n                <th class=\"text-center\">Estado</th>\r\n                <th class=\"text-center\">Respuestas</th>\r\n                <th class=\"text-center\">Editar</th>\r\n              </tr>\r\n            </thead>\r\n            <tbody>\r\n              <tr *ngFor=\"let foro of foros\">\r\n                <td>{{ foro.cooperativa.nombre }}</td>\r\n                <td>{{ foro.tema.nombre }}</td>\r\n                <td>{{ foro.fecha_cierre }}</td>\r\n                <td>{{ foro.estado }}</td>\r\n                <td>\r\n                  <a routerLink=\"/administrador/respuestaForo/{{ foro.id }}\">\r\n                    <span class=\"fa fa-reply title-box title\" title=\"Respuestas agregadas recientemente\"></span>\r\n                  </a>\r\n                </td>\r\n                <td>\r\n                  <a routerLink=\"/administrador/editarForo/{{ foro.id }}\">\r\n                    <span class=\"fa fa-edit title-box title\" title=\"Editar foro\"></span>\r\n                  </a>\r\n                 </td>\r\n              </tr>\r\n            </tbody>\r\n\r\n          </table>\r\n        </div>\r\n    </section>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/listadoForos.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListadoForosComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__listadoForos_service__ = __webpack_require__("../../../../../src/app/administrador/foro/listadoForos.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__foros_service__ = __webpack_require__("../../../../../src/app/administrador/foro/foros.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ListadoForosComponent = (function () {
+    function ListadoForosComponent(listadoForosServices, crearForoService) {
+        this.listadoForosServices = listadoForosServices;
+        this.crearForoService = crearForoService;
+        this.title = 'Listado foros';
+        this.foros = new Array();
+        this.sizeDescripcion = 120;
+    }
+    ListadoForosComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.listadoForosServices.getForos()
+            .subscribe(function (foros) {
+            _this.foros = foros;
+            console.log(_this.foros);
+        });
+    };
+    return ListadoForosComponent;
+}());
+ListadoForosComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-listadocooperativa',
+        template: __webpack_require__("../../../../../src/app/administrador/foro/listadoForos.component.html"),
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__listadoForos_service__["a" /* ListadoForosService */],
+            __WEBPACK_IMPORTED_MODULE_3__foros_service__["a" /* ForoService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__listadoForos_service__["a" /* ListadoForosService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__listadoForos_service__["a" /* ListadoForosService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__foros_service__["a" /* ForoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__foros_service__["a" /* ForoService */]) === "function" && _b || Object])
+], ListadoForosComponent);
+
+var _a, _b;
+//# sourceMappingURL=listadoForos.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/listadoForos.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListadoForosService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ListadoForosService = (function () {
+    function ListadoForosService(http) {
+        this.http = http;
+    }
+    ListadoForosService.prototype.getForos = function () {
+        return this.http.get('/administrador/forosList')
+            .map(function (response) { return response.json(); });
+    };
+    return ListadoForosService;
+}());
+ListadoForosService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], ListadoForosService);
+
+var _a;
+//# sourceMappingURL=listadoForos.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/respuestaForo.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n      <div class=\"sidebar-title\"><h3>Información del foro </h3></div>\r\n      <div class=\"col-md-6 col-sm-6 col-xs-6\">\r\n        <label>Nombre : </label>\r\n        <span> {{foro.nombre}} </span>\r\n      </div>\r\n      <div class=\"col-md-6 col-sm-6 col-xs-6\">\r\n        <label><b>Cooperativa :</b> </label>\r\n        <span> {{foro.cooperativa.nombre}} </span>\r\n      </div>\r\n      <div class=\"col-md-6 col-sm-6 col-xs-6\">\r\n        <label><b>Tema :</b> </label>\r\n        <span> {{foro.tema.nombre}} </span>\r\n      </div>\r\n      <div class=\"col-md-6 col-sm-6 col-xs-6\">\r\n        <label><b>Fecha de cierre :</b> </label>\r\n        <span> {{foro.fecha_cierre}} </span>\r\n      </div>\r\n      <div class=\"col-md-12 col-sm-12 col-xs-6\">\r\n        <label><b>Descripción : </b> </label>\r\n        <span> {{foro.descripcion}} </span>\r\n      </div>\r\n\r\n      <div class=\"sidebar-title\" *ngIf=\"respuestas && respuestas.length>0 \"><h3>Comentarios </h3></div>\r\n      <div class=\"comments-area col-md-12 col-sm-12 col-xs-12\" *ngFor=\"let respuesta of respuestas\">\r\n          <div class=\"comment-box\">\r\n                <div class=\"comment-inner text-left\" >\r\n                      <div class=\"comment-content\">\r\n                          <div class=\"comment-header clearfix\">\r\n                              <strong>{{ respuesta.productor.nombre }}</strong> - <span class=\"date\"> {{ respuesta.fecha }} - {{ respuesta.nombre }}</span>\r\n                          </div>\r\n                          <div class=\"text\">{{ respuesta.descripcion }}</div>\r\n                      </div>\r\n                  </div>\r\n          </div>\r\n      </div>\r\n\r\n     <div class=\"post-tags\" style=\"height: 150px !important;\">  </div>\r\n     <h1>Nuevo Comentario</h1>\r\n        <div class=\"contact-form default-form\">\r\n\r\n           <form #formRespuesta=\"ngForm\" (ngSubmit)=\"agregarRespuesta(formRespuesta)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormRespuesta}\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"* Asunto [Solo letras por favor]\" ngModel required maxlength=\"70\"  >\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormRespuesta}\" name=\"descripcion\" placeholder=\"* Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\" required></textarea>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formRespuesta.valid && !envioFormRespuesta\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formRespuesta.valid && envioFormRespuesta\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\" >Guardar</button></div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n\r\n    </div>\r\n</section>\r\n\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/foro/respuestaForo.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RespuestaForoComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__foros_service__ = __webpack_require__("../../../../../src/app/administrador/foro/foros.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var RespuestaForoComponent = (function () {
+    function RespuestaForoComponent(foroService, route, router, cd, cooperativaService) {
+        this.foroService = foroService;
+        this.route = route;
+        this.router = router;
+        this.cd = cd;
+        this.cooperativaService = cooperativaService;
+        this.title = 'Respuesta foro';
+        this.envioformRespuesta = false;
+        this.foro = {
+            cooperativa: "",
+            tema: ""
+        };
+    }
+    RespuestaForoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params
+            .switchMap(function (params) {
+            return _this.foroService.getForo(+params["id"]);
+        }).subscribe(function (response) {
+            _this.foro = response;
+            _this.cd.detectChanges();
+        }, function (reason) {
+            _this.foro = null;
+            alert("error al cargar datos");
+        });
+        this.route.params
+            .switchMap(function (params) {
+            return _this.foroService.getRespuestas(+params["id"]);
+        }).subscribe(function (response) {
+            _this.respuestas = response;
+            _this.cd.detectChanges();
+        }, function (reason) {
+            _this.foro = null;
+            alert("error al cargar datos");
+        });
+    };
+    RespuestaForoComponent.prototype.agregarRespuesta = function (formRespuesta) {
+        this.envioformRespuesta = true;
+        if (formRespuesta.valid) {
+            formRespuesta.value.id = this.foro.id;
+            var resultado = this.foroService.agregarRespuesta(formRespuesta.value).subscribe();
+            if (resultado) {
+                alert("Respuesta agregada con exito");
+                this.ngOnInit();
+            }
+            else {
+                alert("Error almacenando datos");
+            }
+        }
+    };
+    return RespuestaForoComponent;
+}());
+RespuestaForoComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        //selector: 'app-crearCooperativa',
+        template: __webpack_require__("../../../../../src/app/administrador/foro/respuestaForo.component.html"),
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */],
+            __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__cooperativa_listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _e || Object])
+], RespuestaForoComponent);
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=respuestaForo.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -99,15 +583,23 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__cooperativa_actualizardatos_component__ = __webpack_require__("../../../../../src/app/cooperativa/actualizardatos.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__productor_registro_admin_registro_admin_component__ = __webpack_require__("../../../../../src/app/productor/registro-admin/registro-admin.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__productor_productor_editar_productorEditar_component__ = __webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__productor_activar_correo_activar_correo_component__ = __webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__cooperativa_servicio_crearServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/crearServicio.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__cooperativa_servicio_listadoServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/listadoServicio.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__administrador_foro_crearForo_component__ = __webpack_require__("../../../../../src/app/administrador/foro/crearForo.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__administrador_foro_listadoForos_component__ = __webpack_require__("../../../../../src/app/administrador/foro/listadoForos.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__administrador_foro_editarForo_component__ = __webpack_require__("../../../../../src/app/administrador/foro/editarForo.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__administrador_foro_respuestaForo_component__ = __webpack_require__("../../../../../src/app/administrador/foro/respuestaForo.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__productor_activar_correo_activar_correo_component__ = __webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__cooperativa_servicio_crearServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/crearServicio.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/listadoServicio.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -149,9 +641,14 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_16__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */],
             __WEBPACK_IMPORTED_MODULE_19__productor_productor_editar_productorEditar_component__["a" /* ProductorEditarComponent */],
             __WEBPACK_IMPORTED_MODULE_18__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__cooperativa_servicio_crearServicio_component__["a" /* CrearServicioComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */]
+            __WEBPACK_IMPORTED_MODULE_20__administrador_foro_crearForo_component__["a" /* CrearForoComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__administrador_foro_listadoForos_component__["a" /* ListadoForosComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__administrador_foro_editarForo_component__["a" /* EditarForoComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__administrador_foro_respuestaForo_component__["a" /* RespuestaForoComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */],
+            __WEBPACK_IMPORTED_MODULE_24__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__cooperativa_servicio_crearServicio_component__["a" /* CrearServicioComponent */],
+            __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -159,65 +656,90 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["i" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_material__["b" /* MatTableModule */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatProgressSpinnerModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["e" /* MatTableModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatDatepickerModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["c" /* MatNativeDateModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["b" /* MatDialogModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["d" /* MatProgressSpinnerModule */],
+            __WEBPACK_IMPORTED_MODULE_9_ng_lazyload_image__["LazyLoadImageModule"],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["d" /* MatProgressSpinnerModule */],
             __WEBPACK_IMPORTED_MODULE_9_ng_lazyload_image__["LazyLoadImageModule"],
             __WEBPACK_IMPORTED_MODULE_6__agm_core__["a" /* AgmCoreModule */].forRoot({
-                apiKey: "AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo",
+                apiKey: 'AIzaSyDL6TZQxNUkW3jlsAsHc8rRteGesrZmPuo',
                 libraries: ["places"]
             }),
             __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* RouterModule */].forRoot([
                 {
-                    path: "cooperativa/crearCooperativa",
+                    path: 'cooperativa/crearCooperativa',
                     component: __WEBPACK_IMPORTED_MODULE_12__cooperativa_crearCooperativa_component__["a" /* CrearCooperativaComponent */]
                 },
                 {
-                    path: "cooperativa/listadoCooperativa",
+                    path: 'cooperativa/listadoCooperativa',
                     component: __WEBPACK_IMPORTED_MODULE_11__cooperativa_listadoCooperativa_component__["a" /* ListadoCooperativaComponent */]
                 },
                 {
-                    path: "cooperativa/actualizardatos/:id",
+                    path: 'cooperativa/actualizardatos/:id',
                     component: __WEBPACK_IMPORTED_MODULE_17__cooperativa_actualizardatos_component__["a" /* ActualizarDatosComponent */]
                 },
                 {
-                    path: "cooperativa/detalle/:id",
+                    path: 'cooperativa/detalle/:id',
                     component: __WEBPACK_IMPORTED_MODULE_13__cooperativa_cooperativa_detalle_cooperativa_detalle_component__["a" /* CooperativaDetalleComponent */]
                 },
                 {
-                    path: "productor/registro",
+                    path: 'productor/registro',
                     component: __WEBPACK_IMPORTED_MODULE_14__productor_productorRegistro_component__["a" /* ProductorRegistroComponent */]
                 },
                 {
-                    path: "productor/detalle/:id",
+                    path: 'productor/detalle/:id',
                     component: __WEBPACK_IMPORTED_MODULE_15__productor_productor_detalle_productor_detalle_component__["a" /* ProductorDetalleComponent */]
                 },
                 {
-                    path: "productor/lista",
+                    path: 'productor/lista',
                     component: __WEBPACK_IMPORTED_MODULE_16__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */]
                 },
                 {
-                    path: "productor/editar/:id",
+                    path: 'productor/editar/:id',
                     component: __WEBPACK_IMPORTED_MODULE_19__productor_productor_editar_productorEditar_component__["a" /* ProductorEditarComponent */]
                 },
                 {
-                    path: "productor/admin/registro",
+                    path: 'productor/admin/registro',
                     component: __WEBPACK_IMPORTED_MODULE_18__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */]
                 },
                 {
+                    path: 'administrador/crearForo',
+                    component: __WEBPACK_IMPORTED_MODULE_20__administrador_foro_crearForo_component__["a" /* CrearForoComponent */]
+                },
+                {
+                    path: 'administrador/listaForo',
+                    component: __WEBPACK_IMPORTED_MODULE_21__administrador_foro_listadoForos_component__["a" /* ListadoForosComponent */]
+                },
+                {
+                    path: 'administrador/editarForo/:id',
+                    component: __WEBPACK_IMPORTED_MODULE_22__administrador_foro_editarForo_component__["a" /* EditarForoComponent */]
+                },
+                {
+                    path: 'administrador/respuestaForo/:id',
+                    component: __WEBPACK_IMPORTED_MODULE_23__administrador_foro_respuestaForo_component__["a" /* RespuestaForoComponent */]
+                },
+                {
                     path: "productor/correo/activar",
-                    component: __WEBPACK_IMPORTED_MODULE_20__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_24__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */]
+                },
+                {
+                    path: "productor/correo/activar",
+                    component: __WEBPACK_IMPORTED_MODULE_24__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */]
                 },
                 {
                     path: 'cooperativa/servicio/crearServicio',
-                    component: __WEBPACK_IMPORTED_MODULE_21__cooperativa_servicio_crearServicio_component__["a" /* CrearServicioComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_25__cooperativa_servicio_crearServicio_component__["a" /* CrearServicioComponent */]
                 },
                 {
                     path: 'cooperativa/servicio/listadoServicios/:id',
-                    component: __WEBPACK_IMPORTED_MODULE_22__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */]
                 }
             ])
         ],
-        providers: [{ provide: __WEBPACK_IMPORTED_MODULE_5__angular_common__["a" /* APP_BASE_HREF */], useValue: "/" }],
+        providers: [{ provide: __WEBPACK_IMPORTED_MODULE_5__angular_common__["a" /* APP_BASE_HREF */], useValue: '/' }],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_10__app_component__["a" /* AppComponent */]],
         schemas: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]]
     })
@@ -1661,6 +2183,7 @@ var ProductorEditarComponent = (function () {
             .subscribe(function (response) {
             _this.cooperativas = response;
         });
+        //Capturar informacion del productor a editar
         this.route.params
             .switchMap(function (params) {
             return _this.productorService.getProd(+params["id"]);

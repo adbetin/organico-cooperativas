@@ -11,7 +11,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ('administrador', '0002_auto_20171103_0137'),
     ]
-
     operations = [
         migrations.AddField(
             model_name='foro',
