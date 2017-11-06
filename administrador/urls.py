@@ -28,12 +28,14 @@ urlpatterns = [
 
     # Almacenamiento de datos
     url(r'^guardarForo/$', views.guardarForo, name="guardar_foro"),
+    url(r'^agregarRespuesta/$', views.agregarRespuesta, name="agregar_respuesta"),
 
     # Consulta de datos
     url(r'^temasForoList$', views.temasForoList, name="listado_temas"),
     url(r'^forosList$', views.foroList, name="listado_foros"),
     url(r'^editarDatosForo/$', views.editarForo, name="editar_foro"),
 
-    url(r'consultarForo/(?P<id>.+)/$', views.foroGet, name="ver_foro")
+    url(r'consultarForo/(?P<id>.+)/$', views.foroGet, name="ver_foro"),
+    url(r'consultarRespuestas/(?P<id>.+)/$', views.respuestasForo, name="ver_respuestas")
 
 ]

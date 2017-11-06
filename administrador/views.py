@@ -6,8 +6,10 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from cooperativa.models import Cooperativa
-from administrador.models import Tema,Foro
-from administrador.serializers import TemaSerializer,ForoSerializer
+from administrador.models import Tema,Foro,Respuesta
+from productor.models import Productor
+from administrador.serializers import TemaSerializer,ForoSerializer, RespuestaSerializer
+from datetime import datetime
 
 # Create your views here.
 
@@ -80,3 +82,25 @@ def ForoDetail(request, id):
     foro = get_object_or_404(Foro, id=id)
     context = {'foro': foro}
     return render(request, 'administrador.html', context)
+
+@csrf_exempt
+def respuestasForo(request ,id ):
+    if (request.method == 'GET'):
+        foro = Foro.objects.get(pk=id)
+        respuestas = Respuesta.objects.all( ).filter( foro = foro )
+        serializer = RespuestaSerializer(respuestas, many=True)
+        return modeloJSON(serializer.data)
+
+@csrf_exempt
+def agregarRespuesta(request):
+    respuesta = False
+    if (request.method == 'POST'):
+        respuestaPost = json.loads(request.body)
+        respuesta = Respuesta.objects.create(nombre=respuestaPost["nombre"],
+                                             descripcion=respuestaPost["descripcion"],
+                                             productor= Productor.objects.get(pk=1),
+                                             foro=Foro.objects.get(pk=respuestaPost["id"])
+                                            );
+        respuesta.save()
+        respuesta = True
+    return modeloJSON(respuesta)

@@ -24,6 +24,13 @@ export class ForoService {
       return this.http.post('/administrador/editarDatosForo/', body, options).map(response => response.json());
     }
 
+    agregarRespuesta( foro ) {
+      let headers = new Headers({ 'Content-Type': 'application/json','X-CSRFToken': this.getCookie('csrftoken') });
+      let options = new RequestOptions({ headers: headers });
+      let body = JSON.stringify( foro );
+      return this.http.post('/administrador/agregarRespuesta/', body, options).map(response => response.json());
+    }
+
     getTemas(): Observable<string[]> {
         return this.http.get('/administrador/temasForoList')
             .map(response => <string[]>response.json());
@@ -40,6 +47,12 @@ export class ForoService {
     getForo(id: number): Observable<string> {
         return this.http.get('/administrador/consultarForo/' + id)
             .map(response => <string>response.json());
+    }
+
+    getRespuestas(id: number): Observable<string[]> {
+        return this.http.get('/administrador/consultarRespuestas/' + id)
+            .map(response => <string[]>response.json());
+
     }
 
 }

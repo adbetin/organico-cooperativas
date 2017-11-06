@@ -7,7 +7,6 @@ import { NgForm } from '@angular/forms';
 @Component({
   //selector: 'app-crearCooperativa',
   templateUrl: 'respuestaForo.component.html',
-  styleUrls: ['respuestaForo.component.css'],
   providers: [
     ForoService,
     ListadoCooperativaService
@@ -16,8 +15,9 @@ import { NgForm } from '@angular/forms';
 
 export class RespuestaForoComponent{
   title = 'Respuesta foro';
-  envioFormForo = false;
+  envioformRespuesta = false;
   cooperativas: any[];
+  public respuestas: any[];
   temas: any[];
   foro: any = {
     cooperativa:"",
@@ -34,41 +34,42 @@ export class RespuestaForoComponent{
 
   ngOnInit() {
 
-    /*this.route.params
+    this.route.params
       .switchMap((params: Params) =>
         this.foroService.getForo(+params["id"])
-      )
-      .subscribe(response => {
-
+      ).subscribe(response => {
           this.foro = response;
           this.cd.detectChanges();
-
         },
         reason => {
           this.foro = null;
           alert("error al cargar datos");
         });
 
-    this.cooperativaService.getCooperativas()
-      .subscribe(response => {
-        this.cooperativas = response;
-      });
+    this.route.params
+      .switchMap((params: Params) =>
+        this.foroService.getRespuestas(+params["id"])
+      ).subscribe(response => {
 
-    this.foroService.getTemas()
-      .subscribe(response => {
-        this.temas = response;
-      });*/
+          this.respuestas = response;
+          this.cd.detectChanges();
+        },
+        reason => {
+          this.foro = null;
+          alert("error al cargar datos");
+        });
   }
 
-  editarForo( formForo : NgForm){
-    this.envioFormForo = true;
-    if (formForo.valid) {
+  agregarRespuesta( formRespuesta : NgForm){
+    this.envioformRespuesta = true;
+    if (formRespuesta.valid) {
 
-      formForo.value.id = this.foro.id;
+      formRespuesta.value.id = this.foro.id;
 
-      let resultado = this.foroService.editarForo(formForo.value).subscribe();
+      let resultado = this.foroService.agregarRespuesta(formRespuesta.value).subscribe();
       if( resultado ){
-        alert("Datos guardados correctamente");
+        alert("Respuesta agregada con exito");
+        this.ngOnInit();
       }else{
         alert("Error almacenando datos");
       }
