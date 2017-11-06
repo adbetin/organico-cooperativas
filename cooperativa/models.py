@@ -25,3 +25,19 @@ class Cooperativa(models.Model):
 
     def __unicode__(self):
         return self.nombre
+
+class Servicio(models.Model):
+    cooperativa = models.ForeignKey(Cooperativa)
+    titulo = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=550)
+    foto = models.TextField()
+
+    class Meta:
+        verbose_name = 'Servicio'
+        verbose_name_plural = 'Servicios'
+
+    def __str__(self):
+        return '%s' % (self.nombre)
+
+    def __unicode__(self):
+        return self.nombre

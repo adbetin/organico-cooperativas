@@ -27,13 +27,17 @@ urlpatterns = [
     url(r'^productos/$', views.cooperativasAdmin, name="productos"),
     url(r'^actualizardatos/(?P<id>.+)$', views.cooperativasDetail, name="actualizar_datos"),
     url(r'^detalle/(?P<id>.+)$', views.cooperativasDetail, name='detalle_cooperativa'),
+    url(r'^servicio/crearServicio', views.cooperativasAdmin, name="crear_servicio"),
+    url(r'^servicio/listadoServicios/(?P<cooperativa_id>.+)$', views.serviciosAdmin, name="listado_servicio"),
 
     # Almacenamiento de datos
     url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),
-
     url(r'^actualizarCooperativa/$', views.actualizarCooperativa, name="actualizar_cooperativa"),
+    url(r'^servicio/guardarServicio/$', views.guardarServicio, name="guardar_servicio"),
 
     # Consulta de datos
     url(r'^cooperativalist$', views.cooperativasList, name="cooperativas_list"),
-    url(r'consultarCooperativa/(?P<id>.+)/$', views.cooperativasGet, name="ver_cooperativa")
+    url(r'^consultarCooperativa/(?P<id>.+)/$', views.cooperativasGet, name="ver_cooperativa"),
+    url(r'^servicioslist/(?P<cooperativa_id>.+)/$', views.serviciosList, name="servicios_list"),
+    url(r'^consultarservicio/(?P<cooperativa_id>.+)/$', views.serviciosGet, name="servicios_get")
 ]

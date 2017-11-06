@@ -12,7 +12,6 @@ import { LazyLoadImageModule } from "ng-lazyload-image";
 import { AppComponent } from "./app.component";
 import { ListadoCooperativaComponent } from "./cooperativa/listadoCooperativa.component";
 import { CrearCooperativaComponent } from "./cooperativa/crearCooperativa.component";
-import { productosComponent } from "./cooperativa/productos.component";
 import { CooperativaDetalleComponent } from "./cooperativa/cooperativa-detalle/cooperativa-detalle.component";
 import { ProductorRegistroComponent } from "./productor/productorRegistro.component";
 import { ProductorDetalleComponent } from "./productor/productor-detalle/productor-detalle.component";
@@ -21,13 +20,14 @@ import { ActualizarDatosComponent } from "./cooperativa/actualizardatos.componen
 import { RegistroAdminComponent } from "./productor/registro-admin/registro-admin.component";
 import { ProductorEditarComponent } from "./productor/productor-editar/productorEditar.component";
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
+import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
+import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListadoCooperativaComponent,
     CrearCooperativaComponent,
-    productosComponent,
     CooperativaDetalleComponent,
     ActualizarDatosComponent,
     ProductorRegistroComponent,
@@ -36,6 +36,8 @@ import { ActivarCorreoComponent } from "./productor/activar-correo/activar-corre
     ProductorEditarComponent,
     RegistroAdminComponent,
     ActivarCorreoComponent,
+    CrearServicioComponent,
+    ListadoServicioComponent
   ],
   imports: [
     BrowserModule,
@@ -54,10 +56,6 @@ import { ActivarCorreoComponent } from "./productor/activar-correo/activar-corre
       {
         path: "cooperativa/crearCooperativa",
         component: CrearCooperativaComponent
-      },
-            {
-        path: "cooperativa/productos",
-        component: productosComponent
       },
       {
         path: "cooperativa/listadoCooperativa",
@@ -94,6 +92,14 @@ import { ActivarCorreoComponent } from "./productor/activar-correo/activar-corre
       {
         path: "productor/correo/activar",
         component: ActivarCorreoComponent
+      },
+      {
+        path: 'cooperativa/servicio/crearServicio',
+        component: CrearServicioComponent
+      },
+      {
+        path: 'cooperativa/servicio/listadoServicios/:id',
+        component: ListadoServicioComponent
       }
     ])
   ],
