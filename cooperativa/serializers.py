@@ -9,6 +9,7 @@ class CooperativaSerializer(serializers.ModelSerializer):
 
 
 class ServicioSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Servicio
         fields = '__all__'

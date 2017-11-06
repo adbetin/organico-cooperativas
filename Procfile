@@ -1,1 +1,1 @@
-web: gunicorn organico_cooperativas.wsgi --log-file -
+web: gunicorn organico_cooperativas.wsgi --log-file - 

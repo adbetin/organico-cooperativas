@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'organico_cooperativas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dcojq9k8lc1gfs',
-        'USER': 'qjdbgutcrnswec',
-        'PASSWORD': '3c37c539380f07f88dbaec19fed022855d00049287998e62a1bba155eff02ff9',
-        'HOST': 'ec2-54-221-254-72.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'NAME': 'd9kjqu5c0au8ac',
+        'USER': 'kuycnnxniyvjsj',
+        'PASSWORD': '080735c46d3e9f5809453190439242ecbcbc0c85c1b271bb8528c7166d49d600',
+        'HOST': 'ec2-54-163-229-169.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
