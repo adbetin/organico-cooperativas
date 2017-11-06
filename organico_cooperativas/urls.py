@@ -22,5 +22,7 @@ urlpatterns = [
     url(r'^', include('index.urls')),
     url(r'^cooperativa/', include('cooperativa.urls')),
     url(r'^productor/', include('productor.urls')),
+    url(r'^administrador/', include('administrador.urls')),
     url(r'^chat/', include('chat.urls')),
+
 ]

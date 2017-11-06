@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'productor',
     'channels',
     'chat',
+    'administrador'
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,8 @@ if 'test' in sys.argv:
         'HOST': 'ec2-107-22-250-33.compute-1.amazonaws.com',
         'PORT': '5432',
     }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

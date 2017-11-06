@@ -1,0 +1,9 @@
+.post-details .comments-area .comment .comment-inner {
+    position: relative !important;
+    padding-left: 130px !important;
+}
+
+.post-details .comments-area {
+    position: relative !important;
+    margin-bottom: 60px !important;
+}

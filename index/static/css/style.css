@@ -4606,9 +4606,13 @@ img{
 }
 
 .contact-section .contact-form button{
-	padding:10px 25px;
+	/*padding:10px 25px;
 	border-radius:25px;
-	margin-top:20px;	
+	margin-top:20px;*/
+
+	padding:0px 25px;
+	border-radius:25px;
+	margin-top:0px;
 }
 
 /*** 

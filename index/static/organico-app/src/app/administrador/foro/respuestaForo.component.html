@@ -1,0 +1,71 @@
+<!--Contact Section-->
+<section class="contact-section">
+  <div class="auto-container">
+      <!--Section Title-->
+      <div class="sidebar-title"><h3>Información del foro </h3></div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <label>Nombre : </label>
+        <span> {{foro.nombre}} </span>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <label><b>Cooperativa :</b> </label>
+        <span> {{foro.cooperativa.nombre}} </span>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <label><b>Tema :</b> </label>
+        <span> {{foro.tema.nombre}} </span>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <label><b>Fecha de cierre :</b> </label>
+        <span> {{foro.fecha_cierre}} </span>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-6">
+        <label><b>Descripción : </b> </label>
+        <span> {{foro.descripcion}} </span>
+      </div>
+
+      <div class="sidebar-title" *ngIf="respuestas && respuestas.length>0 "><h3>Comentarios </h3></div>
+      <div class="comments-area col-md-12 col-sm-12 col-xs-12" *ngFor="let respuesta of respuestas">
+          <div class="comment-box">
+                <div class="comment-inner text-left" >
+                      <div class="comment-content">
+                          <div class="comment-header clearfix">
+                              <strong>{{ respuesta.productor.nombre }}</strong> - <span class="date"> {{ respuesta.fecha }} - {{ respuesta.nombre }}</span>
+                          </div>
+                          <div class="text">{{ respuesta.descripcion }}</div>
+                      </div>
+                  </div>
+          </div>
+      </div>
+
+     <div class="post-tags" style="height: 150px !important;">  </div>
+     <h1>Nuevo Comentario</h1>
+        <div class="contact-form default-form">
+
+           <form #formRespuesta="ngForm" (ngSubmit)="agregarRespuesta(formRespuesta)">
+                <div class="row clearfix">
+
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <input #nombre="ngModel" [ngClass]="{'error':!nombre.valid && envioFormRespuesta}" type="text" name="nombre" value="" placeholder="* Asunto [Solo letras por favor]" ngModel required maxlength="70"  >
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <textarea #descripcion="ngModel" [ngClass]="{'error':!descripcion.valid && envioFormRespuesta}" name="descripcion" placeholder="* Descripción [Máx 550 caracteres]" ngModel maxlength="550" required></textarea>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
+                      <span *ngIf="!formRespuesta.valid && !envioFormRespuesta"> * Campos obligatorios</span>
+                      <br>
+                      <label *ngIf="!formRespuesta.valid && envioFormRespuesta" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div class="text-center"><button  type="submit" class="theme-btn btn-style-two ui-state-disabled" >Guardar</button></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+

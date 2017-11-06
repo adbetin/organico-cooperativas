@@ -15,7 +15,6 @@ export class CrearCooperativaService {
       return this.http.post('guardarCooperativa/', body, options).map(response => response.json());
     }
 
-
     getCookie(name) {
       let value = "; " + document.cookie;
       let parts = value.split("; " + name + "=");
