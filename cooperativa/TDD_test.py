@@ -4,6 +4,7 @@ __author__ = 'asistente'
 
 from unittest import TestCase
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 
 #from selenium import webbrowser
 
@@ -17,6 +18,11 @@ class TDDTest(TestCase):
 
     def tearDown(self):
         self.browser.quit()
+
+    def test_accesoformulario(self):
+        self.browser.get('http://localhost:8000/cooperativa/servicio/crearServicio')
+        h1 = self.browser.find_element(By.XPATH, '//h1[text()="Publicar Servicio"]')
+        self.assertIn('Publicar Servicio', h1.text)
 
 
     def test_llenarcampos(self):
@@ -36,6 +42,9 @@ class TDDTest(TestCase):
         self.browser.implicitly_wait(3)
 
         botonGrabar = self.browser.find_element_by_id('guardar')
+        actions = ActionChains(self.browser)
+        actions.move_to_element(botonGrabar).perform()
+        self.browser.implicitly_wait(3)
         botonGrabar.click()
 
         span = self.browser.find_element(By.XPATH, '//span[text()="Servicio publicado exitosamente"]')
