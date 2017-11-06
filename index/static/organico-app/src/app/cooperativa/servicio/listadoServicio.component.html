@@ -1,0 +1,73 @@
+    <!--Our Team-->
+    <section class="team-section">
+    	<div class="auto-container">
+        	<!--Section Title-->
+            <div class="sec-title-one">
+                <h2>Servicios</h2>
+            </div>
+
+        	<div class="row clearfix" *ngFor="let item of servicios">
+            	<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                	<!--Default Team Member-->
+                    <div class="default-team-member" *ngIf="item[0]">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="{{ item[0].foto }}"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[0].titulo }}
+                                    <br><small><b>Cooperativa</b> {{ item[0].cooperativa.nombre }}</small></h3>
+                                    <div class="text">{{ item[0].descripcion }}</div>
+                                    <div class="social-links">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Default Team Member-->
+                    <div class="default-team-member" *ngIf="item[1]">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="{{ item[1].foto }}"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[1].titulo }}
+                                    <br><small><b>Cooperativa</b> {{ item[1].cooperativa.nombre }}</small></h3>
+                                    <div class="text">{{ item[1].descripcion }}</div>
+                                    <div class="social-links">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="item[2]">
+                	<!--Default Team Member / Vertical-->
+                    <div class="default-team-member vertical">
+                        <div class="inner-box clearfix">
+                            <!--Image Column-->
+                            <div class="image-column"><figure class="image"><img src="{{ item[2].foto }}"  alt=""></figure></div>
+                            <!--Content Column-->
+                            <div class="content-column">
+                                <div class="inner">
+                                    <h3>{{ item[2].titulo }}<br><small><b>Cooperativa</b> {{ item[2].cooperativa.nombre }}</small></h3>
+                                    <div class="text">{{ item[2].descripcion }}</div>
+                                    <div class="social-links">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>

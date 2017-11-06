@@ -1,5 +1,6 @@
 from django.db import models
 from cooperativa.models import Cooperativa
+from django.contrib.auth.models import User
 
 # Create your models here.
 class EnvioCorreos(models.Model):
@@ -43,6 +44,7 @@ class Productor(models.Model):
     nombreFinca = models.TextField()
     fincaCertificada = models.BooleanField()
     productosOrganicos = models.BooleanField()
+    usuario = models.ForeignKey(User, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Productor'

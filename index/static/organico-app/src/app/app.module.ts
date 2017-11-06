@@ -24,6 +24,8 @@ import { ListadoForosComponent } from './administrador/foro/listadoForos.compone
 import { EditarForoComponent } from './administrador/foro/editarForo.component';
 import { RespuestaForoComponent } from './administrador/foro/respuestaForo.component';
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
+import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
+import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { ActivarCorreoComponent } from "./productor/activar-correo/activar-corre
     RespuestaForoComponent,
     RegistroAdminComponent,
     ActivarCorreoComponent,
+    CrearServicioComponent,
+    ListadoServicioComponent
   ],
   imports: [
     BrowserModule,
@@ -122,6 +126,14 @@ import { ActivarCorreoComponent } from "./productor/activar-correo/activar-corre
       {
         path: "productor/correo/activar",
         component: ActivarCorreoComponent
+      },
+      {
+        path: 'cooperativa/servicio/crearServicio',
+        component: CrearServicioComponent
+      },
+      {
+        path: 'cooperativa/servicio/listadoServicios/:id',
+        component: ListadoServicioComponent
       }
     ])
   ],
