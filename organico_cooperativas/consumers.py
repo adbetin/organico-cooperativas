@@ -5,7 +5,7 @@ from channels import Group
 from channels.sessions import channel_session
 
 from cooperativa.models import Cooperativa
-from .models import Room
+from chat.models import Room
 
 log = logging.getLogger(__name__)
 
@@ -70,8 +70,6 @@ def ws_echo(message):
     message.reply_channel.send({
         'text': message.content['text'],
     })
-
-
 
 @channel_session
 def ws_connect1(message):
