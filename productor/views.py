@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
@@ -10,6 +11,7 @@ from productor.models import Productor, TipoDocumento, EnvioCorreos
 from cooperativa.models import Cooperativa
 from productor.serializers import ProductorSerializer
 from django.core.mail import send_mail
+from random import choice
 
 import json
 
@@ -24,6 +26,19 @@ Gracias por usar nuestra aplicacion
 
 Para acceder a la aplicacion haga click http://organico-cooperativas.herokuapp.com
 """
+
+newuser_template = """
+
+Usuario creado con exito
+
+Usuario: %s
+Password: %s
+
+Gracias por usar nuestra aplicacion
+
+Para acceder a la aplicacion haga click http://organico-cooperativas.herokuapp.com
+"""
+
 
 # Create your views here.
 
@@ -44,6 +59,13 @@ def productorDetail(request, id):
     context = {'productor': productor}
     return render(request, 'productor-detalle.html', context)
 
+def contrasena_aleatoria():
+    longitud = 10
+    valores = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    p = ""
+    p = p.join([choice(valores) for i in range(longitud)])
+    return p
+
 class modeloJSON(HttpResponse):
     def __init__(self, data, **kwargs):
         content = JSONRenderer().render(data)
@@ -62,6 +84,18 @@ def productoresList(request):
         if serializer.is_valid():
             cooperativa = get_object_or_404(Cooperativa, id=data['cooperativa'])
             tipo_documento = get_object_or_404(TipoDocumento, id=data['tipo_documento'])
+
+            nUsuario = User()
+            nUsuario.username = data['email']
+            nUsuario.first_name = data['nombre']
+            nUsuario.last_name = ""
+            nUsuario.email = data['email']
+            nUsuario.is_active = False
+            #se crea la contrasena
+            contrase = contrasena_aleatoria()
+            nUsuario.set_password(contrase)
+            nUsuario.save()
+
             productor = Productor(
                 nombre=data['nombre'],
                 descripcion=data['descripcion'],
@@ -76,9 +110,18 @@ def productoresList(request):
                 fincaCertificada = data['fincaCertificada'],
                 productosOrganicos = data['productosOrganicos'],
                 email = data['email'],
-                nombreFinca = data['nombreFinca']
+                nombreFinca = data['nombreFinca'],
+                usuario=nUsuario
             )
             productor.save()
+
+            send_mail(
+                'Usuario nuevo Fresh Food',
+                newuser_template % (data['email'], contrase),
+                'no-reply@organico-cooperativas.com',
+                [data['email']],
+                fail_silently=False,
+            )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
