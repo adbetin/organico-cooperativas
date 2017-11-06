@@ -12,7 +12,6 @@ import { LazyLoadImageModule } from "ng-lazyload-image";
 import { AppComponent } from "./app.component";
 import { ListadoCooperativaComponent } from "./cooperativa/listadoCooperativa.component";
 import { CrearCooperativaComponent } from "./cooperativa/crearCooperativa.component";
-import { productosComponent } from "./cooperativa/productos.component";
 import { CooperativaDetalleComponent } from "./cooperativa/cooperativa-detalle/cooperativa-detalle.component";
 import { ProductorRegistroComponent } from "./productor/productorRegistro.component";
 import { ProductorDetalleComponent } from "./productor/productor-detalle/productor-detalle.component";
@@ -29,7 +28,6 @@ import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio
     AppComponent,
     ListadoCooperativaComponent,
     CrearCooperativaComponent,
-    productosComponent,
     CooperativaDetalleComponent,
     ActualizarDatosComponent,
     ProductorRegistroComponent,
@@ -58,10 +56,6 @@ import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio
       {
         path: "cooperativa/crearCooperativa",
         component: CrearCooperativaComponent
-      },
-            {
-        path: "cooperativa/productos",
-        component: productosComponent
       },
       {
         path: "cooperativa/listadoCooperativa",
