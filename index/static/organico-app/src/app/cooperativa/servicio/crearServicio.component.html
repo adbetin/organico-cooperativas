@@ -5,6 +5,45 @@
         <h1>Publicar Servicio</h1>
         <div class="contact-form default-form">
 
+           <form #formServicio="ngForm" (ngSubmit)="guardarServicio(formServicio)">
+                <div class="row clearfix">
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
+                      <span> * Campos obligatorios</span>
+                      <br>
+                      <span *ngIf="exitoso==true">Servicio publicado exitosamente</span>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                      <select id="cooperativa"
+                              name="cooperativa" placeholder="* Cooperativa" required >
+                        <option value="-1">-- Cooperativa --</option>
+                        <option value="41">cooperativa</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <input type="text" name="titulo" id="titulo" value="" placeholder="* Título [Máx 100 caracteres]" required maxlength="100"  >
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <textarea name="descripcion" id="descripcion" placeholder="* Descripción [Máx 550 caracteres]" maxlength="550"></textarea>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                      <label> Foto*: </label>
+                      <input type="file" id="foto" name="foto">
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div class="text-center"><button  type="submit" id="guardar" name="guardar" class="theme-btn btn-style-two ui-state-disabled">Guardar</button>
+                        <button type="button" class="theme-btn btn-style-two ui-state-disabled" onclick="window.history.go(-1)">Cancelar</button></div>
+
+                    </div>
+
+                </div>
+
+            </form>
         </div>
     </div>
 </section>

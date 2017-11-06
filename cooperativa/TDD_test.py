@@ -18,10 +18,6 @@ class TDDTest(TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_accesoformulario(self):
-        self.browser.get('http://localhost:8000/cooperativa/servicio/crearServicio')
-        h1 = self.browser.find_element(By.XPATH, '//h1[text()="Publicar Servicio"]')
-        self.assertIn('Publicar Servicio', h1.text)
 
     def test_llenarcampos(self):
         self.browser.get('http://localhost:8000/cooperativa/servicio/crearServicio')
@@ -37,6 +33,7 @@ class TDDTest(TestCase):
 
         foto = self.browser.find_element_by_id('foto')
         foto.send_keys("C:\\chromedriver\\blog-image-4.jpg")
+        self.browser.implicitly_wait(3)
 
         botonGrabar = self.browser.find_element_by_id('guardar')
         botonGrabar.click()
