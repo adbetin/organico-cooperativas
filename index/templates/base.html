@@ -82,6 +82,7 @@
                                             <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
                                             <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a>
                                             </li>
+                                            <li><a href="{% url 'productos' %}">Productos</a></li>
                                             <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
                                         </ul>
                                     </li>
@@ -100,6 +101,7 @@
                                             <li><a href="{% url 'crear_servicio' %}">Publicar servicio</a></li>
                                         </ul>
                                     </li>
+
                                     {% if user.is_authenticated %}
                                         <li class="dropdown"><a href="#">{{ user.email }}</a>
                                             <ul>
@@ -380,7 +382,7 @@
             <div class="auto-container">
 
                 <!--Copyright-->
-                <div class="copyright">Copyrights &copy; Warsaw 2016. All rights reserved.</div>
+                <div class="copyright">Copyrights &copy; Varsovia 2017. All rights reserved.</div>
 
             </div>
         </div>
