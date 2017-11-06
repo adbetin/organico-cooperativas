@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),
     url(r'^actualizarCooperativa/$', views.actualizarCooperativa, name="actualizar_cooperativa"),
     url(r'^servicio/guardarServicio/$', views.guardarServicio, name="guardar_servicio"),
-    url(r'^Productos/guardarProducto/$', views.guardarProducto, name="guardar_producto"),
+
 
     # Consulta de datos
     url(r'^cooperativalist$', views.cooperativasList, name="cooperativas_list"),
