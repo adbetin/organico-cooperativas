@@ -38,7 +38,7 @@ export class CrearProductoComponent {
    }
 
   guardarProducto(formProducto: NgForm) {
-    this.envioFormProductos = true;
+    this.envioFormProducto = true;
     if ( this.producto.cooperativa && this.producto.nombre && this.producto.valor && this.producto.descripcion && this.producto.imagen ) {
         this.crearProductoServices.guardarProducto(this.producto).subscribe(response => {
         let cooperativa_id = this.producto.cooperativa;
