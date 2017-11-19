@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from productor.models import Productor, TipoDocumento, EnvioCorreos
 from cooperativa.models import Cooperativa
-from productor.serializers import ProductorSerializer
+from productor.serializers import ProductorSerializer, SimpleProductorSerializer
 from django.core.mail import send_mail
 from random import choice
 
@@ -125,6 +125,13 @@ def productoresList(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST', ])
+def simpleProductoresList(request):
+    if (request.method == 'GET'):
+        productores = Productor.objects.all()
+        serializer = SimpleProductorSerializer(productores, many=True)
+        return modeloJSON(serializer.data)
 
 @csrf_exempt
 @api_view(['GET'])
