@@ -16,4 +16,4 @@ export class productos {
         return parts.pop().split(";").shift();
     }
 
-}
+} 
