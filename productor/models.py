@@ -55,3 +55,27 @@ class Productor(models.Model):
 
     def __unicode__(self):
         return self.nombre
+
+class categoriaProducto(models.Model):
+    nombre = models.CharField(max_length=50)
+    descripcion = models.TextField(max_length=400)
+
+    def __unicode__(self):
+        return self.nombre
+
+class producto(models.Model):
+    def url(self, filename):
+        ruta = "MultimediaData/producto/%s/%s" % (self.nombre, str(filename))
+        return ruta
+
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField(max_length=300)
+    status = models.BooleanField(default=True)
+    imagen = models.ImageField(upload_to=url, null=True, blank=True)
+    precio = models.DecimalField(max_digits=6, decimal_places=2)
+    stock = models.IntegerField()
+    categorias = models.ManyToManyField(categoriaProducto, blank=True)
+
+    def __unicode__(self):
+        return self.nombre
+        # retornar nombre del producto para presentar una descripcion en el panel
