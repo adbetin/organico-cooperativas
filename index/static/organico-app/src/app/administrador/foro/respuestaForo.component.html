@@ -3,42 +3,52 @@
   <div class="auto-container">
       <!--Section Title-->
       <div class="sidebar-title"><h3>Información del foro </h3></div>
-      <div class="col-md-6 col-sm-6 col-xs-6">
-        <label>Nombre : </label>
-        <span> {{foro.nombre}} </span>
-      </div>
-      <div class="col-md-6 col-sm-6 col-xs-6">
-        <label><b>Cooperativa :</b> </label>
-        <span> {{foro.cooperativa.nombre}} </span>
-      </div>
-      <div class="col-md-6 col-sm-6 col-xs-6">
-        <label><b>Tema :</b> </label>
-        <span> {{foro.tema.nombre}} </span>
-      </div>
-      <div class="col-md-6 col-sm-6 col-xs-6">
-        <label><b>Fecha de cierre :</b> </label>
-        <span> {{foro.fecha_cierre}} </span>
-      </div>
-      <div class="col-md-12 col-sm-12 col-xs-6">
-        <label><b>Descripción : </b> </label>
-        <span> {{foro.descripcion}} </span>
-      </div>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="text-right"><label>Nombre : </label></td>
+          <td class="text-left"><span> {{foro.nombre}} </span></td>
+          <td class="text-right"><label><b>Cooperativa :</b> </label></td>
+          <td class="text-left"><span> {{foro.cooperativa.nombre}} </span></td>
+        </tr>
+        <tr>
+          <td class="text-right"><label>Tema : </label></td>
+          <td class="text-left"><span> {{foro.tema.nombre}} </span></td>
+          <td class="text-right"><label><b>Fecha de cierre :</b> </label></td>
+          <td class="text-left"><span> {{foro.fecha_cierre | date }} </span></td>
+        </tr>
+        <tr>
+          <td class="text-right"><label><b>Descripción : </b> </label></td>
+          <td colspan="3" class="text-left"><span> {{foro.descripcion}} </span></td>
+        </tr>
+      <tr>
+        <td colspan="4"></td>
+      </tr>
+      </tbody>
+    </table>
 
-      <div class="sidebar-title" *ngIf="respuestas && respuestas.length>0 "><h3>Comentarios </h3></div>
-      <div class="comments-area col-md-12 col-sm-12 col-xs-12" *ngFor="let respuesta of respuestas">
-          <div class="comment-box">
+
+    <div class="sidebar-title" *ngIf="respuestas && respuestas.length>0 "><h3>Comentarios </h3></div>
+    <div class="comments-area col-md-12 col-sm-12 col-xs-12" *ngFor="let respuesta of respuestas">
+          <div class="comment-box comentario" >
                 <div class="comment-inner text-left" >
                       <div class="comment-content">
                           <div class="comment-header clearfix">
-                              <strong>{{ respuesta.productor.nombre }}</strong> - <span class="date"> {{ respuesta.fecha }} - {{ respuesta.nombre }}</span>
+                              <strong>{{ respuesta.productor.nombre }}</strong>  <span class="date"> {{ respuesta.fecha | date }} </span>
+                              <br>
+                              <strong style="padding-left: 45px"> Asunto : </strong> <span> {{ respuesta.nombre }} </span>
                           </div>
-                          <div class="text">{{ respuesta.descripcion }}</div>
+                          <div class="text" style="padding-left: 45px">
+                            <strong > Detalle : </strong> <span>{{ respuesta.descripcion }}</span>
+                          </div>
                       </div>
                   </div>
           </div>
-      </div>
+    </div>
+    <div *ngIf="respuestas && respuestas.length>0 " class="comentario col-md-12 col-sm-12 col-xs-12"> <br></div>
 
-     <div class="post-tags" style="height: 150px !important;">  </div>
+
+
      <h1>Nuevo Comentario</h1>
         <div class="contact-form default-form">
 

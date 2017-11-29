@@ -27,6 +27,7 @@ import { ActivarCorreoComponent } from "./productor/activar-correo/activar-corre
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.component';
+import { OfertasListaComponent } from './ofertas-lista/ofertas-lista.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.co
     ActivarCorreoComponent,
     CrearServicioComponent,
     CrearProductoComponent,    
-    ListadoServicioComponent
+    ListadoServicioComponent, OfertasListaComponent
   ],
   imports: [
     BrowserModule,
