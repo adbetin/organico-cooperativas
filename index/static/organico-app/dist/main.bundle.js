@@ -591,12 +591,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__cooperativa_servicio_crearServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/crearServicio.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/listadoServicio.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__cooperativa_Productos_crearProducto_component__ = __webpack_require__("../../../../../src/app/cooperativa/Productos/crearProducto.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__productor_productos_productos_component__ = __webpack_require__("../../../../../src/app/productor/productos/productos.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -651,7 +653,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_24__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */],
             __WEBPACK_IMPORTED_MODULE_25__cooperativa_servicio_crearServicio_component__["a" /* CrearServicioComponent */],
             __WEBPACK_IMPORTED_MODULE_27__cooperativa_Productos_crearProducto_component__["a" /* CrearProductoComponent */],
-            __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */]
+            __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */],
+            __WEBPACK_IMPORTED_MODULE_28__productor_productos_productos_component__["a" /* ProductosComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -743,6 +746,10 @@ AppModule = __decorate([
                 {
                     path: 'cooperativa/servicio/listadoServicios/:id',
                     component: __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */]
+                },
+                {
+                    path: 'productor/productos/:id',
+                    component: __WEBPACK_IMPORTED_MODULE_28__productor_productos_productos_component__["a" /* ProductosComponent */]
                 }
             ])
         ],
@@ -2927,6 +2934,67 @@ ProductorRegistroComponent = __decorate([
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=productorRegistro.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  productos works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductosComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProductosComponent = (function () {
+    function ProductosComponent() {
+    }
+    ProductosComponent.prototype.ngOnInit = function () {
+    };
+    return ProductosComponent;
+}());
+ProductosComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-productos',
+        template: __webpack_require__("../../../../../src/app/productor/productos/productos.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/productor/productos/productos.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ProductosComponent);
+
+//# sourceMappingURL=productos.component.js.map
 
 /***/ }),
 
