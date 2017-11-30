@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from productor.models import Productor, TipoDocumento, EnvioCorreos, producto, Oferta
 from cooperativa.models import Cooperativa
-from productor.serializers import ProductorSerializer, SimpleProductorSerializer, OfertaSerializer
+from productor.serializers import ProductorSerializer, SimpleProductorSerializer, OfertaSerializer, ProductoSerializer
 from django.core.mail import send_mail
 from random import choice
 import time
@@ -61,6 +61,11 @@ def productorLista(request):
 def productorDetail(request, id):
     productor = get_object_or_404(Productor, id=id)
     context = {'productor': productor}
+    return render(request, 'productor-detalle.html', context)
+
+
+def productorProductosDetail(request):
+    context = {}
     return render(request, 'productor-detalle.html', context)
 
 
@@ -238,6 +243,27 @@ def recibirProductos(request):
             return Response(OfertaSerializer(ofertas, many=True).data, status=status.HTTP_200_OK)
     return Response("[]", status=status.HTTP_200_OK)
 
+
+@csrf_exempt
+@api_view(['GET'])
+def listarProductos(request):
+    if (request.method == 'GET'):
+        productos = producto.objects.all()
+        #ofertasString = [ofertas.as_dict() for obj in ofertas]
+        if(len(productos)):
+            return Response(ProductoSerializer(productos, many=True).data, status=status.HTTP_200_OK)
+    return Response("[]", status=status.HTTP_200_OK)
+
+
+@csrf_exempt
+@api_view(['GET'])
+def obtenerUsuarioPorUserId(request, id):
+    if (request.method == 'GET'):
+        usuario = User.objects.get(pk=id)
+        productor = get_object_or_404(Productor, usuario=usuario)
+        return Response(ProductorSerializer(productor).data, status=status.HTTP_200_OK)
+    return Response("[]", status=status.HTTP_200_OK)
+
 @csrf_exempt
 @api_view(['POST'])
 def enviarProductos(request):
@@ -247,33 +273,32 @@ def enviarProductos(request):
             productorPost = data['productor']
             productor = get_object_or_404(Productor, id=productorPost['id'])
             productosPost = data['productos']
-            productosList = []
-            for prod in productosPost:
-                pr = None
-                if(hasattr(prod, 'id')):
-                    pr = get_object_or_404(producto, id=prod['id'])
-                if (pr):
-                    pr.stock = pr.stock + prod['stock']
-                    pr.save()
-                    productosList.append(pr)
-                else:
-                    pr = producto()
-                    pr.nombre = prod['nombre']
-                    pr.descripcion = prod['descripcion']
-                    pr.precio = prod['precio']
-                    pr.imagen = prod['imagen']
-                    pr.unidadMedida = prod['unidadMedida']
-                    pr.stock = prod['stock']
-                    pr.save()
-                    productosList.append(pr)
-            print(len(productosList))
-            if(productor and len(productosList)):
+            productosList = None
+            pr = None
+            if(hasattr(productosPost, 'id')):
+                pr = get_object_or_404(producto, id=productosPost['id'])
+            if (pr):
+                productosList = pr
+            else:
+                pr = producto()
+                pr.nombre = productosPost['nombre']
+                pr.descripcion = productosPost['descripcion']
+                pr.precio = productosPost['precio']
+                pr.imagen = productosPost['imagen']
+                pr.unidadMedida = productosPost['unidadMedida']
+                pr.stock = 0
+                pr.save()
+                productosList = pr
+            if(productor and productosList):
                 oferta = Oferta()
                 oferta.fecha = time.strftime("%Y-%m-%d")
                 oferta.productor = productor
-                oferta.save()
+                oferta.cantidad = data['cantidad']
                 oferta.productos = productosList
                 oferta.save()
+                print("***********************************************")
+                print(data['cantidad'])
+                print("***********************************************")
                 return Response("Productos guardados satisfactoriamente", status=status.HTTP_201_CREATED)
     return Response("Error en el envio de productos", status=status.HTTP_400_BAD_REQUEST)
 

@@ -144,7 +144,7 @@ import { ProductosComponent } from './productor/productos/productos.component';
         component: ListadoServicioComponent
       },
       {
-        path: 'productor/productos/:id',
+        path: 'productor/productos/carga',
         component: ProductosComponent
       }
     ])
