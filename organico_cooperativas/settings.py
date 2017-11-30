@@ -153,16 +153,16 @@ REST_FRAMEWORK = {
 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
 }
 
-#CHANNEL_LAYERS = {
- #   "default": {
-  #      #'BACKEND': 'asgiref.inmemory.ChannelLayer',
-   #     "BACKEND": "asgi_redis.RedisChannelLayer",
-    #    "CONFIG": {
-     #       "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-      #  },
-       # "ROUTING": "organico_cooperativas.routing.channel_routing",
-    #},
-#}
+CHANNEL_LAYERS = {
+   "default": {
+        'BACKEND': 'asgiref.inmemory.ChannelLayer',
+        #"BACKEND": "asgi_redis.RedisChannelLayer",
+        #"CONFIG": {
+        #    "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        #},
+        "ROUTING": "organico_cooperativas.routing.channel_routing",
+    },
+}
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'organico-cooperativas'
