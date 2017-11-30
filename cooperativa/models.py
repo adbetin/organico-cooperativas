@@ -41,3 +41,20 @@ class Servicio(models.Model):
 
     def __unicode__(self):
         return self.nombre
+
+class DiasReparto(models.Model):
+    cooperativa = models.ForeignKey(Cooperativa)
+    anio = models.FloatField(blank=True, null=True)
+    semana = models.FloatField(blank=True, null=True)
+    dia = models.FloatField(blank=True, null=True)
+    activo = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Día de Reparto'
+        verbose_name_plural = 'Días de Reparto'
+
+    def __str__(self):
+        return '%s' % (self.nombre)
+
+    def __unicode__(self):
+        return self.nombre
