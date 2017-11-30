@@ -1,0 +1,44 @@
+
+<section class="team-section">
+  <div class="auto-container">
+      <!--Section Title-->
+        <div class="sec-title-one">
+            <h2><a routerLink="/administrador/ofertas-lista">Ofertas actuales</a></h2>
+        </div>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">Fecha solicitud</th>
+            <th class="text-center">Productor</th>
+            <th class="text-center">Producto</th>
+            <th class="text-center">Cantidad ofertada</th>
+            <th class="text-center">Precio por unidad</th>
+            <th class="text-center">Aceptar</th>
+            <th class="text-center">Rechazar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let oferta of ofertas">
+            <td>{{ oferta.fechaCreacion }}</td><!--Se debe modificar-->
+            <td>{{ oferta.productor }}</td>
+            <td>{{ oferta.producto }}</td>
+
+            <td>{{ oferta.cantidad }}</td>
+            <td>$ {{ oferta.precio }}</td>
+            <td>
+              <a routerLink="/administrador/oferta-aceptar/{{ oferta.id }}">
+                <span class="fa fa-check title-box title" title="Aceptar Oferta"></span>
+              </a>
+            </td>
+            <td>
+              <a routerLink="/administrador/oferta-rechazar/{{ oferta.id }}">
+                <span class="fa fa-close title-box title" title="Rechazar Oferta"></span>
+              </a>
+             </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+</section>

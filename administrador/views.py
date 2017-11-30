@@ -104,3 +104,21 @@ def agregarRespuesta(request):
         respuesta.save()
         respuesta = True
     return modeloJSON(respuesta)
+
+@csrf_exempt
+def ofertasList(request):
+    if (request.method == 'GET'):
+        oferta = [{"id":"1","fechaCreacion":"2017-05-05", "productor":"Rafa medrano Corp","producto":"Tomates","cantidad":"200","precio":"100"}]
+        return modeloJSON( oferta )
+
+def ofertaDetalle(request, id):
+    oferta = [{"id": id, "fechaCreacion": "2017-05-05", "productor": "Rafa medrano Corp", "producto": "Tomates",
+               "cantidad": "200","precio":"100"}]
+    context = {'oferta': oferta}
+    return render(request, 'administrador.html', context)
+
+@csrf_exempt
+def consultarOferta(request, id):
+    if (request.method == 'GET'):
+        oferta = {"id":id,"fechaCreacion":"2017-05-05", "productor":"Rafa medrano Corp","producto":"Tomates","cantidad":"200","precio":"100"}
+        return modeloJSON( oferta )

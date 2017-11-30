@@ -27,7 +27,9 @@ import { ActivarCorreoComponent } from "./productor/activar-correo/activar-corre
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.component';
-import { OfertasListaComponent } from './ofertas-lista/ofertas-lista.component';
+import { OfertasListaComponent } from './administrador/ofertas-lista/ofertas-lista.component';
+import { OfertaAceptarComponent } from './administrador/oferta-aceptar/oferta-aceptar.component';
+import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-rechazar.component';
 
 @NgModule({
   declarations: [
@@ -48,8 +50,11 @@ import { OfertasListaComponent } from './ofertas-lista/ofertas-lista.component';
     RegistroAdminComponent,
     ActivarCorreoComponent,
     CrearServicioComponent,
-    CrearProductoComponent,    
-    ListadoServicioComponent, OfertasListaComponent
+    CrearProductoComponent,
+    ListadoServicioComponent,
+    OfertasListaComponent,
+    OfertaAceptarComponent,
+    OfertaRechazarComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +90,7 @@ import { OfertasListaComponent } from './ofertas-lista/ofertas-lista.component';
       {
         path: 'cooperativa/Productos/crearProducto',
         component: CrearProductoComponent
-      },                 
+      },
       {
         path: 'cooperativa/detalle/:id',
         component: CooperativaDetalleComponent
@@ -141,6 +146,18 @@ import { OfertasListaComponent } from './ofertas-lista/ofertas-lista.component';
       {
         path: 'cooperativa/servicio/listadoServicios/:id',
         component: ListadoServicioComponent
+      },
+      {
+        path: 'administrador/ofertas-lista',
+        component: OfertasListaComponent
+      },
+      {
+        path: 'administrador/oferta-aceptar/:id',
+        component: OfertaAceptarComponent
+      },
+      {
+        path: 'administrador/oferta-rechazar/:id',
+        component: OfertaRechazarComponent
       }
     ])
   ],
