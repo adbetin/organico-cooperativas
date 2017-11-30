@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http , Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class DiasRepartoService {
@@ -36,15 +37,20 @@ export class DiasRepartoService {
       console.log( 'body: ' );
       console.log( body );
 
-      return this.http.post('actualizar/', body, options).map(response => response.json());
+      return this.http.post('/cooperativa/diasreparto/actualizar/', body, options).map(response => response.json());
+    }
+
+    getDiasReparto(cooperativa_id: any): Observable<string> {
+        return this.http.get('/cooperativa/consultardiasreparto/' + cooperativa_id)
+            .map(response => <string>response.json());
     }
 
 
     getCookie(name) {
-      const value = "; " + document.cookie;
-      const parts = value.split("; " + name + "=");
+      const value = '; ' + document.cookie;
+      const parts = value.split('; ' + name + '=');
       if (parts.length == 2) {
-        return parts.pop().split(";").shift();
+        return parts.pop().split(';').shift();
       }
     }
 

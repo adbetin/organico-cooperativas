@@ -144,7 +144,7 @@ import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.comp
         component: ListadoServicioComponent
       },
       {
-        path: 'cooperativa/diasreparto/consultar',
+        path: 'cooperativa/diasreparto/consultar/:id',
         component: DiasRepartoComponent
       }
     ])

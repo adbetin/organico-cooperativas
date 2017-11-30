@@ -29,13 +29,13 @@ urlpatterns = [
     url(r'^servicio/crearServicio', views.cooperativasAdmin, name="crear_servicio"),
     url(r'^Productos/crearProducto', views.cooperativasAdmin, name="crear_producto"),
     url(r'^servicio/listadoServicios/(?P<cooperativa_id>.+)$', views.serviciosAdmin, name="listado_servicio"),
-    url(r'^diasreparto/consultar', views.cooperativasAdmin, name="dias_reparto"),
+    url(r'^diasreparto/consultar/(?P<cooperativa_id>.+)/$', views.diasRepartoAdmin, name="dias_reparto"),
 
     # Almacenamiento de datos
     url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),
     url(r'^actualizarCooperativa/$', views.actualizarCooperativa, name="actualizar_cooperativa"),
     url(r'^servicio/guardarServicio/$', views.guardarServicio, name="guardar_servicio"),
-    url(r'^diasreparto/actualizar/$', views.actualizarDiasReparto, name="actualizar_dias_reparto"),
+    url(r'^diasreparto/actualizar/$', views.actualizarDiasReparto, name="actualizar_dias_reparto_actualizar"),
 
     # Consulta de datos
     url(r'^cooperativalist$', views.cooperativasList, name="cooperativas_list"),

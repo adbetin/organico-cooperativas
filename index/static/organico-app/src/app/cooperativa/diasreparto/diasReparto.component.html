@@ -10,7 +10,7 @@
                 <div class="row clearfix">
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                      <select #cooperativa="ngModel" id="cooperativa"
+                      <select #cooperativa="ngModel" id="cooperativa" disabled
                               name="cooperativa" placeholder="* Cooperativa" [(ngModel)]="diaReparto.cooperativa" required >
                         <option value="-1">-- Cooperativa --</option>
                         <option *ngFor="let cooperativa of cooperativas" value="{{cooperativa.id}}">{{cooperativa.nombre}}</option>
@@ -63,9 +63,9 @@
 
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12 text-left" >
-                      <span *ngIf="!formDiasReparto.valid && !envioformDiasReparto"> * Campos obligatorios</span>
+                      <span> * Campos obligatorios</span>
                       <br>
-                      <label *ngIf="!formDiasReparto.valid && envioformDiasReparto" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>
+                      <label *ngIf="!formDiasReparto.valid && envioformDiasReparto" class="error">* Existen campos vacíos que son obligatorios o existen campos invalidos.</label>
                       <br>
                       <span *ngIf="exitoso==true">Días de reparto establecidos correctamente</span>
                     </div>

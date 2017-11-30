@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewEncapsulation , ElementRef, NgZone, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation , ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DiasRepartoService } from './diasReparto.service';
 import { ListadoCooperativaService } from '../listadoCooperativa.service';
 
@@ -13,27 +12,60 @@ import { ListadoCooperativaService } from '../listadoCooperativa.service';
     ListadoCooperativaService
   ]
 })
-export class DiasRepartoComponent {
+export class DiasRepartoComponent implements OnInit {
   title = 'Días reparto';
   public searchElementRef: ElementRef;
-  exitoso:any = false;
+  exitoso: any = false;
   diaReparto: any = {
-    "cooperativa": -1
+    'cooperativa': -1
   };
+  diasReparto: any;
   cooperativas: any[];
+  cooperativa_seleccionada: any;
+
 
   constructor(private diasRepartoService: DiasRepartoService,
               private cooperativaService: ListadoCooperativaService,
+              private route: ActivatedRoute,
               private router: Router) {
   }
 
-   ngOnInit()
-   {
+   ngOnInit() {
       this.cooperativaService.getCooperativas()
         .subscribe(response => {
           this.cooperativas = response;
         });
 
+      this.route.params
+       .switchMap( (params: Params) =>
+              this.diasRepartoService.getDiasReparto(+params['id'])
+            ).subscribe(diasreparto => {
+              for ( const diareparto of diasreparto )
+              {
+                this.diaReparto.cooperativa = diareparto['cooperativa'];
+                if ( diareparto['dia'] == '1.0' ) {
+                  this.diaReparto.lunes = diareparto['activo'];
+                }
+                if ( diareparto['dia'] == '2.0' ) {
+                  this.diaReparto.martes = diareparto['activo'];
+                }
+                if ( diareparto['dia'] == '3.0' ) {
+                  this.diaReparto.miercoles = diareparto['activo'];
+                }
+                if ( diareparto['dia'] == '4.0' ) {
+                  this.diaReparto.jueves = diareparto['activo'];
+                }
+                if ( diareparto['dia'] == '5.0' ) {
+                  this.diaReparto.viernes = diareparto['activo'];
+                }
+                if ( diareparto['dia'] == '6.0' ) {
+                  this.diaReparto.sabado = diareparto['activo'];
+                }
+                if ( diareparto['dia'] == '7.0' ) {
+                  this.diaReparto.domingo = diareparto['activo'];
+                }
+              }
+          });
    }
 
   guardarDiaReparto(formDiaReparto: NgForm) {
@@ -41,8 +73,7 @@ export class DiasRepartoComponent {
       const cooperativa_id = this.diaReparto.cooperativa;
       if (cooperativa_id > 0) {
           this.diasRepartoService.guardarDiaReparto(this.diaReparto).subscribe(response => {
-            this.diaReparto = {};
-            // this.router.navigateByUrl('cooperativa/diasreparto/consultar');
+            this.router.navigateByUrl('cooperativa/diasreparto/consultar/' + this.diaReparto.cooperativa);
             this.exitoso = true;
           });
       } else {
