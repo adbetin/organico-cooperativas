@@ -28,6 +28,8 @@ import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.com
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 import { CrearProductoComponent } from './cooperativa/productos/crearproducto.component';
 import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
+import { ShopComponent } from './shop/shop.component';
+import { ShopCarComponent } from './shop-car/shop-car.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.comp
     CrearServicioComponent,
     CrearProductoComponent,
     ListadoServicioComponent,
-    DiasRepartoComponent
+    DiasRepartoComponent,
+    ShopComponent,
+    ShopCarComponent
   ],
   imports: [
     BrowserModule,
@@ -146,6 +150,10 @@ import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.comp
       {
         path: 'cooperativa/diasreparto/consultar/:id',
         component: DiasRepartoComponent
+      },
+      {
+        path: 'shop',
+        component: ShopComponent
       }
     ])
   ],

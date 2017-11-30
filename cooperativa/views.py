@@ -129,8 +129,8 @@ def serviciosGet(request, id):
 @csrf_exempt
 @api_view(['GET'])
 def diasRepartoGet(request, cooperativa_id):
-    anio = datetime.now().year                  #Año actual
-    semana = datetime.now().strftime("%V")      #Semana del año actual
+    anio = datetime.now().year                  #Anio actual
+    semana = datetime.now().strftime("%V")      #Semana del anio actual
     return _diasRepartoGet(request, cooperativa_id, anio, semana)
 
 @csrf_exempt
@@ -157,9 +157,9 @@ def actualizarDiasReparto(request):
     respuesta = False
     if (request.method == 'POST'):
 
-        #Obtiene el año y la semana actual
-        anio = datetime.now().year  # Año actual
-        semana = datetime.now().strftime("%V")  # Semana del año actual
+        #Obtiene el anio y la semana actual
+        anio = datetime.now().year  # Anio actual
+        semana = datetime.now().strftime("%V")  # Semana del anio actual
 
         #carga los datos enviados
         diasReparto = decode(request.body)
@@ -167,7 +167,7 @@ def actualizarDiasReparto(request):
         #carga la cooperativa que se va a actualizar
         cooperativa = diasReparto['cooperativa']
 
-        #actualiza el estado de cada día
+        #actualiza el estado de cada dia
         actualizarDiaReparto(cooperativa, anio, semana, 1, diasReparto['lunes'])
         actualizarDiaReparto(cooperativa, anio, semana, 2, diasReparto['martes'])
         actualizarDiaReparto(cooperativa, anio, semana, 3, diasReparto['miercoles'])
