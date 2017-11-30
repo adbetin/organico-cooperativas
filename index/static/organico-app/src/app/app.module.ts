@@ -26,6 +26,8 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
+import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.component';
+import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio
     RegistroAdminComponent,
     ActivarCorreoComponent,
     CrearServicioComponent,
-    ListadoServicioComponent
+    CrearProductoComponent,
+    ListadoServicioComponent,
+    DiasRepartoComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +82,10 @@ import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio
       {
         path: 'cooperativa/actualizardatos/:id',
         component: ActualizarDatosComponent
+      },
+      {
+        path: 'cooperativa/Productos/crearProducto',
+        component: CrearProductoComponent
       },
       {
         path: 'cooperativa/detalle/:id',
@@ -134,6 +142,10 @@ import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio
       {
         path: 'cooperativa/servicio/listadoServicios/:id',
         component: ListadoServicioComponent
+      },
+      {
+        path: 'cooperativa/diasreparto/consultar/:id',
+        component: DiasRepartoComponent
       }
     ])
   ],

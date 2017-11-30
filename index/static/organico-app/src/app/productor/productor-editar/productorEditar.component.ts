@@ -44,7 +44,7 @@ export class ProductorEditarComponent implements OnInit {
     this.marker = {
         latitud: 4.6486259,
         longitud: -74.2478963,
-        zoom : 10
+        zoom : 12
     }
   }
 

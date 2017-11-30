@@ -24,21 +24,24 @@ urlpatterns = [
     # Vistas
     url(r'^crearCooperativa/$', views.cooperativasAdmin, name="crear_cooperativa"),
     url(r'^listadoCooperativa/$', views.cooperativasAdmin, name="listado_cooperativa"),
-    url(r'^productos/$', views.cooperativasAdmin, name="productos"),
-     url(r'^carrito/$', views.cooperativasAdmin, name="carrito"),
     url(r'^actualizardatos/(?P<id>.+)$', views.cooperativasDetail, name="actualizar_datos"),
     url(r'^detalle/(?P<id>.+)$', views.cooperativasDetail, name='detalle_cooperativa'),
     url(r'^servicio/crearServicio', views.cooperativasAdmin, name="crear_servicio"),
+    url(r'^Productos/crearProducto', views.cooperativasAdmin, name="crear_producto"),
     url(r'^servicio/listadoServicios/(?P<cooperativa_id>.+)$', views.serviciosAdmin, name="listado_servicio"),
+    url(r'^diasreparto/consultar/(?P<cooperativa_id>.+)/$', views.diasRepartoAdmin, name="dias_reparto"),
 
     # Almacenamiento de datos
     url(r'^guardarCooperativa/$', views.guardarCooperativa, name="guardar_cooperativa"),
     url(r'^actualizarCooperativa/$', views.actualizarCooperativa, name="actualizar_cooperativa"),
     url(r'^servicio/guardarServicio/$', views.guardarServicio, name="guardar_servicio"),
+    url(r'^diasreparto/actualizar/$', views.actualizarDiasReparto, name="actualizar_dias_reparto_actualizar"),
 
     # Consulta de datos
     url(r'^cooperativalist$', views.cooperativasList, name="cooperativas_list"),
     url(r'^consultarCooperativa/(?P<id>.+)/$', views.cooperativasGet, name="ver_cooperativa"),
     url(r'^servicioslist/(?P<cooperativa_id>.+)/$', views.serviciosList, name="servicios_list"),
-    url(r'^consultarservicio/(?P<id>.+)/$', views.serviciosGet, name="servicios_get")
+    url(r'^consultarservicio/(?P<id>.+)/$', views.serviciosGet, name="servicios_get"),
+    url(r'^consultardiasreparto/(?P<cooperativa_id>.+)/(?P<anio>.+)/(?P<semana>.+)/$', views._diasRepartoGet, name="dias_reparto_get"),
+    url(r'^consultardiasreparto/(?P<cooperativa_id>.+)/$', views.diasRepartoGet, name="dias_reparto_actual_get")
 ]

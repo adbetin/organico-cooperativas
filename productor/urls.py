@@ -28,6 +28,7 @@ urlpatterns = [
 
     # rest services
     url(r'^service$', views.productoresList, name="servicios_productor"),
+    url(r'^service/simple$', views.simpleProductoresList, name="servicios_productor"),
     url(r'^get/(?P<id>.+)$', views.productorGet, name='get_productor'),
     url(r'^editarProductor/(?P<id>.+)$', views.productorEditar, name='editar_productor'),
     url(r'^correo$', views.enviarCorreo, name='enviar_correo'),

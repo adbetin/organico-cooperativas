@@ -33,6 +33,13 @@ export class ProductorService {
 
     }
 
+    getSimpleProductor(): Observable<string[]> {
+        return this.http.get("/productor/service/simple")
+            .map(response => <string[]>response.json());
+        //console.log("texto");
+
+    }
+
     getProd(id: number): Observable<string> {
         return this.http.get("/productor/get/" + id)
             .map(response => <string>response.json());

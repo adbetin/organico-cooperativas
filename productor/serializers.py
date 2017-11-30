@@ -19,3 +19,11 @@ class ProductorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Productor
         fields = '__all__'
+
+class SimpleProductorSerializer(serializers.ModelSerializer):
+    cooperativa = CooperativaSerializer(many=False,read_only=True, allow_null=False)
+    tipo_documento = TipoDocumentoSerializer(many=False,read_only=True, allow_null=False)
+
+    class Meta:
+        model = Productor
+        exclude = ('foto',)
