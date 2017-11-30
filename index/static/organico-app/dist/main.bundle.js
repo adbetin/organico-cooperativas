@@ -592,12 +592,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/listadoServicio.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__cooperativa_Productos_crearProducto_component__ = __webpack_require__("../../../../../src/app/cooperativa/Productos/crearProducto.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__ = __webpack_require__("../../../../../src/app/cooperativa/diasreparto/diasReparto.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__ = __webpack_require__("../../../../../src/app/productor/productos/productos.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -750,6 +752,10 @@ AppModule = __decorate([
                 {
                     path: 'cooperativa/diasreparto/consultar/:id',
                     component: __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__["a" /* DiasRepartoComponent */]
+                },
+                {
+                    path: 'productor/productos/carga',
+                    component: __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__["a" /* ProductosComponent */]
                 }
             ])
         ],
@@ -2907,6 +2913,12 @@ var ProductorService = (function () {
     ProductorService.prototype.activarCorreo = function (correo) {
         return this.http.post("/productor/correo/active", correo, this.options).map(function (response) { return response.json(); });
     };
+    ProductorService.prototype.obtenerListaProductos = function () {
+        return this.http.get("/productor/productosLista").map(function (response) { return response.json(); });
+    };
+    ProductorService.prototype.obtenerProductorPorUsuario = function (userId) {
+        return this.http.get("/productor/productorPorUsuario/" + userId).map(function (response) { return response.json(); });
+    };
     return ProductorService;
 }());
 ProductorService = __decorate([
@@ -3122,6 +3134,136 @@ ProductorRegistroComponent = __decorate([
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=productorRegistro.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".productor-registro-productos-section{\r\n    overflow: hidden;\r\n    padding-bottom: 20px;\r\n}\r\n\r\n.productor-registro-productos-section .hide {\r\n    display: none;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"productor-registro-productos-section\">\n  <div class=\"auto-container\">\n    <!--Section Title-->\n    <h1>Agregar nueva oferta</h1>\n    <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\n      <!--|<div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n        <input type=\"text\" id=\"nombreProductor\" placeholder=\" * Nombre\" [(ngModel)]=\"productor.nombre\" />\n      </div>-->\n\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n        <select id=\"productoSeleccionado\" [disabled]=\"!productos\" [(ngModel)]=\"productoSeleccionado.id\" (change)=\"cambiarProducto()\">\n          <option value=\"-1\">-- Producto --</option>\n          <option *ngFor=\"let producto of productos\" value=\"{{producto.id}}\">{{producto.nombre}}</option>\n        </select>\n        <img src=\"{{productoSeleccionado.foto}}\">\n        <button [ngClass]=\"{'hide': productoSeleccionado.id == -1}\" type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"cargarProductoSeleccionado()\">\n          Cargar\n        </button>\n      </div>\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n        <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"mostrarFormProducto()\">\n          Mi producto no aparece en esta lista\n        </button>\n      </div>\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\" [ngClass]=\"{'hide': !mostrarFormularioProducto}\">\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Nombre Producto: </label>\n          <input type=\"text\" id=\"nombreProducto\" placeholder=\" * Nombre\" [(ngModel)]=\"producto.nombre\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Descripción Producto: </label>\n          <input type=\"text\" id=\"descripcionProducto\" placeholder=\" * Descripcion\" [(ngModel)]=\"producto.descripcion\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Precio: </label>\n          <input type=\"text\" id=\"precioProducto\" placeholder=\" * Precio\" [(ngModel)]=\"producto.precio\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label> Foto*: </label>\n          <input type=\"file\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\n          <canvas max-width=\"200\" max-height=\"200\" id=\"photoPreview\"></canvas>\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <select id=\"unidadMedida\" [(ngModel)]=\"producto.unidadMedida\">\n            <option value=\"-1\">-- Unidad de Medida --</option>\n            <option value=\"lb\">Libra</option>\n            <option value=\"kg\">Kilogramo</option>\n            <option value=\"lt\">Litro</option>\n            <option value=\"un\">Unidad</option>\n            <option value=\"bt\">Bulto</option>\n            <option value=\"cg\">Carga</option>\n            <option value=\"dc\">Docena</option>\n          </select>\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Cantidad: </label>\n          <input type=\"text\" id=\"cantidadProducto\" placeholder=\" * Cantidad\" [(ngModel)]=\"producto.stock\" />\n        </div>\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n          <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"cargarProducto()\">\n            Cargar producto\n          </button>\n        </div>\n      </div>\n\n      <!--<div class=\"form-group col-md-12 col-sm-12 col-xs-12 activar-desactivar-module\">\n        <label>Productor Activo: </label>\n        <section class=\"styled-checkbox\" style=\"background: none; border: none; box-shadow: none;\">\n          <div class=\"slideThree\">\n            <input type=\"checkbox\" [(ngModel)]=\"productor.aprobado\" value=\"None\" id=\"slideThree\" name=\"check\">\n            <label for=\"slideThree\"></label>\n          </div>\n        </section>\n      </div>\n\n      <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n        <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" onclick=\"window.history.go(-1)\">\n          <span class=\"fa fa-angle-double-left\"></span> Atrás</button>\n        <button (click)=\"editarProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\n      </div>-->\n    </div>\n  </div>\n</section>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductosComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ProductosComponent = (function () {
+    function ProductosComponent(productorService, route, router) {
+        this.productorService = productorService;
+        this.route = route;
+        this.router = router;
+        this.productoSeleccionado = {
+            id: -1
+        };
+        this.listaProductos = new Array();
+        this.mostrarFormularioProducto = false;
+        this.producto = {};
+    }
+    ProductosComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var userId = document.querySelector('#userId');
+        if (userId) {
+            this.productorService.obtenerProductorPorUsuario(userId.value).subscribe(function (response) {
+                _this.productor = response;
+            });
+            this.productorService.obtenerListaProductos().subscribe(function (response) {
+                _this.productos = response;
+            });
+        }
+        else {
+            alert("Tiene que loguearse para poder ver esta página");
+            window.location.href = "/";
+        }
+    };
+    ProductosComponent.prototype.cambiarProducto = function () {
+        var that = this;
+        var producto = this.productos.filter(function (val) {
+            return val.id == that.productoSeleccionado.id;
+        })[0];
+        if (producto) {
+            this.productoSeleccionado.foto = producto.imagen;
+        }
+        else {
+            this.productoSeleccionado.foto = "";
+        }
+    };
+    ProductosComponent.prototype.loadFoto = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var photo = new Image();
+                photo.src = e.target.result;
+                photo.onload = function () {
+                    var canvas = document.getElementById("photoPreview"), context = canvas.getContext("2d");
+                    context.drawImage(photo, 0, 0, 200, 200);
+                    this.producto.imagen = canvas.toDataURL();
+                }.bind(this);
+            }.bind(this);
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+    ProductosComponent.prototype.mostrarFormProducto = function () {
+        this.mostrarFormularioProducto = true;
+        this.producto = {
+            unidadMedida: -1
+        };
+    };
+    ProductosComponent.prototype.cargarProducto = function () {
+    };
+    ProductosComponent.prototype.cargarProductoSeleccionado = function () {
+    };
+    return ProductosComponent;
+}());
+ProductosComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-productos',
+        template: __webpack_require__("../../../../../src/app/productor/productos/productos.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/productor/productos/productos.component.css")],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]
+        ],
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
+], ProductosComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=productos.component.js.map
 
 /***/ }),
 

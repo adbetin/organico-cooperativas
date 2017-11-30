@@ -84,7 +84,8 @@ class producto(models.Model):
 class Oferta(models.Model):
     fecha = models.DateField()
     productor = models.ForeignKey(Productor, blank=False, null=False, unique=False)
-    productos = models.ManyToManyField(producto, blank=False)
+    productos = models.ForeignKey(producto, blank=True, null=True)
+    cantidad = models.IntegerField()
 
     def __unicode__(self):
         return self.productor.nombre

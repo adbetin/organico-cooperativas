@@ -37,27 +37,27 @@ class CategoriaProductoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductoSerializer(serializers.ModelSerializer):
-    categorias = CategoriaProductoSerializer(many=True, read_only=True, allow_null=True)
+    categorias = serializers.SerializerMethodField()
     class Meta:
         model = producto
         fields = '__all__'
+
+    def get_categorias(self, obj):
+        response = []
+        for _categoria in obj.categorias.all():
+            pr_list = CategoriaProductoSerializer(
+                _categoria)
+            response.append(pr_list.data)
+        return response
 
 
 class OfertaSerializer(serializers.ModelSerializer):
     fecha = serializers.SerializerMethodField()
     productor = ProductorSerializer(many=False,read_only=True, allow_null=False)
-    productos = serializers.SerializerMethodField()
+    productos = ProductoSerializer(many=False,read_only=True, allow_null=False)
     class Meta:
         model = Oferta
         fields = '__all__'
 
     def get_fecha(self, obj):
         return six.text_type(obj)
-
-    def get_productos(self, obj):
-        response = []
-        for _product in obj.productos.all():
-            pr_list = ProductoSerializer(
-                _product)
-            response.append(pr_list.data)
-        return response
