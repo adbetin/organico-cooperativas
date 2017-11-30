@@ -71,11 +71,23 @@ class producto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(max_length=300)
     status = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to=url, null=True, blank=True)
+    imagen = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     stock = models.IntegerField()
+    unidadMedida = models.CharField(max_length=50, null=True, blank=True)
     categorias = models.ManyToManyField(categoriaProducto, blank=True)
 
     def __unicode__(self):
         return self.nombre
         # retornar nombre del producto para presentar una descripcion en el panel
+
+class Oferta(models.Model):
+    fecha = models.DateField()
+    productor = models.ForeignKey(Productor, blank=False, null=False, unique=False)
+    productos = models.ManyToManyField(producto, blank=False)
+
+    def __unicode__(self):
+        return self.productor.nombre
+
+    def __str__(self):
+        return 'Oferta'

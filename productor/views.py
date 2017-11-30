@@ -7,11 +7,12 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from productor.models import Productor, TipoDocumento, EnvioCorreos
+from productor.models import Productor, TipoDocumento, EnvioCorreos, producto, Oferta
 from cooperativa.models import Cooperativa
-from productor.serializers import ProductorSerializer, SimpleProductorSerializer
+from productor.serializers import ProductorSerializer, SimpleProductorSerializer, OfertaSerializer
 from django.core.mail import send_mail
 from random import choice
+import time
 
 import json
 
@@ -46,18 +47,22 @@ def productorAdmin(request):
     context = {}
     return render(request, 'productor.html', context)
 
+
 def activarCorreos(request):
     context = {}
     return render(request, 'productor.html', context)
+
 
 def productorLista(request):
     context = {}
     return render(request, 'productor-lista.html', context)
 
+
 def productorDetail(request, id):
     productor = get_object_or_404(Productor, id=id)
     context = {'productor': productor}
     return render(request, 'productor-detalle.html', context)
+
 
 def contrasena_aleatoria():
     longitud = 10
@@ -66,11 +71,13 @@ def contrasena_aleatoria():
     p = p.join([choice(valores) for i in range(longitud)])
     return p
 
+
 class modeloJSON(HttpResponse):
     def __init__(self, data, **kwargs):
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
         super(modeloJSON, self).__init__(content, **kwargs)
+
 
 @api_view(['GET', 'POST', ])
 def productoresList(request):
@@ -126,6 +133,7 @@ def productoresList(request):
         print(serializer.errors)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['GET', 'POST', ])
 def simpleProductoresList(request):
     if (request.method == 'GET'):
@@ -133,12 +141,14 @@ def simpleProductoresList(request):
         serializer = SimpleProductorSerializer(productores, many=True)
         return modeloJSON(serializer.data)
 
+
 @csrf_exempt
 @api_view(['GET'])
 def productorGet(request, id):
     productor = Productor.objects.get(pk=id)
     serializer = ProductorSerializer(productor)
     return modeloJSON(serializer.data)
+
 
 @csrf_exempt
 def productorEditar(request, id):
@@ -163,6 +173,7 @@ def productorEditar(request, id):
         return modeloJSON(respuesta)
     return modeloJSON(respuesta)
 
+
 @csrf_exempt
 @api_view(['POST'])
 def activarCorreo(request):
@@ -177,6 +188,7 @@ def activarCorreo(request):
     estado.activo = data['activar']
     estado.save()
     return Response("Estado modificado correctamente", status=status.HTTP_201_CREATED)
+
 
 @csrf_exempt
 @api_view(['GET'])
@@ -215,7 +227,58 @@ def enviarCorreo(request):
         return Response("Correo enviado satisfactoriamente", status=status.HTTP_201_CREATED)
     return Response("Error en el envio de correo", status=status.HTTP_400_BAD_REQUEST)
 
+
+@csrf_exempt
+@api_view(['GET'])
+def recibirProductos(request):
+    if (request.method == 'GET'):
+        ofertas = Oferta.objects.all()
+        #ofertasString = [ofertas.as_dict() for obj in ofertas]
+        if(len(ofertas)):
+            return Response(OfertaSerializer(ofertas, many=True).data, status=status.HTTP_200_OK)
+    return Response("[]", status=status.HTTP_200_OK)
+
+@csrf_exempt
+@api_view(['POST'])
+def enviarProductos(request):
+    if (request.method == 'POST'):
+        data = JSONParser().parse(request)
+        if(data['productos'] and data['productor']):
+            productorPost = data['productor']
+            productor = get_object_or_404(Productor, id=productorPost['id'])
+            productosPost = data['productos']
+            productosList = []
+            for prod in productosPost:
+                pr = None
+                if(hasattr(prod, 'id')):
+                    pr = get_object_or_404(producto, id=prod['id'])
+                if (pr):
+                    pr.stock = pr.stock + prod['stock']
+                    pr.save()
+                    productosList.append(pr)
+                else:
+                    pr = producto()
+                    pr.nombre = prod['nombre']
+                    pr.descripcion = prod['descripcion']
+                    pr.precio = prod['precio']
+                    pr.imagen = prod['imagen']
+                    pr.unidadMedida = prod['unidadMedida']
+                    pr.stock = prod['stock']
+                    pr.save()
+                    productosList.append(pr)
+            print(len(productosList))
+            if(productor and len(productosList)):
+                oferta = Oferta()
+                oferta.fecha = time.strftime("%Y-%m-%d")
+                oferta.productor = productor
+                oferta.save()
+                oferta.productos = productosList
+                oferta.save()
+                return Response("Productos guardados satisfactoriamente", status=status.HTTP_201_CREATED)
+    return Response("Error en el envio de productos", status=status.HTTP_400_BAD_REQUEST)
+
 def decode(data):
+    print(data)
     new_data = data.decode("utf-8", "strict")
 
     return json.loads(new_data)

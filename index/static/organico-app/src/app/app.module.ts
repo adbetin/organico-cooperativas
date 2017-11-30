@@ -27,6 +27,7 @@ import { ActivarCorreoComponent } from "./productor/activar-correo/activar-corre
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.component';
+import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
 import { OfertasListaComponent } from './administrador/ofertas-lista/ofertas-lista.component';
 import { OfertaAceptarComponent } from './administrador/oferta-aceptar/oferta-aceptar.component';
 import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-rechazar.component';
@@ -50,6 +51,9 @@ import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-
     RegistroAdminComponent,
     ActivarCorreoComponent,
     CrearServicioComponent,
+    CrearProductoComponent,
+    ListadoServicioComponent,
+    DiasRepartoComponent,
     CrearProductoComponent,
     ListadoServicioComponent,
     OfertasListaComponent,
@@ -146,6 +150,10 @@ import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-
       {
         path: 'cooperativa/servicio/listadoServicios/:id',
         component: ListadoServicioComponent
+      },
+      {
+        path: 'cooperativa/diasreparto/consultar/:id',
+        component: DiasRepartoComponent
       },
       {
         path: 'administrador/ofertas-lista',
