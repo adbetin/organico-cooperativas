@@ -26,7 +26,7 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
-import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.component';
+import { CrearProductoComponent } from './cooperativa/productos/crearproducto.component';
 import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
 
 @NgModule({
