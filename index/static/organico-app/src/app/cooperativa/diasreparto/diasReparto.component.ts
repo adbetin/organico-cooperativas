@@ -42,7 +42,7 @@ export class DiasRepartoComponent {
       if (cooperativa_id > 0) {
           this.diasRepartoService.guardarDiaReparto(this.diaReparto).subscribe(response => {
             this.diaReparto = {};
-            this.router.navigateByUrl('cooperativa/diasreparto/consultar');
+            // this.router.navigateByUrl('cooperativa/diasreparto/consultar');
             this.exitoso = true;
           });
       } else {

@@ -8,9 +8,33 @@ export class DiasRepartoService {
 
     guardarDiaReparto( diaReparto) {
 
+      if ( !diaReparto['lunes'] ) {
+        diaReparto['lunes'] = false;
+      }
+      if ( !diaReparto['martes'] ) {
+        diaReparto['martes'] = false;
+      }
+      if ( !diaReparto['miercoles'] ) {
+        diaReparto['miercoles'] = false;
+      }
+      if ( !diaReparto['jueves'] ) {
+        diaReparto['jueves'] = false;
+      }
+      if ( !diaReparto['viernes'] ) {
+        diaReparto['viernes'] = false;
+      }
+      if ( !diaReparto['sabado'] ) {
+        diaReparto['sabado'] = false;
+      }
+      if ( !diaReparto['domingo'] ) {
+        diaReparto['domingo'] = false;
+      }
+
       const headers = new Headers({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
       const options = new RequestOptions({ headers: headers });
       const body = JSON.stringify( diaReparto );
+      console.log( 'body: ' );
+      console.log( body );
 
       return this.http.post('actualizar/', body, options).map(response => response.json());
     }

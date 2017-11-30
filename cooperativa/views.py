@@ -76,9 +76,9 @@ def guardarServicio(request):
 def actualizarCooperativa(request):
     respuesta = False
     if (request.method == 'POST'):
-        print(request.body)
+        # print(request.body)
         cooperativaPost = JSONParser().parse(request)
-        print(cooperativaPost)
+        # print(cooperativaPost)
         coop = Cooperativa.objects.get(id=cooperativaPost['id'])
         coop.nombre=cooperativaPost["nombre"]
         coop.nit=cooperativaPost["nit"]
@@ -140,10 +140,8 @@ def _diasRepartoGet(request, cooperativa_id, anio, semana):
 @csrf_exempt
 def actualizarDiaReparto(cooperativa_id, anio, semana, dia, activo):
     respuesta = False
-    diaReparto = DiasReparto.objects.get_or_create(cooperativa_id=cooperativa_id, anio=anio, semana=semana, dia=dia)
-    diaReparto.activo=activo
-    diaReparto.save()
-    respuesta = True
+    cooperativa = get_object_or_404(Cooperativa, id=cooperativa_id)
+    diaReparto, respuesta = DiasReparto.objects.get_or_create(cooperativa=cooperativa, anio=anio, semana=semana, dia=dia, defaults={ 'activo':activo } )
     return respuesta
 
 @csrf_exempt
@@ -155,6 +153,8 @@ def actualizarDiasReparto(request):
         anio = datetime.now().year  # Año actual
         semana = datetime.now().strftime("%V")  # Semana del año actual
 
+        print(request.body)
+
         #carga los datos enviados
         diasReparto = decode(request.body)
 
@@ -162,15 +162,22 @@ def actualizarDiasReparto(request):
         cooperativa = diasReparto['cooperativa']
 
         #actualiza el estado de cada día
-        actualizarDiaReparto(cooperativa, anio, semana, 1, diasReparto['lunes'])
-        actualizarDiaReparto(cooperativa, anio, semana, 2, diasReparto['martes'])
-        actualizarDiaReparto(cooperativa, anio, semana, 3, diasReparto['miercoles'])
-        actualizarDiaReparto(cooperativa, anio, semana, 4, diasReparto['jueves'])
-        actualizarDiaReparto(cooperativa, anio, semana, 5, diasReparto['viernes'])
-        actualizarDiaReparto(cooperativa, anio, semana, 6, diasReparto['sabado'])
-        actualizarDiaReparto(cooperativa, anio, semana, 7, diasReparto['domingo'])
-
         respuesta = True
+        if (respuesta == True):
+            respuesta = actualizarDiaReparto(cooperativa, anio, semana, 1, diasReparto['lunes'])
+        if( respuesta == True ):
+            respuesta = actualizarDiaReparto(cooperativa, anio, semana, 2, diasReparto['martes'])
+        if (respuesta == True):
+            respuesta = actualizarDiaReparto(cooperativa, anio, semana, 3, diasReparto['miercoles'])
+        if (respuesta == True):
+            respuesta = actualizarDiaReparto(cooperativa, anio, semana, 4, diasReparto['jueves'])
+        if (respuesta == True):
+            respuesta = actualizarDiaReparto(cooperativa, anio, semana, 5, diasReparto['viernes'])
+        if (respuesta == True):
+            respuesta = actualizarDiaReparto(cooperativa, anio, semana, 6, diasReparto['sabado'])
+        if (respuesta == True):
+            respuesta = actualizarDiaReparto(cooperativa, anio, semana, 7, diasReparto['domingo'])
+
     return modeloJSON(respuesta)
 
 

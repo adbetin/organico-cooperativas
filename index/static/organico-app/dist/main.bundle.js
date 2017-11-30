@@ -1552,7 +1552,7 @@ var DiasRepartoComponent = (function () {
         if (cooperativa_id > 0) {
             this.diasRepartoService.guardarDiaReparto(this.diaReparto).subscribe(function (response) {
                 _this.diaReparto = {};
-                _this.router.navigateByUrl('cooperativa/diasReparto/consultar');
+                // this.router.navigateByUrl('cooperativa/diasreparto/consultar');
                 _this.exitoso = true;
             });
         }
@@ -1605,9 +1605,32 @@ var DiasRepartoService = (function () {
         this.http = http;
     }
     DiasRepartoService.prototype.guardarDiaReparto = function (diaReparto) {
+        if (!diaReparto['lunes']) {
+            diaReparto['lunes'] = false;
+        }
+        if (!diaReparto['martes']) {
+            diaReparto['martes'] = false;
+        }
+        if (!diaReparto['miercoles']) {
+            diaReparto['miercoles'] = false;
+        }
+        if (!diaReparto['jueves']) {
+            diaReparto['jueves'] = false;
+        }
+        if (!diaReparto['viernes']) {
+            diaReparto['viernes'] = false;
+        }
+        if (!diaReparto['sabado']) {
+            diaReparto['sabado'] = false;
+        }
+        if (!diaReparto['domingo']) {
+            diaReparto['domingo'] = false;
+        }
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         var body = JSON.stringify(diaReparto);
+        console.log('body: ');
+        console.log(body);
         return this.http.post('actualizar/', body, options).map(function (response) { return response.json(); });
     };
     DiasRepartoService.prototype.getCookie = function (name) {
