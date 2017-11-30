@@ -4,7 +4,8 @@ import { ShopService } from './shop.service'
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  styleUrls: ['./shop.component.css'],
+  providers: [ ShopService ]
 })
 export class ShopComponent implements OnInit {
 
@@ -14,11 +15,9 @@ export class ShopComponent implements OnInit {
   constructor(private shopService: ShopService) { }
 
   ngOnInit() {
-    debugger;
     this.loading = true;
     this.shopService.getProducts(0)
       .subscribe(products => {
-        debugger;
         this.products = products;
         this.loading = false;
       });
