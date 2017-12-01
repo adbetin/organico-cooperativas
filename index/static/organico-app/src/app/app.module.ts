@@ -28,6 +28,7 @@ import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.com
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.component';
 import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
+import { ProductosComponent } from './productor/productos/productos.component';
 import { OfertasListaComponent } from './administrador/ofertas-lista/ofertas-lista.component';
 import { OfertaAceptarComponent } from './administrador/oferta-aceptar/oferta-aceptar.component';
 import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-rechazar.component';
@@ -166,6 +167,10 @@ import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-
       {
         path: 'administrador/oferta-rechazar/:id',
         component: OfertaRechazarComponent
+      },
+      {
+        path: 'productor/productos/carga',
+        component: ProductosComponent
       }
     ])
   ],

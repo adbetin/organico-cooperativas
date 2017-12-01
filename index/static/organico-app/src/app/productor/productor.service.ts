@@ -57,4 +57,12 @@ export class ProductorService {
     activarCorreo(correo:any): Observable<string[]> {
         return this.http.post("/productor/correo/active", correo, this.options).map(response => <string[]> response.json());
     }
+
+    obtenerListaProductos(): Observable<string[]> {
+        return this.http.get("/productor/productosLista").map(response => <string[]> response.json());
+    }
+
+    obtenerProductorPorUsuario(userId:any): Observable<string[]> {
+        return this.http.get("/productor/productorPorUsuario/" + userId).map(response => <string[]> response.json());
+    }
 }

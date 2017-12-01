@@ -50,8 +50,8 @@ class DiasReparto(models.Model):
     activo = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = 'Día de Reparto'
-        verbose_name_plural = 'Días de Reparto'
+        verbose_name = 'Dia de Reparto'
+        verbose_name_plural = 'Dias de Reparto'
 
     def __str__(self):
         return '%s' % (self.nombre)
