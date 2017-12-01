@@ -51,7 +51,8 @@ import { ProductosComponent } from './productor/productos/productos.component';
     CrearServicioComponent,
     CrearProductoComponent,
     ListadoServicioComponent,
-    DiasRepartoComponent
+    DiasRepartoComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,

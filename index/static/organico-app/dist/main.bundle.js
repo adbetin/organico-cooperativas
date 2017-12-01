@@ -656,7 +656,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_25__cooperativa_servicio_crearServicio_component__["a" /* CrearServicioComponent */],
             __WEBPACK_IMPORTED_MODULE_27__cooperativa_Productos_crearProducto_component__["a" /* CrearProductoComponent */],
             __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */],
-            __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__["a" /* DiasRepartoComponent */]
+            __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__["a" /* DiasRepartoComponent */],
+            __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__["a" /* ProductosComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -2880,7 +2881,8 @@ var ProductorService = (function () {
         headers.append("Content-Type", "application/json; charset=utf-8");
         headers.append("Cache-Control", "no-cache");
         headers.append("Cache-Control", "no-store");
-        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        headers.append("X-CsrfToken", document.cookie.split("csrftoken=")[1]);
+        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers, withCredentials: true });
     }
     ProductorService.prototype.setProductor = function (productor) {
         return this.http.post("/productor/service", productor)
@@ -2918,6 +2920,9 @@ var ProductorService = (function () {
     };
     ProductorService.prototype.obtenerProductorPorUsuario = function (userId) {
         return this.http.get("/productor/productorPorUsuario/" + userId).map(function (response) { return response.json(); });
+    };
+    ProductorService.prototype.crearNuevaOferta = function (oferta) {
+        return this.http.post("/productor/productos", JSON.stringify(oferta), this.options).map(function (response) { return response.json(); });
     };
     return ProductorService;
 }());
@@ -3158,7 +3163,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productos/productos.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"productor-registro-productos-section\">\n  <div class=\"auto-container\">\n    <!--Section Title-->\n    <h1>Agregar nueva oferta</h1>\n    <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\n      <!--|<div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n        <input type=\"text\" id=\"nombreProductor\" placeholder=\" * Nombre\" [(ngModel)]=\"productor.nombre\" />\n      </div>-->\n\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n        <select id=\"productoSeleccionado\" [disabled]=\"!productos\" [(ngModel)]=\"productoSeleccionado.id\" (change)=\"cambiarProducto()\">\n          <option value=\"-1\">-- Producto --</option>\n          <option *ngFor=\"let producto of productos\" value=\"{{producto.id}}\">{{producto.nombre}}</option>\n        </select>\n        <img src=\"{{productoSeleccionado.foto}}\">\n        <button [ngClass]=\"{'hide': productoSeleccionado.id == -1}\" type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"cargarProductoSeleccionado()\">\n          Cargar\n        </button>\n      </div>\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n        <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"mostrarFormProducto()\">\n          Mi producto no aparece en esta lista\n        </button>\n      </div>\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\" [ngClass]=\"{'hide': !mostrarFormularioProducto}\">\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Nombre Producto: </label>\n          <input type=\"text\" id=\"nombreProducto\" placeholder=\" * Nombre\" [(ngModel)]=\"producto.nombre\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Descripción Producto: </label>\n          <input type=\"text\" id=\"descripcionProducto\" placeholder=\" * Descripcion\" [(ngModel)]=\"producto.descripcion\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Precio: </label>\n          <input type=\"text\" id=\"precioProducto\" placeholder=\" * Precio\" [(ngModel)]=\"producto.precio\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label> Foto*: </label>\n          <input type=\"file\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\n          <canvas max-width=\"200\" max-height=\"200\" id=\"photoPreview\"></canvas>\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <select id=\"unidadMedida\" [(ngModel)]=\"producto.unidadMedida\">\n            <option value=\"-1\">-- Unidad de Medida --</option>\n            <option value=\"lb\">Libra</option>\n            <option value=\"kg\">Kilogramo</option>\n            <option value=\"lt\">Litro</option>\n            <option value=\"un\">Unidad</option>\n            <option value=\"bt\">Bulto</option>\n            <option value=\"cg\">Carga</option>\n            <option value=\"dc\">Docena</option>\n          </select>\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Cantidad: </label>\n          <input type=\"text\" id=\"cantidadProducto\" placeholder=\" * Cantidad\" [(ngModel)]=\"producto.stock\" />\n        </div>\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n          <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"cargarProducto()\">\n            Cargar producto\n          </button>\n        </div>\n      </div>\n\n      <!--<div class=\"form-group col-md-12 col-sm-12 col-xs-12 activar-desactivar-module\">\n        <label>Productor Activo: </label>\n        <section class=\"styled-checkbox\" style=\"background: none; border: none; box-shadow: none;\">\n          <div class=\"slideThree\">\n            <input type=\"checkbox\" [(ngModel)]=\"productor.aprobado\" value=\"None\" id=\"slideThree\" name=\"check\">\n            <label for=\"slideThree\"></label>\n          </div>\n        </section>\n      </div>\n\n      <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n        <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" onclick=\"window.history.go(-1)\">\n          <span class=\"fa fa-angle-double-left\"></span> Atrás</button>\n        <button (click)=\"editarProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\n      </div>-->\n    </div>\n  </div>\n</section>"
+module.exports = "<section class=\"productor-registro-productos-section\">\n  <div class=\"auto-container\">\n    <!--Section Title-->\n    <h1>Agregar nueva oferta</h1>\n    <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n        <select id=\"productoSeleccionado\" [disabled]=\"!productos\" [(ngModel)]=\"productoSeleccionado.id\" (change)=\"cambiarProducto()\">\n          <option value=\"-1\">-- Producto --</option>\n          <option *ngFor=\"let producto of productos\" value=\"{{producto.id}}\">{{producto.nombre}}</option>\n        </select>\n        <img src=\"{{productoSeleccionado.foto}}\">\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Cantidad: </label>\n          <input type=\"text\" id=\"cantidadProducto\" placeholder=\" * Cantidad\" [(ngModel)]=\"cantidad\" />\n        </div>\n      </div>\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n        <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"mostrarFormProducto()\">\n          Mi producto no aparece en esta lista\n        </button>\n      </div>\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\" [ngClass]=\"{'hide': !mostrarFormularioProducto}\">\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Nombre Producto: </label>\n          <input type=\"text\" id=\"nombreProducto\" placeholder=\" * Nombre\" [(ngModel)]=\"producto.nombre\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Descripción Producto: </label>\n          <input type=\"text\" id=\"descripcionProducto\" placeholder=\" * Descripcion\" [(ngModel)]=\"producto.descripcion\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label>Precio: </label>\n          <input type=\"text\" id=\"precioProducto\" placeholder=\" * Precio\" [(ngModel)]=\"producto.precio\" />\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <label> Foto*: </label>\n          <input type=\"file\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\n          <canvas max-width=\"200\" max-height=\"200\" id=\"photoPreview\"></canvas>\n        </div>\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n          <select id=\"unidadMedida\" [(ngModel)]=\"producto.unidadMedida\">\n            <option value=\"-1\">-- Unidad de Medida --</option>\n            <option value=\"lb\">Libra</option>\n            <option value=\"kg\">Kilogramo</option>\n            <option value=\"lt\">Litro</option>\n            <option value=\"un\">Unidad</option>\n            <option value=\"bt\">Bulto</option>\n            <option value=\"cg\">Carga</option>\n            <option value=\"dc\">Docena</option>\n          </select>\n        </div>\n      </div>\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\n        <button type=\"button\" [disabled]=\"!productos\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"cargarProducto()\">\n          Cargar producto\n        </button>\n      </div>\n    </div>\n  </div>\n</section>\n<div class=\"preloader hide\"></div>"
 
 /***/ }),
 
@@ -3190,9 +3195,10 @@ var ProductosComponent = (function () {
         this.productoSeleccionado = {
             id: -1
         };
-        this.listaProductos = new Array();
         this.mostrarFormularioProducto = false;
-        this.producto = {};
+        this.producto = {
+            stock: 0
+        };
     }
     ProductosComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -3244,8 +3250,60 @@ var ProductosComponent = (function () {
         };
     };
     ProductosComponent.prototype.cargarProducto = function () {
-    };
-    ProductosComponent.prototype.cargarProductoSeleccionado = function () {
+        var _this = this;
+        var oferta;
+        document.querySelector(".preloader").style.display = "block";
+        if (this.mostrarFormularioProducto) {
+            if (this.cantidad && this.productor.id && this.producto.nombre && this.producto.descripcion
+                && this.producto.precio && this.producto.imagen && this.producto.unidadMedida) {
+                oferta = {
+                    productor: this.productor,
+                    productos: this.producto,
+                    cantidad: this.cantidad
+                };
+            }
+            else {
+                var error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
+                error += !(this.producto.nombre && this.producto.descripcion
+                    && this.producto.precio && this.producto.imagen
+                    && this.producto.unidadMedida) ? "La información del producto está incompleta\n" : "";
+                error += !this.cantidad ? "Tiene que ingresar una cantidad" : "";
+                alert(error);
+                document.querySelector(".preloader").style.display = "none";
+            }
+        }
+        else {
+            var productoT = this.productos.filter(function (val) {
+                return val.id == _this.productoSeleccionado.id;
+            })[0];
+            if (this.productor.id && this.cantidad && productoT) {
+                oferta = {
+                    productor: this.productor,
+                    productos: productoT,
+                    cantidad: this.cantidad
+                };
+            }
+            else {
+                var error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
+                error += !productoT ? "Aún no ha seleccionado ningún producto\n" : "";
+                error += !this.cantidad ? "Tiene que ingresar una cantidad" : "";
+                alert(error);
+                document.querySelector(".preloader").style.display = "none";
+            }
+        }
+        if (oferta) {
+            this.productorService.crearNuevaOferta(oferta).subscribe(function (response) {
+                alert(response);
+                document.querySelector(".preloader").style.display = "none";
+                _this.producto = {};
+                _this.productoSeleccionado = { id: -1 };
+                _this.cantidad = "";
+            }, function (error) {
+                console.log(error);
+                alert("Ocurrio un error guardando la oferta");
+                document.querySelector(".preloader").style.display = "none";
+            });
+        }
     };
     return ProductosComponent;
 }());

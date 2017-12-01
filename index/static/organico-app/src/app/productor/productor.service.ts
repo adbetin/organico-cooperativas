@@ -11,7 +11,8 @@ export class ProductorService {
     headers.append("Content-Type", "application/json; charset=utf-8");
     headers.append("Cache-Control", "no-cache");
     headers.append("Cache-Control", "no-store");
-    this.options = new RequestOptions({ headers: headers });
+    headers.append("X-CsrfToken", document.cookie.split("csrftoken=")[1]);
+    this.options = new RequestOptions({ headers: headers, withCredentials: true });
   }
 
     setProductor(productor: any): Observable<string[]> {
@@ -64,5 +65,9 @@ export class ProductorService {
 
     obtenerProductorPorUsuario(userId:any): Observable<string[]> {
         return this.http.get("/productor/productorPorUsuario/" + userId).map(response => <string[]> response.json());
+    }
+
+    crearNuevaOferta(oferta:any): Observable<string[]> {
+        return this.http.post("/productor/productos", JSON.stringify(oferta), this.options).map(response => <string[]> response.json());
     }
 }

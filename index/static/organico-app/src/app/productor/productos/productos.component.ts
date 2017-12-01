@@ -19,11 +19,11 @@ export class ProductosComponent implements OnInit {
   productoSeleccionado: any = {
     id: -1
   };
-  listaProductos: any[] = new Array();
   mostrarFormularioProducto: any = false;
   producto: any = {
-
+    stock: 0
   };
+  cantidad: any;
 
   constructor(
     private productorService: ProductorService,
@@ -55,7 +55,7 @@ export class ProductosComponent implements OnInit {
     })[0];
     if (producto) {
       this.productoSeleccionado.foto = producto.imagen;
-    }else {
+    } else {
       this.productoSeleccionado.foto = "";
     }
   }
@@ -87,11 +87,56 @@ export class ProductosComponent implements OnInit {
   }
 
   cargarProducto() {
-
-  }
-
-  cargarProductoSeleccionado() {
-
+    var oferta: any;
+    (<any>document.querySelector(".preloader")).style.display = "block";
+    if (this.mostrarFormularioProducto) {
+      if (this.cantidad && this.productor.id && this.producto.nombre && this.producto.descripcion
+        && this.producto.precio && this.producto.imagen && this.producto.unidadMedida) {
+        oferta = {
+          productor: this.productor,
+          productos: this.producto,
+          cantidad: this.cantidad
+        }
+      } else {
+        var error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
+        error += !(this.producto.nombre && this.producto.descripcion
+          && this.producto.precio && this.producto.imagen
+          && this.producto.unidadMedida) ? "La información del producto está incompleta\n" : "";
+        error += !this.cantidad ? "Tiene que ingresar una cantidad" : "";
+        alert(error);
+        (<any>document.querySelector(".preloader")).style.display = "none";
+      }
+    } else {
+      var productoT = this.productos.filter((val) => {
+        return val.id == this.productoSeleccionado.id;
+      })[0];
+      if (this.productor.id && this.cantidad && productoT) {
+        oferta = {
+          productor: this.productor,
+          productos: productoT,
+          cantidad: this.cantidad
+        }
+      } else {
+        var error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
+        error += !productoT ? "Aún no ha seleccionado ningún producto\n" : "";
+        error += !this.cantidad ? "Tiene que ingresar una cantidad" : "";
+        alert(error);
+        (<any>document.querySelector(".preloader")).style.display = "none";
+      }
+    }
+    if(oferta) {
+      this.productorService.crearNuevaOferta(oferta).subscribe(response => {
+        alert(response);
+        (<any>document.querySelector(".preloader")).style.display = "none";
+        this.producto = {};
+        this.productoSeleccionado = { id: -1};
+        this.cantidad = "";
+      }, error => {
+        console.log(error);
+        alert("Ocurrio un error guardando la oferta");
+        (<any>document.querySelector(".preloader")).style.display = "none";
+      });
+    }
   }
 
 }
