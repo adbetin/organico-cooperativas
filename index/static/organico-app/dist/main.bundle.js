@@ -590,12 +590,18 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__productor_activar_correo_activar_correo_component__ = __webpack_require__("../../../../../src/app/productor/activar-correo/activar-correo.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__cooperativa_servicio_crearServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/crearServicio.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__ = __webpack_require__("../../../../../src/app/cooperativa/servicio/listadoServicio.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__cooperativa_Productos_crearProducto_component__ = __webpack_require__("../../../../../src/app/cooperativa/Productos/crearProducto.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__ = __webpack_require__("../../../../../src/app/cooperativa/diasreparto/diasReparto.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__ = __webpack_require__("../../../../../src/app/productor/productos/productos.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -648,7 +654,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_18__productor_registro_admin_registro_admin_component__["a" /* RegistroAdminComponent */],
             __WEBPACK_IMPORTED_MODULE_24__productor_activar_correo_activar_correo_component__["a" /* ActivarCorreoComponent */],
             __WEBPACK_IMPORTED_MODULE_25__cooperativa_servicio_crearServicio_component__["a" /* CrearServicioComponent */],
-            __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */]
+            __WEBPACK_IMPORTED_MODULE_27__cooperativa_Productos_crearProducto_component__["a" /* CrearProductoComponent */],
+            __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */],
+            __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__["a" /* DiasRepartoComponent */],
+            __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__["a" /* ProductosComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -680,6 +689,10 @@ AppModule = __decorate([
                 {
                     path: 'cooperativa/actualizardatos/:id',
                     component: __WEBPACK_IMPORTED_MODULE_17__cooperativa_actualizardatos_component__["a" /* ActualizarDatosComponent */]
+                },
+                {
+                    path: 'cooperativa/Productos/crearProducto',
+                    component: __WEBPACK_IMPORTED_MODULE_27__cooperativa_Productos_crearProducto_component__["a" /* CrearProductoComponent */]
                 },
                 {
                     path: 'cooperativa/detalle/:id',
@@ -736,6 +749,14 @@ AppModule = __decorate([
                 {
                     path: 'cooperativa/servicio/listadoServicios/:id',
                     component: __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */]
+                },
+                {
+                    path: 'cooperativa/diasreparto/consultar/:id',
+                    component: __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__["a" /* DiasRepartoComponent */]
+                },
+                {
+                    path: 'productor/productos/carga',
+                    component: __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__["a" /* ProductosComponent */]
                 }
             ])
         ],
@@ -746,6 +767,153 @@ AppModule = __decorate([
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/cooperativa/Productos/crearProducto.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Crear Productos</h1>\r\n        <div class=\"contact-form default-form\">\r\n\r\n           <form #formProductos=\"ngForm\" (ngSubmit)=\"guardarProductos(formProductos)\">\r\n                <div class=\"row clearfix\">\r\n                \r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormProductos}\"\r\n                               type=\"text\" name=\"nombre\" value=\"\"\r\n                               placeholder=\"* Nombre del Producto [Máx 50 caracteres]\" [(ngModel)]=\"producto.nombre\"\r\n                               required maxlength=\"50\" id=\"nombreProducto\">\r\n                    </div>\r\n                    \r\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n                        <input #valor=\"ngModel\" [ngClass]=\"{'error':!valor.valid && envioFormProductos}\"\r\n                               type=\"text\" name=\"valor\" value=\"\"\r\n                               placeholder=\"* Valor del Producto [Máx 6 números]\" [(ngModel)]=\"producto.valor\"\r\n                               required maxlength=\"6\" pattern=\"[0-9-]*\" id=\"valorProducto\">                      \r\n                    </div>\r\n\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                      <select #cooperativa=\"ngModel\" id=\"cooperativa\"\r\n                              name=\"cooperativa\" placeholder=\"* Cooperativa\" [(ngModel)]=\"producto.cooperativa\" required >\r\n                        <option value=\"-1\">-- Cooperativa que produce --</option>\r\n                        <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n                      </select>\r\n                    </div>\r\n\r\n\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormProductos}\"\r\n                                  name=\"descripcion\" placeholder=\"* Descripción [Máx 550 caracteres]\"\r\n                                  [(ngModel)]=\"producto.descripcion\" maxlength=\"550\" id=\"descripcionProducto\"></textarea>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                      <label> Imagen*: </label>\r\n                      <input type=\"file\" id=\"fotoProducto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n                      <canvas max-width=\"200\" max-height=\"200\" id=\"photoPreview\"></canvas>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span *ngIf=\"!formProductos.valid && !envioFormProductos\"> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formProductos.valid && envioFormProductos\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\r\n                      <br>\r\n                      <span *ngIf=\"exitoso==true\">Producto subido exitosamente</span>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\"><button id=\"guardar\"  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar Producto</button>\r\n                        <button type=\"button\" class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Cancelar</button></div>\r\n\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section> \r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/cooperativa/Productos/crearProducto.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CrearProductoComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__crearProducto_service__ = __webpack_require__("../../../../../src/app/cooperativa/Productos/crearProducto.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var CrearProductoComponent = (function () {
+    function CrearProductoComponent(crearProductoServices, cooperativaService, router) {
+        this.crearProductoServices = crearProductoServices;
+        this.cooperativaService = cooperativaService;
+        this.router = router;
+        this.title = 'Crear Producto';
+        this.envioFormProducto = false;
+        this.exitoso = false;
+        this.producto = {
+            "cooperativa": -1
+        };
+    }
+    CrearProductoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.cooperativaService.getCooperativas()
+            .subscribe(function (response) {
+            _this.cooperativas = response;
+        });
+    };
+    CrearProductoComponent.prototype.guardarProducto = function (formProducto) {
+        var _this = this;
+        this.envioFormProducto = true;
+        if (this.producto.cooperativa && this.producto.nombre && this.producto.valor && this.producto.descripcion && this.producto.imagen) {
+            this.crearProductoServices.guardarProducto(this.producto).subscribe(function (response) {
+                var cooperativa_id = _this.producto.cooperativa;
+                _this.producto = {};
+                _this.router.navigateByUrl('cooperativa/Productos/listadoProductos/' + cooperativa_id);
+                _this.exitoso = true;
+            });
+        }
+        else {
+            alert("Alguno de los datos está incompleto.");
+        }
+    };
+    CrearProductoComponent.prototype.loadFoto = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var photo = new Image();
+                photo.src = e.target.result;
+                photo.onload = function () {
+                    var canvas = document.getElementById('photoPreview'), context = canvas.getContext('2d');
+                    context.drawImage(photo, 0, 0, 200, 200);
+                    this.producto.foto = canvas.toDataURL();
+                }.bind(this);
+                this.producto.foto = e.target.result;
+            }.bind(this);
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+    return CrearProductoComponent;
+}());
+CrearProductoComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-CrearProducto',
+        template: __webpack_require__("../../../../../src/app/cooperativa/Productos/crearProducto.component.html"),
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__crearProducto_service__["a" /* CrearProductoService */],
+            __WEBPACK_IMPORTED_MODULE_3__listadoCooperativa_service__["a" /* ListadoCooperativaService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__crearProducto_service__["a" /* CrearProductoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__crearProducto_service__["a" /* CrearProductoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
+], CrearProductoComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=crearProducto.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/cooperativa/Productos/crearProducto.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CrearProductoService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CrearProductoService = (function () {
+    function CrearProductoService(http) {
+        this.http = http;
+    }
+    CrearProductoService.prototype.guardarProducto = function (producto) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var body = JSON.stringify(producto);
+        return this.http.post('guardarProducto/', body, options).map(function (response) { return response.json(); });
+    };
+    CrearProductoService.prototype.getCookie = function (name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2)
+            return parts.pop().split(";").shift();
+    };
+    return CrearProductoService;
+}());
+CrearProductoService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], CrearProductoService);
+
+var _a;
+//# sourceMappingURL=crearProducto.service.js.map
 
 /***/ }),
 
@@ -1007,7 +1175,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "    <!--Our Team-->\r\n    <section class=\"team-section\">\r\n    \t<div class=\"auto-container\">\r\n        \t<!--Section Title-->\r\n            <div class=\"sec-title-one\">\r\n                <h2><a routerLink=\"/cooperativa/listadoCooperativa\">Nuestras cooperativas</a></h2>\r\n            </div>\r\n\r\n        \t<div class=\"row clearfix\" *ngIf=\"cooperativa != null\">\r\n                \t<!--Default Team Member-->\r\n                    <div class=\"default-team-member\" *ngIf=\"cooperativa\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../../static/images/resource/team-image-1.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"social-links\"><small></small><a routerLink=\"/cooperativa/listadoCooperativa\">\r\n                                      <span class=\"fa fa-step-backward title-box title\" title=\"Volver\"> Volver</span>\r\n                                    </a>\r\n                                    <a routerLink=\"/cooperativa/actualizardatos/{{ cooperativa.id }}\">\r\n                                      <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                    </a></div>\r\n                                <div class=\"inner\"><h3>{{ cooperativa.nombre }}\r\n                                    <br><small><b>Zona</b> {{ cooperativa.zona }} | {{ cooperativa.direccion }} | {{ cooperativa.correo }} |\r\n                                        <br><b>NIT</b> {{ cooperativa.nit }} | {{ cooperativa.responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ cooperativa.descripcion }}</div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <app-productor-lista filtrocooperativa=\"{{ cooperativa.id }}\"></app-productor-lista>\r\n            </div>\r\n        </div>\r\n    </section>\r\n"
+module.exports = "<!--Our Team-->\r\n<section class=\"team-section\">\r\n    <div class=\"auto-container\">\r\n        <!--Section Title-->\r\n        <div class=\"sec-title-one\">\r\n            <h2>\r\n                <a routerLink=\"/cooperativa/listadoCooperativa\">Nuestras cooperativas</a>\r\n            </h2>\r\n        </div>\r\n\r\n        <div class=\"row clearfix\" *ngIf=\"cooperativa != null\">\r\n            <!--Default Team Member-->\r\n            <div class=\"default-team-member\" *ngIf=\"cooperativa\">\r\n                <div class=\"inner-box clearfix\">\r\n                    <!--Image Column-->\r\n                    <div class=\"image-column\">\r\n                        <figure class=\"image\">\r\n                            <img src=\"../../static/images/resource/team-image-1.jpg\" alt=\"\">\r\n                        </figure>\r\n                    </div>\r\n                    <!--Content Column-->\r\n                    <div class=\"content-column\">\r\n                        <div class=\"social-links\">\r\n                            <small></small>\r\n                            <a routerLink=\"/cooperativa/listadoCooperativa\">\r\n                                <span class=\"fa fa-step-backward title-box title\" title=\"Volver\"> Volver</span>\r\n                            </a>\r\n                            <a routerLink=\"/cooperativa/servicio/listadoServicios/{{ cooperativa.id }}\">\r\n                              <span class=\"fa fa-leaf title-box title\" title=\"Servicios ofrecidos\"> Servicios</span>\r\n                            </a>\r\n                            <a routerLink=\"/cooperativa/diasreparto/consultar/{{ cooperativa.id }}\">\r\n                              <span class=\"fa fa-calendar title-box title\" title=\"Fechas de Entrega\"> Fechas de Entrega</span>\r\n                            </a>\r\n                            <a routerLink=\"/cooperativa/actualizardatos/{{ cooperativa.id }}\">\r\n                                <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                            </a>\r\n                        </div>\r\n                        <div class=\"inner\">\r\n                            <h3>{{ cooperativa.nombre }}\r\n                                <br>\r\n                                <small>\r\n                                    <b>Zona</b> {{ cooperativa.zona }} | {{ cooperativa.direccion }} | {{ cooperativa.correo\r\n                                    }} |\r\n                                    <br>\r\n                                    <b>NIT</b> {{ cooperativa.nit }} | {{ cooperativa.responsable }}</small>\r\n                            </h3>\r\n                            <div class=\"text\">{{ cooperativa.descripcion }}</div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div style=\"margin-bottom: 20px\">\r\n                <agm-map class=\"productores-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\">\r\n                    <agm-marker *ngFor=\"let productor of productores\" [latitude]=\"productor.latitud\" [longitude]=\"productor.longitud\"></agm-marker>\r\n                </agm-map>\r\n            </div>\r\n            <app-productor-lista filtrocooperativa=\"{{ cooperativa.id }}\"></app-productor-lista>\r\n        </div>\r\n    </div>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -1020,6 +1188,7 @@ module.exports = "    <!--Our Team-->\r\n    <section class=\"team-section\">\r\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__productor_productor_lista_productor_lista_component__ = __webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__productor_productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1033,17 +1202,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CooperativaDetalleComponent = (function () {
-    function CooperativaDetalleComponent(element, route, router, cd, cooperativaServices) {
+    function CooperativaDetalleComponent(element, route, router, cd, cooperativaServices, productorService) {
         this.element = element;
         this.route = route;
         this.router = router;
         this.cd = cd;
         this.cooperativaServices = cooperativaServices;
+        this.productorService = productorService;
         this.cooperativa = null;
+        this.productores = new Array();
+        this.marker = {
+            latitud: 4.6486259,
+            longitud: -74.2478963,
+            zoom: 12
+        };
     }
     CooperativaDetalleComponent.prototype.ngOnInit = function () {
         var _this = this;
+        var that = this;
         this.route.params
             .switchMap(function (params) {
             return _this.cooperativaServices.getCoop(+params["id"]);
@@ -1051,6 +1229,11 @@ var CooperativaDetalleComponent = (function () {
             .subscribe(function (response) {
             _this.cooperativa = response;
             _this.cd.detectChanges();
+            _this.productorService.getSimpleProductor().subscribe(function (response) {
+                that.productores = response.filter(function (val) {
+                    return val.cooperativa.id === that.cooperativa.id;
+                });
+            });
         }, function (reason) {
             _this.cooperativa = null;
             alert("error al cargar datos");
@@ -1065,13 +1248,14 @@ CooperativaDetalleComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/cooperativa/cooperativa-detalle/cooperativa-detalle.component.css")],
         providers: [
             __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */],
-            __WEBPACK_IMPORTED_MODULE_3__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */]
+            __WEBPACK_IMPORTED_MODULE_3__productor_productor_lista_productor_lista_component__["a" /* ProductorListaComponent */],
+            __WEBPACK_IMPORTED_MODULE_4__productor_productor_service__["a" /* ProductorService */]
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cooperativa_service__["a" /* CooperativaService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__productor_productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__productor_productor_service__["a" /* ProductorService */]) === "function" && _f || Object])
 ], CooperativaDetalleComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=cooperativa-detalle.component.js.map
 
 /***/ }),
@@ -1321,6 +1505,194 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/cooperativa/diasreparto/diasReparto.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!--Contact Section-->\r\n<section class=\"contact-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Fechas de Entrega</h1>\r\n\r\n        <div class=\"contact-form default-form\">\r\n\r\n           <form #formDiasReparto=\"ngForm\" (ngSubmit)=\"guardarDiaReparto(formDiasReparto)\">\r\n                <div class=\"row clearfix\">\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                      <select #cooperativa=\"ngModel\" id=\"cooperativa\" disabled\r\n                              name=\"cooperativa\" placeholder=\"* Cooperativa\" [(ngModel)]=\"diaReparto.cooperativa\" required >\r\n                        <option value=\"-1\">-- Cooperativa --</option>\r\n                        <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n                      </select>\r\n                    </div>\r\n\r\n                    Seleccione los días de entrega para la semana\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <label><input #lunes=\"ngModel\" [ngClass]=\"{'error':!lunes.valid && envioformDiasReparto}\"\r\n                                type=\"checkbox\" name=\"lunes\" id=\"lunes\" value=\"\"\r\n                                placeholder=\"* Lunes\" [(ngModel)]=\"diaReparto.lunes\"> Lunes</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <label><input #martes=\"ngModel\" [ngClass]=\"{'error':!martes.valid && envioformDiasReparto}\"\r\n                                type=\"checkbox\" name=\"martes\" id=\"martes\" value=\"\"\r\n                                placeholder=\"* Martes\" [(ngModel)]=\"diaReparto.martes\"> Martes</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <label><input #miercoles=\"ngModel\" [ngClass]=\"{'error':!martes.valid && envioformDiasReparto}\"\r\n                                type=\"checkbox\" name=\"miercoles\" id=\"miercoles\" value=\"\"\r\n                                placeholder=\"* Miércoles\" [(ngModel)]=\"diaReparto.miercoles\"> Miércoles</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <label><input #jueves=\"ngModel\" [ngClass]=\"{'error':!jueves.valid && envioformDiasReparto}\"\r\n                                type=\"checkbox\" name=\"jueves\" id=\"jueves\" value=\"\"\r\n                                placeholder=\"* Jueves\" [(ngModel)]=\"diaReparto.jueves\"> Jueves</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <label><input #viernes=\"ngModel\" [ngClass]=\"{'error':!viernes.valid && envioformDiasReparto}\"\r\n                                type=\"checkbox\" name=\"viernes\" id=\"viernes\" value=\"\"\r\n                                placeholder=\"* Viernes\" [(ngModel)]=\"diaReparto.viernes\"> Viernes</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <label><input #sabado=\"ngModel\" [ngClass]=\"{'error':!sabado.valid && envioformDiasReparto}\"\r\n                                type=\"checkbox\" name=\"sabado\" id=\"sabado\" value=\"\"\r\n                                placeholder=\"* Sábado\" [(ngModel)]=\"diaReparto.sabado\"> Sábado</label>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <label><input #domingo=\"ngModel\" [ngClass]=\"{'error':!domingo.valid && envioformDiasReparto}\"\r\n                                type=\"checkbox\" name=\"domingo\" id=\"domingo\" value=\"\"\r\n                                placeholder=\"* Domingo\" [(ngModel)]=\"diaReparto.domingo\"> Domingo</label>\r\n                    </div>\r\n\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\r\n                      <span> * Campos obligatorios</span>\r\n                      <br>\r\n                      <label *ngIf=\"!formDiasReparto.valid && envioformDiasReparto\" class=\"error\">* Existen campos vacíos que son obligatorios o existen campos invalidos.</label>\r\n                      <br>\r\n                      <span *ngIf=\"exitoso==true\">Días de reparto establecidos correctamente</span>\r\n                    </div>\r\n\r\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n                        <div class=\"text-center\"><button id=\"guardar\"  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button>\r\n                        <button type=\"button\" class=\"theme-btn btn-style-two ui-state-disabled\" onclick=\"window.history.go(-1)\">Cancelar</button></div>\r\n\r\n                    </div>\r\n\r\n                </div>\r\n\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/cooperativa/diasreparto/diasReparto.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiasRepartoComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__diasReparto_service__ = __webpack_require__("../../../../../src/app/cooperativa/diasreparto/diasReparto.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__listadoCooperativa_service__ = __webpack_require__("../../../../../src/app/cooperativa/listadoCooperativa.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var DiasRepartoComponent = (function () {
+    function DiasRepartoComponent(diasRepartoService, cooperativaService, route, router) {
+        this.diasRepartoService = diasRepartoService;
+        this.cooperativaService = cooperativaService;
+        this.route = route;
+        this.router = router;
+        this.title = 'Días reparto';
+        this.exitoso = false;
+        this.diaReparto = {
+            'cooperativa': -1
+        };
+    }
+    DiasRepartoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.cooperativaService.getCooperativas()
+            .subscribe(function (response) {
+            _this.cooperativas = response;
+        });
+        this.route.params.subscribe(function (params) {
+            _this.diaReparto.cooperativa = +params['id'];
+        });
+        this.route.params
+            .switchMap(function (params) {
+            return _this.diasRepartoService.getDiasReparto(+params['id']);
+        }).subscribe(function (diasreparto) {
+            for (var _i = 0, diasreparto_1 = diasreparto; _i < diasreparto_1.length; _i++) {
+                var diareparto = diasreparto_1[_i];
+                if (diareparto['dia'] == '1.0') {
+                    _this.diaReparto.lunes = diareparto['activo'];
+                }
+                if (diareparto['dia'] == '2.0') {
+                    _this.diaReparto.martes = diareparto['activo'];
+                }
+                if (diareparto['dia'] == '3.0') {
+                    _this.diaReparto.miercoles = diareparto['activo'];
+                }
+                if (diareparto['dia'] == '4.0') {
+                    _this.diaReparto.jueves = diareparto['activo'];
+                }
+                if (diareparto['dia'] == '5.0') {
+                    _this.diaReparto.viernes = diareparto['activo'];
+                }
+                if (diareparto['dia'] == '6.0') {
+                    _this.diaReparto.sabado = diareparto['activo'];
+                }
+                if (diareparto['dia'] == '7.0') {
+                    _this.diaReparto.domingo = diareparto['activo'];
+                }
+            }
+        });
+    };
+    DiasRepartoComponent.prototype.guardarDiaReparto = function (formDiaReparto) {
+        var _this = this;
+        this.exitoso = false;
+        var cooperativa_id = this.diaReparto.cooperativa;
+        if (cooperativa_id > 0) {
+            this.diasRepartoService.guardarDiaReparto(this.diaReparto).subscribe(function (response) {
+                _this.router.navigateByUrl('cooperativa/diasreparto/consultar/' + _this.diaReparto.cooperativa);
+                _this.exitoso = true;
+            });
+        }
+        else {
+            alert('Debe seleccionar una cooperativa.');
+        }
+    };
+    return DiasRepartoComponent;
+}());
+DiasRepartoComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-DiasReparto',
+        template: __webpack_require__("../../../../../src/app/cooperativa/diasreparto/diasReparto.component.html"),
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__diasReparto_service__["a" /* DiasRepartoService */],
+            __WEBPACK_IMPORTED_MODULE_3__listadoCooperativa_service__["a" /* ListadoCooperativaService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__diasReparto_service__["a" /* DiasRepartoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__diasReparto_service__["a" /* DiasRepartoService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__listadoCooperativa_service__["a" /* ListadoCooperativaService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__listadoCooperativa_service__["a" /* ListadoCooperativaService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
+], DiasRepartoComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=diasReparto.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/cooperativa/diasreparto/diasReparto.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiasRepartoService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var DiasRepartoService = (function () {
+    function DiasRepartoService(http) {
+        this.http = http;
+    }
+    DiasRepartoService.prototype.guardarDiaReparto = function (diaReparto) {
+        if (!diaReparto['lunes']) {
+            diaReparto['lunes'] = false;
+        }
+        if (!diaReparto['martes']) {
+            diaReparto['martes'] = false;
+        }
+        if (!diaReparto['miercoles']) {
+            diaReparto['miercoles'] = false;
+        }
+        if (!diaReparto['jueves']) {
+            diaReparto['jueves'] = false;
+        }
+        if (!diaReparto['viernes']) {
+            diaReparto['viernes'] = false;
+        }
+        if (!diaReparto['sabado']) {
+            diaReparto['sabado'] = false;
+        }
+        if (!diaReparto['domingo']) {
+            diaReparto['domingo'] = false;
+        }
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var body = JSON.stringify(diaReparto);
+        return this.http.post('/cooperativa/diasreparto/actualizar/', body, options).map(function (response) { return response.json(); });
+    };
+    DiasRepartoService.prototype.getDiasReparto = function (cooperativa_id) {
+        return this.http.get('/cooperativa/consultardiasreparto/' + cooperativa_id)
+            .map(function (response) { return response.json(); });
+    };
+    DiasRepartoService.prototype.getCookie = function (name) {
+        var value = '; ' + document.cookie;
+        var parts = value.split('; ' + name + '=');
+        if (parts.length == 2) {
+            return parts.pop().split(';').shift();
+        }
+    };
+    return DiasRepartoService;
+}());
+DiasRepartoService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], DiasRepartoService);
+
+var _a;
+//# sourceMappingURL=diasReparto.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/cooperativa/listadoCooperativa.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1342,7 +1714,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/cooperativa/listadoCooperativa.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "    <!--Our Team-->\r\n    <section class=\"team-section\">\r\n    \t<div class=\"auto-container\">\r\n        \t<!--Section Title-->\r\n            <div class=\"sec-title-one\">\r\n                <h2><a routerLink=\"/cooperativa/listadoCooperativa\">Nuestras cooperativas</a></h2>\r\n            </div>\r\n\r\n        \t<div class=\"row clearfix\" *ngFor=\"let item of cooperativas\">\r\n            \t<div class=\"col-lg-8 col-md-12 col-sm-12 col-xs-12\">\r\n                \t<!--Default Team Member-->\r\n                    <div class=\"default-team-member\" *ngIf=\"item[0]\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-1.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[0].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[0].zona }} | {{ item[0].direccion }} | {{ item[0].correo }} |\r\n                                        <br><b>NIT</b> {{ item[0].nit }} | {{ item[0].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[0].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/servicio/listadoServicios/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-leaf title-box title\" title=\"Servicios ofrecidos\"> Servicios</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <!--Default Team Member-->\r\n                    <div class=\"default-team-member\" *ngIf=\"item[1]\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-2.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[1].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[1].zona }} | {{ item[1].direccion }} | {{ item[1].correo }} |\r\n                                        <br><b>NIT</b> {{ item[1].nit }} | {{ item[1].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[1].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/servicio/listadoServicios/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-leaf title-box title\" title=\"Servicios ofrecidos\"> Servicios</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <div class=\"col-lg-4 col-md-12 col-sm-12 col-xs-12\" *ngIf=\"item[2]\">\r\n                \t<!--Default Team Member / Vertical-->\r\n                    <div class=\"default-team-member vertical\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-3.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[2].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[2].zona }} | {{ item[2].direccion }} | {{ item[2].correo }} |\r\n                                        <br><b>NIT</b> {{ item[2].nit }} | {{ item[2].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[2].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/servicio/listadoServicios/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-leaf title-box title\" title=\"Servicios ofrecidos\"> Servicios</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </section>\r\n"
+module.exports = "    <!--Our Team-->\r\n    <section class=\"team-section\">\r\n    \t<div class=\"auto-container\">\r\n        \t<!--Section Title-->\r\n            <div class=\"sec-title-one\">\r\n                <h2><a routerLink=\"/cooperativa/listadoCooperativa\">Nuestras cooperativas</a></h2>\r\n            </div>\r\n\r\n        \t<div class=\"row clearfix\" *ngFor=\"let item of cooperativas\">\r\n            \t<div class=\"col-lg-8 col-md-12 col-sm-12 col-xs-12\">\r\n                \t<!--Default Team Member-->\r\n                    <div class=\"default-team-member\" *ngIf=\"item[0]\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-1.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[0].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[0].zona }} | {{ item[0].direccion }} | {{ item[0].correo }} |\r\n                                        <br><b>NIT</b> {{ item[0].nit }} | {{ item[0].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[0].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/servicio/listadoServicios/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-leaf title-box title\" title=\"Servicios ofrecidos\"> Servicios</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/diasreparto/consultar/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-calendar title-box title\" title=\"Fechas de Entrega\"> Fechas de Entrega</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[0].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <!--Default Team Member-->\r\n                    <div class=\"default-team-member\" *ngIf=\"item[1]\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-2.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[1].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[1].zona }} | {{ item[1].direccion }} | {{ item[1].correo }} |\r\n                                        <br><b>NIT</b> {{ item[1].nit }} | {{ item[1].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[1].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/servicio/listadoServicios/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-leaf title-box title\" title=\"Servicios ofrecidos\"> Servicios</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/diasreparto/consultar/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-calendar title-box title\" title=\"Fechas de Entrega\"> Fechas de Entrega</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[1].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <div class=\"col-lg-4 col-md-12 col-sm-12 col-xs-12\" *ngIf=\"item[2]\">\r\n                \t<!--Default Team Member / Vertical-->\r\n                    <div class=\"default-team-member vertical\">\r\n                        <div class=\"inner-box clearfix\">\r\n                            <!--Image Column-->\r\n                            <div class=\"image-column\"><figure class=\"image\"><img src=\"../static/images/resource/team-image-3.jpg\"  alt=\"\"></figure></div>\r\n                            <!--Content Column-->\r\n                            <div class=\"content-column\">\r\n                                <div class=\"inner\">\r\n                                    <h3>{{ item[2].nombre }}\r\n                                    <br><small><b>Zona</b> {{ item[2].zona }} | {{ item[2].direccion }} | {{ item[2].correo }} |\r\n                                        <br><b>NIT</b> {{ item[2].nit }} | {{ item[2].responsable }}</small></h3>\r\n                                    <div class=\"text\">{{ item[2].descripcion.slice(0, sizeDescripcion) + \"...\" }}</div>\r\n                                    <div class=\"social-links\">\r\n                                        <a routerLink=\"/cooperativa/detalle/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-search title-box title\" title=\"Detalles productor\"> Ver más</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/servicio/listadoServicios/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-leaf title-box title\" title=\"Servicios ofrecidos\"> Servicios</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/diasreparto/consultar/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-calendar title-box title\" title=\"Fechas de Entrega\"> Fechas de Entrega</span>\r\n                                        </a>\r\n                                        <a routerLink=\"/cooperativa/actualizardatos/{{ item[2].id }}\">\r\n                                          <span class=\"fa fa-edit title-box title\" title=\"Editar Cooperativa\"> Editar</span>\r\n                                        </a>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </section>\r\n"
 
 /***/ }),
 
@@ -2125,7 +2497,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productor-editar/productorEditar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"productor-registro-section\">\r\n  <div class=\"auto-container\">\r\n      <!--Section Title-->\r\n        <h1>Nuevo Productor</h1>\r\n\r\n      <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\" * Nombre\" [(ngModel)]=\"productor.nombre\" />\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento.id\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\" >C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa.id\" >\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\" [attr.selected]=\"selected\"  >{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"fincaCertificada\">Finca Certificada*: </label>\r\n          <input type=\"checkbox\" id=\"fincaCertificada\" placeholder=\"\" [(ngModel)]=\"productor.fincaCertificada\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"productosOrganicos\">Productos Organicos*: </label>\r\n          <input type=\"checkbox\" id=\"productosOrganicos\" placeholder=\"\" [(ngModel)]=\"productor.productosOrganicos\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <input type=\"text\" autocapitalize=\"off\" spellcheck=\"off\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" #search [formControl]=\"searchControl\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n        <div class=\"col-md-12 col-md-offset-0 col-sm-12 row\" style=\"margin-bottom: 20px\">\r\n            <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\" [zoom]=\"marker.zoom\">\r\n              <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n            </agm-map>\r\n          </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12 activar-desactivar-module\">\r\n          <label>Productor Activo: </label>\r\n          <section class=\"styled-checkbox\" style=\"background: none; border: none; box-shadow: none;\">\r\n            <div class=\"slideThree\">\r\n              <input type=\"checkbox\" [(ngModel)]=\"productor.aprobado\" value=\"None\" id=\"slideThree\" name=\"check\">\r\n              <label for=\"slideThree\"></label>\r\n            </div>\r\n          </section>\r\n        </div>\r\n        <div class=\"col-md-6 col-md-offset-3\"  style=\"margin-bottom: 20px\">\r\n            <label for=\"foto\">Foto*:</label>\r\n            <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n            <img src=\"{{productor.foto}}\" width=\"200\" >\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" onclick=\"window.history.go(-1)\"> <span class=\"fa fa-angle-double-left\"></span> Atrás</button>\r\n          <button (click)=\"editarProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n"
+module.exports = "<section class=\"productor-registro-section\">\r\n  <div class=\"auto-container\">\r\n    <!--Section Title-->\r\n    <h1>Nuevo Productor</h1>\r\n\r\n    <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n        <input type=\"text\" id=\"nombreProductor\" placeholder=\" * Nombre\" [(ngModel)]=\"productor.nombre\" />\r\n      </div>\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n        <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\" />\r\n      </div>\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n        <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento.id\">\r\n          <option value=\"-1\">-- Tipo de Documento --</option>\r\n          <option value=\"1\">C&eacute;dula de ciudadan&iacute;a</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n        <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"\r\n        />\r\n      </div>\r\n\r\n      <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n        <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa.id\">\r\n          <option value=\"-1\">-- Cooperativa --</option>\r\n          <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\" [attr.selected]=\"selected\">{{cooperativa.nombre}}</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n        <label for=\"fincaCertificada\">Finca Certificada*: </label>\r\n        <input type=\"checkbox\" id=\"fincaCertificada\" placeholder=\"\" [(ngModel)]=\"productor.fincaCertificada\" />\r\n      </div>\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n        <label for=\"productosOrganicos\">Productos Organicos*: </label>\r\n        <input type=\"checkbox\" id=\"productosOrganicos\" placeholder=\"\" [(ngModel)]=\"productor.productosOrganicos\" />\r\n      </div>\r\n\r\n      <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n        <input type=\"text\" autocapitalize=\"off\" spellcheck=\"off\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" #search [formControl]=\"searchControl\"\r\n          [(ngModel)]=\"productor.direccion\" />\r\n      </div>\r\n      <div class=\"col-md-12 col-md-offset-0 col-sm-12 row\" style=\"margin-bottom: 20px\">\r\n        <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\">\r\n          <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n        </agm-map>\r\n      </div>\r\n\r\n      <div class=\"form-group col-md-12 col-sm-12 col-xs-12 activar-desactivar-module\">\r\n        <label>Productor Activo: </label>\r\n        <section class=\"styled-checkbox\" style=\"background: none; border: none; box-shadow: none;\">\r\n          <div class=\"slideThree\">\r\n            <input type=\"checkbox\" [(ngModel)]=\"productor.aprobado\" value=\"None\" id=\"slideThree\" name=\"check\">\r\n            <label for=\"slideThree\"></label>\r\n          </div>\r\n        </section>\r\n      </div>\r\n      <div class=\"col-md-6 col-md-offset-3\" style=\"margin-bottom: 20px\">\r\n        <label for=\"foto\">Foto*:</label>\r\n        <input type=\"file\" id=\"foto\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n        <img src=\"{{productor.foto}}\" width=\"200\">\r\n      </div>\r\n      <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n        <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" onclick=\"window.history.go(-1)\">\r\n          <span class=\"fa fa-angle-double-left\"></span> Atrás</button>\r\n        <button (click)=\"editarProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Actualizar</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
 
 /***/ }),
 
@@ -2174,7 +2546,7 @@ var ProductorEditarComponent = (function () {
         this.marker = {
             latitud: 4.6486259,
             longitud: -74.2478963,
-            zoom: 10
+            zoom: 12
         };
     }
     ProductorEditarComponent.prototype.ngOnInit = function () {
@@ -2509,7 +2881,8 @@ var ProductorService = (function () {
         headers.append("Content-Type", "application/json; charset=utf-8");
         headers.append("Cache-Control", "no-cache");
         headers.append("Cache-Control", "no-store");
-        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        headers.append("X-CsrfToken", document.cookie.split("csrftoken=")[1]);
+        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers, withCredentials: true });
     }
     ProductorService.prototype.setProductor = function (productor) {
         return this.http.post("/productor/service", productor)
@@ -2521,6 +2894,11 @@ var ProductorService = (function () {
     };
     ProductorService.prototype.getProductor = function () {
         return this.http.get("/productor/service")
+            .map(function (response) { return response.json(); });
+        //console.log("texto");
+    };
+    ProductorService.prototype.getSimpleProductor = function () {
+        return this.http.get("/productor/service/simple")
             .map(function (response) { return response.json(); });
         //console.log("texto");
     };
@@ -2536,6 +2914,15 @@ var ProductorService = (function () {
     };
     ProductorService.prototype.activarCorreo = function (correo) {
         return this.http.post("/productor/correo/active", correo, this.options).map(function (response) { return response.json(); });
+    };
+    ProductorService.prototype.obtenerListaProductos = function () {
+        return this.http.get("/productor/productosLista").map(function (response) { return response.json(); });
+    };
+    ProductorService.prototype.obtenerProductorPorUsuario = function (userId) {
+        return this.http.get("/productor/productorPorUsuario/" + userId).map(function (response) { return response.json(); });
+    };
+    ProductorService.prototype.crearNuevaOferta = function (oferta) {
+        return this.http.post("/productor/productos", JSON.stringify(oferta), this.options).map(function (response) { return response.json(); });
     };
     return ProductorService;
 }());
@@ -2570,7 +2957,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/productor/productorRegistro.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"productor-section\">\r\n  <div class=\"auto-container\">\r\n    <!--Section Title-->\r\n    <h1>Nuevo Productor</h1>\r\n    <div class=\"productor-form default-form\">\r\n      <div class=\"row clearfix\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\"Nombre\" [(ngModel)]=\"productor.nombre\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\">C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreFinca\" placeholder=\"Nombre Finca\" [(ngModel)]=\"productor.nombreFinca\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"email\" id=\"emailProductor\" placeholder=\"E-Mail\" [(ngModel)]=\"productor.email\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa\">\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"fincaCertificada\">Finca Certificada*: </label>\r\n          <input type=\"checkbox\" id=\"fincaCertificada\" placeholder=\"\" [(ngModel)]=\"productor.fincaCertificada\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"productosOrganicos\">Productos Organicos*: </label>\r\n          <input type=\"checkbox\" id=\"productosOrganicos\" placeholder=\"\" [(ngModel)]=\"productor.productosOrganicos\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <input type=\"text\" autocapitalize=\"off\" spellcheck=\"off\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" #search [formControl]=\"searchControl\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n\r\n        <div class=\"col-md-12 col-md-offset-0\" style=\"margin-bottom: 20px\">\r\n          <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\" [zoom]=\"marker.zoom\">\r\n            <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n          </agm-map>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 \">\r\n          <label> Foto*: </label>\r\n          <input type=\"file\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n          <canvas max-width=\"200\" max-height=\"200\" id=\"photoPreview\"></canvas>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <div class=\"text-center\"><button  (click)=\"saveProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button></div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>\r\n"
+module.exports = "<section class=\"productor-section\">\r\n  <div class=\"auto-container\">\r\n    <!--Section Title-->\r\n    <h1>Nuevo Productor</h1>\r\n    <div class=\"productor-form default-form\">\r\n      <div class=\"row clearfix\">\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreProductor\" placeholder=\"Nombre\" [(ngModel)]=\"productor.nombre\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"descripcionProductor\" placeholder=\"Acerca de m&iacute;\" [(ngModel)]=\"productor.descripcion\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <select id=\"tipoDocumento\" [(ngModel)]=\"productor.tipo_documento\">\r\n            <option value=\"-1\">-- Tipo de Documento --</option>\r\n            <option value=\"1\">C&eacute;dula de ciudadan&iacute;a</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"numeroDocumentoProductor\" placeholder=\"N&uacute;mero de documento\" [(ngModel)]=\"productor.documento\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"text\" id=\"nombreFinca\" placeholder=\"Nombre Finca\" [(ngModel)]=\"productor.nombreFinca\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\r\n          <input type=\"email\" id=\"emailProductor\" placeholder=\"E-Mail\" [(ngModel)]=\"productor.email\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <select id=\"cooperativa\" [(ngModel)]=\"productor.cooperativa\">\r\n            <option value=\"-1\">-- Cooperativa --</option>\r\n            <option *ngFor=\"let cooperativa of cooperativas\" value=\"{{cooperativa.id}}\">{{cooperativa.nombre}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"fincaCertificada\">Finca Certificada*: </label>\r\n          <input type=\"checkbox\" id=\"fincaCertificada\" placeholder=\"\" [(ngModel)]=\"productor.fincaCertificada\"/>\r\n        </div>\r\n        <div class=\"form-group col-md-6 col-sm-6 col-xs-12 checkbox-container\">\r\n          <label for=\"productosOrganicos\">Productos Organicos*: </label>\r\n          <input type=\"checkbox\" id=\"productosOrganicos\" placeholder=\"\" [(ngModel)]=\"productor.productosOrganicos\"/>\r\n        </div>\r\n\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <input type=\"text\" autocapitalize=\"off\" spellcheck=\"off\" id=\"direccionProductor\" placeholder=\"Direcci&oacute;n\" #search [formControl]=\"searchControl\" [(ngModel)]=\"productor.direccion\"/>\r\n        </div>\r\n\r\n        <div class=\"col-md-12 col-md-offset-0\" style=\"margin-bottom: 20px\">\r\n          <agm-map class=\"registro-map\" [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\" (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker [latitude]=\"marker.latitud\" [longitude]=\"marker.longitud\"></agm-marker>\r\n          </agm-map>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 \">\r\n          <label> Foto*: </label>\r\n          <input type=\"file\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n          <canvas max-width=\"200\" max-height=\"200\" id=\"photoPreview\"></canvas>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <div class=\"text-center\"><button  (click)=\"saveProductor()\" class=\"theme-btn btn-style-two ui-state-disabled\">Guardar</button></div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -2605,7 +2992,11 @@ var ProductorRegistroComponent = (function () {
         this.mapsAPILoader = mapsAPILoader;
         this.ngZone = ngZone;
         this.title = "Registrar Productor";
-        this.marker = {};
+        this.marker = {
+            latitud: 4.6486259,
+            longitud: -74.2478963,
+            zoom: 7
+        };
         this.productor = {
             "tipo_documento": -1,
             "cooperativa": -1,
@@ -2622,14 +3013,6 @@ var ProductorRegistroComponent = (function () {
         this.searchControl = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]();
         this.setGeoLocalitation();
         this.setAutocomplete();
-        //console.log( this.marker.latitud )
-        if (!this.marker.latitud) {
-            this.marker = {
-                latitud: 4.6486259,
-                longitud: -74.2478963,
-                zoom: 7
-            };
-        }
     };
     ProductorRegistroComponent.prototype.setAutocomplete = function () {
         var _this = this;
@@ -2756,6 +3139,189 @@ ProductorRegistroComponent = __decorate([
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=productorRegistro.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".productor-registro-productos-section{\r\n    overflow: hidden;\r\n    padding-bottom: 20px;\r\n}\r\n\r\n.productor-registro-productos-section .hide {\r\n    display: none;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"productor-registro-productos-section\">\r\n  <div class=\"auto-container\">\r\n    <!--Section Title-->\r\n    <h1>Agregar nueva oferta</h1>\r\n    <div class=\"productor-form default-form row col-md-8 col-md-offset-2\">\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\r\n        <select id=\"productoSeleccionado\" [disabled]=\"!productos\" [(ngModel)]=\"productoSeleccionado.id\" (change)=\"cambiarProducto()\">\r\n          <option value=\"-1\">-- Producto --</option>\r\n          <option *ngFor=\"let producto of productos\" value=\"{{producto.id}}\">{{producto.nombre}}</option>\r\n        </select>\r\n        <img src=\"{{productoSeleccionado.foto}}\">\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <label>Cantidad: </label>\r\n          <input type=\"text\" id=\"cantidadProducto\" placeholder=\" * Cantidad\" [(ngModel)]=\"cantidad\" />\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\r\n        <button type=\"button\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"mostrarFormProducto()\">\r\n          Mi producto no aparece en esta lista\r\n        </button>\r\n      </div>\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\" [ngClass]=\"{'hide': !mostrarFormularioProducto}\">\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <label>Nombre Producto: </label>\r\n          <input type=\"text\" id=\"nombreProducto\" placeholder=\" * Nombre\" [(ngModel)]=\"producto.nombre\" />\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <label>Descripción Producto: </label>\r\n          <input type=\"text\" id=\"descripcionProducto\" placeholder=\" * Descripcion\" [(ngModel)]=\"producto.descripcion\" />\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <label>Precio: </label>\r\n          <input type=\"text\" id=\"precioProducto\" placeholder=\" * Precio\" [(ngModel)]=\"producto.precio\" />\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <label> Foto*: </label>\r\n          <input type=\"file\" #entradaFoto (change)=\"loadFoto(entradaFoto)\">\r\n          <canvas max-width=\"200\" max-height=\"200\" id=\"photoPreview\"></canvas>\r\n        </div>\r\n        <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\r\n          <select id=\"unidadMedida\" [(ngModel)]=\"producto.unidadMedida\">\r\n            <option value=\"-1\">-- Unidad de Medida --</option>\r\n            <option value=\"lb\">Libra</option>\r\n            <option value=\"kg\">Kilogramo</option>\r\n            <option value=\"lt\">Litro</option>\r\n            <option value=\"un\">Unidad</option>\r\n            <option value=\"bt\">Bulto</option>\r\n            <option value=\"cg\">Carga</option>\r\n            <option value=\"dc\">Docena</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3\">\r\n        <button type=\"button\" [disabled]=\"!productos\" class=\"theme-btn btn-style-five ui-state-disabled\" (click)=\"cargarProducto()\">\r\n          Cargar producto\r\n        </button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>\r\n<div class=\"preloader hide\"></div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/productor/productos/productos.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductosComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__productor_service__ = __webpack_require__("../../../../../src/app/productor/productor.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ProductosComponent = (function () {
+    function ProductosComponent(productorService, route, router) {
+        this.productorService = productorService;
+        this.route = route;
+        this.router = router;
+        this.productoSeleccionado = {
+            id: -1
+        };
+        this.mostrarFormularioProducto = false;
+        this.producto = {
+            stock: 0
+        };
+    }
+    ProductosComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var userId = document.querySelector('#userId');
+        if (userId) {
+            this.productorService.obtenerProductorPorUsuario(userId.value).subscribe(function (response) {
+                _this.productor = response;
+            });
+            this.productorService.obtenerListaProductos().subscribe(function (response) {
+                _this.productos = response;
+            });
+        }
+        else {
+            alert("Tiene que loguearse para poder ver esta página");
+            window.location.href = "/";
+        }
+    };
+    ProductosComponent.prototype.cambiarProducto = function () {
+        var that = this;
+        var producto = this.productos.filter(function (val) {
+            return val.id == that.productoSeleccionado.id;
+        })[0];
+        if (producto) {
+            this.productoSeleccionado.foto = producto.imagen;
+        }
+        else {
+            this.productoSeleccionado.foto = "";
+        }
+    };
+    ProductosComponent.prototype.loadFoto = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var photo = new Image();
+                photo.src = e.target.result;
+                photo.onload = function () {
+                    var canvas = document.getElementById("photoPreview"), context = canvas.getContext("2d");
+                    context.drawImage(photo, 0, 0, 200, 200);
+                    this.producto.imagen = canvas.toDataURL();
+                }.bind(this);
+            }.bind(this);
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+    ProductosComponent.prototype.mostrarFormProducto = function () {
+        this.mostrarFormularioProducto = true;
+        this.producto = {
+            unidadMedida: -1
+        };
+    };
+    ProductosComponent.prototype.cargarProducto = function () {
+        var _this = this;
+        var oferta;
+        document.querySelector(".preloader").style.display = "block";
+        if (this.mostrarFormularioProducto) {
+            if (this.cantidad && this.productor.id && this.producto.nombre && this.producto.descripcion
+                && this.producto.precio && this.producto.imagen && this.producto.unidadMedida) {
+                oferta = {
+                    productor: this.productor,
+                    productos: this.producto,
+                    cantidad: this.cantidad
+                };
+            }
+            else {
+                var error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
+                error += !(this.producto.nombre && this.producto.descripcion
+                    && this.producto.precio && this.producto.imagen
+                    && this.producto.unidadMedida) ? "La información del producto está incompleta\n" : "";
+                error += !this.cantidad ? "Tiene que ingresar una cantidad" : "";
+                alert(error);
+                document.querySelector(".preloader").style.display = "none";
+            }
+        }
+        else {
+            var productoT = this.productos.filter(function (val) {
+                return parseInt(val.id) === parseInt(_this.productoSeleccionado.id);
+            })[0];
+            if (this.productor.id && this.cantidad && productoT) {
+                oferta = {
+                    productor: this.productor,
+                    productos: productoT,
+                    cantidad: this.cantidad
+                };
+            }
+            else {
+                var error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
+                error += !productoT ? "Aún no ha seleccionado ningún producto\n" : "";
+                error += !this.cantidad ? "Tiene que ingresar una cantidad" : "";
+                alert(error);
+                document.querySelector(".preloader").style.display = "none";
+            }
+        }
+        if (oferta) {
+            this.productorService.crearNuevaOferta(oferta).subscribe(function (response) {
+                alert(response);
+                document.querySelector(".preloader").style.display = "none";
+                _this.producto = {};
+                _this.productoSeleccionado = { id: -1 };
+                _this.cantidad = "";
+            }, function (error) {
+                console.log(error);
+                alert("Ocurrio un error guardando la oferta");
+                document.querySelector(".preloader").style.display = "none";
+            });
+        }
+    };
+    return ProductosComponent;
+}());
+ProductosComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-productos',
+        template: __webpack_require__("../../../../../src/app/productor/productos/productos.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/productor/productos/productos.component.css")],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]
+        ],
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__productor_service__["a" /* ProductorService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
+], ProductosComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=productos.component.js.map
 
 /***/ }),
 

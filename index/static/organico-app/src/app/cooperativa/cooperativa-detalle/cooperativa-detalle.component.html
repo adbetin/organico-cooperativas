@@ -1,34 +1,60 @@
-    <!--Our Team-->
-    <section class="team-section">
-    	<div class="auto-container">
-        	<!--Section Title-->
-            <div class="sec-title-one">
-                <h2><a routerLink="/cooperativa/listadoCooperativa">Nuestras cooperativas</a></h2>
-            </div>
+<!--Our Team-->
+<section class="team-section">
+    <div class="auto-container">
+        <!--Section Title-->
+        <div class="sec-title-one">
+            <h2>
+                <a routerLink="/cooperativa/listadoCooperativa">Nuestras cooperativas</a>
+            </h2>
+        </div>
 
-        	<div class="row clearfix" *ngIf="cooperativa != null">
-                	<!--Default Team Member-->
-                    <div class="default-team-member" *ngIf="cooperativa">
-                        <div class="inner-box clearfix">
-                            <!--Image Column-->
-                            <div class="image-column"><figure class="image"><img src="../../static/images/resource/team-image-1.jpg"  alt=""></figure></div>
-                            <!--Content Column-->
-                            <div class="content-column">
-                                <div class="social-links"><small></small><a routerLink="/cooperativa/listadoCooperativa">
-                                      <span class="fa fa-step-backward title-box title" title="Volver"> Volver</span>
-                                    </a>
-                                    <a routerLink="/cooperativa/actualizardatos/{{ cooperativa.id }}">
-                                      <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
-                                    </a></div>
-                                <div class="inner"><h3>{{ cooperativa.nombre }}
-                                    <br><small><b>Zona</b> {{ cooperativa.zona }} | {{ cooperativa.direccion }} | {{ cooperativa.correo }} |
-                                        <br><b>NIT</b> {{ cooperativa.nit }} | {{ cooperativa.responsable }}</small></h3>
-                                    <div class="text">{{ cooperativa.descripcion }}</div>
-                                </div>
-                            </div>
+        <div class="row clearfix" *ngIf="cooperativa != null">
+            <!--Default Team Member-->
+            <div class="default-team-member" *ngIf="cooperativa">
+                <div class="inner-box clearfix">
+                    <!--Image Column-->
+                    <div class="image-column">
+                        <figure class="image">
+                            <img src="../../static/images/resource/team-image-1.jpg" alt="">
+                        </figure>
+                    </div>
+                    <!--Content Column-->
+                    <div class="content-column">
+                        <div class="social-links">
+                            <small></small>
+                            <a routerLink="/cooperativa/listadoCooperativa">
+                                <span class="fa fa-step-backward title-box title" title="Volver"> Volver</span>
+                            </a>
+                            <a routerLink="/cooperativa/servicio/listadoServicios/{{ cooperativa.id }}">
+                              <span class="fa fa-leaf title-box title" title="Servicios ofrecidos"> Servicios</span>
+                            </a>
+                            <a routerLink="/cooperativa/diasreparto/consultar/{{ cooperativa.id }}">
+                              <span class="fa fa-calendar title-box title" title="Fechas de Entrega"> Fechas de Entrega</span>
+                            </a>
+                            <a routerLink="/cooperativa/actualizardatos/{{ cooperativa.id }}">
+                                <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                            </a>
+                        </div>
+                        <div class="inner">
+                            <h3>{{ cooperativa.nombre }}
+                                <br>
+                                <small>
+                                    <b>Zona</b> {{ cooperativa.zona }} | {{ cooperativa.direccion }} | {{ cooperativa.correo
+                                    }} |
+                                    <br>
+                                    <b>NIT</b> {{ cooperativa.nit }} | {{ cooperativa.responsable }}</small>
+                            </h3>
+                            <div class="text">{{ cooperativa.descripcion }}</div>
                         </div>
                     </div>
-                    <app-productor-lista filtrocooperativa="{{ cooperativa.id }}"></app-productor-lista>
+                </div>
             </div>
+            <div style="margin-bottom: 20px">
+                <agm-map class="productores-map" [latitude]="marker.latitud" [longitude]="marker.longitud">
+                    <agm-marker *ngFor="let productor of productores" [latitude]="productor.latitud" [longitude]="productor.longitud"></agm-marker>
+                </agm-map>
+            </div>
+            <app-productor-lista filtrocooperativa="{{ cooperativa.id }}"></app-productor-lista>
         </div>
-    </section>
+    </div>
+</section>
