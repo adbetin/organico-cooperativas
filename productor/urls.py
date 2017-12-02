@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^lista', views.productorLista, name="listar_productor"),
     url(r'^detalle/(?P<id>.+)$', views.productorDetail, name='detalle_productor'),
     url(r'^editar/(?P<id>.+)$', views.productorDetail, name='editar_productor'),
-    url(r'^productos/(?P<id>.+)$', views.productorDetail, name='productos_productor'),
+    url(r'^productos/carga', views.productorProductosDetail, name='productos_productor'),
 
     # rest services
     url(r'^service$', views.productoresList, name="servicios_productor"),
@@ -34,7 +34,9 @@ urlpatterns = [
     url(r'^editarProductor/(?P<id>.+)$', views.productorEditar, name='editar_productor'),
     url(r'^correo$', views.enviarCorreo, name='enviar_correo'),
     url(r'^productos$', views.enviarProductos, name='productos_productor_enviar'),
-    url(r'^productosObtener$', views.recibirProductos, name='productos_productor_enviar'),
+    url(r'^productosObtener$', views.recibirProductos, name='productos_productor_obtener'),
+    url(r'^productosLista$', views.listarProductos, name='productos_productor_listar'),
+    url(r'^productorPorUsuario/(?P<id>.+)$$', views.obtenerUsuarioPorUserId, name='productor_usuario'),
 
 
     url(r'^correo/active$', views.activarCorreo, name='activar_correo'),

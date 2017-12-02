@@ -1,3 +1,61 @@
-<p>
-  productos works!
-</p>
+<section class="productor-registro-productos-section">
+  <div class="auto-container">
+    <!--Section Title-->
+    <h1>Agregar nueva oferta</h1>
+    <div class="productor-form default-form row col-md-8 col-md-offset-2">
+      <div class="form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+        <select id="productoSeleccionado" [disabled]="!productos" [(ngModel)]="productoSeleccionado.id" (change)="cambiarProducto()">
+          <option value="-1">-- Producto --</option>
+          <option *ngFor="let producto of productos" value="{{producto.id}}">{{producto.nombre}}</option>
+        </select>
+        <img src="{{productoSeleccionado.foto}}">
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <label>Cantidad: </label>
+          <input type="text" id="cantidadProducto" placeholder=" * Cantidad" [(ngModel)]="cantidad" />
+        </div>
+      </div>
+      <div class="form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+        <button type="button" class="theme-btn btn-style-five ui-state-disabled" (click)="mostrarFormProducto()">
+          Mi producto no aparece en esta lista
+        </button>
+      </div>
+      <div class="form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3" [ngClass]="{'hide': !mostrarFormularioProducto}">
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <label>Nombre Producto: </label>
+          <input type="text" id="nombreProducto" placeholder=" * Nombre" [(ngModel)]="producto.nombre" />
+        </div>
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <label>Descripción Producto: </label>
+          <input type="text" id="descripcionProducto" placeholder=" * Descripcion" [(ngModel)]="producto.descripcion" />
+        </div>
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <label>Precio: </label>
+          <input type="text" id="precioProducto" placeholder=" * Precio" [(ngModel)]="producto.precio" />
+        </div>
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <label> Foto*: </label>
+          <input type="file" #entradaFoto (change)="loadFoto(entradaFoto)">
+          <canvas max-width="200" max-height="200" id="photoPreview"></canvas>
+        </div>
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+          <select id="unidadMedida" [(ngModel)]="producto.unidadMedida">
+            <option value="-1">-- Unidad de Medida --</option>
+            <option value="lb">Libra</option>
+            <option value="kg">Kilogramo</option>
+            <option value="lt">Litro</option>
+            <option value="un">Unidad</option>
+            <option value="bt">Bulto</option>
+            <option value="cg">Carga</option>
+            <option value="dc">Docena</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+        <button type="button" [disabled]="!productos" class="theme-btn btn-style-five ui-state-disabled" (click)="cargarProducto()">
+          Cargar producto
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="preloader hide"></div>

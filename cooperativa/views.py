@@ -137,8 +137,12 @@ def diasRepartoGet(request, cooperativa_id):
 @api_view(['GET'])
 def _diasRepartoGet(request, cooperativa_id, anio, semana):
     if (request.method == 'GET'):
-        cooperativa = get_object_or_404(Cooperativa, id=cooperativa_id)
-        diasReparto = get_list_or_404(DiasReparto, cooperativa=cooperativa, anio = anio, semana = semana)
+        try:
+            cooperativa = get_object_or_404(Cooperativa, id=cooperativa_id)
+            diasReparto = get_list_or_404(DiasReparto, cooperativa=cooperativa, anio = anio, semana = semana)
+        except:
+            cooperativa = None
+            diasReparto = None
         serializer = DiasRepartoSerializer(diasReparto, many=True)
         return modeloJSON(serializer.data)
 

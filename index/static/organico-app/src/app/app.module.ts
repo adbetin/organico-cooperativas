@@ -2,11 +2,11 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { APP_BASE_HREF } from "@angular/common";
 import { AgmCoreModule } from "@agm/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatTableModule, MatProgressSpinnerModule,MatDatepickerModule ,MatNativeDateModule,MatDialogModule } from "@angular/material";
+import { MatTableModule, MatProgressSpinnerModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule } from "@angular/material";
 import { LazyLoadImageModule } from "ng-lazyload-image";
 
 import { AppComponent } from './app.component';
@@ -28,6 +28,7 @@ import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.com
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
 import { CrearProductoComponent } from './cooperativa/productos/crearproducto.component';
 import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
+import { ProductosComponent } from './productor/productos/productos.component';
 import { ShopComponent } from './shop/shop.component';
 import { ShopCarComponent } from './shop-car/shop-car.component';
 
@@ -53,6 +54,7 @@ import { ShopCarComponent } from './shop-car/shop-car.component';
     CrearProductoComponent,
     ListadoServicioComponent,
     DiasRepartoComponent,
+    ProductosComponent,
     ShopComponent,
     ShopCarComponent
   ],
@@ -152,6 +154,10 @@ import { ShopCarComponent } from './shop-car/shop-car.component';
         component: DiasRepartoComponent
       },
       {
+        path: 'productor/productos/carga',
+        component: ProductosComponent
+      },
+      {
         path: 'shop',
         component: ShopComponent
       },
@@ -161,9 +167,9 @@ import { ShopCarComponent } from './shop-car/shop-car.component';
       }
     ])
   ],
- providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 
