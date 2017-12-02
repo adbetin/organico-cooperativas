@@ -31,7 +31,7 @@ export class ProductosComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    var userId = (<any>document.querySelector('#userId'));
+    let userId = (<any>document.querySelector('#userId'));
 
     if (userId) {
       this.productorService.obtenerProductorPorUsuario(userId.value).subscribe(response => {
@@ -87,7 +87,7 @@ export class ProductosComponent implements OnInit {
   }
 
   cargarProducto() {
-    var oferta: any;
+    let oferta: any;
     (<any>document.querySelector(".preloader")).style.display = "block";
     if (this.mostrarFormularioProducto) {
       if (this.cantidad && this.productor.id && this.producto.nombre && this.producto.descripcion
@@ -96,9 +96,9 @@ export class ProductosComponent implements OnInit {
           productor: this.productor,
           productos: this.producto,
           cantidad: this.cantidad
-        }
+        };
       } else {
-        var error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
+        let error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
         error += !(this.producto.nombre && this.producto.descripcion
           && this.producto.precio && this.producto.imagen
           && this.producto.unidadMedida) ? "La información del producto está incompleta\n" : "";
@@ -107,7 +107,7 @@ export class ProductosComponent implements OnInit {
         (<any>document.querySelector(".preloader")).style.display = "none";
       }
     } else {
-      var productoT = this.productos.filter((val) => {
+      let productoT = this.productos.filter((val) => {
         return val.id == this.productoSeleccionado.id;
       })[0];
       if (this.productor.id && this.cantidad && productoT) {
@@ -117,19 +117,19 @@ export class ProductosComponent implements OnInit {
           cantidad: this.cantidad
         }
       } else {
-        var error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
+        let error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
         error += !productoT ? "Aún no ha seleccionado ningún producto\n" : "";
         error += !this.cantidad ? "Tiene que ingresar una cantidad" : "";
         alert(error);
         (<any>document.querySelector(".preloader")).style.display = "none";
       }
     }
-    if(oferta) {
+    if (oferta) {
       this.productorService.crearNuevaOferta(oferta).subscribe(response => {
         alert(response);
         (<any>document.querySelector(".preloader")).style.display = "none";
         this.producto = {};
-        this.productoSeleccionado = { id: -1};
+        this.productoSeleccionado = { id: -1 };
         this.cantidad = "";
       }, error => {
         console.log(error);
