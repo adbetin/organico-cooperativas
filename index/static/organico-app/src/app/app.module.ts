@@ -26,9 +26,11 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
-import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.component';
+import { CrearProductoComponent } from "./cooperativa/productos/crearproducto.component";
 import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
 import { ProductosComponent } from './productor/productos/productos.component';
+import { ShopComponent } from "./shop/shop.component";
+import { ShopCarComponent } from "./shop-car/shop-car.component";
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { ProductosComponent } from './productor/productos/productos.component';
     CrearProductoComponent,
     ListadoServicioComponent,
     DiasRepartoComponent,
-    ProductosComponent
+    ProductosComponent,
+    ShopComponent,
+    ShopCarComponent
   ],
   imports: [
     BrowserModule,
@@ -152,6 +156,14 @@ import { ProductosComponent } from './productor/productos/productos.component';
       {
         path: 'productor/productos/carga',
         component: ProductosComponent
+      },
+      {
+        path: "shop",
+        component: ShopComponent
+      },
+      {
+        path: "shop/checkout",
+        component: ShopCarComponent
       }
     ])
   ],

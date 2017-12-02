@@ -1,0 +1,14 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %}
+    <app-root></app-root>
+{% endblock %}
+
+{% block scripts %}
+    <script src='{% static "organico-app/dist/inline.bundle.js" %}'></script>
+    <script src='{% static "organico-app/dist/polyfills.bundle.js" %}'></script>
+    <script src='{% static "organico-app/dist/styles.bundle.js" %}'></script>
+    <script src='{% static "organico-app/dist/vendor.bundle.js" %}'></script>
+    <script src='{% static "organico-app/dist/main.bundle.js" %}'></script>
+{% endblock %}

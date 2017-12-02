@@ -1,0 +1,54 @@
+
+
+
+    <!--Page Title-->
+    <section class="page-title" style="background-image:url(/static/images/background/bg-page-title-1a.jpg);">
+        <div class="auto-container">
+            <h1>Tienda</h1>
+        </div>
+    </section>
+
+
+    <!--Shop Section-->
+    <section class="shop-section">
+    	<div class="auto-container">
+
+            <div class="row clearfix">
+                <div class="loading-indicator" *ngIf="loading">
+                    <mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
+                </div>
+
+            	<!--Default Shop Item-->
+                <div *ngFor="let product of products" class="default-shop-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                	<div class="inner-box">
+                    	<div class="image-box">
+                        	<figure class="image"><a><img src="{{ product.imagen}}" alt=""></a></figure>
+                        </div>
+                        <div class="lower-content">
+                        	<h3><a href="shop-single.html">{{ product.nombre }}</a></h3>
+                            <div class="price"><span class="price-txt">$ {{ product.precio }}</span></div>
+                        </div>
+
+                        <!--Overlay Box-->
+                        <div class="overlay-box">
+                        	<div class="prod-options">
+                                <a class="theme-btn add-cart-btn" (click)="addCartItem(product)">Agregar Carrito<span class="fa fa-shopping-cart"></span></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Styled Pagination -->
+            <div class="styled-pagination text-center">
+                <ul>
+                    <li><a href="#" class="active">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a class="next" href="#">Next</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>

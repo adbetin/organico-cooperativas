@@ -61,7 +61,17 @@
 
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation clearfix">
-                                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                                    <li><a href="{% url 'shop' %}">Tienda</a></li>
+                                    <li>
+                                        <a href="{% url 'checkout' %}">
+                                        <div class="cart-container">
+                                            <div id="cart">
+                                                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="itemCount"></span>
+                                        </div>
+                                        </a>
+                                    </li>
 
                                     <!--<li class="current dropdown"><a href="#">Inicio</a>
                                     	<ul>
@@ -80,7 +90,8 @@
                                     <li class="dropdown"><a href="#">Cooperativas</a>
                                         <ul>
                                             <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
-                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a></li>
+                                            <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a>
+                                            </li>
                                             <li><a href="{% url 'crear_producto' %}">Crear Productos</a></li>
                                             <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
                                         </ul>
@@ -110,6 +121,7 @@
                                     <input type="hidden" value="{{user.id}}" id="userId">
                                         <li class="dropdown"><a href="#">{{ user.email }}</a>
                                             <ul>
+                                                <!--<li><a href="{% url 'profile' %}">Perfil</a></li>-->
                                                 <li><a href="{% url 'chat_room' %}">Chat de cooperativa</a></li>
                                                 <li><a href="{% url 'logout' %}">Cerrar Sesi&oacute;n</a></li>
                                             </ul>
@@ -174,6 +186,8 @@
                 <!-- .navigation -->
                 <ul class="navigation">
                     <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'shop' %}">Tienda</a></li>
+                    <li><a href="{% url 'checkout' %}">Carrito<div class="itemCount" style="position: initial"></div></a></li>
 
                     <!--<li class="current dropdown"><a href="#">Inicio</a>
                         <ul>
@@ -214,7 +228,17 @@
                             <li><a href="{% url 'registrar_productor_administrador' %}">Activar correo</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="dropdown"><a href="#">{{ user.email }}</a>
+                            <ul>
+                                <!--<li><a href="{% url 'profile' %}">Perfil</a></li>-->
+                                <li><a href="{% url 'chat_room' %}">Chat de cooperativa</a></li>
+                                <li><a href="{% url 'logout' %}">Cerrar Sesi&oacute;n</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                    {% endif %}
                     <!--<li class="dropdown"><a href="#">Blog</a>
                         <ul>
                             <li><a href="blog.html">Our Blog</a></li>
@@ -417,11 +441,13 @@
 <script src="{% static "js/wow.js" %}"></script>
 <script src="{% static "js/script.js" %}"></script>
 
+<script src="{% static "js/jstorage.min.js" %}"></script>
+<script src="{% static "js/shop-car.js" %}"></script>
+
 <script>
     $("#loginForm").on("submit", function (e) {
         e.preventDefault();
         $("#formErrors").html("");
-        debugger;
         $("#loginButton").prop('disabled', true);
         $.ajax({
             type: "POST",
@@ -435,7 +461,7 @@
                     location.reload();
                 }
             },
-            complete: function( jqXHR, textStatus ) {
+            complete: function (jqXHR, textStatus) {
                 $("#loginButton").prop('disabled', false);
             }
         });
