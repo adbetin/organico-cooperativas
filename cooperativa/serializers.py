@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from cooperativa.models import Cooperativa, Servicio, DiasReparto
-from productor.models import producto
 
 
 class CooperativaSerializer(serializers.ModelSerializer):

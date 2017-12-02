@@ -26,11 +26,11 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
-import { CrearProductoComponent } from './cooperativa/productos/crearproducto.component';
+import { CrearProductoComponent } from "./cooperativa/productos/crearproducto.component";
 import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
 import { ProductosComponent } from './productor/productos/productos.component';
-import { ShopComponent } from './shop/shop.component';
-import { ShopCarComponent } from './shop-car/shop-car.component';
+import { ShopComponent } from "./shop/shop.component";
+import { ShopCarComponent } from "./shop-car/shop-car.component";
 
 @NgModule({
   declarations: [
@@ -158,11 +158,11 @@ import { ShopCarComponent } from './shop-car/shop-car.component';
         component: ProductosComponent
       },
       {
-        path: 'shop',
+        path: "shop",
         component: ShopComponent
       },
       {
-        path: 'shop/checkout',
+        path: "shop/checkout",
         component: ShopCarComponent
       }
     ])

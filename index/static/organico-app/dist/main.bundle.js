@@ -765,11 +765,11 @@ AppModule = __decorate([
                     component: __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__["a" /* ProductosComponent */]
                 },
                 {
-                    path: 'shop',
+                    path: "shop",
                     component: __WEBPACK_IMPORTED_MODULE_30__shop_shop_component__["a" /* ShopComponent */]
                 },
                 {
-                    path: 'shop/checkout',
+                    path: "shop/checkout",
                     component: __WEBPACK_IMPORTED_MODULE_31__shop_car_shop_car_component__["a" /* ShopCarComponent */]
                 }
             ])
@@ -1763,7 +1763,7 @@ var CrearProductoComponent = (function () {
         this.crearProductoServices = crearProductoServices;
         this.cooperativaService = cooperativaService;
         this.router = router;
-        this.title = 'Crear Producto';
+        this.title = "Crear Producto";
         this.envioFormProductos = false;
         this.exitoso = false;
         this.producto = {
@@ -1784,12 +1784,12 @@ var CrearProductoComponent = (function () {
             this.crearProductoServices.guardarProducto(this.producto).subscribe(function (response) {
                 var cooperativa_id = _this.producto.cooperativa;
                 _this.producto = {};
-                _this.router.navigateByUrl('cooperativa/Productos/listadoProductos/' + cooperativa_id);
+                _this.router.navigateByUrl("cooperativa/Productos/listadoProductos/" + cooperativa_id);
                 _this.exitoso = true;
             });
         }
         else {
-            alert("Alguno de los datos está incompleto.");
+            alert("Alguno de los datos esta incompleto.");
         }
     };
     CrearProductoComponent.prototype.loadFoto = function (input) {
@@ -1799,7 +1799,7 @@ var CrearProductoComponent = (function () {
                 var photo = new Image();
                 photo.src = e.target.result;
                 photo.onload = function () {
-                    var canvas = document.getElementById('photoPreview'), context = canvas.getContext('2d');
+                    var canvas = document.getElementById("photoPreview"), context = canvas.getContext("2d");
                     context.drawImage(photo, 0, 0, 200, 200);
                     this.producto.foto = canvas.toDataURL();
                 }.bind(this);
@@ -1812,7 +1812,7 @@ var CrearProductoComponent = (function () {
 }());
 CrearProductoComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-CrearProducto',
+        selector: "app-CrearProducto",
         template: __webpack_require__("../../../../../src/app/cooperativa/productos/crearproducto.component.html"),
         providers: [
             __WEBPACK_IMPORTED_MODULE_2__crearproducto_service__["a" /* CrearProductoService */],
@@ -3592,7 +3592,7 @@ var ShopCarComponent = (function () {
 }());
 ShopCarComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-shop-car',
+        selector: "app-shop-car",
         template: __webpack_require__("../../../../../src/app/shop-car/shop-car.component.html"),
         styles: [__webpack_require__("../../../../../src/app/shop-car/shop-car.component.css")],
         providers: [__WEBPACK_IMPORTED_MODULE_1__shop_shop_service__["a" /* ShopService */]]
@@ -3678,7 +3678,7 @@ var ShopComponent = (function () {
 }());
 ShopComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-shop',
+        selector: "app-shop",
         template: __webpack_require__("../../../../../src/app/shop/shop.component.html"),
         styles: [__webpack_require__("../../../../../src/app/shop/shop.component.css")],
         providers: [__WEBPACK_IMPORTED_MODULE_1__shop_service__["a" /* ShopService */]]
@@ -3734,13 +3734,13 @@ var ShopService = (function () {
                 break;
             }
         }
-        if (existIndex != -1) {
-            //si existe se actualiza el objeto
+        if (existIndex !== -1) {
+            // si existe se actualiza el objeto
             this.cartObject.data[existIndex].quantity += item.quantity;
             this.cartObject.data[existIndex].subtotal = this.cartObject.data[existIndex].quantity * this.cartObject.data[existIndex].unitPrice;
         }
         else {
-            //si no existe se agrega el objeto
+            // si no existe se agrega el objeto
             item.subtotal = item.quantity * item.unitPrice;
             this.cartObject.data.push(item);
         }
