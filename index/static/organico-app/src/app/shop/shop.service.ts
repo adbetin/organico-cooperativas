@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Http, Headers, RequestOptions} from "@angular/http";
 
-export interface cartItem {
+export interface CartItem {
   productId: number;
   image: string;
   name: string;
@@ -19,7 +19,7 @@ export class ShopService {
   private cartObject: {
     totalItems: number,
     totalMoney: number,
-    data: Array<cartItem>
+    data: Array<CartItem>
   };
 
   private cartKey: string = "cartObject";
@@ -36,7 +36,7 @@ export class ShopService {
     });
   }
 
-  addCartItem(item: cartItem) {
+  addCartItem(item: CartItem) {
     let existIndex: number = -1;
     for (let i = 0; i < this.cartObject.data.length; i++) {
       if (item.productId === this.cartObject.data[i].productId) {
@@ -62,7 +62,7 @@ export class ShopService {
     this.cartObject.totalItems = 0;
     this.cartObject.totalMoney = 0;
 
-    for (var i = 0; i < this.cartObject.data.length; i++) {
+    for (let i = 0; i < this.cartObject.data.length; i++) {
       this.cartObject.totalItems += this.cartObject.data[i].quantity;
       this.cartObject.totalMoney += this.cartObject.data[i].subtotal;
     }

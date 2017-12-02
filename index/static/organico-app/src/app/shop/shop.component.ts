@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ShopService, cartItem} from "./shop.service";
+import {ShopService, CartItem} from "./shop.service";
 
 @Component({
   selector: "app-shop",
@@ -25,7 +25,7 @@ export class ShopComponent implements OnInit {
   }
 
   addCartItem(product: any) {
-    let cartitem: cartItem = {
+    let cartitem: CartItem = {
       productId: product.id,
       image: product.imagen,
       name: product.nombre,
