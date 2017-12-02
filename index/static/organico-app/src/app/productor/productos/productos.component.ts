@@ -108,14 +108,14 @@ export class ProductosComponent implements OnInit {
       }
     } else {
       let productoT = this.productos.filter((val) => {
-        return val.id == this.productoSeleccionado.id;
+        return parseInt(val.id) == parseInt(this.productoSeleccionado.id);
       })[0];
       if (this.productor.id && this.cantidad && productoT) {
         oferta = {
           productor: this.productor,
           productos: productoT,
           cantidad: this.cantidad
-        }
+        };
       } else {
         let error = !this.productor ? "Hubo un problema consultando la información, ¿Está logueado como productor?\n" : "";
         error += !productoT ? "Aún no ha seleccionado ningún producto\n" : "";
