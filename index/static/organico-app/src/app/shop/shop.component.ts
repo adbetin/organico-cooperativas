@@ -23,15 +23,15 @@ export class ShopComponent implements OnInit {
       });
   }
 
-  addCartItem(product){
-    debugger;
+  addCartItem(product: any){
     let cartitem: cartItem = {
-      image: "",
-      name: "",
-      unitPrice: 2,
+      productId: product.id,
+      image: product.imagen,
+      name: product.nombre,
+      unitPrice: Number(product.precio),
       quantity: 1,
-      description: "",
-      unit: ""
+      description: product.descripcion,
+      unit: product.unidadMedida
     }
     this.shopService.addCartItem(cartitem);
   }

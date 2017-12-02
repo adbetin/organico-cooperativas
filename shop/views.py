@@ -16,6 +16,9 @@ def shop(request):
     context = {'productos': productos}
     return render(request, 'shop-organico.html', context)
 
+def checkout(request):
+    return render(request, 'shop-organico.html', {})
+
 @api_view(['GET'])
 def productsList(request):
     if (request.method == 'GET'):

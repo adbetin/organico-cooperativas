@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.shop, name='shop'),
+    url(r'^checkout$', views.shop, name='checkout'),
 
     #servicios rest
     url(r'^api/getproducts', views.productsList, name="api_products"),
