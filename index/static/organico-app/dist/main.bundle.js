@@ -3274,7 +3274,7 @@ var ProductosComponent = (function () {
         }
         else {
             var productoT = this.productos.filter(function (val) {
-                return parseInt(val.id) == parseInt(_this.productoSeleccionado.id);
+                return parseInt(val.id) === parseInt(_this.productoSeleccionado.id);
             })[0];
             if (this.productor.id && this.cantidad && productoT) {
                 oferta = {

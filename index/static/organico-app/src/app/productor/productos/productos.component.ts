@@ -108,7 +108,7 @@ export class ProductosComponent implements OnInit {
       }
     } else {
       let productoT = this.productos.filter((val) => {
-        return parseInt(val.id) == parseInt(this.productoSeleccionado.id);
+        return parseInt(val.id) === parseInt(this.productoSeleccionado.id);
       })[0];
       if (this.productor.id && this.cantidad && productoT) {
         oferta = {
