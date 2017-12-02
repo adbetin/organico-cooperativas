@@ -24,6 +24,10 @@ export class ShopService {
 
   private cartKey: string = "cartObject";
 
+  public get cart(){
+    return this.cartObject;
+  }
+
   constructor(private http: Http) {
     this.cartObject = <any>$.jStorage.get(this.cartKey, {
       totalItems: 0,
@@ -64,6 +68,17 @@ export class ShopService {
 		}
 
     $.jStorage.set(this.cartKey, this.cartObject);
+  }
+
+  public updateItemQuantity(index: number, quantity: number){
+    this.cartObject.data[index].quantity = quantity;
+    this.cartObject.data[index].subtotal = this.cartObject.data[index].quantity * this.cartObject.data[index].unitPrice;
+    this.updateCartObject();
+  }
+
+  public removeItem(index: number){
+    this.cartObject.data.splice(index, 1);
+    this.updateCartObject();
   }
 
   public clearCart(){

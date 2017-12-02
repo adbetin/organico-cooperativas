@@ -154,6 +154,10 @@ import { ShopCarComponent } from './shop-car/shop-car.component';
       {
         path: 'shop',
         component: ShopComponent
+      },
+      {
+        path: 'shop/checkout',
+        component: ShopCarComponent
       }
     ])
   ],
