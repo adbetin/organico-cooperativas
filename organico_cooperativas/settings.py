@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import random
+import string
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_14%*x9q_g-(*(wxfeq$2#1mkt6r4*-_yxhiid4dgmo6y5*y6m'
+#SECRET_KEY = '_14%*x9q_g-(*(wxfeq$2#1mkt6r4*-_yxhiid4dgmo6y5*y6m'
+SECRET_KEY = os.environ.get("SECRET_KEY", "".join(random.choice(string.printable) for i in range(40)))
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = os.environ.get("DEBUG", False)
 
 #ALLOWED_HOSTS = ['organico-cooperativas.herokuapp.com', 'organico-cooperativas-dev.herokuapp.com', 'localhost', '127.0.0.1', 'localhost:*', '127.0.0.1:*',]
 ALLOWED_HOSTS = ['*']
