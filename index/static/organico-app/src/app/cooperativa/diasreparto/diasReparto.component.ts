@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation , ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DiasRepartoService } from './diasReparto.service';
 import { ListadoCooperativaService } from '../listadoCooperativa.service';
 
 @Component({
   selector: 'app-DiasReparto',
-  templateUrl: './diasReparto.component.html',
+  templateUrl: "./diasReparto.component.html",
   providers: [
     DiasRepartoService,
     ListadoCooperativaService

@@ -5,7 +5,7 @@ import 'rxjs/add/observable/of';
 import {ProductorService} from '../productor.service';
 
 @Component({
-  selector: 'app-productor-lista',
+  selector: "app-productor-lista",
   templateUrl: './productor-lista.component.html',
   styleUrls: ['./productor-lista.component.css'],
   providers: [ProductorService]

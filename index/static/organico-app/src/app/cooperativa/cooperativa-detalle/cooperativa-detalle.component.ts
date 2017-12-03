@@ -1,7 +1,7 @@
 import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CooperativaService} from './cooperativa.service';
-import {ProductorListaComponent} from '../../productor/productor-lista/productor-lista.component';
+import {ProductorListaComponent} from "../../productor/productor-lista/productor-lista.component";
 import {ProductorService} from '../../productor/productor.service';
 
 @Component({

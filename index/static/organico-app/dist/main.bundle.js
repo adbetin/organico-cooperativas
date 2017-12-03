@@ -271,10 +271,11 @@ var ForoService = (function () {
             .map(function (response) { return response.json(); });
     };
     ForoService.prototype.getCookie = function (name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2)
-            return parts.pop().split(";").shift();
+        var value = '; ' + document.cookie;
+        var parts = value.split('; ' + name + '=');
+        if (parts.length == 2) {
+            return parts.pop().split(';').shift();
+        }
     };
     ForoService.prototype.getForo = function (id) {
         return this.http.get('/administrador/consultarForo/' + id)
@@ -441,31 +442,31 @@ var RespuestaForoComponent = (function () {
         this.title = 'Respuesta foro';
         this.envioformRespuesta = false;
         this.foro = {
-            cooperativa: "",
-            tema: ""
+            cooperativa: '',
+            tema: ''
         };
     }
     RespuestaForoComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params
             .switchMap(function (params) {
-            return _this.foroService.getForo(+params["id"]);
+            return _this.foroService.getForo(+params['id']);
         }).subscribe(function (response) {
             _this.foro = response;
             _this.cd.detectChanges();
         }, function (reason) {
             _this.foro = null;
-            alert("error al cargar datos");
+            alert('error al cargar datos');
         });
         this.route.params
             .switchMap(function (params) {
-            return _this.foroService.getRespuestas(+params["id"]);
+            return _this.foroService.getRespuestas(+params['id']);
         }).subscribe(function (response) {
             _this.respuestas = response;
             _this.cd.detectChanges();
         }, function (reason) {
             _this.foro = null;
-            alert("error al cargar datos");
+            alert('error al cargar datos');
         });
     };
     RespuestaForoComponent.prototype.agregarRespuesta = function (formRespuesta) {
@@ -474,11 +475,11 @@ var RespuestaForoComponent = (function () {
             formRespuesta.value.id = this.foro.id;
             var resultado = this.foroService.agregarRespuesta(formRespuesta.value).subscribe();
             if (resultado) {
-                alert("Respuesta agregada con exito");
+                alert('Respuesta agregada con exito');
                 this.ngOnInit();
             }
             else {
-                alert("Error almacenando datos");
+                alert('Error almacenando datos');
             }
         }
     };
@@ -2736,7 +2737,7 @@ __decorate([
 ], ProductorEditarComponent.prototype, "searchElementRef", void 0);
 ProductorEditarComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        //selector: 'app-productor-registro',
+        // selector: 'app-productor-registro',
         template: __webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/productor-editar/productorEditar.component.css")],
         providers: [
@@ -2856,7 +2857,7 @@ __decorate([
 ], ProductorListaComponent.prototype, "filtrocooperativa", void 0);
 ProductorListaComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-productor-lista',
+        selector: "app-productor-lista",
         template: __webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.html"),
         styles: [__webpack_require__("../../../../../src/app/productor/productor-lista/productor-lista.component.css")],
         providers: [__WEBPACK_IMPORTED_MODULE_4__productor_service__["a" /* ProductorService */]]
