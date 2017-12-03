@@ -101,6 +101,7 @@
                                         <ul>
                                             <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
                                             <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
+                                            <li><a href="{% url 'lista_foro' %}">Listado de foros</a></li>
                                             {% if user.is_authenticated %}
                                             <li><a href="{% url 'productos_productor' %}">Agregar oferta</a></li>
                                             {% endif %}
@@ -111,7 +112,6 @@
                                             <li><a href="{% url 'registrar_productor_administrador' %}">Registrar
                                                 Productor</a></li>
                                             <li><a href="{% url 'crear_foro' %}">Crear Foro</a></li>
-                                            <li><a href="{% url 'lista_foro' %}">Listado de foros</a></li>
                                             <li><a href="{% url 'activar_envio_correos' %}">Activar correo</a></li>
                                         </ul>
                                     </li>
@@ -214,6 +214,7 @@
                         <ul>
                             <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
                             <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
+                            <li><a href="{% url 'lista_foro' %}">Listado de foros</a></li>
                             {% if user.is_authenticated %}
                             <li><a href="{% url 'productos_productor' %}">Agregar oferta</a></li>
                             {% endif %}
@@ -224,7 +225,6 @@
                         <ul>
                             <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
                             <li><a href="{% url 'crear_foro' %}">Crear Foro</a></li>
-                            <li><a href="{% url 'lista_foro' %}">Listado de foros</a></li>
                             <li><a href="{% url 'registrar_productor_administrador' %}">Activar correo</a></li>
                         </ul>
                     </li>
