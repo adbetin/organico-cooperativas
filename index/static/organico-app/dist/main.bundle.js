@@ -95,7 +95,7 @@ var CrearForoComponent = (function () {
             var resultado = this.foroServices.guardarForo(formForo.value).subscribe();
             if (resultado) {
                 alert("Datos guardados correctamente");
-                //this.router.navigateByUrl('cooperativa/listadoCooperativa');
+                this.router.navigateByUrl('administrador/listaForo');
             }
             else {
                 alert("Error almacenando datos");
@@ -197,6 +197,7 @@ var EditarForoComponent = (function () {
             var resultado = this.foroService.editarForo(formForo.value).subscribe();
             if (resultado) {
                 alert("Datos guardados correctamente");
+                this.router.navigateByUrl('administrador/listaForo');
             }
             else {
                 alert("Error almacenando datos");
@@ -300,7 +301,7 @@ var _a;
 /***/ "../../../../../src/app/administrador/foro/listadoForos.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "    <!--Our Team-->\n    <section class=\"team-section\">\n    \t<div class=\"auto-container\">\n        \t<!--Section Title-->\n            <div class=\"sec-title-one\">\n                <h2><a routerLink=\"/administrador/listadoForos\">Nuevos foros</a></h2>\n            </div>\n\n          <table class=\"table table-bordered\">\n            <thead>\n              <tr>\n                <th class=\"text-center\">Cooperativa</th>\n                <th class=\"text-center\">Tema</th>\n                <th class=\"text-center\">Fecha Cierre</th>\n                <th class=\"text-center\">Estado</th>\n                <th class=\"text-center\">Respuestas</th>\n                <th class=\"text-center\">Editar</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let foro of foros\">\n                <td>{{ foro.cooperativa.nombre }}</td>\n                <td>{{ foro.tema.nombre }}</td>\n                <td>{{ foro.fecha_cierre }}</td>\n                <td>{{ foro.estado }}</td>\n                <td>\n                  <a routerLink=\"/administrador/respuestaForo/{{ foro.id }}\">\n                    <span class=\"fa fa-reply title-box title\" title=\"Respuestas agregadas recientemente\"></span>\n                  </a>\n                </td>\n                <td>\n                  <a routerLink=\"/administrador/editarForo/{{ foro.id }}\">\n                    <span class=\"fa fa-edit title-box title\" title=\"Editar foro\"></span>\n                  </a>\n                 </td>\n              </tr>\n            </tbody>\n\n          </table>\n        </div>\n    </section>\n"
+module.exports = "    <!--Our Team-->\n    <section class=\"team-section\">\n    \t<div class=\"auto-container\">\n        \t<!--Section Title-->\n            <div class=\"sec-title-one\">\n                <h2><a routerLink=\"/administrador/listadoForos\">Nuevos foros</a></h2>\n            </div>\n\n          <table class=\"table table-bordered\">\n            <thead>\n              <tr>\n                <th class=\"text-center\">Cooperativa</th>\n                <th class=\"text-center\">Tema</th>\n                <th class=\"text-center\">Fecha Cierre</th>\n                <th class=\"text-center\">Estado</th>\n                <th class=\"text-center\">Respuestas</th>\n                <th class=\"text-center\">Editar</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let foro of foros\">\n                <td>{{ foro.cooperativa.nombre }}</td>\n                <td>{{ foro.tema.nombre }}</td>\n                <td>{{ foro.fecha_cierre | date }}</td>\n                <td>{{ foro.estado }}</td>\n                <td>\n                  <a routerLink=\"/administrador/respuestaForo/{{ foro.id }}\">\n                    <span class=\"fa fa-reply title-box title\" title=\"Respuestas agregadas recientemente\"></span>\n                  </a>\n                </td>\n                <td>\n                  <a routerLink=\"/administrador/editarForo/{{ foro.id }}\">\n                    <span class=\"fa fa-edit title-box title\" title=\"Editar foro\"></span>\n                  </a>\n                 </td>\n              </tr>\n            </tbody>\n\n          </table>\n        </div>\n    </section>\n"
 
 /***/ }),
 
@@ -403,10 +404,28 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/administrador/foro/respuestaForo.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".comentario{\n  border-top: 1px solid #f0f0f0 !important;\n  padding-bottom: 25px !important;\n  padding-top: 25px !important;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/administrador/foro/respuestaForo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Contact Section-->\n<section class=\"contact-section\">\n  <div class=\"auto-container\">\n      <!--Section Title-->\n      <div class=\"sec-title-one\">\n          <h2>Información del foro</h2>\n      </div>\n\n      <div class=\"col-md-6 col-sm-6 col-xs-6\">\n        <label>Nombre : </label>\n        <span> {{foro.nombre}} </span>\n      </div>\n      <div class=\"col-md-6 col-sm-6 col-xs-6\">\n        <label><b>Cooperativa :</b> </label>\n        <span> {{foro.cooperativa.nombre}} </span>\n      </div>\n      <div class=\"col-md-6 col-sm-6 col-xs-6\">\n        <label><b>Tema :</b> </label>\n        <span> {{foro.tema.nombre}} </span>\n      </div>\n      <div class=\"col-md-6 col-sm-6 col-xs-6\">\n        <label><b>Fecha de cierre :</b> </label>\n        <span> {{foro.fecha_cierre}} </span>\n      </div>\n      <div class=\"col-md-12 col-sm-12 col-xs-6\">\n        <label><b>Descripción : </b> </label>\n        <span> {{foro.descripcion}} </span>\n      </div>\n\n      <div class=\"sidebar-title\" *ngIf=\"respuestas && respuestas.length>0 \"><h3>Comentarios </h3></div>\n      <div class=\"comments-area col-md-12 col-sm-12 col-xs-12\" *ngFor=\"let respuesta of respuestas\">\n          <div class=\"comment-box\">\n                <div class=\"comment-inner text-left\" >\n                      <div class=\"comment-content\">\n                          <div class=\"comment-header clearfix\">\n                              <strong>{{ respuesta.productor.nombre }}</strong> - <span class=\"date\"> {{ respuesta.fecha }} - {{ respuesta.nombre }}</span>\n                          </div>\n                          <div class=\"text\">{{ respuesta.descripcion }}</div>\n                      </div>\n                  </div>\n          </div>\n      </div>\n\n     <div class=\"post-tags\" style=\"height: 150px !important;\">  </div>\n     <h1>Nuevo Comentario</h1>\n        <div class=\"contact-form default-form\">\n\n           <form #formRespuesta=\"ngForm\" (ngSubmit)=\"agregarRespuesta(formRespuesta)\">\n                <div class=\"row clearfix\">\n\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormRespuesta}\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"* Asunto [Solo letras por favor]\" ngModel required maxlength=\"70\"  >\n                    </div>\n\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormRespuesta}\" name=\"descripcion\" placeholder=\"* Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\" required></textarea>\n                    </div>\n\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\n                      <span *ngIf=\"!formRespuesta.valid && !envioFormRespuesta\"> * Campos obligatorios</span>\n                      <br>\n                      <label *ngIf=\"!formRespuesta.valid && envioFormRespuesta\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\n                    </div>\n\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\" >Guardar</button></div>\n                    </div>\n                </div>\n            </form>\n        </div>\n\n    </div>\n</section>\n\n"
+module.exports = "<!--Contact Section-->\n<section class=\"contact-section\">\n  <div class=\"auto-container\">\n      <!--Section Title-->\n      <div class=\"sec-title-one\">\n          <h2>Información del foro</h2>\n      </div>\n\n    <table class=\"table\">\n      <tbody>\n        <tr>\n          <td class=\"text-right\"><label>Nombre : </label></td>\n          <td class=\"text-left\"><span> {{foro.nombre}} </span></td>\n          <td class=\"text-right\"><label><b>Cooperativa :</b> </label></td>\n          <td class=\"text-left\"><span> {{foro.cooperativa.nombre}} </span></td>\n        </tr>\n        <tr>\n          <td class=\"text-right\"><label>Tema : </label></td>\n          <td class=\"text-left\"><span> {{foro.tema.nombre}} </span></td>\n          <td class=\"text-right\"><label><b>Fecha de cierre :</b> </label></td>\n          <td class=\"text-left\"><span> {{foro.fecha_cierre | date }} </span></td>\n        </tr>\n        <tr>\n          <td class=\"text-right\"><label><b>Descripción : </b> </label></td>\n          <td colspan=\"3\" class=\"text-left\"><span> {{foro.descripcion}} </span></td>\n        </tr>\n      <tr>\n        <td colspan=\"4\"></td>\n      </tr>\n      </tbody>\n    </table>\n\n    <div class=\"sidebar-title\" *ngIf=\"respuestas && respuestas.length>0 \"><h3>Comentarios </h3></div>\n    <div class=\"comments-area col-md-12 col-sm-12 col-xs-12\" *ngFor=\"let respuesta of respuestas\">\n          <div class=\"comment-box comentario\" >\n                <div class=\"comment-inner text-left\" >\n                      <div class=\"comment-content\">\n                          <div class=\"comment-header clearfix\">\n                              <strong>{{ respuesta.productor.nombre }}</strong>  <span class=\"date\"> {{ respuesta.fecha | date }} </span>\n                              <br>\n                              <strong style=\"padding-left: 45px\"> Asunto : </strong> <span> {{ respuesta.nombre }} </span>\n                          </div>\n                          <div class=\"text\" style=\"padding-left: 45px\">\n                            <strong > Detalle : </strong> <span>{{ respuesta.descripcion }}</span>\n                          </div>\n                      </div>\n                  </div>\n          </div>\n    </div>\n    <div *ngIf=\"respuestas && respuestas.length>0 \" class=\"comentario col-md-12 col-sm-12 col-xs-12\"> <br></div>\n\n\n\n     <h1>Nuevo Comentario</h1>\n        <div class=\"contact-form default-form\">\n\n           <form #formRespuesta=\"ngForm\" (ngSubmit)=\"agregarRespuesta(formRespuesta)\">\n                <div class=\"row clearfix\">\n\n                    <div class=\"form-group col-md-6 col-sm-6 col-xs-12\">\n                        <input #nombre=\"ngModel\" [ngClass]=\"{'error':!nombre.valid && envioFormRespuesta}\" type=\"text\" name=\"nombre\" value=\"\" placeholder=\"* Asunto [Solo letras por favor]\" ngModel required maxlength=\"70\"  >\n                    </div>\n\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n                        <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioFormRespuesta}\" name=\"descripcion\" placeholder=\"* Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\" required></textarea>\n                    </div>\n\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12 text-left\" >\n                      <span *ngIf=\"!formRespuesta.valid && !envioFormRespuesta\"> * Campos obligatorios</span>\n                      <br>\n                      <label *ngIf=\"!formRespuesta.valid && envioFormRespuesta\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\n                    </div>\n\n                    <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n                        <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\" >Guardar</button></div>\n                    </div>\n                </div>\n            </form>\n        </div>\n\n    </div>\n</section>\n\n"
 
 /***/ }),
 
@@ -477,6 +496,8 @@ var RespuestaForoComponent = (function () {
             if (resultado) {
                 alert("Respuesta agregada con exito");
                 this.ngOnInit();
+                this.envioformRespuesta = false;
+                formRespuesta.setValue({ "nombre": "", "descripcion": "" });
             }
             else {
                 alert("Error almacenando datos");
@@ -488,6 +509,7 @@ var RespuestaForoComponent = (function () {
 RespuestaForoComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         //selector: 'app-crearCooperativa',
+        styles: [__webpack_require__("../../../../../src/app/administrador/foro/respuestaForo.component.css")],
         template: __webpack_require__("../../../../../src/app/administrador/foro/respuestaForo.component.html"),
         providers: [
             __WEBPACK_IMPORTED_MODULE_2__foros_service__["a" /* ForoService */],
@@ -499,6 +521,411 @@ RespuestaForoComponent = __decorate([
 
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=respuestaForo.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/oferta-aceptar/oferta-aceptar.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/oferta-aceptar/oferta-aceptar.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"contact-section\">\n  <div class=\"auto-container\">\n\n      <h1>Aceptar propuesta</h1>\n\n      <div class=\"contact-form default-form \">\n        <table class=\"table \">\n          <tbody>\n          <tr>\n            <td class=\"text-right\"><label>Fecha solicitud : </label></td>\n            <td class=\"text-left\"><span> {{oferta.fecha}} </span></td>\n            <td class=\"text-right\"><label><b>Productor :</b> </label></td>\n            <td class=\"text-left\"><span>{{oferta.productor.nombre}} </span></td>\n          </tr>\n          <tr>\n            <td class=\"text-right\"><label><b>Producto :</b> </label></td>\n            <td class=\"text-left\"><span> {{oferta.productos.nombre}}</span></td>\n            <td class=\"text-right\"><label><b>Cantidad ofertada\t:</b></label></td>\n            <td class=\"text-left\"><span> {{data.cantidad}} </span></td>\n          </tr>\n          <tr>\n            <td class=\"text-right\"><label><b>Inicio Venta :</b> </label></td>\n            <td class=\"text-left\"><span> {{fechas.fechaInicioNext}} </span></td>\n            <td class=\"text-right\"><label><b>Fin Venta :</b></label></td>\n            <td class=\"text-left\"><span> {{fechas.fechaFinNext}} </span></td>\n          </tr>\n          <tr>\n            <td colspan=\"4\"></td>\n          </tr>\n\n          </tbody>\n        </table>\n\n         <form #formOferta=\"ngForm\" (ngSubmit)=\"aceptarOferta(formOferta)\">\n              <div class=\"row clearfix\">\n\n                  <div class=\"form-group col-md-6 col-sm-6 col-xs-6\">\n                      <label>Cantidad</label>\n                      <input #cantidad=\"ngModel\" [(ngModel)]=\"oferta.cantidad\" [ngClass]=\"{'error':!cantidad.valid || data.cantidad<oferta.cantidad }\" type=\"text\" name=\"cantidad\" placeholder=\"* Cantidad [Solo numeros por favor]\" ngModel required maxlength=\"70\" pattern=\"[0-9]*\" >\n                  </div>\n\n                  <div class=\"form-group col-md-6 col-sm-6 col-xs-6\">\n                      <label>Precio</label>\n                      <input #precio=\"ngModel\"  [ngClass]=\"{'error':!precio.valid}\" type=\"text\" name=\"precio\" [(ngModel)]=\"oferta.productos.precio\"  placeholder=\"* Precio [Solo numeros por favor]\" ngModel required maxlength=\"70\"  pattern=\"[0-9.,]*\">\n\n                  </div>\n\n                  <div class=\"form-group col-md-12 col-sm-12 col-xs-6 text-left\" >\n                    <span *ngIf=\"!formOferta.valid \"> * Campos obligatorios</span>\n                    <br>\n                    <label *ngIf=\"!formOferta.valid || data.cantidad<oferta.cantidad\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.\n                      <br> [Recuerde que la cantidad ingresada no puede ser mayor a la cantidad ofertada]</label>\n                  </div>\n\n                  <div class=\"form-group col-md-12 col-sm-12 col-xs-6\">\n                      <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\" >Guardar</button></div>\n                  </div>\n              </div>\n          </form>\n      </div>\n  </div>\n</section>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/oferta-aceptar/oferta-aceptar.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OfertaAceptarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ofertas_lista_ofertas_service__ = __webpack_require__("../../../../../src/app/administrador/ofertas-lista/ofertas.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var OfertaAceptarComponent = (function () {
+    function OfertaAceptarComponent(ofertasServices, route, router, cd) {
+        this.ofertasServices = ofertasServices;
+        this.route = route;
+        this.router = router;
+        this.cd = cd;
+        this.title = 'Aceptar oferta';
+        this.envioformOferta = false;
+        this.data = {};
+        this.oferta = {
+            fecha: "",
+            productor: {
+                nombre: ""
+            },
+            productos: {
+                nombre: "",
+                precio: ""
+            },
+            cantidad: "0"
+        };
+        this.fechas = {};
+    }
+    OfertaAceptarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params
+            .switchMap(function (params) {
+            return _this.ofertasServices.getOferta(+params["id"]);
+        }).subscribe(function (response) {
+            _this.oferta = response[0];
+            _this.data.cantidad = _this.oferta.cantidad;
+            _this.cd.detectChanges();
+        }, function (reason) {
+            //this.oferta = null;
+            alert("error al cargar datos");
+        });
+        this.route.params
+            .switchMap(function (params) {
+            return _this.ofertasServices.getFechaSemana();
+        }).subscribe(function (response) {
+            _this.fechas = response;
+            _this.cd.detectChanges();
+        }, function (reason) {
+            _this.fechas = null;
+            alert("error al cargar datos");
+        });
+    };
+    OfertaAceptarComponent.prototype.aceptarOferta = function (formOferta) {
+        this.envioformOferta = true;
+        console.log(formOferta);
+        //console.log(formOferta.value)
+        if (formOferta.valid && this.data.cantidad >= this.oferta.cantidad) {
+            if (confirm("Esta seguro de aceptar la propuesta actual ?")) {
+                formOferta.value.id = this.oferta.id;
+                formOferta.value.fechaInicio = this.fechas.fechaInicioNext;
+                formOferta.value.fechaFin = this.fechas.fechaFinNext;
+                var resultado = this.ofertasServices.aceptarOferta(formOferta.value).subscribe();
+                if (resultado) {
+                    alert("Oferta aprobada");
+                    this.router.navigateByUrl('administrador/ofertas-lista');
+                }
+                else {
+                    alert("Error almacenando datos");
+                }
+            }
+        }
+        else {
+            console.log("No ingresó valores");
+        }
+    };
+    return OfertaAceptarComponent;
+}());
+OfertaAceptarComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        //selector: 'app-oferta-aceptar',
+        template: __webpack_require__("../../../../../src/app/administrador/oferta-aceptar/oferta-aceptar.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/administrador/oferta-aceptar/oferta-aceptar.component.css")],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__ofertas_lista_ofertas_service__["a" /* OfertasService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ofertas_lista_ofertas_service__["a" /* OfertasService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ofertas_lista_ofertas_service__["a" /* OfertasService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object])
+], OfertaAceptarComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=oferta-aceptar.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/oferta-rechazar/oferta-rechazar.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/oferta-rechazar/oferta-rechazar.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<section class=\"contact-section\">\n  <div class=\"auto-container\">\n\n      <h1>Rechazar propuesta</h1>\n\n      <div class=\"contact-form default-form \">\n        <table class=\"table \">\n          <tbody>\n          <tr>\n            <td class=\"text-right\"><label>Fecha solicitud : </label></td>\n            <td class=\"text-left\"><span> {{oferta.fecha}} </span></td>\n            <td class=\"text-right\"><label><b>Productor :</b> </label></td>\n            <td class=\"text-left\"><span>{{oferta.productor.nombre}} </span></td>\n          </tr>\n          <tr>\n            <td class=\"text-right\"><label><b>Producto :</b> </label></td>\n            <td class=\"text-left\"><span> {{oferta.productos.nombre}}</span></td>\n            <td class=\"text-right\"><label><b>Cantidad ofertada\t:</b></label></td>\n            <td class=\"text-left\"><span> {{data.cantidad}} </span></td>\n          </tr>\n          <tr>\n            <td class=\"text-right\"><label><b>Inicio Venta :</b> </label></td>\n            <td class=\"text-left\"><span> {{fechas.fechaInicioNext}} </span></td>\n            <td class=\"text-right\"><label><b>Fin Venta :</b></label></td>\n            <td class=\"text-left\"><span> {{fechas.fechaFinNext}} </span></td>\n          </tr>\n\n          <tr>\n            <td class=\"text-right\"><label><b>Precio de venta :</b> </label></td>\n            <td class=\"text-left\"><span> {{oferta.productos.precio}} </span></td>\n          </tr>\n\n          <tr>\n            <td colspan=\"4\"></td>\n          </tr>\n\n          </tbody>\n        </table>\n\n         <form #formOferta=\"ngForm\" (ngSubmit)=\"rechazarOferta(formOferta)\">\n              <div class=\"row clearfix\">\n\n                  <div class=\"form-group col-md-12 col-sm-12 col-xs-12\">\n                      <textarea #descripcion=\"ngModel\" [ngClass]=\"{'error':!descripcion.valid && envioformOferta}\" name=\"descripcion\" placeholder=\"* Descripción [Máx 550 caracteres]\" ngModel maxlength=\"550\" required></textarea>\n                      <!--<textarea #motivo=\"ngModel\" [ngClass]=\"{'error':!motivo.valid && !envioformOferta}\" name=\"motivo\" placeholder=\"* Motivo del rechazo [Máx 550 caracteres]\" ngModel maxlength=\"550\" required></textarea>-->\n                  </div>\n\n                  <div class=\"form-group col-md-12 col-sm-12 col-xs-6 text-left\" >\n                    <span *ngIf=\"!formOferta.valid \"> * Campos obligatorios</span>\n                    <br>\n                    <label *ngIf=\"!formOferta.valid && envioformOferta\" class=\"error\">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>\n                  </div>\n\n                  <div class=\"form-group col-md-12 col-sm-12 col-xs-6\">\n                      <div class=\"text-center\"><button  type=\"submit\" class=\"theme-btn btn-style-two ui-state-disabled\" >Guardar</button></div>\n                  </div>\n              </div>\n          </form>\n      </div>\n  </div>\n</section>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/oferta-rechazar/oferta-rechazar.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OfertaRechazarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ofertas_lista_ofertas_service__ = __webpack_require__("../../../../../src/app/administrador/ofertas-lista/ofertas.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var OfertaRechazarComponent = (function () {
+    function OfertaRechazarComponent(ofertasServices, route, router, cd) {
+        this.ofertasServices = ofertasServices;
+        this.route = route;
+        this.router = router;
+        this.cd = cd;
+        this.title = 'Rechazar oferta';
+        this.envioformOferta = false;
+        this.data = {};
+        this.oferta = {
+            fecha: "",
+            productor: {
+                nombre: ""
+            },
+            productos: {
+                nombre: "",
+                precio: ""
+            },
+            cantidad: "0"
+        };
+        this.fechas = {};
+    }
+    OfertaRechazarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params
+            .switchMap(function (params) {
+            return _this.ofertasServices.getOferta(+params["id"]);
+        }).subscribe(function (response) {
+            _this.oferta = response[0];
+            _this.data.cantidad = _this.oferta.cantidad;
+            _this.cd.detectChanges();
+        }, function (reason) {
+            //this.oferta = null;
+            alert("error al cargar datos");
+        });
+        this.route.params
+            .switchMap(function (params) {
+            return _this.ofertasServices.getFechaSemana();
+        }).subscribe(function (response) {
+            _this.fechas = response;
+            _this.cd.detectChanges();
+        }, function (reason) {
+            _this.fechas = null;
+            alert("error al cargar datos");
+        });
+    };
+    OfertaRechazarComponent.prototype.rechazarOferta = function (formOferta) {
+        this.envioformOferta = true;
+        if (formOferta.valid && this.data.cantidad >= this.oferta.cantidad) {
+            if (confirm("Esta seguro de rechazar la propuesta actual ?")) {
+                formOferta.value.id = this.oferta.id;
+                var resultado = this.ofertasServices.rechazarOferta(formOferta.value).subscribe();
+                if (resultado) {
+                    alert("Oferta rechazada");
+                    this.router.navigateByUrl('administrador/ofertas-lista');
+                }
+                else {
+                    alert("Error almacenando datos");
+                }
+            }
+        }
+        else {
+            console.log("No ingresó valores");
+        }
+    };
+    return OfertaRechazarComponent;
+}());
+OfertaRechazarComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        //selector: 'app-oferta-aceptar',
+        template: __webpack_require__("../../../../../src/app/administrador/oferta-rechazar/oferta-rechazar.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/administrador/oferta-rechazar/oferta-rechazar.component.css")],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_2__ofertas_lista_ofertas_service__["a" /* OfertasService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__ofertas_lista_ofertas_service__["a" /* OfertasService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ofertas_lista_ofertas_service__["a" /* OfertasService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object])
+], OfertaRechazarComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=oferta-rechazar.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/ofertas-lista/ofertas-lista.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/ofertas-lista/ofertas-lista.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<section class=\"team-section\">\n  <div class=\"auto-container\">\n      <!--Section Title-->\n        <div class=\"sec-title-one\">\n            <h2><a routerLink=\"/administrador/ofertas-lista\">Ofertas actuales</a></h2>\n        </div>\n\n      <table class=\"table table-bordered\">\n        <thead>\n          <tr>\n            <th class=\"text-center\">Fecha solicitud</th>\n            <th class=\"text-center\">Productor</th>\n            <th class=\"text-center\">Producto</th>\n            <th class=\"text-center\">Cantidad ofertada</th>\n            <th class=\"text-center\">Precio por unidad</th>\n            <th class=\"text-center\">Aceptar</th>\n            <th class=\"text-center\">Rechazar</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let oferta of ofertas\">\n            <td>{{ oferta.fecha }}</td><!--Se debe modificar-->\n            <td>{{ oferta.productor.nombre }}</td>\n            <td>{{ oferta.productos.nombre }}</td>\n\n            <td>{{ oferta.cantidad }}</td>\n            <td>$ {{ oferta.productos.precio }}</td>\n            <td>\n              <a routerLink=\"/administrador/oferta-aceptar/{{ oferta.id }}\">\n                <span class=\"fa fa-check title-box title\" title=\"Aceptar Oferta\"></span>\n              </a>\n            </td>\n            <td>\n              <a routerLink=\"/administrador/oferta-rechazar/{{ oferta.id }}\">\n                <span class=\"fa fa-close title-box title\" title=\"Rechazar Oferta\"></span>\n              </a>\n             </td>\n          </tr>\n        </tbody>\n\n      </table>\n    </div>\n</section>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/ofertas-lista/ofertas-lista.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OfertasListaComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ofertas_service__ = __webpack_require__("../../../../../src/app/administrador/ofertas-lista/ofertas.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var OfertasListaComponent = (function () {
+    function OfertasListaComponent(ofertasServices) {
+        this.ofertasServices = ofertasServices;
+        this.title = 'Lista de ofertas';
+        this.ofertas = new Array();
+    }
+    OfertasListaComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.ofertasServices.getOfertas()
+            .subscribe(function (respuesta) {
+            _this.ofertas = respuesta;
+            console.log(_this.ofertas);
+        });
+    };
+    return OfertasListaComponent;
+}());
+OfertasListaComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-ofertas-lista',
+        template: __webpack_require__("../../../../../src/app/administrador/ofertas-lista/ofertas-lista.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/administrador/ofertas-lista/ofertas-lista.component.css")],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_1__ofertas_service__["a" /* OfertasService */]
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__ofertas_service__["a" /* OfertasService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ofertas_service__["a" /* OfertasService */]) === "function" && _a || Object])
+], OfertasListaComponent);
+
+var _a;
+//# sourceMappingURL=ofertas-lista.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/administrador/ofertas-lista/ofertas.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OfertasService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var OfertasService = (function () {
+    function OfertasService(http) {
+        this.http = http;
+    }
+    OfertasService.prototype.aceptarOferta = function (oferta) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var body = JSON.stringify(oferta);
+        return this.http.post('/administrador/aceptarOferta/', body, options).map(function (response) { return response.json(); });
+    };
+    OfertasService.prototype.rechazarOferta = function (oferta) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var body = JSON.stringify(oferta);
+        return this.http.post('/administrador/rechazarOferta/', body, options).map(function (response) { return response.json(); });
+    };
+    OfertasService.prototype.getOfertas = function () {
+        return this.http.get('/administrador/ofertasList') // Modificar con el view
+            .map(function (response) { return response.json(); });
+    };
+    OfertasService.prototype.getOferta = function (id) {
+        return this.http.get('/administrador/consultarOferta/' + id)
+            .map(function (response) { return response.json(); });
+    };
+    OfertasService.prototype.getFechaSemana = function () {
+        return this.http.get('/administrador/fechasRest/')
+            .map(function (response) { return response.json(); });
+    };
+    OfertasService.prototype.getCookie = function (name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2)
+            return parts.pop().split(";").shift();
+    };
+    return OfertasService;
+}());
+OfertasService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], OfertasService);
+
+var _a;
+//# sourceMappingURL=ofertas.service.js.map
 
 /***/ }),
 
@@ -594,14 +1021,20 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__cooperativa_productos_crearproducto_component__ = __webpack_require__("../../../../../src/app/cooperativa/productos/crearproducto.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__ = __webpack_require__("../../../../../src/app/cooperativa/diasreparto/diasReparto.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__ = __webpack_require__("../../../../../src/app/productor/productos/productos.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__shop_shop_component__ = __webpack_require__("../../../../../src/app/shop/shop.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__shop_car_shop_car_component__ = __webpack_require__("../../../../../src/app/shop-car/shop-car.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__administrador_ofertas_lista_ofertas_lista_component__ = __webpack_require__("../../../../../src/app/administrador/ofertas-lista/ofertas-lista.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__administrador_oferta_aceptar_oferta_aceptar_component__ = __webpack_require__("../../../../../src/app/administrador/oferta-aceptar/oferta-aceptar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__administrador_oferta_rechazar_oferta_rechazar_component__ = __webpack_require__("../../../../../src/app/administrador/oferta-rechazar/oferta-rechazar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__shop_shop_component__ = __webpack_require__("../../../../../src/app/shop/shop.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__shop_car_shop_car_component__ = __webpack_require__("../../../../../src/app/shop-car/shop-car.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -663,9 +1096,14 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_27__cooperativa_productos_crearproducto_component__["a" /* CrearProductoComponent */],
             __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */],
             __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__["a" /* DiasRepartoComponent */],
+            __WEBPACK_IMPORTED_MODULE_27__cooperativa_productos_crearproducto_component__["a" /* CrearProductoComponent */],
+            __WEBPACK_IMPORTED_MODULE_26__cooperativa_servicio_listadoServicio_component__["a" /* ListadoServicioComponent */],
+            __WEBPACK_IMPORTED_MODULE_30__administrador_ofertas_lista_ofertas_lista_component__["a" /* OfertasListaComponent */],
+            __WEBPACK_IMPORTED_MODULE_31__administrador_oferta_aceptar_oferta_aceptar_component__["a" /* OfertaAceptarComponent */],
+            __WEBPACK_IMPORTED_MODULE_32__administrador_oferta_rechazar_oferta_rechazar_component__["a" /* OfertaRechazarComponent */],
             __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__["a" /* ProductosComponent */],
-            __WEBPACK_IMPORTED_MODULE_30__shop_shop_component__["a" /* ShopComponent */],
-            __WEBPACK_IMPORTED_MODULE_31__shop_car_shop_car_component__["a" /* ShopCarComponent */]
+            __WEBPACK_IMPORTED_MODULE_33__shop_shop_component__["a" /* ShopComponent */],
+            __WEBPACK_IMPORTED_MODULE_34__shop_car_shop_car_component__["a" /* ShopCarComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -763,16 +1201,28 @@ AppModule = __decorate([
                     component: __WEBPACK_IMPORTED_MODULE_28__cooperativa_diasreparto_diasReparto_component__["a" /* DiasRepartoComponent */]
                 },
                 {
+                    path: 'administrador/ofertas-lista',
+                    component: __WEBPACK_IMPORTED_MODULE_30__administrador_ofertas_lista_ofertas_lista_component__["a" /* OfertasListaComponent */]
+                },
+                {
+                    path: 'administrador/oferta-aceptar/:id',
+                    component: __WEBPACK_IMPORTED_MODULE_31__administrador_oferta_aceptar_oferta_aceptar_component__["a" /* OfertaAceptarComponent */]
+                },
+                {
+                    path: 'administrador/oferta-rechazar/:id',
+                    component: __WEBPACK_IMPORTED_MODULE_32__administrador_oferta_rechazar_oferta_rechazar_component__["a" /* OfertaRechazarComponent */]
+                },
+                {
                     path: 'productor/productos/carga',
                     component: __WEBPACK_IMPORTED_MODULE_29__productor_productos_productos_component__["a" /* ProductosComponent */]
                 },
                 {
                     path: "shop",
-                    component: __WEBPACK_IMPORTED_MODULE_30__shop_shop_component__["a" /* ShopComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_33__shop_shop_component__["a" /* ShopComponent */]
                 },
                 {
                     path: "shop/checkout",
-                    component: __WEBPACK_IMPORTED_MODULE_31__shop_car_shop_car_component__["a" /* ShopCarComponent */]
+                    component: __WEBPACK_IMPORTED_MODULE_34__shop_car_shop_car_component__["a" /* ShopCarComponent */]
                 }
             ])
         ],
