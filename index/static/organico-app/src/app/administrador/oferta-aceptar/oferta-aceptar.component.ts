@@ -83,7 +83,7 @@ export class OfertaAceptarComponent implements OnInit {
         let resultado = this.ofertasServices.aceptarOferta(formOferta.value).subscribe();
         if( resultado ){
           alert("Oferta aprobada");
-          //this.router.navigateByUrl('administrador/ofertas-lista');
+          this.router.navigateByUrl('administrador/ofertas-lista');
         }else{
           alert("Error almacenando datos");
         }

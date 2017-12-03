@@ -182,9 +182,10 @@ def rechazarOferta(request):
         datosPost = JSONParser().parse(request)
 
         oferta = Oferta.objects.get(id=datosPost['id'])
-        oferta.estado = 3  # Estado rechazada
+        oferta.estado = 3  # Estado aprobada
         oferta.fechaAprRecha = datetime.datetime.now().date()
-        oferta.motivoRechazo = datosPost["descripcion"]
+        oferta.fechaInicio = datosPost["fechaInicio"]
+        oferta.motivoRechazo = datosPost["motivo"]
         oferta.save()
 
         respuesta = enviarCorreo("RECHAZADA", '', oferta.productor.email,

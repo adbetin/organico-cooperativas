@@ -46,7 +46,4 @@ export class OfertasService {
         return parts.pop().split(";").shift();
     }
 
-
-
-
 }
