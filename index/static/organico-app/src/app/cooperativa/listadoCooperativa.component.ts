@@ -23,6 +23,7 @@ export class ListadoCooperativaComponent implements OnInit {
   sizeDescripcion: number = 120;
   displayedColumns = ['nombre', 'nit', 'responsable', 'id'];
   dataSource: CooperativaDataSource = null;
+  isLogged = false;
 
   private emailModel: {
     subject: string,
@@ -62,6 +63,11 @@ export class ListadoCooperativaComponent implements OnInit {
   }
 
   ngOnInit() {
+    const userId: any = (<any>document.getElementById("userId"));
+    if (userId && userId.value === "1") {
+      this.isLogged = true;
+    }
+
     this.listadoCooperativaServices.getCooperativas()
       .subscribe(cooperativas => {
         let grupoCooperativa: any[] = new Array();
