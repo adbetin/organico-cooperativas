@@ -10,7 +10,7 @@ import { MatTableModule, MatProgressSpinnerModule, MatDatepickerModule, MatNativ
 import { LazyLoadImageModule } from "ng-lazyload-image";
 
 import { AppComponent } from './app.component';
-import { ListadoCooperativaComponent } from './cooperativa/listadoCooperativa.component';
+import { ListadoCooperativaComponent, AnnouncementDialog } from './cooperativa/listadoCooperativa.component';
 import { CrearCooperativaComponent } from './cooperativa/crearCooperativa.component';
 import { CooperativaDetalleComponent } from './cooperativa/cooperativa-detalle/cooperativa-detalle.component';
 import { ProductorRegistroComponent } from './productor/productorRegistro.component';
@@ -36,6 +36,7 @@ import { ShopCarComponent } from "./shop-car/shop-car.component";
   declarations: [
     AppComponent,
     ListadoCooperativaComponent,
+    AnnouncementDialog,
     CrearCooperativaComponent,
     CooperativaDetalleComponent,
     ActualizarDatosComponent,
@@ -167,6 +168,7 @@ import { ShopCarComponent } from "./shop-car/shop-car.component";
       }
     ])
   ],
+  entryComponents: [AnnouncementDialog],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

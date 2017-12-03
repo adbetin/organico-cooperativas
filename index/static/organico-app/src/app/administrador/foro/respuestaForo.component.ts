@@ -1,4 +1,4 @@
-import { Component,ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { ForoService } from './foros.service';
 import { ListadoCooperativaService } from '../../cooperativa/listadoCooperativa.service';
@@ -20,7 +20,7 @@ export class RespuestaForoComponent{
   public respuestas: any[];
   temas: any[];
   foro: any = {
-    cooperativa:"",
+    cooperativa: "",
     tema: ""
   };
 
@@ -43,7 +43,7 @@ export class RespuestaForoComponent{
         },
         reason => {
           this.foro = null;
-          alert("error al cargar datos");
+          alert( "error al cargar datos" );
         });
 
     this.route.params
@@ -56,22 +56,22 @@ export class RespuestaForoComponent{
         },
         reason => {
           this.foro = null;
-          alert("error al cargar datos");
+          alert( "error al cargar datos" );
         });
   }
 
-  agregarRespuesta( formRespuesta : NgForm){
+  agregarRespuesta( formRespuesta: NgForm) {
     this.envioformRespuesta = true;
     if (formRespuesta.valid) {
 
       formRespuesta.value.id = this.foro.id;
 
-      let resultado = this.foroService.agregarRespuesta(formRespuesta.value).subscribe();
-      if( resultado ){
-        alert("Respuesta agregada con exito");
+      const resultado = this.foroService.agregarRespuesta(formRespuesta.value).subscribe();
+      if ( resultado ) {
+        alert( "Respuesta agregada con exito" );
         this.ngOnInit();
-      }else{
-        alert("Error almacenando datos");
+      } else {
+        alert( "Error almacenando datos" );
       }
     }
   }

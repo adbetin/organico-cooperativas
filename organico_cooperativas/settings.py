@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'index',
     'cooperativa',
     'productor',
-    'channels',
+    #'channels',
     'chat',
     'administrador',
     'shop'
@@ -172,7 +172,7 @@ CHANNEL_LAYERS = {
 }
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'organico-cooperativas'
-EMAIL_HOST_PASSWORD = 'a12345678'
+EMAIL_HOST_USER = 'procesosagiles'
+EMAIL_HOST_PASSWORD = 'agiles123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

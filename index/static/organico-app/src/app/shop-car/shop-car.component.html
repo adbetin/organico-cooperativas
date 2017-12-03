@@ -1,9 +1,7 @@
-<!--Page Title-->
-<section class="page-title" style="background-image:url(/static/images/background/bg-page-title-1a.jpg);">
-    <div class="auto-container">
-        <h1>Checkout</h1>
-    </div>
-</section>
+<!--Section Title-->
+<div class="sec-title-one">
+    <h2>Checkout</h2>
+</div>
 
 
 <!--Checkout Page-->
@@ -53,7 +51,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" autocapitalize="off" [ngClass]="{'ngValid' : validateCard() }" class="form-control text-center masked ngInvalid" 
+                        <input type="text" autocapitalize="off" [ngClass]="{'ngValid' : validateCard() }" class="form-control text-center masked ngInvalid"
                             spellcheck="off" id="tarjetaEntrega" placeholder="N&uacute;mero Tarjeta xxxx-xxxx-xxxx-xxxx*"
                             [(ngModel)]="tarjeta"/>
                     </td>

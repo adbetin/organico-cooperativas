@@ -1,25 +1,29 @@
 <!--Contact Section-->
 <section class="contact-section">
   <div class="auto-container">
-      <!--Section Title-->
-        <h1>Crear Productos</h1>
+        <!--Section Title-->
+        <div class="sec-title-one">
+            <h1>Crear Productos</h1>
+        </div>
+
+
         <div class="contact-form default-form">
 
            <form #formProductos="ngForm" (ngSubmit)="guardarProductos(formProductos)">
                 <div class="row clearfix">
-                
+
                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
                         <input #nombre="ngModel" [ngClass]="{'error':!nombre.valid && envioFormProductos}"
                                type="text" name="nombre" value=""
                                placeholder="* Nombre del Producto [Máx 50 caracteres]" [(ngModel)]="producto.nombre"
                                required maxlength="50" id="nombreProducto">
                     </div>
-                    
+
                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
                         <input #valor="ngModel" [ngClass]="{'error':!valor.valid && envioFormProductos}"
                                type="text" name="valor" value=""
                                placeholder="* Valor del Producto [Máx 6 números]" [(ngModel)]="producto.valor"
-                               required maxlength="6" pattern="[0-9-]*" id="valorProducto">                      
+                               required maxlength="6" pattern="[0-9-]*" id="valorProducto">
                     </div>
 
 
@@ -64,4 +68,4 @@
             </form>
         </div>
     </div>
-</section> 
+</section>
