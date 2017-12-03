@@ -26,10 +26,16 @@ export class ShopCarComponent implements OnInit {
   }
 
   ngOnInit() {
-    let userId: any = (<any>document.getElementById('userId')).value;
-    this.productorService.obtenerProductorPorUsuario(userId).subscribe(response => {
-      this.usuario = response;
-    });
+    let userId: any = (<any>document.getElementById('userId'));
+    if(userId) {
+      userId = userId.value;
+      this.productorService.obtenerProductorPorUsuario(userId).subscribe(response => {
+        this.usuario = response;
+      });
+    }else {
+      alert("Tiene que estar logueado para revisar el carrito");
+      window.location.href = "/";
+    }
   }
 
   removeItem(index) {

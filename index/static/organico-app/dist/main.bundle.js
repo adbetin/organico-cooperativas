@@ -3662,10 +3662,17 @@ var ShopCarComponent = (function () {
     });
     ShopCarComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var userId = document.getElementById('userId').value;
-        this.productorService.obtenerProductorPorUsuario(userId).subscribe(function (response) {
-            _this.usuario = response;
-        });
+        var userId = document.getElementById('userId');
+        if (userId) {
+            userId = userId.value;
+            this.productorService.obtenerProductorPorUsuario(userId).subscribe(function (response) {
+                _this.usuario = response;
+            });
+        }
+        else {
+            alert("Tiene que estar logueado para revisar el carrito");
+            window.location.href = "/";
+        }
     };
     ShopCarComponent.prototype.removeItem = function (index) {
         this.shopService.removeItem(index);
