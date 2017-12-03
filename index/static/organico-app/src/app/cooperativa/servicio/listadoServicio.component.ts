@@ -31,7 +31,7 @@ export class ListadoServicioComponent implements OnInit {
       this.route.params
        .switchMap((params: Params) =>
               this.listadoServicioServices.getServicios(+params["id"])
-            ).subscribe(servicios =>{
+            ).subscribe(servicios => {
             let grupoServicio: any[] = new Array();
             let contador: number = 0;
             let index: number = 0;

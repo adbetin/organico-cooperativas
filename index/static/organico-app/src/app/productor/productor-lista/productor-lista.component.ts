@@ -5,7 +5,7 @@ import 'rxjs/add/observable/of';
 import {ProductorService} from '../productor.service';
 
 @Component({
-  selector: 'app-productor-lista',
+  selector: "app-productor-lista",
   templateUrl: './productor-lista.component.html',
   styleUrls: ['./productor-lista.component.css'],
   providers: [ProductorService]
@@ -17,12 +17,18 @@ export class ProductorListaComponent implements OnInit {
   displayedColumns = ['foto', 'nombre', 'documento', 'aprobado', 'id'];
   dataSource: ProductorDataSource = null;
 
-  loading: boolean = false;
+  loading = false;
+  isLogged = false;
 
   constructor(private productorServices: ProductorService) {
   }
 
   ngOnInit() {
+    const userId: any = (<any>document.getElementById('userId'));
+    if (userId && userId.value === '1') {
+      this.isLogged = true;
+    }
+
     this.loading = true;
     this.productorServices.getProductor()
       .subscribe(productores => {

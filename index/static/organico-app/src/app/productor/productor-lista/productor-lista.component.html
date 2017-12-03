@@ -1,9 +1,7 @@
-<!--Page Title-->
-<section class="page-title" style="background-image:url(/static/images/background/bg-page-title-1a.jpg);">
-    <div class="auto-container">
-        <h1>Productores</h1>
-    </div>
-</section>
+<!--Section Title-->
+<div class="sec-title-one">
+    <h2>Nuestros Productores</h2>
+</div>
 
 <!--Shop Section-->
 <section class="shop-section">
@@ -45,7 +43,7 @@
                             <span class="fa fa-search title-box title" title="Detalles productor"></span>
                         </a>
 
-                        <a routerLink="/productor/editar/{{ element.id }}">
+                        <a routerLink="/productor/editar/{{ element.id }}" [ngClass]="{'hide':!isLogged}">
                             <span class="fa fa-edit title-box title" title="Editar productor"></span>
                         </a>
                         <!--<a href="detalle/{{ element.id }}">Ver</a>
