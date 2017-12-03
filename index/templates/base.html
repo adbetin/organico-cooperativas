@@ -18,7 +18,6 @@
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
     <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
-
     <link href="{% static "css/purple-green.css" %}"
           rel="stylesheet">
     {% block styles %} {% endblock %}
@@ -114,7 +113,7 @@
                                             <li><a href="{% url 'crear_foro' %}">Crear Foro</a></li>
                                             <li><a href="{% url 'activar_envio_correos' %}">Activar correo</a></li>
                                             <li><a href="{% url 'crear_servicio' %}">Publicar servicio</a></li>
-                                            <li><a href="{% url 'lista_ofertas' %}">Ofertas de la semana</a></li>
+                                            <li><a href="{% url 'lista_ofertas' %}">Ofertas de productos</a></li>
                                         </ul>
                                     </li>
 
@@ -130,8 +129,6 @@
                                     {% else %}
                                         <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
                                     {% endif %}
-
-
 
                                     <!--<li class="dropdown"><a href="#">Blog</a>
                                     	<ul>
@@ -179,7 +176,7 @@
 
             <!-- .logo -->
             <div class="logo text-center">
-                <a href="{% url 'home' %}"><img src="{% static "images/logo-4.png" %}" alt=""></a>
+                <a href="{% url 'home' %}"><img src="{% static "images/logo.png" %}" alt=""></a>
             </div><!-- /.logo -->
 
             <!-- .Side-menu -->
@@ -228,6 +225,8 @@
                             <li><a href="{% url 'registrar_productor_administrador' %}">Registrar Productor</a></li>
                             <li><a href="{% url 'crear_foro' %}">Crear Foro</a></li>
                             <li><a href="{% url 'registrar_productor_administrador' %}">Activar correo</a></li>
+                            <li><a href="{% url 'crear_servicio' %}">Publicar servicio</a></li>
+                            <li><a href="{% url 'lista_ofertas' %}">Ofertas de productos</a></li>
                         </ul>
                     </li>
                     {% endif %}
