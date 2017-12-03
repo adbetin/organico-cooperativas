@@ -18,7 +18,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name="home"),
-    url(r'^shop$', views.shop, name="shop"),
     url(r'^team$', views.team, name="team"),
     url(r'^notfound$', views.notFound, name="not_found"),
     url(r'^login', views.login_view, name="login"),

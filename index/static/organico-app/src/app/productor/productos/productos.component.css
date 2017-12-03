@@ -1,0 +1,8 @@
+.productor-registro-productos-section{
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.productor-registro-productos-section .hide {
+    display: none;
+}

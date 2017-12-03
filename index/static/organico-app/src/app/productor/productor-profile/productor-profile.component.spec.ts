@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ProductorProfileComponent } from './productor-profile.component';
+import { ProductorProfileComponent } from "./productor-profile.component";
 
-describe('ProductorProfileComponent', () => {
+describe("ProductorProfileComponent", () => {
   let component: ProductorProfileComponent;
   let fixture: ComponentFixture<ProductorProfileComponent>;
 
@@ -19,7 +19,7 @@ describe('ProductorProfileComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

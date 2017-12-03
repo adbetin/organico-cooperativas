@@ -61,7 +61,17 @@
 
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation clearfix">
-                                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                                    <li><a href="{% url 'shop' %}">Tienda</a></li>
+                                    <li>
+                                        <a href="{% url 'checkout' %}">
+                                        <div class="cart-container">
+                                            <div id="cart">
+                                                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="itemCount"></span>
+                                        </div>
+                                        </a>
+                                    </li>
 
                                     <!--<li class="current dropdown"><a href="#">Inicio</a>
                                     	<ul>
@@ -81,8 +91,8 @@
                                         <ul>
                                             <li><a href="{% url 'crear_cooperativa' %}">Crear Cooperativas</a></li>
                                             <li><a href="{% url 'listado_cooperativa' %}">Listado de Cooperativas</a>
-                                            <li><a href="{% url 'crear_producto' %}">Crear Productos</a></li>
                                             </li>
+                                            <li><a href="{% url 'crear_producto' %}">Crear Productos</a></li>
                                             <!--<li><a href="/cooperativa/mapaCooperativa/">Ver mapa de cooperativas</a></li>-->
                                         </ul>
                                     </li>
@@ -91,6 +101,9 @@
                                         <ul>
                                             <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
                                             <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
+                                            {% if user.is_authenticated %}
+                                            <li><a href="{% url 'productos_productor' %}">Agregar oferta</a></li>
+                                            {% endif %}
                                         </ul>
                                     </li>
                                     <li class="dropdown"><a href="#">Administrador</a>
@@ -105,6 +118,7 @@
                                     </li>
 
                                     {% if user.is_authenticated %}
+                                    <input type="hidden" value="{{user.id}}" id="userId">
                                         <li class="dropdown"><a href="#">{{ user.email }}</a>
                                             <ul>
                                                 <!--<li><a href="{% url 'profile' %}">Perfil</a></li>-->
@@ -172,6 +186,8 @@
                 <!-- .navigation -->
                 <ul class="navigation">
                     <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'shop' %}">Tienda</a></li>
+                    <li><a href="{% url 'checkout' %}">Carrito<div class="itemCount" style="position: initial"></div></a></li>
 
                     <!--<li class="current dropdown"><a href="#">Inicio</a>
                         <ul>
@@ -199,6 +215,9 @@
                         <ul>
                             <li><a href="{% url 'registrar_productor' %}">Registrar Productor</a></li>
                             <li><a href="{% url 'listar_productor' %}">Lista Productores</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'productos_productor' %}">Agregar oferta</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#">Administrador</a>
@@ -422,11 +441,13 @@
 <script src="{% static "js/wow.js" %}"></script>
 <script src="{% static "js/script.js" %}"></script>
 
+<script src="{% static "js/jstorage.min.js" %}"></script>
+<script src="{% static "js/shop-car.js" %}"></script>
+
 <script>
     $("#loginForm").on("submit", function (e) {
         e.preventDefault();
         $("#formErrors").html("");
-        debugger;
         $("#loginButton").prop('disabled', true);
         $.ajax({
             type: "POST",

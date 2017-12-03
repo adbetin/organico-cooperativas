@@ -5,8 +5,9 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
-from cooperativa.models import Cooperativa, Servicio
-from cooperativa.serializers import CooperativaSerializer, ServicioSerializer
+from cooperativa.models import Cooperativa, Servicio, DiasReparto
+from cooperativa.serializers import CooperativaSerializer, ServicioSerializer, DiasRepartoSerializer
+from datetime import datetime
 
 # Create your views here.
 
@@ -75,9 +76,9 @@ def guardarServicio(request):
 def actualizarCooperativa(request):
     respuesta = False
     if (request.method == 'POST'):
-        print(request.body)
+        # print(request.body)
         cooperativaPost = JSONParser().parse(request)
-        print(cooperativaPost)
+        # print(cooperativaPost)
         coop = Cooperativa.objects.get(id=cooperativaPost['id'])
         coop.nombre=cooperativaPost["nombre"]
         coop.nit=cooperativaPost["nit"]
@@ -99,9 +100,15 @@ def cooperativasDetail(request, id):
     return render(request, 'cooperativas.html', context)
 
 def serviciosAdmin(request, cooperativa_id):
-    servicio = Servicio.objects.all()
-    #servicio = get_object_or_404(Servicio, cooperativa=cooperativa_id)
+    cooperativa = get_object_or_404(Cooperativa, id=cooperativa_id)
+    servicio = Servicio.objects.get(cooperativa=cooperativa)
     context = {'servicio': servicio}
+    return render(request, 'cooperativas.html', context)
+
+def diasRepartoAdmin(request, cooperativa_id):
+    cooperativas = get_object_or_404(Cooperativa, id=cooperativa_id)
+    #cooperativas = Cooperativa.objects.all()
+    context = {'cooperativas': cooperativas}
     return render(request, 'cooperativas.html', context)
 
 
@@ -109,7 +116,6 @@ def serviciosAdmin(request, cooperativa_id):
 def serviciosList(request, cooperativa_id):
     if (request.method == 'GET'):
         servicios = get_list_or_404(Servicio, cooperativa=cooperativa_id)
-        #servicios = Servicio.objects.all()
         serializer = ServicioSerializer(servicios, many=True)
         return modeloJSON(serializer.data)
 
@@ -119,6 +125,65 @@ def serviciosGet(request, id):
     servicio = get_object_or_404(Servicio, id=id)
     serializer = ServicioSerializer(servicio)
     return modeloJSON(serializer.data)
+
+@csrf_exempt
+@api_view(['GET'])
+def diasRepartoGet(request, cooperativa_id):
+    anio = datetime.now().year                  #Anio actual
+    semana = datetime.now().strftime("%V")      #Semana del anio actual
+    return _diasRepartoGet(request, cooperativa_id, anio, semana)
+
+@csrf_exempt
+@api_view(['GET'])
+def _diasRepartoGet(request, cooperativa_id, anio, semana):
+    if (request.method == 'GET'):
+        try:
+            cooperativa = get_object_or_404(Cooperativa, id=cooperativa_id)
+            diasReparto = get_list_or_404(DiasReparto, cooperativa=cooperativa, anio = anio, semana = semana)
+        except:
+            cooperativa = None
+            diasReparto = None
+        serializer = DiasRepartoSerializer(diasReparto, many=True)
+        return modeloJSON(serializer.data)
+
+
+@csrf_exempt
+def actualizarDiaReparto(cooperativa_id, anio, semana, dia, activo):
+    respuesta = False
+    cooperativa = get_object_or_404(Cooperativa, id=cooperativa_id)
+    diaReparto, respuesta = DiasReparto.objects.get_or_create(cooperativa=cooperativa, anio=anio, semana=semana, dia=dia, defaults={ } )
+    diaReparto.activo = activo
+    diaReparto.save()
+    return respuesta
+
+@csrf_exempt
+def actualizarDiasReparto(request):
+    respuesta = False
+    if (request.method == 'POST'):
+
+        #Obtiene el anio y la semana actual
+        anio = datetime.now().year  # Anio actual
+        semana = datetime.now().strftime("%V")  # Semana del anio actual
+
+        #carga los datos enviados
+        diasReparto = decode(request.body)
+
+        #carga la cooperativa que se va a actualizar
+        cooperativa = diasReparto['cooperativa']
+
+        #actualiza el estado de cada dia
+        actualizarDiaReparto(cooperativa, anio, semana, 1, diasReparto['lunes'])
+        actualizarDiaReparto(cooperativa, anio, semana, 2, diasReparto['martes'])
+        actualizarDiaReparto(cooperativa, anio, semana, 3, diasReparto['miercoles'])
+        actualizarDiaReparto(cooperativa, anio, semana, 4, diasReparto['jueves'])
+        actualizarDiaReparto(cooperativa, anio, semana, 5, diasReparto['viernes'])
+        actualizarDiaReparto(cooperativa, anio, semana, 6, diasReparto['sabado'])
+        actualizarDiaReparto(cooperativa, anio, semana, 7, diasReparto['domingo'])
+
+        respuesta = True
+
+    return modeloJSON(respuesta)
+
 
 def decode(data):
     new_data = data.decode("utf-8", "strict")

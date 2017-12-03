@@ -2,11 +2,11 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { APP_BASE_HREF } from "@angular/common";
 import { AgmCoreModule } from "@agm/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatTableModule, MatProgressSpinnerModule,MatDatepickerModule ,MatNativeDateModule,MatDialogModule } from "@angular/material";
+import { MatTableModule, MatProgressSpinnerModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule } from "@angular/material";
 import { LazyLoadImageModule } from "ng-lazyload-image";
 
 import { AppComponent } from './app.component';
@@ -26,8 +26,11 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
-import { CrearProductoComponent } from './cooperativa/productos/crearproducto.component';
-import { ProductorProfileComponent } from './productor/productor-profile/productor-profile.component';
+import { CrearProductoComponent } from "./cooperativa/productos/crearproducto.component";
+import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
+import { ProductosComponent } from './productor/productos/productos.component';
+import { ShopComponent } from "./shop/shop.component";
+import { ShopCarComponent } from "./shop-car/shop-car.component";
 
 @NgModule({
   declarations: [
@@ -49,7 +52,11 @@ import { ProductorProfileComponent } from './productor/productor-profile/product
     ActivarCorreoComponent,
     CrearServicioComponent,
     CrearProductoComponent,
-    ListadoServicioComponent, ProductorProfileComponent
+    ListadoServicioComponent,
+    DiasRepartoComponent,
+    ProductosComponent,
+    ShopComponent,
+    ShopCarComponent
   ],
   imports: [
     BrowserModule,
@@ -143,14 +150,26 @@ import { ProductorProfileComponent } from './productor/productor-profile/product
         component: ListadoServicioComponent
       },
       {
-        path: 'profile',
-        component: ProductorProfileComponent
+        path: 'cooperativa/diasreparto/consultar/:id',
+        component: DiasRepartoComponent
+      },
+      {
+        path: 'productor/productos/carga',
+        component: ProductosComponent
+      },
+      {
+        path: "shop",
+        component: ShopComponent
+      },
+      {
+        path: "shop/checkout",
+        component: ShopCarComponent
       }
     ])
   ],
- providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 
