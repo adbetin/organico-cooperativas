@@ -23,4 +23,5 @@ urlpatterns = [
 
     #servicios rest
     url(r'^api/getproducts', views.productsList, name="api_products"),
+    url(r'^api/checkoutcompra', views.checkoutCompra, name="api_compra"),
 ]
