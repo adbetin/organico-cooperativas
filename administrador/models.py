@@ -17,7 +17,7 @@ class Foro(models.Model):
     tema = models.ForeignKey(Tema)
     fecha_cierre = models.DateTimeField(null=True, blank=True )
     usuario = models.IntegerField(null=True, blank=True , default=1) #Modificar esta campo cuando se encuentre habilitado lo del login a la plataforma
-    estado = models.CharField(max_length=50, null=True, blank=True)
+    estado = models.CharField(max_length=50, null=True, blank=True, default="Activo")
 
 class Respuesta(models.Model):
     nombre = models.CharField(max_length=100)

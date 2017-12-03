@@ -20,12 +20,12 @@
         </thead>
         <tbody>
           <tr *ngFor="let oferta of ofertas">
-            <td>{{ oferta.fechaCreacion }}</td><!--Se debe modificar-->
-            <td>{{ oferta.productor }}</td>
-            <td>{{ oferta.producto }}</td>
+            <td>{{ oferta.fecha }}</td><!--Se debe modificar-->
+            <td>{{ oferta.productor.nombre }}</td>
+            <td>{{ oferta.productos.nombre }}</td>
 
             <td>{{ oferta.cantidad }}</td>
-            <td>$ {{ oferta.precio }}</td>
+            <td>$ {{ oferta.productos.precio }}</td>
             <td>
               <a routerLink="/administrador/oferta-aceptar/{{ oferta.id }}">
                 <span class="fa fa-check title-box title" title="Aceptar Oferta"></span>

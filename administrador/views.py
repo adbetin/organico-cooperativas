@@ -7,9 +7,9 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from cooperativa.models import Cooperativa
 from administrador.models import Tema,Foro,Respuesta
-from productor.models import Productor
-from administrador.serializers import TemaSerializer,ForoSerializer, RespuestaSerializer
-from datetime import datetime
+from productor.models import Productor,Oferta
+from administrador.serializers import TemaSerializer,ForoSerializer, RespuestaSerializer, OfertaSerializer
+import time, datetime, locale
 
 # Create your views here.
 
@@ -106,10 +106,19 @@ def agregarRespuesta(request):
     return modeloJSON(respuesta)
 
 @csrf_exempt
-def ofertasList(request):
+def ofertasList(request): #Unicamente muestra las solicitudes de esta semana que seran habilitadas la proxima semana
     if (request.method == 'GET'):
-        oferta = [{"id":"1","fechaCreacion":"2017-05-05", "productor":"Rafa medrano Corp","producto":"Tomates","cantidad":"200","precio":"100"}]
-        return modeloJSON( oferta )
+        fechas = capturarFechasSemana()
+
+        where = "to_date('%(fecha_inicio)s' , 'YYYY-MM-DD') <= fecha AND to_date('%(fecha_fin)s' , 'YYYY-MM-DD') >= fecha " % \
+               {'fecha_inicio': fechas["fechaInicio"], 'fecha_fin': fechas["fechaFin"]}
+
+        ofertas = Oferta.objects.all().filter(estado=1).extra(where=[where]) #Agregar el filtro de fechas por el momento
+
+        serializer = OfertaSerializer(ofertas, many=True)
+        return modeloJSON(serializer.data)
+        #oferta = [{"id":"1","fechaCreacion":"2017-05-05", "productor":"Rafa medrano Corp","producto":"Tomates","cantidad":"200","precio":"100"}]
+        #return modeloJSON( oferta )
 
 def ofertaDetalle(request, id):
     oferta = [{"id": id, "fechaCreacion": "2017-05-05", "productor": "Rafa medrano Corp", "producto": "Tomates",
@@ -120,5 +129,46 @@ def ofertaDetalle(request, id):
 @csrf_exempt
 def consultarOferta(request, id):
     if (request.method == 'GET'):
+        foros = Foro.objects.all()
         oferta = {"id":id,"fechaCreacion":"2017-05-05", "productor":"Rafa medrano Corp","producto":"Tomates","cantidad":"200","precio":"100"}
         return modeloJSON( oferta )
+
+#Funcion para simplificar la gestion de fechas de la semana actual
+def capturarFechasSemana( ):
+    # Incluir solo las ofertas de la misma semana
+    locale.setlocale(locale.LC_ALL, 'Spanish_Spain.1252')
+    fechaActual = datetime.datetime.now().date()
+    diaActual = datetime.datetime.now().date().strftime('%A')
+
+    fechaInicio = ''
+    fechaFin = ''
+    if (diaActual == "lunes"):  # Sumarle 6 dias y restarle 0
+        fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=6)
+        fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=0)
+    if (diaActual == "martes"):  # Sumarle 5 dias y restarle 1
+        fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=5)
+        fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=1)
+    if (diaActual == "miercoles"):  # Sumarle 4 dias y restarle 2
+        fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=4)
+        fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=2)
+    if (diaActual == "jueves"):  # Sumarle 3 dias y restarle 3
+        fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=3)
+        fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=3)
+    if (diaActual == "viernes"):  # Sumarle 2 dias y restarle 4
+        fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=2)
+        fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=4)
+    if (diaActual == "sabado"):  # Sumarle 1 dias y restarle 5
+        fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=1)
+        fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=5)
+    if (diaActual == "domingo"):  # Sumarle 0 dias y restarle 6
+        fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=0)
+        fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=6)
+
+    #Proxima semana
+    fechaInicioNext = fechaInicio+datetime.timedelta(weeks=1)
+    fechaFinNext = fechaFin + datetime.timedelta(weeks=1)
+
+    resultado = {'fechaActual' : fechaActual.strftime('%Y-%m-%d'), 'fechaInicio' : fechaInicio,
+                 'fechaFin' : fechaFin , 'fechaInicioNext': fechaInicioNext.strftime('%Y-%m-%d'),
+                 'fechaFinNext':fechaFinNext.strftime('%Y-%m-%d')}
+    return resultado

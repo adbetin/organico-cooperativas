@@ -59,7 +59,8 @@ import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-
     ListadoServicioComponent,
     OfertasListaComponent,
     OfertaAceptarComponent,
-    OfertaRechazarComponent
+    OfertaRechazarComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,

@@ -86,6 +86,11 @@ class Oferta(models.Model):
     productor = models.ForeignKey(Productor, blank=False, null=False, unique=False)
     productos = models.ForeignKey(producto, blank=True, null=True)
     cantidad = models.IntegerField()
+    estado = models.TextField(null=True, blank=True, default="1") #Estado de la oferta 1 = Activa, 2 = Aprobada, 3 = Rechazada
+    precioEsta = models.TextField(null=True, blank=True ) # Precio establecido por el administrador para la venta en la semana
+    cantidadEsta = models.TextField(null=True, blank=True) #Cantidad establecida por el administrador para la siguiente semana
+    fechaAprRecha = models.DateField( blank=True, null=True ) #Fecha en que se rechaza o aprueba la oferta
+    motivoRechazo = models.CharField(max_length=550, null=True, blank=True)
 
     def __unicode__(self):
         return self.productor.nombre
