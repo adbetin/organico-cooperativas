@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate, login
 from django.http import HttpResponse
@@ -46,3 +48,8 @@ def shop(request):
 def team(request):
     context = {}
     return render(request, 'team.html', context)
+
+@login_required(login_url='login')
+def profile(request):
+    context = {}
+    return render(request, 'profile.html', context)

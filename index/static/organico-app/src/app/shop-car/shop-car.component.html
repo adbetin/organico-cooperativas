@@ -1,0 +1,93 @@
+<!--Section Title-->
+<div class="sec-title-one">
+    <h2>Checkout</h2>
+</div>
+
+
+<!--Checkout Page-->
+<div class="checkout-page">
+    <div class="container">
+        <h2>Su orden</h2>
+        <table id="cart" class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="width:50%">Producto</th>
+                    <th style="width:10%">Precio</th>
+                    <th style="width:8%">Cantidad</th>
+                    <th style="width:22%" class="text-center">Subtotal</th>
+                    <th style="width:10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of cart.data; let i = index">
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs">
+                                <img src="{{ item.image }}" alt="..." class="img-responsive" />
+                            </div>
+                            <div class="col-sm-10">
+                                <h3 class="nomargin">{{ item.name }}</h3>
+                                <p>{{ item.description }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">{{ item.unitPrice }}</td>
+                    <td data-th="Quantity">
+                        <input type="number" class="form-control text-center" [(ngModel)]="item.quantity" (change)="updateQuantity(i)">
+                    </td>
+                    <td data-th="Subtotal" class="text-center">{{ item.subtotal }}</td>
+                    <td class="actions" data-th="">
+                        <button class="btn btn-danger btn-sm" (click)="removeItem(i)">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="visible-xs">
+                    <td class="text-center">
+                        <strong>Total ${{ cart.totalMoney }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" autocapitalize="off" [ngClass]="{'ngValid' : validateCard() }" class="form-control text-center masked ngInvalid"
+                            spellcheck="off" id="tarjetaEntrega" placeholder="N&uacute;mero Tarjeta xxxx-xxxx-xxxx-xxxx*"
+                            [(ngModel)]="tarjeta"/>
+                    </td>
+                    <td>
+                        <input type="text" autocapitalize="off" class="form-control text-center" spellcheck="off" id="direccionEntrega" placeholder="Direcci&oacute;n*"
+                            [(ngModel)]="direccion" />
+                    </td>
+                    <td>
+                        <input type="text" autocapitalize="off" class="form-control text-center" spellcheck="off" id="telefonoEntrega" placeholder="Tel&eacute;fono*"
+                            [(ngModel)]="telefono" />
+                    </td>
+                    <td>
+                        <select [(ngModel)]="proveedor" class="form-control text-center">
+                            <option value="-1"> -- Seleccione un proveedor de la tarjeta * -- </option>
+                            <option value="MasterCard">MasterCard</option>
+                            <option value="Visa">Visa</option>
+                            <option value="American Express">American Express</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <a href="/shop" class="btn btn-warning">
+                            <i class="fa fa-angle-left"></i> Continuar comprando</a>
+                    </td>
+                    <td colspan="2" class="hidden-xs"></td>
+                    <td class="hidden-xs text-center">
+                        <strong>Total ${{ cart.totalMoney }}</strong>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" class="btn btn-success btn-block" (click)="checkout()">Checkout
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

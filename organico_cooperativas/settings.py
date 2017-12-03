@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import random
+import string
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,9 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '_14%*x9q_g-(*(wxfeq$2#1mkt6r4*-_yxhiid4dgmo6y5*y6m'
+#SECRET_KEY = os.environ.get("SECRET_KEY", "".join(random.choice(string.printable) for i in range(40)))
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = os.environ.get("DEBUG", False)
 
 #ALLOWED_HOSTS = ['organico-cooperativas.herokuapp.com', 'organico-cooperativas-dev.herokuapp.com', 'localhost', '127.0.0.1', 'localhost:*', '127.0.0.1:*',]
 ALLOWED_HOSTS = ['*']
@@ -45,7 +50,8 @@ INSTALLED_APPS = [
     'productor',
     'channels',
     'chat',
-    'administrador'
+    'administrador',
+    'shop'
 ]
 
 MIDDLEWARE = [
@@ -166,7 +172,7 @@ REST_FRAMEWORK = {
 #}
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'organico-cooperativas'
-EMAIL_HOST_PASSWORD = 'a12345678'
+EMAIL_HOST_USER = 'procesosagilesg3'
+EMAIL_HOST_PASSWORD = 'agiles123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

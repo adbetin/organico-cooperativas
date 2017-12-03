@@ -27,11 +27,14 @@
                                         <a routerLink="/cooperativa/servicio/listadoServicios/{{ item[0].id }}">
                                           <span class="fa fa-leaf title-box title" title="Servicios ofrecidos"> Servicios</span>
                                         </a>
-                                        <a routerLink="/cooperativa/diasreparto/consultar/{{ item[0].id }}">
+                                        <a routerLink="/cooperativa/diasreparto/consultar/{{ item[0].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-calendar title-box title" title="Fechas de Entrega"> Fechas de Entrega</span>
                                         </a>
-                                        <a routerLink="/cooperativa/actualizardatos/{{ item[0].id }}">
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[0].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                        <a (click)="openDialog(item[0])">
+                                          <span class="fa fa-share title-box title" title="Enviar Anuncio"> Enviar anuncio</span>
                                         </a>
                                     </div>
                                 </div>
@@ -58,11 +61,14 @@
                                         <a routerLink="/cooperativa/servicio/listadoServicios/{{ item[1].id }}">
                                           <span class="fa fa-leaf title-box title" title="Servicios ofrecidos"> Servicios</span>
                                         </a>
-                                        <a routerLink="/cooperativa/diasreparto/consultar/{{ item[1].id }}">
+                                        <a routerLink="/cooperativa/diasreparto/consultar/{{ item[1].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-calendar title-box title" title="Fechas de Entrega"> Fechas de Entrega</span>
                                         </a>
-                                        <a routerLink="/cooperativa/actualizardatos/{{ item[1].id }}">
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[1].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                        <a (click)="openDialog(item[1])">
+                                          <span class="fa fa-share title-box title" title="Enviar Anuncio"> Enviar anuncio</span>
                                         </a>
                                     </div>
                                 </div>
@@ -92,11 +98,14 @@
                                         <a routerLink="/cooperativa/servicio/listadoServicios/{{ item[2].id }}">
                                           <span class="fa fa-leaf title-box title" title="Servicios ofrecidos"> Servicios</span>
                                         </a>
-                                        <a routerLink="/cooperativa/diasreparto/consultar/{{ item[2].id }}">
+                                        <a routerLink="/cooperativa/diasreparto/consultar/{{ item[2].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-calendar title-box title" title="Fechas de Entrega"> Fechas de Entrega</span>
                                         </a>
-                                        <a routerLink="/cooperativa/actualizardatos/{{ item[2].id }}">
+                                        <a routerLink="/cooperativa/actualizardatos/{{ item[2].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                        <a (click)="openDialog(item[2])">
+                                          <span class="fa fa-share title-box title" title="Enviar Anuncio"> Enviar anuncio</span>
                                         </a>
                                     </div>
                                 </div>

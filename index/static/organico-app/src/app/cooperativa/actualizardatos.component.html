@@ -1,8 +1,12 @@
 <!--Contact Section-->
 <section class="contact-section">
   <div class="auto-container">
+
       <!--Section Title-->
-        <h1>Actualizar Datos Cooperativa</h1>
+        <div class="sec-title-one">
+            <h2>Actualizar Datos Cooperativa</h2>
+        </div>
+
         <div class="contact-form default-form" *ngIf="cooperativa != null">
 
            <form #formCooperativa="ngForm" (ngSubmit)="actualizarCooperativa(formCooperativa)">

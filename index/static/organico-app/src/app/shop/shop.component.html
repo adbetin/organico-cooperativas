@@ -1,0 +1,39 @@
+
+    <!--Section Title-->
+    <div class="sec-title-one">
+        <h2>Tienda</h2>
+    </div>
+
+
+    <!--Shop Section-->
+    <section class="shop-section">
+    	<div class="auto-container">
+
+            <div class="row clearfix">
+                <div class="loading-indicator" *ngIf="loading">
+                    <mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
+                </div>
+
+            	<!--Default Shop Item-->
+                <div *ngFor="let product of products" class="default-shop-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                	<div class="inner-box">
+                    	<div class="image-box">
+                        	<figure class="image"><a><img src="{{ product.imagen}}" alt=""></a></figure>
+                        </div>
+                        <div class="lower-content">
+                        	<h3><a href="shop-single.html">{{ product.nombre }}</a></h3>
+                            <div class="price"><span class="price-txt">$ {{ product.precio }}</span></div>
+                        </div>
+
+                        <!--Overlay Box-->
+                        <div class="overlay-box">
+                        	<div class="prod-options">
+                                <a class="theme-btn add-cart-btn" (click)="addCartItem(product)">Agregar Carrito<span class="fa fa-shopping-cart"></span></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

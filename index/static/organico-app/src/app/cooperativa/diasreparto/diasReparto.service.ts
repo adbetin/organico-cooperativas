@@ -34,8 +34,6 @@ export class DiasRepartoService {
       const headers = new Headers({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
       const options = new RequestOptions({ headers: headers });
       const body = JSON.stringify( diaReparto );
-      console.log( 'body: ' );
-      console.log( body );
 
       return this.http.post('/cooperativa/diasreparto/actualizar/', body, options).map(response => response.json());
     }

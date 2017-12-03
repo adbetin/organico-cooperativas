@@ -1,0 +1,23 @@
+{
+    "name": "Fresh Food App",
+    "description": "Una tienda de productos organicos, orientada principalmente a las necesidades de la cooperativa",
+    "repository": "https://github.com/adbetin/organico-cooperativas",
+    "keywords": ["django", "organico", "cooperativas", "miso"],
+    "env": {
+        "SECRET_KEY": {
+            "description": "Django's SECRET_KEY setting",
+            "generator": "secret"
+        }
+    },
+    "addons": ["heroku-postgresql", "heroku-redis"],
+    "formation": {
+        "web": {
+            "quantity": 1,
+          " size": "Free"
+        },
+        "worker": {
+            "quantity": 1,
+            "size": "Free"
+        }
+    }
+}

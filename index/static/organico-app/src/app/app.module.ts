@@ -2,15 +2,15 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { APP_BASE_HREF } from "@angular/common";
 import { AgmCoreModule } from "@agm/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatTableModule, MatProgressSpinnerModule,MatDatepickerModule ,MatNativeDateModule,MatDialogModule } from "@angular/material";
+import { MatTableModule, MatProgressSpinnerModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule } from "@angular/material";
 import { LazyLoadImageModule } from "ng-lazyload-image";
 
 import { AppComponent } from './app.component';
-import { ListadoCooperativaComponent } from './cooperativa/listadoCooperativa.component';
+import { ListadoCooperativaComponent, AnnouncementDialog } from './cooperativa/listadoCooperativa.component';
 import { CrearCooperativaComponent } from './cooperativa/crearCooperativa.component';
 import { CooperativaDetalleComponent } from './cooperativa/cooperativa-detalle/cooperativa-detalle.component';
 import { ProductorRegistroComponent } from './productor/productorRegistro.component';
@@ -26,17 +26,20 @@ import { RespuestaForoComponent } from './administrador/foro/respuestaForo.compo
 import { ActivarCorreoComponent } from "./productor/activar-correo/activar-correo.component";
 import { CrearServicioComponent } from './cooperativa/servicio/crearServicio.component';
 import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio.component';
-import { CrearProductoComponent } from './cooperativa/Productos/crearProducto.component';
+import { CrearProductoComponent } from "./cooperativa/productos/crearproducto.component";
 import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
 import { ProductosComponent } from './productor/productos/productos.component';
 import { OfertasListaComponent } from './administrador/ofertas-lista/ofertas-lista.component';
 import { OfertaAceptarComponent } from './administrador/oferta-aceptar/oferta-aceptar.component';
 import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-rechazar.component';
+import { ShopComponent } from "./shop/shop.component";
+import { ShopCarComponent } from "./shop-car/shop-car.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     ListadoCooperativaComponent,
+    AnnouncementDialog,
     CrearCooperativaComponent,
     CooperativaDetalleComponent,
     ActualizarDatosComponent,
@@ -60,7 +63,9 @@ import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-
     OfertasListaComponent,
     OfertaAceptarComponent,
     OfertaRechazarComponent,
-    ProductosComponent
+    ProductosComponent,
+    ShopComponent,
+    ShopCarComponent
   ],
   imports: [
     BrowserModule,
@@ -172,12 +177,21 @@ import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-
       {
         path: 'productor/productos/carga',
         component: ProductosComponent
+      },
+      {
+        path: "shop",
+        component: ShopComponent
+      },
+      {
+        path: "shop/checkout",
+        component: ShopCarComponent
       }
     ])
   ],
- providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  entryComponents: [AnnouncementDialog],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 

@@ -13,7 +13,6 @@ from productor.serializers import ProductorSerializer, SimpleProductorSerializer
 from django.core.mail import send_mail
 from random import choice
 import time
-
 import json
 
 email_template = """
@@ -264,16 +263,18 @@ def obtenerUsuarioPorUserId(request, id):
         return Response(ProductorSerializer(productor).data, status=status.HTTP_200_OK)
     return Response("[]", status=status.HTTP_200_OK)
 
+
 @csrf_exempt
 @api_view(['POST'])
 def enviarProductos(request):
     if (request.method == 'POST'):
-        data = JSONParser().parse(request)
+        print(request.data)
+        data = json.loads(json.dumps(request.data, ensure_ascii=False))
+        print(data)
         if(data['productos'] and data['productor']):
             productorPost = data['productor']
             productor = get_object_or_404(Productor, id=productorPost['id'])
             productosPost = data['productos']
-            productosList = None
             pr = None
             if(hasattr(productosPost, 'id')):
                 pr = get_object_or_404(producto, id=productosPost['id'])
