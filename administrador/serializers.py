@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from administrador.models import Tema,Foro, Respuesta
 from cooperativa.models import Cooperativa
-from productor.models import TipoDocumento, Productor
+from productor.models import TipoDocumento, Productor, producto, Oferta, categoriaProducto
+from django.utils import six
 
 class CooperativaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,3 +39,33 @@ class RespuestaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Respuesta
         fields = '__all__'
+
+class CategoriaProductoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = categoriaProducto
+        fields = '__all__'
+
+class ProductoSerializer(serializers.ModelSerializer):
+    categorias = serializers.SerializerMethodField()
+    class Meta:
+        model = producto
+        fields = '__all__'
+
+    def get_categorias(self, obj):
+        response = []
+        for _categoria in obj.categorias.all():
+            pr_list = CategoriaProductoSerializer(
+                _categoria)
+            response.append(pr_list.data)
+        return response
+
+class OfertaSerializer(serializers.ModelSerializer):
+    #fecha = serializers.SerializerMethodField()
+    productor = ProductorSerializer(many=False,read_only=True, allow_null=False)
+    productos = ProductoSerializer(many=False,read_only=True, allow_null=False)
+    class Meta:
+        model = Oferta
+        fields = '__all__'
+
+    def get_fecha(self, obj):
+        return six.text_type(obj)

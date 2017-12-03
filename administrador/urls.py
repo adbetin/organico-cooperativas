@@ -20,11 +20,15 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.foroAdmin, name="inicio_foros"),
+
     # Vistas
     url(r'^crearForo/$', views.foroAdmin, name="crear_foro"),
     url(r'^listaForo/$', views.foroAdmin, name="lista_foro"),
     url(r'^editarForo/(?P<id>.+)$', views.ForoDetail, name="actualizar_datos"),
     url(r'^respuestaForo/(?P<id>.+)$', views.ForoDetail, name="respuesta_foro"),
+    url(r'^ofertas-lista/$', views.foroAdmin, name="lista_ofertas"),
+    url(r'^oferta-aceptar/(?P<id>.+)$', views.ofertaDetalle, name="oferta-aceptar"),
+    url(r'^oferta-rechazar/(?P<id>.+)$', views.ofertaDetalle, name="oferta-rechazar"),
 
     # Almacenamiento de datos
     url(r'^guardarForo/$', views.guardarForo, name="guardar_foro"),
@@ -36,6 +40,12 @@ urlpatterns = [
     url(r'^editarDatosForo/$', views.editarForo, name="editar_foro"),
 
     url(r'consultarForo/(?P<id>.+)/$', views.foroGet, name="ver_foro"),
-    url(r'consultarRespuestas/(?P<id>.+)/$', views.respuestasForo, name="ver_respuestas")
+    url(r'consultarRespuestas/(?P<id>.+)/$', views.respuestasForo, name="ver_respuestas"),
+
+    url(r'^fechasRest/$', views.fechasRest, name="fechas_semanas"),
+    url(r'^ofertasList$', views.ofertasList, name="listado_ofertas"),
+    url(r'consultarOferta/(?P<id>.+)/$', views.consultarOferta, name="ver_oferta"),
+    url(r'aceptarOferta/$', views.aceptarOferta, name="aceptar_oferta"),
+    url(r'rechazarOferta/$', views.rechazarOferta, name="rechazar_oferta"),
 
 ]

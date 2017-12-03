@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   //selector: 'app-crearCooperativa',
+  styleUrls: ['respuestaForo.component.css'],
   templateUrl: 'respuestaForo.component.html',
   providers: [
     ForoService,
@@ -70,6 +71,10 @@ export class RespuestaForoComponent{
       if ( resultado ) {
         alert( "Respuesta agregada con exito" );
         this.ngOnInit();
+
+        this.envioformRespuesta = false;
+        formRespuesta.setValue({"nombre":"","descripcion":""})
+
       } else {
         alert( "Error almacenando datos" );
       }
