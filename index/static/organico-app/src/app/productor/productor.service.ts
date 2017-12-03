@@ -70,4 +70,8 @@ export class ProductorService {
     crearNuevaOferta(oferta: any): Observable<string[]> {
         return this.http.post("/productor/productos", JSON.stringify(oferta), this.options).map(response => <string[]>response.json());
     }
+
+    createOrder(order: any): Observable<string[]> {
+        return this.http.post("/shop/api/checkoutcompra", JSON.stringify(order), this.options).map(response => <string[]> response.json());
+    }
 }

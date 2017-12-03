@@ -13,7 +13,6 @@ from productor.serializers import ProductorSerializer, SimpleProductorSerializer
 from django.core.mail import send_mail
 from random import choice
 import time
-
 import json
 
 email_template = """
