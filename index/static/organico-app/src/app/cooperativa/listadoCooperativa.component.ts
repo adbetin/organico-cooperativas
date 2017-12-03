@@ -17,20 +17,25 @@ export class ListadoCooperativaComponent implements OnInit {
   title = 'Listado cooperativas';
 
   cooperativas: any[] = new Array();
-  sizeDescripcion: number = 120;
+  sizeDescripcion = 120;
   displayedColumns = ['nombre', 'nit', 'responsable', 'id'];
   dataSource: CooperativaDataSource = null;
+  isLogged = false;
 
-
-  constructor(private listadoCooperativaServices: ListadoCooperativaService){ }
+  constructor(private listadoCooperativaServices: ListadoCooperativaService) { }
 
   ngOnInit() {
+    const userId: any = (<any>document.getElementById('userId'));
+    if (userId && userId.value === '1') {
+      this.isLogged = true;
+    }
+
     this.listadoCooperativaServices.getCooperativas()
-          .subscribe(cooperativas =>{
+          .subscribe(cooperativas => {
             let grupoCooperativa: any[] = new Array();
-            let contador: number = 0;
-            let index: number = 0;
-            for(let cooperativa of cooperativas)
+            let contador = 0;
+            let index = 0;
+            for ( const cooperativa of cooperativas )
             {
               contador++;
               grupoCooperativa.push(cooperativa);
