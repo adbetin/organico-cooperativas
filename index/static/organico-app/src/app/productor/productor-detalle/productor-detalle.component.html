@@ -1,10 +1,8 @@
 <div class="shop-single">
-    <!--Page Title-->
-    <section class="page-title" style="background-image:url(/static/images/background/bg-page-title-1a.jpg);">
-        <div class="auto-container">
-            <h1>Productor</h1>
-        </div>
-    </section>
+    <!--Section Title-->
+    <div class="sec-title-one">
+        <h2>Nuestros Productores</h2>
+    </div>
 
     <div *ngIf="productor != null">
         <!--Product Details Section-->
@@ -29,6 +27,14 @@
                             </div>
                         </div>
                         <div class="info-column col-md-8 col-sm-7 col-xs-12" style="text-align: left">
+                            <div class="social-links">
+                                <a routerLink="/productor/lista">
+                                    <span class="fa fa-step-backward title-box title" title="Volver"> Volver</span>
+                                </a>
+                                <a routerLink="/productor/editar/{{ productor.id }}" [ngClass]="{'hide':!isLogged}">
+                                    <span class="fa fa-edit title-box title" title="Editar productor"> Editar</span>
+                                </a>
+                            </div>
                             <div class="details-header">
                                 <h4>{{ productor.nombre }}</h4>
                             </div>
