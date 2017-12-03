@@ -17,14 +17,15 @@ from django.core.mail import send_mail
 ofertas_template = """
 
 La oferta de productos realizada por usted fue %s por el administrador de la cooperativa, los detalles de la propuesta se encuentran a continuacion:
-Fecha de solicitud: %s
-Producto: %s
-Cantidad ofertada: %s
-Cantidad aprobada[Solo para estado aprobado]: %s
-Precio aprobado[Solo para estado aprobado]: %s
-Inicio vigencia[Solo para estado aprobado]: %s
-Fin vigencia[Solo para estado aprobado]: %s
-Motivo del rechazo[Solo para estado rechazada]: %s
+
+- Fecha de solicitud : %s
+- Producto : %s
+- Cantidad ofertada : %s
+- Cantidad aprobada [Solo para estado aprobado] : %s
+- Precio aprobado [Solo para estado aprobado] : %s
+- Inicio vigencia[Solo para estado aprobado]: %s
+- Fin vigencia[Solo para estado aprobado]: %s
+- Motivo del rechazo[Solo para estado rechazada]: %s
 
 Gracias por usar nuestra aplicacion
 
@@ -171,7 +172,8 @@ def aceptarOferta(request):
         oferta.fechaFin = datosPost["fechaFin"]
         oferta.save()
 
-        respuesta = enviarCorreo("APROBADO", 'no-reply@organico-cooperativas.com', oferta.productor.email, "Oferta de producto aprobada", oferta)
+        #respuesta = enviarCorreo("APROBADA", 'no-reply@organico-cooperativas.com', oferta.productor.email, "Oferta de producto aprobada", oferta)
+        respuesta = enviarCorreo("APROBADA", 'no-reply@organico-cooperativas.com', 'rafaelmedranotorres@gmail.com',"Oferta de producto aprobada", oferta)
 
     return modeloJSON(respuesta)
 
@@ -184,7 +186,6 @@ def rechazarOferta(request):
         oferta = Oferta.objects.get(id=datosPost['id'])
         oferta.estado = 3  # Estado aprobada
         oferta.fechaAprRecha = datetime.datetime.now().date()
-        oferta.fechaInicio = datosPost["fechaInicio"]
         oferta.motivoRechazo = datosPost["motivo"]
         oferta.save()
 
