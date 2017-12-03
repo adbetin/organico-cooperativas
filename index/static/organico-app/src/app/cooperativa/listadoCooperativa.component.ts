@@ -25,8 +25,8 @@ export class ListadoCooperativaComponent implements OnInit {
   constructor(private listadoCooperativaServices: ListadoCooperativaService) { }
 
   ngOnInit() {
-    const userId: any = (<any>document.getElementById('userId'));
-    if (userId && userId.value === '1') {
+    const userId: any = (<any>document.getElementById("userId"));
+    if (userId && userId.value === "1") {
       this.isLogged = true;
     }
 

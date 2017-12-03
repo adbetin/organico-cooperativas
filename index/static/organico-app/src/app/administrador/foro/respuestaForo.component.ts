@@ -20,8 +20,8 @@ export class RespuestaForoComponent{
   public respuestas: any[];
   temas: any[];
   foro: any = {
-    cooperativa:'',
-    tema: ''
+    cooperativa: "",
+    tema: ""
   };
 
     constructor(private foroService: ForoService,
@@ -36,19 +36,19 @@ export class RespuestaForoComponent{
 
     this.route.params
       .switchMap((params: Params) =>
-        this.foroService.getForo(+params['id'])
+        this.foroService.getForo(+params["id"])
       ).subscribe(response => {
           this.foro = response;
           this.cd.detectChanges();
         },
         reason => {
           this.foro = null;
-          alert( 'error al cargar datos' );
+          alert( "error al cargar datos" );
         });
 
     this.route.params
       .switchMap((params: Params) =>
-        this.foroService.getRespuestas(+params['id'])
+        this.foroService.getRespuestas(+params["id"])
       ).subscribe(response => {
 
           this.respuestas = response;
@@ -68,10 +68,10 @@ export class RespuestaForoComponent{
 
       const resultado = this.foroService.agregarRespuesta(formRespuesta.value).subscribe();
       if ( resultado ) {
-        alert( 'Respuesta agregada con exito' );
+        alert( "Respuesta agregada con exito" );
         this.ngOnInit();
       } else {
-        alert( 'Error almacenando datos' );
+        alert( "Error almacenando datos" );
       }
     }
   }

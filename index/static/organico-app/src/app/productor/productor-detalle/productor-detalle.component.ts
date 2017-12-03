@@ -120,14 +120,14 @@ export class ProductorDetalleComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userId: any = (<any>document.getElementById('userId'));
-    if (userId && userId.value === '1') {
+    const userId: any = (<any>document.getElementById("userId"));
+    if (userId && userId.value === "1") {
       this.isLogged = true;
     }
 
     this.route.params
       .switchMap((params: Params) =>
-        this.productorServices.getProd(+params['id'])
+        this.productorServices.getProd(+params["id"])
       )
       .subscribe(response => {
           this.productor = response;
@@ -136,7 +136,7 @@ export class ProductorDetalleComponent implements OnInit {
         },
         reason => {
           this.productor = null;
-          alert('error al cargar datos del productor');
+          alert( "error al cargar datos del productor" );
         });
 
     this.productorServices.correoActivo().subscribe(response => {
@@ -164,7 +164,7 @@ export class ProductorDetalleComponent implements OnInit {
         console.log(reason);
       });
     }else {
-      alert('Todos los campos son obligatorios');
+      alert( "Todos los campos son obligatorios" );
     }
   }
 }

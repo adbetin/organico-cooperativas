@@ -24,8 +24,8 @@ export class ProductorListaComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userId: any = (<any>document.getElementById('userId'));
-    if (userId && userId.value === '1') {
+    const userId: any = (<any>document.getElementById("userId"));
+    if (userId && userId.value === "1") {
       this.isLogged = true;
     }
 

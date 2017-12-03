@@ -34,15 +34,15 @@ export class CooperativaDetalleComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userId: any = (<any>document.getElementById('userId'));
-    if (userId && userId.value === '1') {
+    const userId: any = (<any>document.getElementById("userId"));
+    if (userId && userId.value === "1") {
       this.isLogged = true;
     }
 
     const that = this;
     this.route.params
       .switchMap((params: Params) =>
-        this.cooperativaServices.getCoop(+params['id'])
+        this.cooperativaServices.getCoop(+params["id"])
       )
       .subscribe(response => {
           this.cooperativa = response;
@@ -55,7 +55,7 @@ export class CooperativaDetalleComponent implements OnInit {
         },
         reason => {
           this.cooperativa = null;
-          alert('error al cargar datos');
+          alert("error al cargar datos");
         });
   }
 }

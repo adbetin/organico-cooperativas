@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http , Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ForoService {
@@ -9,7 +9,7 @@ export class ForoService {
 
     guardarForo( foro ) {
 
-      const headers = new Headers ( { 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') } );
+      const headers = new Headers ( { 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie("csrftoken") } );
       const options = new RequestOptions({ headers: headers });
       const body = JSON.stringify( foro );
 
@@ -38,10 +38,10 @@ export class ForoService {
     }
 
     getCookie(name) {
-      const value = '; ' + document.cookie;
-      const parts = value.split('; ' + name + '=');
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
       if ( parts.length == 2 ) {
-        return parts.pop().split(';').shift();
+        return parts.pop().split(";").shift();
       }
     }
 
