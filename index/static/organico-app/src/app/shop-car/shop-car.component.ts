@@ -1,6 +1,6 @@
-import {Component, OnInit, ChangeDetectorRef} from "@angular/core";
-import {ShopService} from "../shop/shop.service";
-import {ProductorService} from "../productor/productor.service";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { ShopService } from "../shop/shop.service";
+import { ProductorService } from "../productor/productor.service";
 import { NgModel } from '@angular/forms';
 
 @Component({
@@ -21,8 +21,8 @@ export class ShopCarComponent implements OnInit {
   }
 
   constructor(private shopService: ShopService,
-              private cdr: ChangeDetectorRef,
-              private productorService: ProductorService) {
+    private cdr: ChangeDetectorRef,
+    private productorService: ProductorService) {
   }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class ShopCarComponent implements OnInit {
   }
 
   checkout() {
-    if(this.proveedor != -1 && this.tarjeta && this.telefono && this.direccion) {
+    if (this.proveedor != -1 && this.tarjeta && this.telefono && this.direccion) {
       let elemento: any = {};
       elemento.proveedorTarjeta = this.proveedor;
       elemento.tarjeta = this.tarjeta;
@@ -52,7 +52,7 @@ export class ShopCarComponent implements OnInit {
       let productos: any = [];
       elemento.usuario = this.usuario;
       let p: any = this.cart;
-      for(let producto of p.data) {
+      for (let producto of p.data) {
         let prod = {
           id: producto.productId,
           cantidad: producto.quantity
@@ -70,8 +70,8 @@ export class ShopCarComponent implements OnInit {
         window.location.href = "/";
       }, error => {
         alert(error);
-      })
-    }else {
+      });
+    } else {
       alert("Alguno de los datos está incompleto, verifique e intente nuevamente.")
     }
   }
