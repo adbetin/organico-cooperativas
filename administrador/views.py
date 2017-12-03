@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, get_list_or_404
 from django.views.decorators.csrf import csrf_exempt
 import json
+from rest_framework import status
 from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
@@ -10,8 +11,25 @@ from administrador.models import Tema,Foro,Respuesta
 from productor.models import Productor,Oferta
 from administrador.serializers import TemaSerializer,ForoSerializer, RespuestaSerializer, OfertaSerializer
 import time, datetime, locale
+from django.core.mail import send_mail
 
 # Create your views here.
+ofertas_template = """
+
+La oferta de productos realizada por usted fue %s por el administrador de la cooperativa, los detalles de la propuesta se encuentran a continuacion:
+Fecha de solicitud: %s
+Producto: %s
+Cantidad ofertada: %s
+Cantidad aprobada[Solo para estado aprobado]: %s
+Precio aprobado[Solo para estado aprobado]: %s
+Inicio vigencia[Solo para estado aprobado]: %s
+Fin vigencia[Solo para estado aprobado]: %s
+Motivo del rechazo[Solo para estado rechazada]: %s
+
+Gracias por usar nuestra aplicacion
+
+Para acceder a la aplicacion haga click http://organico-cooperativas.herokuapp.com
+"""
 
 def foroAdmin(request):
     context = {}
@@ -121,17 +139,70 @@ def ofertasList(request): #Unicamente muestra las solicitudes de esta semana que
         #return modeloJSON( oferta )
 
 def ofertaDetalle(request, id):
-    oferta = [{"id": id, "fechaCreacion": "2017-05-05", "productor": "Rafa medrano Corp", "producto": "Tomates",
-               "cantidad": "200","precio":"100"}]
-    context = {'oferta': oferta}
+    ofertas = Oferta.objects.all().filter(pk=id)  # Agregar el filtro de fechas por el momento
+    serializer = OfertaSerializer(ofertas, many=True)
+    context = {'oferta': serializer.data}
     return render(request, 'administrador.html', context)
 
 @csrf_exempt
 def consultarOferta(request, id):
     if (request.method == 'GET'):
-        foros = Foro.objects.all()
-        oferta = {"id":id,"fechaCreacion":"2017-05-05", "productor":"Rafa medrano Corp","producto":"Tomates","cantidad":"200","precio":"100"}
-        return modeloJSON( oferta )
+        ofertas = Oferta.objects.all().filter(pk=id)  # Agregar el filtro de fechas por el momento
+        serializer = OfertaSerializer(ofertas, many=True)
+        return modeloJSON(serializer.data)
+
+@csrf_exempt
+def fechasRest(request):
+    fechas = capturarFechasSemana()
+    return modeloJSON(fechas)
+
+@csrf_exempt
+def aceptarOferta(request):
+    respuesta = False
+    if (request.method == 'POST'):
+        datosPost = JSONParser().parse(request)
+
+        oferta = Oferta.objects.get(id=datosPost['id'])
+        oferta.cantidadEsta = datosPost["cantidad"]
+        oferta.precioEsta = datosPost["precio"]
+        oferta.estado = 2 #Estado aprobada
+        oferta.fechaAprRecha = datetime.datetime.now().date()
+        oferta.fechaInicio = datosPost["fechaInicio"]
+        oferta.fechaFin = datosPost["fechaFin"]
+        oferta.save()
+
+        respuesta = enviarCorreo("APROBADO", 'no-reply@organico-cooperativas.com', oferta.productor.email, "Oferta de producto aprobada", oferta)
+
+    return modeloJSON(respuesta)
+
+@csrf_exempt
+def rechazarOferta(request):
+    respuesta = False
+    if (request.method == 'POST'):
+        datosPost = JSONParser().parse(request)
+
+        oferta = Oferta.objects.get(id=datosPost['id'])
+        oferta.estado = 3  # Estado rechazada
+        oferta.fechaAprRecha = datetime.datetime.now().date()
+        oferta.motivoRechazo = datosPost["descripcion"]
+        oferta.save()
+
+        respuesta = enviarCorreo("RECHAZADA", '', oferta.productor.email,
+                                 "Oferta de producto rechazada", oferta)
+
+    return modeloJSON(respuesta)
+
+def enviarCorreo(mensaje, remitente, destinatario, asunto, oferta ):
+    if(mensaje and remitente and destinatario):
+        send_mail(
+            asunto,
+            ofertas_template % (mensaje, oferta.fecha, oferta.productos.nombre, oferta.cantidad, oferta.cantidadEsta, oferta.precioEsta, oferta.fechaInicio,oferta.fechaFin, oferta.motivoRechazo ),
+            'no-reply@organico-cooperativas.com',
+            [destinatario],
+            fail_silently=False,
+        )
+        return False
+    return True
 
 #Funcion para simplificar la gestion de fechas de la semana actual
 def capturarFechasSemana( ):
@@ -172,3 +243,5 @@ def capturarFechasSemana( ):
                  'fechaFin' : fechaFin , 'fechaInicioNext': fechaInicioNext.strftime('%Y-%m-%d'),
                  'fechaFinNext':fechaFinNext.strftime('%Y-%m-%d')}
     return resultado
+
+

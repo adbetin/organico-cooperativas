@@ -1,10 +1,10 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { OfertasService } from '../ofertas-lista/ofertas.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-oferta-aceptar',
+  //selector: 'app-oferta-aceptar',
   templateUrl: './oferta-aceptar.component.html',
   styleUrls: ['./oferta-aceptar.component.css'],
   providers: [
@@ -13,8 +13,21 @@ import { OfertasService } from '../ofertas-lista/ofertas.service';
 })
 export class OfertaAceptarComponent implements OnInit {
 
+  title = 'Aceptar oferta';
   envioformOferta = false;
-  oferta: any = {};
+  data: any = {};
+  public oferta: any = {
+    fecha :"",
+    productor: {
+      nombre:""
+    },
+    productos: {
+      nombre:"",
+      precio:""
+    },
+    cantidad:"0"
+  };
+  public fechas: any = {};
 
   constructor(private ofertasServices: OfertasService,
               private route: ActivatedRoute,
@@ -28,30 +41,55 @@ export class OfertaAceptarComponent implements OnInit {
       .switchMap((params: Params) =>
         this.ofertasServices.getOferta(+params["id"])
       ).subscribe(response => {
-          this.oferta = response;
+
+          this.oferta = response[0];
+          this.data.cantidad = this.oferta.cantidad;
           this.cd.detectChanges();
         },
         reason => {
-          this.oferta = null;
+          //this.oferta = null;
+          alert("error al cargar datos");
+        });
+
+    this.route.params
+      .switchMap((params: Params) =>
+        this.ofertasServices.getFechaSemana()
+      ).subscribe(response => {
+          this.fechas = response;
+          this.cd.detectChanges();
+
+        },
+        reason => {
+          this.fechas = null;
           alert("error al cargar datos");
         });
   }
 
   aceptarOferta( formOferta : NgForm){
-    if( confirm("Esta seguro de aceptar la propuesta actual ?")){
+
       this.envioformOferta = true;
-      if (formOferta.valid) {
+
+      console.log(formOferta)
+      //console.log(formOferta.value)
+
+      if (formOferta.valid && this.data.cantidad>=this.oferta.cantidad)  {
+        if( confirm("Esta seguro de aceptar la propuesta actual ?")){
 
         formOferta.value.id = this.oferta.id;
+        formOferta.value.fechaInicio = this.fechas.fechaInicioNext
+        formOferta.value.fechaFin = this.fechas.fechaFinNext
+
 
         let resultado = this.ofertasServices.aceptarOferta(formOferta.value).subscribe();
         if( resultado ){
           alert("Oferta aprobada");
-          this.ngOnInit();
+          //this.router.navigateByUrl('administrador/ofertas-lista');
         }else{
           alert("Error almacenando datos");
         }
       }
+    }else{
+      console.log("No ingresó valores");
     }
 
 

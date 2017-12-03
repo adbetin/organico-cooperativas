@@ -34,6 +34,11 @@ export class OfertasService {
             .map(response => <string>response.json());
     }
 
+    getFechaSemana(): Observable<string[]> {
+        return this.http.get('/administrador/fechasRest/')
+            .map(response => <string[]>response.json());
+    }
+
     getCookie(name) {
       let value = "; " + document.cookie;
       let parts = value.split("; " + name + "=");

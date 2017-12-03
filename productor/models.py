@@ -91,6 +91,8 @@ class Oferta(models.Model):
     cantidadEsta = models.TextField(null=True, blank=True) #Cantidad establecida por el administrador para la siguiente semana
     fechaAprRecha = models.DateField( blank=True, null=True ) #Fecha en que se rechaza o aprueba la oferta
     motivoRechazo = models.CharField(max_length=550, null=True, blank=True)
+    fechaInicio = models.DateField(blank=True, null=True)  # Fecha de inicio de venta
+    fechaFin = models.DateField(blank=True, null=True)  # Fecha de finalizacion de venta
 
     def __unicode__(self):
         return self.productor.nombre

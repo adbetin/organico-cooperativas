@@ -8,15 +8,21 @@
           <tbody>
           <tr>
             <td class="text-right"><label>Fecha solicitud : </label></td>
-            <td class="text-left"><span> {{oferta.fechaCreacion}} </span></td>
+            <td class="text-left"><span> {{oferta.fecha}} </span></td>
             <td class="text-right"><label><b>Productor :</b> </label></td>
-            <td class="text-left"><span> {{oferta.productor}} </span></td>
+            <td class="text-left"><span>{{oferta.productor.nombre}} </span></td>
           </tr>
           <tr>
             <td class="text-right"><label><b>Producto :</b> </label></td>
-            <td class="text-left"><span> {{oferta.producto}} </span></td>
+            <td class="text-left"><span> {{oferta.productos.nombre}}</span></td>
             <td class="text-right"><label><b>Cantidad ofertada	:</b></label></td>
-            <td class="text-left"><span> {{oferta.cantidad}} </span></td>
+            <td class="text-left"><span> {{data.cantidad}} </span></td>
+          </tr>
+          <tr>
+            <td class="text-right"><label><b>Inicio Venta :</b> </label></td>
+            <td class="text-left"><span> {{fechas.fechaInicioNext}} </span></td>
+            <td class="text-right"><label><b>Fin Venta :</b></label></td>
+            <td class="text-left"><span> {{fechas.fechaFinNext}} </span></td>
           </tr>
           <tr>
             <td colspan="4"></td>
@@ -30,18 +36,20 @@
 
                   <div class="form-group col-md-6 col-sm-6 col-xs-6">
                       <label>Cantidad</label>
-                      <input #cantidad="ngModel" [ngClass]="{'error':!cantidad.valid && envioFormOferta}" type="text" name="cantidad" value="{{oferta.cantidad}}" placeholder="* Cantidad [Solo numeros por favor]" ngModel required maxlength="70"  >
+                      <input #cantidad="ngModel" [(ngModel)]="oferta.cantidad" [ngClass]="{'error':!cantidad.valid || data.cantidad<oferta.cantidad }" type="text" name="cantidad" placeholder="* Cantidad [Solo numeros por favor]" ngModel required maxlength="70" pattern="[0-9]*" >
                   </div>
 
                   <div class="form-group col-md-6 col-sm-6 col-xs-6">
                       <label>Precio</label>
-                      <input #precio="ngModel" [ngClass]="{'error':!precio.valid && envioFormOferta}" type="text" name="precio" value="{{oferta.precio}}" placeholder="* Asunto [Solo numeros por favor]" ngModel required maxlength="70"  >
+                      <input #precio="ngModel"  [ngClass]="{'error':!precio.valid}" type="text" name="precio" [(ngModel)]="oferta.productos.precio"  placeholder="* Precio [Solo numeros por favor]" ngModel required maxlength="70"  pattern="[0-9.,]*">
+
                   </div>
 
                   <div class="form-group col-md-12 col-sm-12 col-xs-6 text-left" >
-                    <span *ngIf="!formOferta.valid && !envioFormOferta"> * Campos obligatorios</span>
+                    <span *ngIf="!formOferta.valid "> * Campos obligatorios</span>
                     <br>
-                    <label *ngIf="!formOferta.valid && envioFormOferta" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.</label>
+                    <label *ngIf="!formOferta.valid || data.cantidad<oferta.cantidad" class="error">* Existen campos vacios que son obligatorios o existen campos invalidos.
+                      <br> [Recuerde que la cantidad ingresada no puede ser mayor a la cantidad ofertada]</label>
                   </div>
 
                   <div class="form-group col-md-12 col-sm-12 col-xs-6">
@@ -52,4 +60,3 @@
       </div>
   </div>
 </section>
-

@@ -71,6 +71,10 @@ export class RespuestaForoComponent{
       if( resultado ){
         alert("Respuesta agregada con exito");
         this.ngOnInit();
+
+        this.envioformRespuesta = false;
+        formRespuesta.setValue({"nombre":"","descripcion":""})
+
       }else{
         alert("Error almacenando datos");
       }
