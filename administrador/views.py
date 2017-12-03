@@ -208,31 +208,32 @@ def enviarCorreo(mensaje, remitente, destinatario, asunto, oferta ):
 #Funcion para simplificar la gestion de fechas de la semana actual
 def capturarFechasSemana( ):
     # Incluir solo las ofertas de la misma semana
-    locale.setlocale(locale.LC_ALL, 'Spanish_Spain.1252')
+    #locale.setlocale(locale.LC_ALL, 'Spanish_Spain.1252')
+
     fechaActual = datetime.datetime.now().date()
     diaActual = datetime.datetime.now().date().strftime('%A')
 
     fechaInicio = ''
     fechaFin = ''
-    if (diaActual == "lunes"):  # Sumarle 6 dias y restarle 0
+    if (diaActual.lower() == "monday"):  # Sumarle 6 dias y restarle 0
         fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=6)
         fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=0)
-    if (diaActual == "martes"):  # Sumarle 5 dias y restarle 1
+    if (diaActual.lower() == "tuesday"):  # Sumarle 5 dias y restarle 1
         fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=5)
         fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=1)
-    if (diaActual == "miercoles"):  # Sumarle 4 dias y restarle 2
+    if (diaActual.lower() == "wednesday"):  # Sumarle 4 dias y restarle 2
         fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=4)
         fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=2)
-    if (diaActual == "jueves"):  # Sumarle 3 dias y restarle 3
+    if (diaActual.lower() == "thursday"):  # Sumarle 3 dias y restarle 3
         fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=3)
         fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=3)
-    if (diaActual == "viernes"):  # Sumarle 2 dias y restarle 4
+    if (diaActual.lower() == "friday"):  # Sumarle 2 dias y restarle 4
         fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=2)
         fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=4)
-    if (diaActual == "sabado"):  # Sumarle 1 dias y restarle 5
+    if (diaActual.lower() == "saturday"):  # Sumarle 1 dias y restarle 5
         fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=1)
         fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=5)
-    if (diaActual == "domingo"):  # Sumarle 0 dias y restarle 6
+    if (diaActual.lower() == "sunday"):  # Sumarle 0 dias y restarle 6
         fechaFin = datetime.datetime.now().date() + datetime.timedelta(days=0)
         fechaInicio = datetime.datetime.now().date() - datetime.timedelta(days=6)
 
