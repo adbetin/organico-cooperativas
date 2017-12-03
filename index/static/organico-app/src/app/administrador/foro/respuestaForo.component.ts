@@ -56,7 +56,7 @@ export class RespuestaForoComponent{
         },
         reason => {
           this.foro = null;
-          alert( 'error al cargar datos' );
+          alert( "error al cargar datos" );
         });
   }
 

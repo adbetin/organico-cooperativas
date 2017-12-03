@@ -18,7 +18,7 @@ export class ForoService {
 
     editarForo( foro ) {
 
-      const headers = new Headers({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie('csrftoken') });
+      const headers = new Headers({ 'Content-Type': 'application/json', 'X-CSRFToken': this.getCookie("csrftoken" ) });
       const options = new RequestOptions({ headers: headers });
       const body = JSON.stringify( foro );
       return this.http.post('/administrador/editarDatosForo/', body, options).map(response => response.json());
