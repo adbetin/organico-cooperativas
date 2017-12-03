@@ -172,8 +172,8 @@ def aceptarOferta(request):
         oferta.fechaFin = datosPost["fechaFin"]
         oferta.save()
 
-        #respuesta = enviarCorreo("APROBADA", 'no-reply@organico-cooperativas.com', oferta.productor.email, "Oferta de producto aprobada", oferta)
-        respuesta = enviarCorreo("APROBADA", 'no-reply@organico-cooperativas.com', 'rafaelmedranotorres@gmail.com',"Oferta de producto aprobada", oferta)
+        respuesta = enviarCorreo("APROBADA", 'no-reply@organico-cooperativas.com', oferta.productor.email, "Oferta de producto aprobada", oferta)
+        #respuesta = enviarCorreo("APROBADA", 'no-reply@organico-cooperativas.com', 'rafaelmedranotorres@gmail.com',"Oferta de producto aprobada", oferta)
 
     return modeloJSON(respuesta)
 
