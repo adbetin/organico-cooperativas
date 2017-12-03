@@ -22,8 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '_14%*x9q_g-(*(wxfeq$2#1mkt6r4*-_yxhiid4dgmo6y5*y6m'
-SECRET_KEY = os.environ.get("SECRET_KEY", "".join(random.choice(string.printable) for i in range(40)))
+SECRET_KEY = '_14%*x9q_g-(*(wxfeq$2#1mkt6r4*-_yxhiid4dgmo6y5*y6m'
+#SECRET_KEY = os.environ.get("SECRET_KEY", "".join(random.choice(string.printable) for i in range(40)))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'productor',
     'channels',
     'chat',
-    'administrador'
+    'administrador',
+    'shop'
 ]
 
 MIDDLEWARE = [
@@ -160,7 +161,7 @@ REST_FRAMEWORK = {
 }
 
 CHANNEL_LAYERS = {
-    "default": {
+   "default": {
         #'BACKEND': 'asgiref.inmemory.ChannelLayer',
         "BACKEND": "asgi_redis.RedisChannelLayer",
         "CONFIG": {
@@ -171,7 +172,7 @@ CHANNEL_LAYERS = {
 }
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'organico-cooperativas'
-EMAIL_HOST_PASSWORD = 'a12345678'
+EMAIL_HOST_USER = 'procesosagiles'
+EMAIL_HOST_PASSWORD = 'agiles123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

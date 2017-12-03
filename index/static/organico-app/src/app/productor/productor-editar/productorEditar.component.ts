@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl } from "@angular/forms";
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { ProductorService } from '../productor.service';
 import { ListadoCooperativaService } from '../../cooperativa/listadoCooperativa.service';
 import { MapsAPILoader } from '@agm/core';
 
 @Component({
-  //selector: 'app-productor-registro',
+  // selector: 'app-productor-registro',
   templateUrl: './productorEditar.component.html',
   styleUrls: ['./productorEditar.component.css'],
   providers: [
@@ -44,7 +44,7 @@ export class ProductorEditarComponent implements OnInit {
     this.marker = {
         latitud: 4.6486259,
         longitud: -74.2478963,
-        zoom : 10
+        zoom : 12
     }
   }
 
@@ -186,9 +186,9 @@ export class ProductorEditarComponent implements OnInit {
 
   loadFoto(input) {
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        let reader = new FileReader();
 
-        reader.onload = function (e:FileReaderEvent) {
+        reader.onload = function ( e:FileReaderEvent ) {
             this.productor.foto = e.target.result;
         }.bind(this);
 

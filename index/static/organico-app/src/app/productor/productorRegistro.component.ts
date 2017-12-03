@@ -23,7 +23,11 @@ export class ProductorRegistroComponent implements OnInit {
   public searchControl: FormControl;
   @ViewChild("search")
   public searchElementRef: ElementRef;
-  marker: any = {};
+  marker: any = {
+    latitud: 4.6486259,
+    longitud: -74.2478963,
+    zoom : 7
+  };
 
   productor: any = {
     "tipo_documento": -1,
@@ -50,15 +54,6 @@ export class ProductorRegistroComponent implements OnInit {
     this.searchControl = new FormControl();
     this.setGeoLocalitation();
     this.setAutocomplete();
-    //console.log( this.marker.latitud )
-    if( !this.marker.latitud  ){ //Sino tiene posicion se asigna por defecto en bogota
-
-      this.marker = {
-        latitud: 4.6486259,
-        longitud: -74.2478963,
-        zoom : 7
-      }
-    }
   }
 
   setAutocomplete(){ //load Places Autocomplete

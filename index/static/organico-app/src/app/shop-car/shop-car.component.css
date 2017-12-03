@@ -1,0 +1,7 @@
+.ngInvalid {
+  color: red;
+}
+
+.ngInvalid.ngValid {
+  color: inherit;
+}

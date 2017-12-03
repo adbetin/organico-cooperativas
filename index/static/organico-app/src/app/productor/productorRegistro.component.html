@@ -1,7 +1,11 @@
 <section class="productor-section">
   <div class="auto-container">
     <!--Section Title-->
-    <h1>Nuevo Productor</h1>
+    <div class="sec-title-one">
+        <h2>Nuevo Productor</h2>
+    </div>
+
+
     <div class="productor-form default-form">
       <div class="row clearfix">
         <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -46,7 +50,7 @@
         </div>
 
         <div class="col-md-12 col-md-offset-0" style="margin-bottom: 20px">
-          <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)" [zoom]="marker.zoom">
+          <agm-map class="registro-map" [latitude]="marker.latitud" [longitude]="marker.longitud" (mapClick)="mapClicked($event)">
             <agm-marker [latitude]="marker.latitud" [longitude]="marker.longitud"></agm-marker>
           </agm-map>
         </div>
