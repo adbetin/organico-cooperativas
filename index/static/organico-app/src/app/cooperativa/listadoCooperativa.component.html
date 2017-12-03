@@ -33,6 +33,9 @@
                                         <a routerLink="/cooperativa/actualizardatos/{{ item[0].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
                                         </a>
+                                        <a (click)="openDialog(item[0])">
+                                          <span class="fa fa-share title-box title" title="Enviar Anuncio"> Enviar anuncio</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -63,6 +66,9 @@
                                         </a>
                                         <a routerLink="/cooperativa/actualizardatos/{{ item[1].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                        <a (click)="openDialog(item[1])">
+                                          <span class="fa fa-share title-box title" title="Enviar Anuncio"> Enviar anuncio</span>
                                         </a>
                                     </div>
                                 </div>
@@ -97,6 +103,9 @@
                                         </a>
                                         <a routerLink="/cooperativa/actualizardatos/{{ item[2].id }}" [ngClass]="{'hide':!isLogged}">
                                           <span class="fa fa-edit title-box title" title="Editar Cooperativa"> Editar</span>
+                                        </a>
+                                        <a (click)="openDialog(item[2])">
+                                          <span class="fa fa-share title-box title" title="Enviar Anuncio"> Enviar anuncio</span>
                                         </a>
                                     </div>
                                 </div>

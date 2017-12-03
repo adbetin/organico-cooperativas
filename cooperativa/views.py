@@ -8,8 +8,13 @@ from rest_framework.parsers import JSONParser
 from cooperativa.models import Cooperativa, Servicio, DiasReparto
 from cooperativa.serializers import CooperativaSerializer, ServicioSerializer, DiasRepartoSerializer
 from datetime import datetime
+from rest_framework.response import Response
+from rest_framework import status
+from django.core.mail import send_mail
 
 # Create your views here.
+from productor.models import Productor
+
 
 def cooperativasAdmin(request):
     cooperativas = Cooperativa.objects.all()
@@ -184,6 +189,44 @@ def actualizarDiasReparto(request):
 
     return modeloJSON(respuesta)
 
+email_announcement_template = """
+
+Administrador envio un mensaje
+
+%s
+
+Gracias por usar nuestra aplicacion
+
+Para acceder a la aplicacion haga click http://organico-cooperativas.herokuapp.com
+"""
+
+
+@csrf_exempt
+@api_view(['POST'])
+def enviarCorreoAnuncio(request):
+    data = request.data
+    if(data['message'] and data['subject'] and data['cooperativaId']):
+        message = data['message']
+        subject = data['subject']
+        cooperativaId = data['cooperativaId']
+
+        cooperativa = get_object_or_404(Cooperativa, id=cooperativaId)
+        try:
+            productores = Productor.objects.filter(cooperativa=cooperativa)
+        except:
+            productores = []
+
+        for productor in productores:
+            if(productor.email is not None):
+                send_mail(
+                    subject,
+                    email_announcement_template % (message),
+                    'no-reply@organico-cooperativas.com',
+                    [productor.email],
+                    fail_silently=False,
+                )
+        return Response("Correos enviados satisfactoriamente", status=status.HTTP_201_CREATED)
+    return Response("Error en el envio de correo", status=status.HTTP_400_BAD_REQUEST)
 
 def decode(data):
     new_data = data.decode("utf-8", "strict")
