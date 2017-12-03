@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'index',
     'cooperativa',
     'productor',
-    #'channels',
+    'channels',
     'chat',
     'administrador',
     'shop'
