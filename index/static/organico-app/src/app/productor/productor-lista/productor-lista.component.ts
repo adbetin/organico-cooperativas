@@ -17,12 +17,18 @@ export class ProductorListaComponent implements OnInit {
   displayedColumns = ['foto', 'nombre', 'documento', 'aprobado', 'id'];
   dataSource: ProductorDataSource = null;
 
-  loading: boolean = false;
+  loading = false;
+  isLogged = false;
 
   constructor(private productorServices: ProductorService) {
   }
 
   ngOnInit() {
+    const userId: any = (<any>document.getElementById('userId'));
+    if (userId && userId.value === '1') {
+      this.isLogged = true;
+    }
+
     this.loading = true;
     this.productorServices.getProductor()
       .subscribe(productores => {

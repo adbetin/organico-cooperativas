@@ -19,6 +19,8 @@ export class ProductorDetalleComponent implements OnInit {
 
   correoActivo: any = false;
 
+  isLogged = false;
+
   styles: any = [
     {
       "featureType": "administrative",
@@ -118,19 +120,23 @@ export class ProductorDetalleComponent implements OnInit {
   }
 
   ngOnInit() {
+    const userId: any = (<any>document.getElementById('userId'));
+    if (userId && userId.value === '1') {
+      this.isLogged = true;
+    }
+
     this.route.params
       .switchMap((params: Params) =>
-        this.productorServices.getProd(+params["id"])
+        this.productorServices.getProd(+params['id'])
       )
       .subscribe(response => {
           this.productor = response;
-          console.log(this.productor);
           this.email.receiver = this.productor.email;
           this.cd.detectChanges();
         },
         reason => {
           this.productor = null;
-          alert("error al cargar datos del productor");
+          alert('error al cargar datos del productor');
         });
 
     this.productorServices.correoActivo().subscribe(response => {
@@ -139,12 +145,11 @@ export class ProductorDetalleComponent implements OnInit {
   }
 
   mostrarFormularioCorreo() {
-    console.log("Hola mundo");
     this.email.activo = true;
   }
 
-  enviarCorreo(){
-    if(this.email.sender && this.email.message && this.email.receiver) {
+  enviarCorreo() {
+    if ( this.email.sender && this.email.message && this.email.receiver ) {
       this.productorServices.enviarCorreo(this.email).subscribe(response => {
         alert(response);
         this.email = {
@@ -152,14 +157,14 @@ export class ProductorDetalleComponent implements OnInit {
           message: '',
           receiver: this.productor.email,
           activo: false
-        }
+        };
       },
 
       reason => {
         console.log(reason);
       });
     }else {
-      alert("Todos los campos son obligatorios");
+      alert('Todos los campos son obligatorios');
     }
   }
 }
