@@ -29,6 +29,9 @@ import { ListadoServicioComponent } from './cooperativa/servicio/listadoServicio
 import { CrearProductoComponent } from "./cooperativa/productos/crearproducto.component";
 import { DiasRepartoComponent } from './cooperativa/diasreparto/diasReparto.component';
 import { ProductosComponent } from './productor/productos/productos.component';
+import { OfertasListaComponent } from './administrador/ofertas-lista/ofertas-lista.component';
+import { OfertaAceptarComponent } from './administrador/oferta-aceptar/oferta-aceptar.component';
+import { OfertaRechazarComponent } from './administrador/oferta-rechazar/oferta-rechazar.component';
 import { ShopComponent } from "./shop/shop.component";
 import { ShopCarComponent } from "./shop-car/shop-car.component";
 
@@ -55,6 +58,11 @@ import { ShopCarComponent } from "./shop-car/shop-car.component";
     CrearProductoComponent,
     ListadoServicioComponent,
     DiasRepartoComponent,
+    CrearProductoComponent,
+    ListadoServicioComponent,
+    OfertasListaComponent,
+    OfertaAceptarComponent,
+    OfertaRechazarComponent,
     ProductosComponent,
     ShopComponent,
     ShopCarComponent
@@ -153,6 +161,18 @@ import { ShopCarComponent } from "./shop-car/shop-car.component";
       {
         path: 'cooperativa/diasreparto/consultar/:id',
         component: DiasRepartoComponent
+      },
+      {
+        path: 'administrador/ofertas-lista',
+        component: OfertasListaComponent
+      },
+      {
+        path: 'administrador/oferta-aceptar/:id',
+        component: OfertaAceptarComponent
+      },
+      {
+        path: 'administrador/oferta-rechazar/:id',
+        component: OfertaRechazarComponent
       },
       {
         path: 'productor/productos/carga',

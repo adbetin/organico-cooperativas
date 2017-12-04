@@ -21,7 +21,7 @@
               <tr *ngFor="let foro of foros">
                 <td>{{ foro.cooperativa.nombre }}</td>
                 <td>{{ foro.tema.nombre }}</td>
-                <td>{{ foro.fecha_cierre }}</td>
+                <td>{{ foro.fecha_cierre | date }}</td>
                 <td>{{ foro.estado }}</td>
                 <td>
                   <a routerLink="/administrador/respuestaForo/{{ foro.id }}">

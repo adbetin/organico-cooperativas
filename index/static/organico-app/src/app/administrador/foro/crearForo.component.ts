@@ -48,14 +48,14 @@ export class CrearForoComponent{
     //this.openDialog();
   }
 
-
   saveForo( formForo : NgForm){
     this.envioFormForo = true;
+
     if (formForo.valid) {
       let resultado = this.foroServices.guardarForo(formForo.value).subscribe();
       if( resultado ){
         alert("Datos guardados correctamente");
-        //this.router.navigateByUrl('cooperativa/listadoCooperativa');
+        this.router.navigateByUrl('administrador/listaForo');
       }else{
         alert("Error almacenando datos");
       }

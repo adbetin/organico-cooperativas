@@ -70,6 +70,7 @@ export class EditarForoComponent{
       let resultado = this.foroService.editarForo(formForo.value).subscribe();
       if( resultado ){
         alert("Datos guardados correctamente");
+        this.router.navigateByUrl('administrador/listaForo');
       }else{
         alert("Error almacenando datos");
       }
